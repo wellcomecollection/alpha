@@ -10,6 +10,7 @@ small, code { font-family: 'Inconsolata', ; }
   float:left;
   width:25%;
   padding:5px;
+  background-color:pink;
 }
 .portrait-circle {
   display: block;
