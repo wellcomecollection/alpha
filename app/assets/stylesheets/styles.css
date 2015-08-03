@@ -22,6 +22,7 @@ small, code { font-family: 'Inconsolata', ; }
     -moz-border-radius: 50%;
     border-radius: 50%;
     background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Florence_Nighting…ree_quarter_length.jpg/220px-Florence_Nightingale_three_quarter_length.jpg) no-repeat;
+    background-position:center;
     /* margin-bottom: 40px; */
     margin-left: auto;
     margin-right: auto;
