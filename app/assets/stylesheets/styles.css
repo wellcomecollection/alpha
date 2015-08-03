@@ -10,17 +10,17 @@ small, code { font-family: 'Inconsolata', ; }
   float: left;
   width: 25%;
   height: auto;
-  background-color: pink;
-  border: 1px solid red;
   text-align: center;
   margin-bottom: 80px;
 }
 .portrait-circle {
     width: 80%;
     height: 200px;
+/*
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
+*/
     background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Florence_Nighting…ree_quarter_length.jpg/220px-Florence_Nightingale_three_quarter_length.jpg) no-repeat;
     background-position:center;
     /* margin-bottom: 40px; */
