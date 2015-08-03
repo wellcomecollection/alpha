@@ -4,7 +4,7 @@
 
   <div class="circle-container">
     <div class="portrait-circle"></div>
-    <div class="name"><%= link_to person.name, person %></div>
+    <div class="name" title="<%= pluralize(person.records_count, 'thing') %>"><%= link_to person.name, person %></div>
   </div>
 
   <% end %>
