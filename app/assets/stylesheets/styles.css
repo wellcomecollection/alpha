@@ -10,8 +10,8 @@ small, code { font-family: 'Inconsolata', ; }
   float: left;
   width: 25%;
   height: auto;
-  /* background-color: pink; */
-  /* border: 1px solid red; */
+  background-color: pink;
+  border: 1px solid red;
   text-align: center;
   margin-bottom: 80px;
 }
