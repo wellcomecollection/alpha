@@ -5,22 +5,30 @@ namespace :people do
   desc 'De-normalise people (aka authors) from metadata column'
   task denormalize: :environment do
 
+    $stdout.sync = true
+
     name_regex = /\A([^\,]+)\,\s?(.+)\z/
 
 
-    Record.select(:id, :metadata)
-      .where("metadata ? '100'")
-      .find_in_batches(batch_size: 500).with_index do |batch, batch_number|
+    time = Time.now
 
-      puts "Processing batch #{batch_number + 1}"
+    Record.select(:id, :metadata)
+      .find_in_batches(batch_size: 500, start: 403350).with_index do |batch, batch_number|
+
+      print "Processing batch #{batch_number + 1}... "
 
       batch.each do |record|
 
-        record.metadata['100'].each do |name_field|
+
+        ( record.metadata.fetch('100', []) +
+          record.metadata.fetch('700', [])
+        ).each do |name_field|
 
           id = name_field['0']
-          name = name_field['a'].strip.gsub(/\,\z/, '')
-          all_names = [name]
+          name = name_field.fetch('a', '').strip.gsub(/\,\z/, '')
+
+          all_names = []
+          all_names << name unless name.blank?
 
           if name_field['ind1'] == '1' && name_regex.match(name)
 
@@ -79,6 +87,8 @@ namespace :people do
 
       end
 
+      puts "Done in #{Time.now - time} seconds"
+      time = Time.now
     end
 
   end
