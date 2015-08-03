@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
 .circle-container {
-  display:block;
+  float:left;
   width:25%;
   height:200px;
   background-color:pink;
