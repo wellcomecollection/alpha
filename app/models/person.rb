@@ -10,6 +10,13 @@ class Person < ActiveRecord::Base
     "P#{id}"
   end
 
+  def update_wikipedia_intro!
+
+    # TODO
+    # url = https://en.wikipedia.org/w/api.php?action=parse&format=json&page=#{identifiers['wikipedia_en']}&contentmodel=wikitext
+
+  end
+
   def set_other_identifiers_from_viaf!
 
     wikipedia_url_regxex = /\Ahttp\:\/\/([^\.]+).wikipedia.org\/wiki\/(.+)\z/
