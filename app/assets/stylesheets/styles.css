@@ -9,6 +9,7 @@ small, code { font-family: 'Inconsolata', ; }
 .circle-container {
   float: left;
   width: 25%;
+  height:180px;
   height: auto;
   text-align: center;
   margin-bottom: 80px;
