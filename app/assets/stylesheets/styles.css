@@ -11,11 +11,15 @@ small, code { font-family: 'Inconsolata', ; }
 }
 
 .portrait-circle {
-  width: 200px; 
-  height: 200px; 
-  border-radius: 100px; 
-  -webkit-border-radius: 100px; 
-  -moz-border-radius: 100px; 
+    display: block;
+    margin: 0 auto;
+
+    width: 75%;
+    height: auto;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: red;
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Florence_Nightingale_three_quarter_length.jpg/220px-Florence_Nightingale_three_quarter_length.jpg) no-repeat;
 }
 .name {
