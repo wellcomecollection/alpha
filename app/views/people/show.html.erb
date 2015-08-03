@@ -3,6 +3,26 @@
   <p class="dates"><%= @person.born_in %>-<%= @person.died_in %></p>
 <% end %>
 
+<% if @person.identifiers['wikipedia_en'] %>
+  <p><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></p>
+<% end %>
+
+<% if @co_authors.length > 0 %>
+  <p>Co-authors:
+    <% @co_authors.each do |author| %>
+      <%= link_to author.name, person_path(author) %> (<%= pluralize(author.count, 'thing') %>)
+    <% end %>
+  </p>
+<% end %>
+
+<% if @contemporaries && @contemporaries.length > 0 %>
+  <p>Contemporaries:
+    <% @contemporaries.each do |author| %>
+      <%= link_to author.name, person_path(author) %>
+    <% end %>
+  </p>
+<% end %>
+
 <p>As an author, is represented on <%= pluralize(@person.records_count, 'thing') %>:</p>
 
 <ol>
