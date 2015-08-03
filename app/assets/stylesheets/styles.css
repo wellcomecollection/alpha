@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
 .circle-container {
-  float:left;
+  display:block;
   width:25%;
   height:200px;
   background-color:pink;
@@ -24,7 +24,6 @@ small, code { font-family: 'Inconsolata', ; }
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Florence_Nightingale_three_quarter_length.jpg/220px-Florence_Nightingale_three_quarter_length.jpg) no-repeat;
 }
 .name {
-  margin-top: -40px;
   font-family: 'Lato', sans-serif;
   font-size:1em;
 }
