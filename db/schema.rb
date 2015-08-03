@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724155809) do
+ActiveRecord::Schema.define(version: 20150803104032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
   enable_extension "pg_stat_statements"
+  enable_extension "hstore"
 
   create_table "collections", force: :cascade do |t|
     t.text    "name",                             null: false
@@ -28,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150724155809) do
     t.integer "digitized_records"
   end
 
+  create_table "creators", force: :cascade do |t|
+    t.integer  "record_id",  null: false
+    t.integer  "person_id",  null: false
+    t.text     "as"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "creators", ["record_id", "person_id"], name: "index_creators_on_record_id_and_person_id", unique: true, using: :btree
+
   create_table "fields", force: :cascade do |t|
     t.text    "tag",                              null: false
     t.integer "count",                            null: false
@@ -35,6 +46,17 @@ ActiveRecord::Schema.define(version: 20150724155809) do
   end
 
   add_index "fields", ["tag"], name: "index_fields_on_tag", unique: true, using: :btree
+
+  create_table "people", force: :cascade do |t|
+    t.text     "name",                       null: false
+    t.text     "all_names",                               array: true
+    t.integer  "records_count", default: 0,  null: false
+    t.integer  "born_in"
+    t.integer  "died_in"
+    t.hstore   "identifiers",   default: {}, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "records", force: :cascade do |t|
     t.text    "title",                          null: false
