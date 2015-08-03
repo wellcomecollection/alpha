@@ -14,15 +14,16 @@ small, code { font-family: 'Inconsolata', ; }
   margin-bottom: 80px;
 }
 .portrait-circle {
-    width: 80%;
-    height: 200px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    background: url(https://upload.wikimedia.org/wikipedia/commons/0/0f/Florence_Nightingale_by_Kilburn_c1854.jpg) no-repeat;
-    background-position:center center;
-    /* margin-bottom: 40px; */
-    margin-left: auto;
+  width: 80%;
+  height: 200px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/0/0f/Florence_Nightingale_by_Kilburn_c1854.jpg) no-repeat;
+  background-position:center center;
+  background-size: contain;    
+  /* margin-bottom: 40px; */
+  margin-left: auto;
     margin-right: auto;
 }
 .name {
