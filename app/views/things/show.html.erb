@@ -1,1 +1,9 @@
-<h1>Thing</h1>
+<h1><%= @thing.title %></h1>
+<p><%= @thing.identifier %></p>
+
+
+<h2>Authors</h2>
+
+<% @thing.people.each do |person| %>
+  <li><%= link_to person.name, person %></li>
+<% end %>

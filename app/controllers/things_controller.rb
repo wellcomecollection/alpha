@@ -1,6 +1,7 @@
 class ThingsController < ApplicationController
 
-  def index
+  def show
+    @thing = Record.find_by(identifier: params[:id])
   end
 
 end

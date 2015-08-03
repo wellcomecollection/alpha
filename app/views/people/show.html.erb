@@ -1,1 +1,22 @@
-<h1>Person Name</h1>
+<h1><%= @person.name %></h1>
+<% if @person.born_in || @person.died_in %>
+  <p class="dates"><%= @person.born_in %>-<%= @person.died_in %></p>
+<% end %>
+
+<p>As an author, is represented on <%= pluralize(@person.records_count, 'thing') %>:</p>
+
+<ol>
+  <% @things.each do |thing| %>
+    <li><%= link_to thing.title, thing_path(thing) %></li>
+  <% end %>
+</ol>
+
+<h2>Identifiers</h2>
+
+<table>
+  <% @person.identifiers.each_pair do |key, value| %>
+    <tr>
+      <td><%= key %></td>
+      <td><%= value %></td>
+  <% end %>
+</table>
