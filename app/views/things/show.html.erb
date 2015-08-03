@@ -1,9 +1,9 @@
 <h1><%= @thing.title %></h1>
 <p><%= @thing.identifier %></p>
 
-
-<h2>Authors</h2>
-
-<% @thing.people.each do |person| %>
-  <li><%= link_to person.name, person %></li>
+<% if @thing.people.length > 0 %>
+  By
+  <%= @thing.people.collect do |person| %>
+    <% link_to person.name, person %>
+  <% end.to_sentence.html_safe %>
 <% end %>
