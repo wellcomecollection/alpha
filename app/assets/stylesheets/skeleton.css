@@ -1,16 +1,3 @@
-Skip to content
-This repository  
-Pull requests
-Issues
-Gist
- @george08
- Unwatch 7
-  Star 0
- Fork 1goodformandspectacle/wellcome-week3-context PRIVATE
-Branch: master  wellcome-week3-context/public/styles/skeleton.css
-@george08george08 14 days ago serif
-2 contributors @george08 @frankieroberto
-RawBlameHistory     419 lines (371 sloc)  11.497 kB
 /*
 * Skeleton V2.0.4
 * Copyright 2014, Dave Gamache
@@ -136,7 +123,7 @@ body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: Garamond, Georgia, serif;
+/*  font-family: Garamond, Georgia, serif; */
 /*  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; */
   color: #222; }
 
