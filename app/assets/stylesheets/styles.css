@@ -10,6 +10,7 @@ small, code { font-family: 'Inconsolata', ; }
   overflow:hidden;
   float:left;
   width:25%;
+  height:200px;
   background-color:pink;
 }
 .portrait-circle {
@@ -26,49 +27,6 @@ small, code { font-family: 'Inconsolata', ; }
   margin-top: -40px;
   font-family: 'Lato', sans-serif;
   font-size:1em;
-}
-
-.x1 {
-    overflow:hidden;
-}
-.x1 .x2 {
-    display:block;
-    float:left;
-    padding: 12.5%;
-    width:auto;
-    height:auto;
-    border-radius:50%;
-    -moz-border-radius:50%;
-    -webkit-border-radius:50%;
-    -khtml-border-radius: 50%;
-    background:#eee;
-    text-align:center;
-    position: relative;
-}
-.x1 .x2 span {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 48%;
-    line-height: 1em;
-    height: 1em;
-    font-size: 100%;
-    overflow: hidden;
-}
-
-@media (max-width: 320px) 
-{
-    .x1 .x2 {padding: 50%;}
-}
-
-@media (min-width: 321px) and (max-width: 800px)
-{
-    .x1 .x2 {padding: 25%;}
-}
-
-@media (min-width: 801px)
-{
-    .x1 .x2 {padding: 12.5%;}
 }
 
 .nav {
