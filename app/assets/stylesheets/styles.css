@@ -6,20 +6,14 @@ body, p, li { font-family: 'Lora', sans-serif; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
-.circle-container { 
-  margin: 15px;
-}
-
 .portrait-circle {
-    display: block;
-    margin: 0 auto;
-
-    width: 75%;
-    height: auto;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    background-color: red;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Florence_Nightingale_three_quarter_length.jpg/220px-Florence_Nightingale_three_quarter_length.jpg) no-repeat;
 }
 .name {
