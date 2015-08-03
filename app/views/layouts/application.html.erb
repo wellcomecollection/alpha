@@ -5,10 +5,29 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <meta name="robots" content="noindex">
+  <link href='http://fonts.googleapis.com/css?family=Lato|Lora|Muli' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
+  <div class="container">
+    <div class="row nav">
+      <div class="nine columns">
+        <b><a href="https://wellcome-sandbox.herokuapp.com">What's In The Library?</a></b> &nbsp;&nbsp; <em>A month of digital prototyping for Wellcome Library</em><br />
+        <a href="https://scope.whatsinthelibrary.com">Week 1</a> / <a href="http://thing.whatsinthelibrary.com/">Week 2</a> / <a href="http://thing.whatsinthelibrary.com/">Week 3</a> / <a href="/"></a>Week 4</a>
+      </div>
+      <div class="three columns right"><a href="https://whatsinthelibrary.wordpress.com/">Read the Project Blog</a></div>
+    </div>
+  
 <%= yield %>
 
+  </div>
+  
+  <div class="container">
+    <div class="row footer">
+      <div class="one column"><a href="#top">Top</a></div>
+      <div class="seven columns"><a href="http://whatsinthelibrary.com"><b>What's In The Library?</b></a> &nbsp;&nbsp;         <a href="https://scope.whatsinthelibrary.com">Week 1</a> / <a href="http://thing.whatsinthelibrary.com/">Week 2</a> / <a href="http://thing.whatsinthelibrary.com/">Week 3</a> / <a href="/"></a>Week 4</a>
+</div>
+      <div class="four columns right">By <a href="http://gfns.uk" title="Good, Form & Spectacle">gfns.uk</a></div>
+    </div>
+  </div>
 </body>
 </html>
