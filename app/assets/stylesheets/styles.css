@@ -8,12 +8,14 @@ small, code { font-family: 'Inconsolata', ; }
 
 
 .nav {
+  color: #BFBEB5;
   border-bottom: 1px dotted #7F7E79;
   margin-bottom: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 .footer {
+  color: #BFBEB5;
   border-top: 1px dotted #7F7E79;
   margin-top: 30px;
   padding-top: 10px;
