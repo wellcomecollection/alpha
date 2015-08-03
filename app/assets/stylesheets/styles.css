@@ -14,7 +14,7 @@ small, code { font-family: 'Inconsolata', ; }
   margin-bottom: 80px;
 }
 .portrait-circle {
-  width: 80%;
+  width: 100%;
   height: 200px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
