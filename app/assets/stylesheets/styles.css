@@ -1,3 +1,6 @@
+body { background-color: #E5E3D9; color: #403F3C; }
+a { background-color: #FFFDF2; color: #403F3C; padding: 2px; text-decoration: none;}
+
 /* Google fonts */ 
 body, p, li { font-family: 'Lora', sans-serif; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
@@ -5,13 +8,13 @@ small, code { font-family: 'Inconsolata', ; }
 
 
 .nav {
-  border-bottom: 1px dotted #ddd;
+  border-bottom: 1px dotted #7F7E79;
   margin-bottom: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 .footer {
-  border-top: 1px dotted #ddd;
+  border-top: 1px dotted #7F7E79;
   margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
