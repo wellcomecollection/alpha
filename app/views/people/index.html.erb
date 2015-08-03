@@ -1,10 +1,10 @@
 <h1>People</h1>
 
 
-<p>Top authors:</p>
+<h2>Prominent Authors</h2>
 
 <ol>
   <% @top_people.each do |person| %>
-    <li><%= link_to person.name, person %> – <%= pluralize(person.records_count, 'thing') %></li>
+    <li><%= link_to person.name, person %> <small><%= pluralize(person.records_count, 'thing') %></small></li>
   <% end %>
 </ol>
