@@ -1,11 +1,6 @@
 <div class="row">
   <div class="two columns center" style="padding-bottom:20px;">
     <div class="person-portrait"></div>
-    <br />
-    <small>
-      <%= pluralize(@person.records_count, 'thing') %><br />
-      <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
-    </small>
   </div>
   <div class="ten columns bio">
     <h1><%= @person.name %></h1>
@@ -57,7 +52,30 @@
 </div>
 
 <br clear="all" />
-  
+
+<h2>
+  Things by this Author 
+  <span class="help-note">
+    <small>
+      <%= pluralize(@person.records_count, 'thing') %><br />
+      <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
+    </small>
+  </span>
+</h2>
+<% @things.each do |thing| %>
+  <div class="cover-box">
+    <div class="cover">
+      <%= link_to thing_path(thing) do %>
+        <% if thing.image_service_urls.length > 0 %>
+          <%= image_tag thing.image_service_urls.first + "/full/!150,300/0/default.jpg" %>
+        <% else %>
+          <%= thing.title %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <% if @co_authors.length > 0 %>
   <h3>Co-authors</h3>
   <p>
@@ -76,22 +94,6 @@
   </p>
 <% end %>
 
-<h2>Things by this Author</h2>
-<% @things.each do |thing| %>
-  <div class="cover-box">
-    <div class="cover">
-      <%= link_to thing_path(thing) do %>
-        <% if thing.image_service_urls.length > 0 %>
-          <%= image_tag thing.image_service_urls.first + "/full/!150,300/0/default.jpg" %>
-        <% else %>
-          <%= thing.title %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-<br clear="all" />
 <br clear="all" />
 
 <h2>Identifiers</h2>
