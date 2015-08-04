@@ -53,8 +53,6 @@ class Person < ActiveRecord::Base
         puts "Error: #{url}"
       end
 
-      end
-
     end
 
   end
