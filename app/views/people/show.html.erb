@@ -58,15 +58,15 @@
 <br clear="all" />
 
 <div class="row">
-  <div class="five columns"><h2>Things by this Author</h2></div>
-  <div class="four columns">
+  <div class="six columns"><h2>Things by this Author</h2></div>
+  <div class="three columns">
     <small>
       <%= pluralize(@person.records_count, 'thing') %> &bull;
       <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
     </small>
   </div>
   <div class="three columns">
-		<div class="digitised" style="height:5px;background-color:black">
+		<div class="digitised" style="height:5px;background-color:black; margin-top:10px;">
 			<div class="percent-done" style="background-color:white; width: 20px;float:left;"></div>
 		</div>
   </div>
