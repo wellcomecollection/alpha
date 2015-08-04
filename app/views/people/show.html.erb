@@ -1,11 +1,20 @@
-<h1><%= @person.name %></h1>
-<% if @person.born_in || @person.died_in %>
-  <p class="dates"><%= @person.born_in %>-<%= @person.died_in %></p>
-<% end %>
-
-<% if @person.identifiers['wikipedia_en'] %>
-  <p><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></p>
-<% end %>
+<div class="row">
+  <div class="two columns">
+    <div class="portrait-circle"></div>
+  </div>
+  <div class="ten columns">
+    <h1><%= @person.name %></h1>
+    <% if @person.born_in || @person.died_in %>
+      <p class="dates"><%= @person.born_in %>-<%= @person.died_in %></p>
+    <% end %>
+    <% if @person.identifiers['wikipedia_en'] %>
+      <p>
+        Bio from Wikipedia; first sentence. <br />
+        <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %>
+      </p>
+    <% end %>
+  </div>
+</div>
 
 <% if @co_authors.length > 0 %>
   <p>Co-authors:
