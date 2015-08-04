@@ -3,6 +3,9 @@ class Record < ActiveRecord::Base
   has_many :creators
   has_many :people, through: :creators
 
+  has_many :taggings
+  has_many :subjects, through: :taggings
+
   def to_param
     identifier
   end

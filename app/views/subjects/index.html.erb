@@ -1,0 +1,7 @@
+<h1>Subjects</h1>
+
+<ol>
+  <% @top_subjects.each do |subject| %>
+    <li><%= link_to subject.label, subject %> – <%= pluralize_with_delimiter(subject.records_count, 'thing') %></li>
+  <% end %>
+</ol>
