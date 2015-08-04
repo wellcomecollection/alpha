@@ -2,6 +2,30 @@ namespace :people do
 
 
 
+  desc 'Get identifiers from VIAF'
+  task get_identifiers: :environment do
+
+    $stdout.sync = true
+
+    time = Time.now
+
+    Person.select(:id, :identifiers)
+      .find_in_batches(batch_size: 500).with_index do |batch, batch_number|
+
+        print "Processing batch #{batch_number + 1}... "
+
+        batch.each do |person|
+          person.set_other_identifiers_from_viaf!
+        end
+
+        puts "Done in #{Time.now - time} seconds"
+        time = Time.now
+
+    end
+
+  end
+
+
   desc 'De-normalise people (aka authors) from metadata column'
   task denormalize: :environment do
 
