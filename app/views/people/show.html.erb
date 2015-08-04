@@ -22,30 +22,8 @@
     </p>
     <h4>Subjects</h4>
     <p><a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a></p>
-  </div>
-</div>
-<div class="row">
-  <div class="two columns right"><small>TIMELINE:</small></div>
-  <div class="ten columns"><hr style="border-top: 1px solid #8c8b8b;" /></div>
-</div>
-
-<% if @co_authors.length > 0 %>
-  <p>Co-authors:
-    <% @co_authors.each do |author| %>
-      <%= link_to author.name, person_path(author) %> (<%= pluralize(author.count, 'thing') %>)
-    <% end %>
-  </p>
-<% end %>
-
-<% if @contemporaries && @contemporaries.length > 0 %>
-  <p>Contemporaries:
-    <% @contemporaries.each do |author| %>
-      <%= link_to author.name, person_path(author) %>
-    <% end %>
-  </p>
-<% end %>
-
-<h2>Timeline <span class="help-note">Publishing history of Wellcome Library holdings</span></h2>
+    
+    <h4>Timeline <span class="help-note">Publishing history of Wellcome Library holdings</span></h4>
 
 <% years = {} %>
 
@@ -70,11 +48,29 @@
   <% end %>
 
 
-<ul style="display:none">
-  <% years.sort_by {|k,v| k}.each do |year| %>
-    <li><%= year[0] %> – <%= year[1] %></li>
-  <% end %>
-</ul>
+  <ul style="display:none">
+    <% years.sort_by {|k,v| k}.each do |year| %>
+      <li><%= year[0] %> – <%= year[1] %></li>
+    <% end %>
+  </ul>
+  </div>
+</div>
+  
+<% if @co_authors.length > 0 %>
+  <p>Co-authors:
+    <% @co_authors.each do |author| %>
+      <%= link_to author.name, person_path(author) %> (<%= pluralize(author.count, 'thing') %>)
+    <% end %>
+  </p>
+<% end %>
+
+<% if @contemporaries && @contemporaries.length > 0 %>
+  <p>Contemporaries:
+    <% @contemporaries.each do |author| %>
+      <%= link_to author.name, person_path(author) %>
+    <% end %>
+  </p>
+<% end %>
 
 <br clear="all" />
 <br clear="all" />
