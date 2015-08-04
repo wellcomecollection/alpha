@@ -18,3 +18,13 @@
     </div>
   </div>
 <% end %>
+
+<h2 style="clear:both;">Identifiers</h2>
+
+<table>
+  <% @subject.identifiers.each_pair do |key, value| %>
+    <tr>
+      <td><%= key %></td>
+      <td><%= value %></td>
+  <% end %>
+</table>
