@@ -44,9 +44,14 @@ small, code { font-family: 'Inconsolata', ; }
 .nav {
   color: #BFBEB5;
   border-bottom: 1px dotted #7F7E79;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.subnav {
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #7F7E79;
+  margin-bottom: 2a0px;  
 }
 .footer {
   color: #BFBEB5;
