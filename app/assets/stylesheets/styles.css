@@ -39,7 +39,7 @@ small, code { font-family: 'Inconsolata', ; }
   -moz-border-radius: 60px;
   border-radius: 60px;
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg) no-repeat;
-  background-position:center center;
+  background-position:center 30%;
 }
 .nav {
   color: #BFBEB5;
