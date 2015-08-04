@@ -42,8 +42,8 @@ small, code { font-family: 'Inconsolata', ; }
   margin-left: auto;
   margin-right: auto;  
 }
-.bio p { font-size: 1.5em;}
-.bio .dates { font-weight:bold;}
+.big p { font-size: 1.5em;}
+.big .dates { font-weight:bold;}
 .nogo { color: #BFBEB5; font-style:italic;}
 .help-note {     
   padding-left: 15px;
