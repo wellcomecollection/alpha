@@ -10,11 +10,26 @@ class Person < ActiveRecord::Base
     "P#{id}"
   end
 
+  def wikipedia_image
+
+    if identifiers['wikipedia_en']
+
+      puts wikipedia_api_url
+
+      response = JSON.parse(open(wikipedia_api_url))
+
+      puts response
+    end
+
+  end
+
   def update_wikipedia_intro!
 
-    # TODO
-    # url = https://en.wikipedia.org/w/api.php?action=parse&format=json&page=#{identifiers['wikipedia_en']}&contentmodel=wikitext
+    if identifiers['wikipedia_en']
 
+      response = JSON.parse(open(wikipedia_api_url))
+
+    end
   end
 
   def set_other_identifiers_from_viaf!
@@ -55,6 +70,16 @@ class Person < ActiveRecord::Base
 
     end
 
+  end
+
+  private
+
+  def wikipedia_api_url
+    if identifiers['wikipedia_en']
+      "https://en.wikipedia.org/w/api.php?action=parse&format=json&page=#{identifiers['wikipedia_en']}&contentmodel=wikitext"
+    else
+      nil
+    end
   end
 
 end
