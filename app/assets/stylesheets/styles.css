@@ -6,30 +6,29 @@ body, p, li { font-family: 'Lora', sans-serif; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
-.circle-container {
-  float: left;
-  width: 25%;
-  text-align: center;
-  margin-top: 25px;
-  margin-bottom: 55px;
+.circle {
+	width: 200px;
+	height: 200px;
+	text-align:center;
+	float:left;
+	margin: 10px;
 }
-.portrait-circle {
-  width: 90%;
-  height: 200px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg) no-repeat;
-  background-position:center center;
-  margin-left: auto;
-  margin-right: auto;
+.bg-link {
+    background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg);
+    display:block;
+    width: 200px;
+	  height: 200px;
+	  -webkit-border-radius: 50%;
+ 		-moz-border-radius: 50%;
+  	border-radius: 50%;
+    text-indent:-9999px;    
 }
 .name {
-    font-family: 'Lato', sans-serif;
-    font-size: 1em;
-    margin-top: -50px;
+	background-color: pink;
+	margin-top: -40px;
+	padding: 5px;
+	display: block;
 }
-.name a { padding:6px;}
 .name small { background-color: #e5e3d9; padding: 4px; }
 
 /* Person */
