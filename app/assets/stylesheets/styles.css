@@ -30,6 +30,7 @@ small, code { font-family: 'Inconsolata', ; }
     margin-top: -50px;
 }
 .name a { padding:6px;}
+.name small { background-color: #e5e3d9; padding: 4px; }
 
 .nav {
   color: #BFBEB5;
