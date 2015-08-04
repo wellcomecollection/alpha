@@ -49,10 +49,10 @@ small, code { font-family: 'Inconsolata', ; }
   height: 180px;
   overflow: hidden;
   padding: 0px;
+  border: 1px solid #BFBEB5;
 }
 .cover {
   padding: 3px;
-  background-color: #BFBEB5;
 }
 
 /* Footer */
