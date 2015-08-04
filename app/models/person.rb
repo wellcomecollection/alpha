@@ -18,6 +18,9 @@ class Person < ActiveRecord::Base
 
       response = JSON.parse(open(wikipedia_api_url).read)
 
+      # TODO: figure out why my local openssl installation doesn't have up-to-date certs
+      # response = JSON.parse(open(wikipedia_api_url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read)
+
       images = response.fetch('parse', []).fetch('images', []) - ["Commons-logo.svg"]
 
       images.reject! { |image| image =~ /\.svg\z/ }
