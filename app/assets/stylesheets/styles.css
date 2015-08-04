@@ -32,6 +32,15 @@ small, code { font-family: 'Inconsolata', ; }
 .name a { padding:6px;}
 .name small { background-color: #e5e3d9; padding: 4px; }
 
+.person-portrait {
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg) no-repeat;
+  background-position:center center;
+}
 .nav {
   color: #BFBEB5;
   border-bottom: 1px dotted #7F7E79;
