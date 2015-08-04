@@ -10,6 +10,11 @@ class SubjectsController < ApplicationController
     id = params[:id].gsub('S','')
 
     @subject = Subject.find(id)
+
+    @things = @subject.records.select(:identifier, :title, :package)
+      .order('digitized desc')
+      .limit(100)
+
   end
 
 end

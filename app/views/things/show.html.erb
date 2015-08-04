@@ -1,9 +1,16 @@
 <h1><%= @thing.title %></h1>
 <p><%= @thing.identifier %></p>
 
+
 <% if @thing.people.length > 0 %>
   By
   <%= @thing.people.collect do |person| %>
     <% link_to person.name, person %>
   <% end.to_sentence.html_safe %>
 <% end %>
+
+<p>Subjects:
+  <%= @subjects.collect do |subject| %>
+    <% link_to subject.label, subject %>
+  <% end.to_sentence.html_safe %>
+</p>
