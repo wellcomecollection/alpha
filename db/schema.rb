@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804153305) do
+ActiveRecord::Schema.define(version: 20150804162305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,17 @@ ActiveRecord::Schema.define(version: 20150804153305) do
   add_index "fields", ["tag"], name: "index_fields_on_tag", unique: true, using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.text     "name",                          null: false
-    t.text     "all_names",                                  array: true
-    t.integer  "records_count",    default: 0,  null: false
+    t.text     "name",                                   null: false
+    t.text     "all_names",                                           array: true
+    t.integer  "records_count",             default: 0,  null: false
     t.integer  "born_in"
     t.integer  "died_in"
-    t.hstore   "identifiers",      default: {}, null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.text     "wikipedia_intro",                            array: true
-    t.text     "wikipedia_images",                           array: true
+    t.hstore   "identifiers",               default: {}, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.text     "wikipedia_intro",                                     array: true
+    t.text     "wikipedia_images",                                    array: true
+    t.text     "wikipedia_intro_paragraph"
   end
 
   create_table "records", force: :cascade do |t|

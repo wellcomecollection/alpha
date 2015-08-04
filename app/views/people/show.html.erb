@@ -4,12 +4,23 @@
   </div>
   <div class="ten columns bio">
     <h1><%= @person.name %></h1>
+
     <p>
       <% if @person.born_in || @person.died_in %>
         <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span><br />
       <% end %>
+
+      <% if @person.wikipedia_intro && @person.wikipedia_intro.length > 0 %>
+
+        <p>
+          <% @person.wikipedia_intro[0..1].each do |s| %>
+            <%= s.gsub(/\[\d+\]/, '').gsub(/\s?\([^\)]+\)/, '') %>
+          <% end %>
+        </p>
+      <% end %>
+
+
       <% if @person.identifiers['wikipedia_en'] %>
-        Georg Wolfgang Wedel (12 November 1645 – 6 September 1721) was a German professor of surgery, botany, theoretical and practical medicine, and chemistry.
         <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
       <% end %>
 
@@ -93,7 +104,7 @@
 			<div class="percent-done" style="background-color:orange; width: 20px; height:5px; float:left;">&nbsp;</div>
 		</div>
   </div>
-</div> 
+</div>
 <% @things.each do |thing| %>
   <div class="cover-box">
     <div class="cover">

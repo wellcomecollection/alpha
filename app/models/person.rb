@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'json'
+require 'nokogiri'
 
 class Person < ActiveRecord::Base
 
@@ -10,11 +11,23 @@ class Person < ActiveRecord::Base
     "P#{id}"
   end
 
-  def wikipedia_image
+  def parse_wikipedia_paragraph_into_sentences!
+
+    if wikipedia_intro_paragraph
+
+      self.wikipedia_intro = wikipedia_intro_paragraph
+        .gsub(/\s?\([^\)]+\)/, '')                          # Remove anything in parenthesis
+        .gsub(/\[(?:note\s)\d+\]/, '')                      # Remove Wikipedia references
+        .split(/[\.](?:[\s]|$)/).collect {|x| x + '.' }     # Split into sentences (crudely)
+
+      save!
+    end
+
+  end
+
+  def update_from_wikipedia!
 
     if identifiers['wikipedia_en']
-
-      puts wikipedia_api_url
 
       response = JSON.parse(open(wikipedia_api_url).read)
 
@@ -25,9 +38,23 @@ class Person < ActiveRecord::Base
 
       images.reject! { |image| image =~ /\.svg\z/ }
 
-      "https://upload.wikimedia.org/wikipedia/en/4/45/#{images.first}"
+      self.wikipedia_images = images
+
+      text = response.fetch('parse', []).fetch('text', [])['*']
+
+      first_paragraph = Nokogiri::HTML(text).css('p').first.content
+
+      if first_paragraph
+        self.wikipedia_intro_paragraph = first_paragraph
+      end
+
+      save!
     end
 
+  end
+
+  def wikipedia_image
+    wikipedia_images.first
   end
 
   def update_wikipedia_intro!
