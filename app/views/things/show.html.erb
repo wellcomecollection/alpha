@@ -14,3 +14,24 @@
     <% link_to subject.label, subject %>
   <% end.to_sentence.html_safe %>
 </p>
+
+<% if @thing.image_urls.length > 0 %>
+  <div style="width: 100%;background-color:#666;">
+    <% url = @thing.image_urls(size: 2000).first %>
+    <%= link_to url do %>
+      <%= image_tag url, style: 'width: 100%;' %>
+    <% end %>
+  </div>
+  <p><%= link_to "Open a zoomable version", @thing.wellcome_player_url %></a>?</p>
+
+  <% @thing.image_service_urls.drop(1).each do |image_service_url| %>
+    <%= link_to "#{image_service_url}/full/!800,800/0/default.jpg" do %>
+      <%= image_tag "#{image_service_url}/full/!200,200/0/default.jpg", style: 'width: auto;' %>
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <p>This thing hasn’t been digitized (yet).</p>
+
+<% end %>

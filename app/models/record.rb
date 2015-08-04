@@ -10,6 +10,10 @@ class Record < ActiveRecord::Base
     identifier
   end
 
+  def image_urls(size: 800)
+    image_service_urls.map { |url| "#{url}/full/!#{size},#{size}/0/default.jpg" }
+  end
+
   def image_service_urls
     image_assets.map { |asset| "http://wellcomelibrary.org/iiif-img/#{identifier}-#{asset.fetch(:sequence_index)}/#{asset.fetch(:identifier)}" }
   end

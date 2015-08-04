@@ -46,6 +46,14 @@ small, code { font-family: 'Inconsolata', ; }
 }
 .bio p { font-size: 1.5em;}
 .bio .dates { font-weight:bold;}
+.nogo { color: #BFBEB5; font-style:italic;}
+.help-note {     
+  padding-left: 15px;
+  font-family: 'Lora', sans-serif;
+  color: #BFBEB5;
+  font-size: 0.375em;
+  letter-spacing: 0em;
+}
 .cover-box {
   float:left; 
   margin:10px;
