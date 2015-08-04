@@ -42,17 +42,17 @@ small, code { font-family: 'Inconsolata', ; }
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg) no-repeat;
   background-position:center 30%;
 }
-.cover {
+.cover-box {
   float:left; 
   margin:10px;
   width: 120px;
   height: 180px;
   overflow: hidden;
   padding: 0px;
-  background-color: #BFBEB5;
 }
-.cover div {
+.cover {
   padding: 3px;
+  background-color: #BFBEB5;
 }
 
 /* Footer */
