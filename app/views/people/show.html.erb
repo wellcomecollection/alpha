@@ -14,12 +14,14 @@
         <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span><br />
       <% end %>
       <% if @person.identifiers['wikipedia_en'] %>
-        Georg Wolfgang Wedel (12 November 1645 – 6 September 1721) was a German professor of surgery, botany, theoretical and practical medicine, and chemistry.[4] <br />
+        Georg Wolfgang Wedel (12 November 1645 – 6 September 1721) was a German professor of surgery, botany, theoretical and practical medicine, and chemistry.
         <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %>
       <% else %>
         <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
       <% end %>
     </p>
+    <h4>Subjects</h4>
+    <p><a href="/subjects/123">Subject</a>, <a href="/subjects/123">Subject</a>, <a href="/subjects/123">Subject</a>, <a href="/subjects/123">Subject</a>, <a href="/subjects/123">Subject</a>, <a href="/subjects/123">Subject</a></p>
   </div>
 </div>
 <div class="row">
