@@ -15,6 +15,17 @@ class SubjectsController < ApplicationController
       .order('digitized desc')
       .limit(100)
 
+
+    thing_ids = @subject.records.pluck(:id)
+
+    @people_whove_written_about_it = Creator
+      .joins(:person)
+      .select("people.*, count(creators.id) as count")
+      .where(record_id: thing_ids)
+      .group('people.id')
+      .order('count desc')
+      .limit(20)
+
   end
 
 end

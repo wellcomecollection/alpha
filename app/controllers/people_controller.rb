@@ -43,6 +43,14 @@ class PeopleController < ApplicationController
       .order('year')
       .count
 
+    @top_subjects_written_about = Tagging
+      .joins(:subject)
+      .select("subjects.*, count(taggings.id) as count")
+      .where(record_id: thing_ids)
+      .group('subjects.id')
+      .order('count desc')
+      .limit(10)
+
     @things = @person.records.select(:identifier, :title, :package)
       .order('digitized desc')
       .limit(100)

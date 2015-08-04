@@ -19,6 +19,14 @@
   </div>
 <% end %>
 
+<h2 style="clear:both;">People who’ve written about it</h2>
+
+<ul>
+  <% @people_whove_written_about_it.each do |person| %>
+    <li><%= link_to person.name, person_path(person) %> (<%= pluralize_with_delimiter(person.count, 'thing') %>)</li>
+  <% end %>
+</ul>
+
 <h2 style="clear:both;">Identifiers</h2>
 
 <table>

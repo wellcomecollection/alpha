@@ -16,8 +16,12 @@
       <% end %>
     </p>
     <h4>Subjects</h4>
-    <p><a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a></p>
-    
+    <p>
+      <% @top_subjects_written_about.each do |subject| %>
+        <%= link_to subject.label, subject_path(subject) %>
+      <% end %>
+    </p>
+
     <h4>Timeline</h4>
 
 <% years = {} %>
