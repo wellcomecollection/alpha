@@ -13,7 +13,7 @@ namespace :people do
     time = Time.now
 
     Record.select(:id, :metadata)
-      .find_in_batches(batch_size: 500, start: 403350).with_index do |batch, batch_number|
+      .find_in_batches(batch_size: 500).with_index do |batch, batch_number|
 
       print "Processing batch #{batch_number + 1}... "
 
