@@ -55,9 +55,12 @@
   </ul>
   </div>
 </div>
+
+<br clear="all" />
   
 <% if @co_authors.length > 0 %>
-  <p>Co-authors:
+  <h3>Co-authors</h3>
+  <p>
     <% @co_authors.each do |author| %>
       <%= link_to author.name, person_path(author) %> (<%= pluralize(author.count, 'thing') %>)
     <% end %>
@@ -65,15 +68,13 @@
 <% end %>
 
 <% if @contemporaries && @contemporaries.length > 0 %>
-  <p>Contemporaries:
+  <h3>Contemporaries</h3>
+  <p>
     <% @contemporaries.each do |author| %>
       <%= link_to author.name, person_path(author) %>
     <% end %>
   </p>
 <% end %>
-
-<br clear="all" />
-<br clear="all" />
 
 <h2>Things by this Author</h2>
 <% @things.each do |thing| %>
