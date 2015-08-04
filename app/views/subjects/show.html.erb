@@ -1,8 +1,32 @@
-<h1><%= @subject.label %></h1>
+<div class="row">
+  <div class="six columns"><h1><%= @subject.label %></h1></div>
+  <div class="three columns right">
+    <small>
+      <%= pluralize(@subject.records_count, 'thing') %> &bull;
+      <%= percentage_with_varying_accuracy(@digitized_count.to_f / @subject.records_count) %>  digitised
+    </small>
+  </div>
+  <div class="three columns">
+		<div class="digitised" style="height:5px;background-color:black; margin-top:10px;">
+			<div class="percent-done" style="background-color:white; height:5px; width: 20px;float:left;">&nbsp;</div>
+		</div>
+  </div>
+</div> 
 
 <% if @subject.description %>
   <p><%= @subject.description %></p>
 <% end %>
+
+  <h4>Related Subjects</h4>
+  <p><a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> </p>
+
+<h2 style="clear:both;">People who’ve written about it</h2>
+
+<ul>
+  <% @people_whove_written_about_it.each do |person| %>
+    <li><%= link_to person.name, person_path(person) %> (<%= pluralize_with_delimiter(person.count, 'thing') %>)</li>
+  <% end %>
+</ul>
 
 <h2>Things sbout this subject</h2>
 <% @things.each do |thing| %>
@@ -18,14 +42,6 @@
     </div>
   </div>
 <% end %>
-
-<h2 style="clear:both;">People who’ve written about it</h2>
-
-<ul>
-  <% @people_whove_written_about_it.each do |person| %>
-    <li><%= link_to person.name, person_path(person) %> (<%= pluralize_with_delimiter(person.count, 'thing') %>)</li>
-  <% end %>
-</ul>
 
 <h2 style="clear:both;">Identifiers</h2>
 
