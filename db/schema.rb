@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803104032) do
+ActiveRecord::Schema.define(version: 20150804132037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,13 +93,14 @@ ActiveRecord::Schema.define(version: 20150803104032) do
   add_index "subfield_content_counts", ["field_id", "subfield"], name: "index_subfield_content_counts_on_field_id_and_subfield", using: :btree
 
   create_table "subjects", force: :cascade do |t|
-    t.text "scheme"
-    t.text "identifier"
-    t.text "label"
-    t.text "description"
-    t.text "all_labels",          array: true
-    t.text "related_identifiers", array: true
-    t.text "tree_numbers",        array: true
+    t.text   "scheme"
+    t.text   "identifier"
+    t.text   "label"
+    t.text   "description"
+    t.text   "all_labels",                                    array: true
+    t.text   "related_identifiers",                           array: true
+    t.text   "tree_numbers",                                  array: true
+    t.hstore "identifiers",         default: {}, null: false
   end
 
   create_table "taggings", force: :cascade do |t|
