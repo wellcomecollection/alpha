@@ -61,6 +61,16 @@
     <% years[@person.died_in.to_s] = "died" %>
   <% end %>
 
+
+  <% years.sort_by {|k,v| k}.each do |year| %>
+    <div class="year-container" style="width:60px; float:left;">
+      <div class="year"><%= year[0] %></div>
+      <div class="thing"><%= year[1] %></div>
+    </div>
+  <% end %>
+</ul>
+
+
 <ul>
   <% years.sort_by {|k,v| k}.each do |year| %>
     <li><%= year[0] %> – <%= year[1] %></li>
