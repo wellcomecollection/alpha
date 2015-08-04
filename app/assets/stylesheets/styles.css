@@ -63,6 +63,9 @@ small, code { font-family: 'Inconsolata', ; }
   padding: 3px;
 }
 
+/* Subject */
+.definition { font-size: 2em; }
+
 /* Footer */
 .nav {
   color: #BFBEB5;
