@@ -11,7 +11,9 @@
       <% if @person.identifiers['wikipedia_en'] %>
         Georg Wolfgang Wedel (12 November 1645 – 6 September 1721) was a German professor of surgery, botany, theoretical and practical medicine, and chemistry.
         <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
-      <% else %>
+      <% end %>
+
+      <% if @person.identifiers['loc'].nil? %>
         <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
       <% end %>
     </p>
