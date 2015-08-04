@@ -16,9 +16,13 @@ class Person < ActiveRecord::Base
 
       puts wikipedia_api_url
 
-      response = JSON.parse(open(wikipedia_api_url))
+      response = JSON.parse(open(wikipedia_api_url).read)
 
-      puts response
+      images = response.fetch('parse', []).fetch('images', []) - ["Commons-logo.svg"]
+
+      images.reject! { |image| image =~ /\.svg\z/ }
+
+      "https://upload.wikimedia.org/wikipedia/en/4/45/#{images.first}"
     end
 
   end
