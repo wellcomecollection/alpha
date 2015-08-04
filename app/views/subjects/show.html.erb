@@ -1,14 +1,14 @@
 <div class="row">
   <div class="six columns"><h1><%= @subject.label %></h1></div>
-  <div class="three columns right">
+  <div class="three columns right lil-vis">
     <small>
       <%= pluralize(@subject.records_count, 'thing') %> &bull;
       <%= percentage_with_varying_accuracy(@digitized_count.to_f / @subject.records_count) %>  digitised
     </small>
   </div>
-  <div class="three columns">
+  <div class="three columns lil-vis">
 		<div class="digitised" style="height:5px;background-color:black; margin-top:10px;">
-			<div class="percent-done" style="background-color:white; height:5px; width: 20px;float:left;">&nbsp;</div>
+			<div class="percent-done" style="background-color:green; height:5px; width: 64px;float:left;">&nbsp;</div>
 		</div>
   </div>
 </div> 
