@@ -7,6 +7,11 @@ class Subject < ActiveRecord::Base
     "S#{id}"
   end
 
+  def update_records_count!
+    self.records_count = records.count
+    save!
+  end
+
   def copy_mesh_identifier!
     if identifier
       identifiers['mesh'] ||= identifier
