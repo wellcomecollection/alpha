@@ -40,8 +40,6 @@ class Record < ActiveRecord::Base
           subject_authority_id = subject_authority_id[/\A(\D\d+)/, 1]
         end
 
-        puts subject_type
-
         if subject_type
 
           subject = Subject.where(["identifiers->? = ?", subject_type, subject_authority_id]).take
