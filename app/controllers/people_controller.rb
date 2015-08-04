@@ -12,6 +12,8 @@ class PeopleController < ApplicationController
 
     thing_ids = @person.records.pluck(:id)
 
+    @digitized_count = @person.records.where(digitized: true).count
+
     @co_authors = Creator
       .joins(:person)
       .select("people.*, count(creators.id) as count")

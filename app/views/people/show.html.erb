@@ -4,7 +4,7 @@
     <br />
     <small>
       <%= pluralize(@person.records_count, 'thing') %><br />
-      x% digitised
+      <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
     </small>
   </div>
   <div class="ten columns">
