@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="three columns center">
+  <div class="two columns center">
     <div class="person-portrait"></div>
     <br />
     <small>
@@ -7,18 +7,25 @@
       <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
     </small>
   </div>
-  <div class="nine columns bio">
+  <div class="ten columns bio">
     <h1><%= @person.name %></h1>
-    <% if @person.born_in || @person.died_in %>
-      <p class="dates"><%= @person.born_in %>-<%= @person.died_in %></p>
-    <% end %>
-    <% if @person.identifiers['wikipedia_en'] %>
-      <p>
+    <p>
+      <% if @person.born_in || @person.died_in %>
+        <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span><br />
+      <% end %>
+      <% if @person.identifiers['wikipedia_en'] %>
         Bio from Wikipedia; first sentence. <br />
         <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %>
-      </p>
-    <% end %>
+      <% else %>
+        <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
+      <% end %>
+    </p>
   </div>
+</div>
+<div class="row">
+  <div class="one column">&nbsp;</div>
+  <div class="ten columns"><hr /></div>
+  <div class="one column">&nbsp;</div>
 </div>
 
 <% if @co_authors.length > 0 %>
