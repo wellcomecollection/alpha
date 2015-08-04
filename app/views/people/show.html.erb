@@ -1,6 +1,11 @@
 <div class="row">
-  <div class="two columns">
+  <div class="two columns center">
     <div class="person-portrait"></div>
+    <br />
+    <small>
+      <%= pluralize(@person.records_count, 'thing') %><br />
+      x% digitised
+    </small>
   </div>
   <div class="ten columns">
     <h1><%= @person.name %></h1>
@@ -32,8 +37,7 @@
   </p>
 <% end %>
 
-<p>As an author, is represented on <%= pluralize(@person.records_count, 'thing') %>:</p>
-
+<h2>Things by this Author</h2>
 <% @things.each do |thing| %>
   <div class="cover">
     <%= link_to thing_path(thing) do %>
