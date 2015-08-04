@@ -33,6 +33,14 @@ class PeopleController < ApplicationController
 
     end
 
+    @publication_years = Record
+      .select('year')
+      .where(id: thing_ids)
+      .where.not(year: nil)
+      .group('year')
+      .order('year')
+      .count
+
     @things = @person.records.select(:identifier, :title, :package)
       .order('digitized desc')
       .limit(100)

@@ -37,6 +37,28 @@
   </p>
 <% end %>
 
+<h2>Timeline</h2>
+
+<% years = {} %>
+
+  <% @publication_years.each do |year| %>
+    <% years[year[0].gsub(' ', '?')] = pluralize(year[1], 'thing') + " published" %>
+  <% end %>
+
+  <% if @person.born_in %>
+    <% years[@person.born_in.to_s] = "born" %>
+  <% end %>
+
+  <% if @person.died_in %>
+    <% years[@person.died_in.to_s] = "died" %>
+  <% end %>
+
+<ul>
+  <% years.sort_by {|k,v| k}.each do |year| %>
+    <li><%= year[0] %> – <%= year[1] %></li>
+  <% end %>
+</ul>
+
 <h2>Things by this Author</h2>
 <% @things.each do |thing| %>
   <div class="cover-box">
