@@ -42,6 +42,8 @@ small, code { font-family: 'Inconsolata', ; }
   background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg) no-repeat;
   background-position:center 30%;
 }
+.bio p { font-size: 1.5em;}
+.bio .dates { font-weight:bold;}
 .cover-box {
   float:left; 
   margin:10px;
