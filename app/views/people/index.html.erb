@@ -4,6 +4,7 @@
 
   <div class="circle-container">
     <div class="portrait-circle"></div>
+    <div class="clicky" style="width:100%;height:100%;background-color:pink;"><%= link_to person.name, person %></div>
     <div class="name" title="<%= pluralize(person.records_count, 'thing') %>">
       <%= link_to person.name, person %><br />
       <small>subject1, subject2</small>
