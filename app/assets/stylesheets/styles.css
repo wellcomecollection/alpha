@@ -24,7 +24,6 @@ small, code { font-family: 'Inconsolata', ; }
     text-indent:-9999px;    
 }
 .name {
-	background-color: pink;
 	margin-top: -40px;
 	padding: 5px;
 	display: block;
