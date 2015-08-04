@@ -63,6 +63,10 @@ small, code { font-family: 'Inconsolata', ; }
   padding: 3px;
 }
 
+.lil-vis {
+  padding-top: 24px;
+}
+
 /* Subject */
 .definition { font-size: 2em; }
 
