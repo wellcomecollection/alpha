@@ -47,9 +47,11 @@ class Person < ActiveRecord::Base
 
           save!
 
-        rescue OpenURI::HTTPError
-          puts "Error: #{url}"
         end
+
+      rescue OpenURI::HTTPError
+        puts "Error: #{url}"
+      end
 
       end
 
