@@ -33,7 +33,9 @@ class PeopleController < ApplicationController
 
     end
 
-    @things = @person.records.select(:identifier, :title).limit(100)
+    @things = @person.records.select(:identifier, :title, :package)
+      .order('digitized desc')
+      .limit(100)
   end
 
 end

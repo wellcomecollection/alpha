@@ -34,11 +34,17 @@
 
 <p>As an author, is represented on <%= pluralize(@person.records_count, 'thing') %>:</p>
 
-<ol>
-  <% @things.each do |thing| %>
-    <li><%= link_to thing.title, thing_path(thing) %></li>
-  <% end %>
-</ol>
+<% @things.each do |thing| %>
+  <div>
+    <%= link_to thing_path(thing) do %>
+      <% if thing.image_service_urls.length > 0 %>
+        <%= image_tag thing.image_service_urls.first + "/full/!150,300/0/default.jpg" %>
+      <% else %>
+        <%= thing.title %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
 
 <h2>Identifiers</h2>
 
