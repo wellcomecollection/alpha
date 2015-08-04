@@ -1,6 +1,29 @@
 namespace :subjects do
 
 
+  task import_from_records: :environment do
+
+    $stdout.sync = true
+
+    time = Time.now
+
+    Record.select(:id, :metadata)
+      .find_in_batches(batch_size: 500)
+      .with_index do |batch, batch_number|
+
+      print "Processing batch #{batch_number + 1}... "
+
+      batch.each do |record|
+        record.update_taggings_from_metadata!
+      end
+
+      puts "Done in #{Time.now - time} seconds"
+      time = Time.now
+
+    end
+
+  end
+
 
   desc 'Copy mesh IDs into identifiers'
   task set_mesh_ids: :environment do
