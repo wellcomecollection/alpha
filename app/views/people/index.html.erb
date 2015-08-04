@@ -3,9 +3,7 @@
   <% @top_people.each do |person| %>
 
   <div class="circle-container">
-    <div class="portrait-circle" style="position:relative">
-      <div class="clicky" style="position:absolute;width:100%;height:100%;background-color:pink;"><a href="#" style="width:100%;height:100%;">Person's Name</a></div>
-    </div>
+    <div class="portrait-circle"></div>
     <div class="name" title="<%= pluralize(person.records_count, 'thing') %>">
       <%= link_to person.name, person %><br />
       <small>subject1, subject2</small>
