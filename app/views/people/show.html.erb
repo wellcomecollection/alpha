@@ -53,15 +53,20 @@
 
 <br clear="all" />
 
-<h2>
-  Things by this Author 
-  <span class="help-note">
+<div class="row">
+  <div class="five columns"><h2>Things by this Author</h2></div>
+  <div class="four columns">
     <small>
-      <%= pluralize(@person.records_count, 'thing') %><br />
+      <%= pluralize(@person.records_count, 'thing') %> &bull;
       <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
     </small>
-  </span>
-</h2>
+  </div>
+  <div class="three columns">
+		<div class="digitised" style="height:5px;background-color:black">
+			<div class="percent-done" style="background-color:white; width: <%= proportion * 100 %>%;"></div>
+		</div>
+  </div>
+</div> 
 <% @things.each do |thing| %>
   <div class="cover-box">
     <div class="cover">
