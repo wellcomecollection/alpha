@@ -2,12 +2,11 @@
 
   <% @top_people.each do |person| %>
 
-  <div class="circle-container">
-    <div class="portrait-circle"></div>
-    <div class="name" title="<%= pluralize(person.records_count, 'thing') %>">
-      <%= link_to person.name, person %><br />
-      <small>subject1, subject2</small>
-    </div>
+  <div class="circle">
+    <a class="bg-link"></a>
+    <a class="name" title="<%= pluralize(person.records_count, 'thing') %>">
+      <%= link_to person.name, person %>
+    </a>
   </div>
 
   <% end %>
