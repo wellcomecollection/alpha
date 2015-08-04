@@ -50,7 +50,7 @@
 <% years = {} %>
 
   <% @publication_years.each do |year| %>
-    <% years[year[0].gsub(' ', '?')] = pluralize(year[1], 'thing') %>
+    <% years[year[0].gsub(' ', '?')] = pluralize(year[1], '') %>
   <% end %>
 
   <% if @person.born_in %>
@@ -63,8 +63,8 @@
 
 
   <% years.sort_by {|k,v| k}.each do |year| %>
-    <div class="year-container" style="width:40px; float:left;">
-      <div class="year"><%= year[0] %></div>
+    <div class="year-container center" style="width:40px; float:left;">
+      <div class="year"><small><%= year[0] %></small></div>
       <div class="thing"><small><%= year[1] %></small></div>
     </div>
   <% end %>
