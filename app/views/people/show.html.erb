@@ -11,14 +11,10 @@
       <% end %>
 
       <% if @person.wikipedia_intro && @person.wikipedia_intro.length > 0 %>
-
-        <p>
           <% @person.wikipedia_intro[0..1].each do |s| %>
             <%= s.gsub(/\[\d+\]/, '').gsub(/\s?\([^\)]+\)/, '') %>
           <% end %>
-        </p>
       <% end %>
-
 
       <% if @person.identifiers['wikipedia_en'] %>
         <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
@@ -28,6 +24,7 @@
         <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
       <% end %>
     </p>
+    
     <h4>Subjects</h4>
     <p>
       <% @top_subjects_written_about.each do |subject| %>
