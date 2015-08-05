@@ -3,13 +3,16 @@
 
 
 <% if @thing.people.length > 0 %>
-  By
-  <%= @thing.people.collect do |person| %>
-    <% link_to person.name, person %>
-  <% end.to_sentence.html_safe %>
+  <p>
+    By
+    <%= @thing.people.collect do |person| %>
+      <% link_to person.name, person %>
+    <% end.to_sentence.html_safe %>
+  </p>
 <% end %>
 
-<p>Subjects:
+<h4>Subjects</h4>
+<p>
   <%= @subjects.collect do |subject| %>
     <% link_to subject.label, subject %>
   <% end.to_sentence.html_safe %>
@@ -22,7 +25,6 @@
       <%= image_tag url, style: 'width: 100%;' %>
     <% end %>
   </div>
-  <p><%= link_to "Open a zoomable version", @thing.wellcome_player_url %></a>?</p>
 
   <% @thing.image_service_urls.drop(1).each do |image_service_url| %>
     <%= link_to "#{image_service_url}/full/!800,800/0/default.jpg" do %>
@@ -32,6 +34,6 @@
 
 <% else %>
 
-  <p>This thing hasn’t been digitized (yet).</p>
+  <p>This thing hasn’t been digitized (yet), we think.</p>
 
 <% end %>
