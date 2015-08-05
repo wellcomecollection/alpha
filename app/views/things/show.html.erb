@@ -1,4 +1,4 @@
-<% @title="@thing.title" %>
+<% content_for :title, @thing.title %>
 
 <h1><%= @thing.title %></h1>
 
@@ -23,7 +23,7 @@
         <%= @subjects.collect do |subject| %>
           <% link_to subject.label, subject %>
         <% end.to_sentence.html_safe %>
-      </p>    
+      </p>
     </div>
   </div>
 <% end %>

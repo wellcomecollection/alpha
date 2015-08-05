@@ -1,3 +1,4 @@
+<% content_for :title, @subject.label %>
 <div class="row">
   <div class="twelve columns"><h1><%= @subject.label %></h1></div>
 </div>
@@ -69,7 +70,7 @@
 		<div class="digitised" style="height:5px;background-color:black; margin-top:10px;">
 			<div class="percent-done" style="background-color:orange; height:5px; width: 64px;float:left;">&nbsp;</div>
 		</div>
-  </div>  
+  </div>
 </div>
 
 <% @things.each do |thing| %>

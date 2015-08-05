@@ -1,3 +1,4 @@
+<% content_for :title, @person.name %>
 <div class="row">
   <div class="two columns center" style="padding-bottom:20px;">
 
@@ -30,9 +31,9 @@
         <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
       <% end %>
     </p>
-    
+
     <h4>Subjects</h4>
-    
+
       <% if @top_subjects_written_about.length > 0 %>
 	<p>
 		<% @top_subjects_written_about.each do |subject| %>
@@ -40,7 +41,7 @@
       		<% end %>
       	</p>
       <% else %>
-	<p class="nogo">We couldn't find any!</p>       
+	<p class="nogo">We couldn't find any!</p>
       <% end %>
 
     <h4>Timeline</h4>
@@ -134,7 +135,7 @@
     <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
   </div>
     <% end %>
-  
+
 <% end %>
 
 <br clear="all" />
