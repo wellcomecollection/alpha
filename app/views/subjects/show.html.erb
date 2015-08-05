@@ -42,11 +42,15 @@
 <% if @people_whove_written_about_it.length > 0 %>
   <h2 style="clear:both;">People who’ve written about it</h2>
 
-  <ul>
-    <% @people_whove_written_about_it.each do |person| %>
-      <li><%= link_to person.name, person_path(person) %> (<%= pluralize_with_delimiter(person.count, 'thing') %>)</li>
+  <% @people_whove_written_about_it.each do |person| %>
+  <div class="sm-circle">
+    <% if person.wikipedia_image %>
+      <% style = "background-image: url('#{person.wikipedia_image}');" %>
     <% end %>
-  </ul>
+    <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
+    <%= link_to person.name, person, class: 'sm-name', title: pluralize(person.records_count, 'thing') %>
+  </div>
+    <% end %>
 <% end %>
 
 <div class="row">
