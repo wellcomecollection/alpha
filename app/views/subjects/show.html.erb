@@ -1,6 +1,21 @@
 <% content_for :title, @subject.label %>
+
 <div class="row">
-  <div class="twelve columns"><h1><%= @subject.label %></h1></div>
+  <div class="twelve columns">
+
+    <% if @trees.length > 0 %>
+
+      <% @trees.each do |tree| %>
+        <p>
+          <%= tree.collect do |subject| %>
+            <% link_to subject.label, subject %>
+          <% end.join(" / ").html_safe %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <h1><%= @subject.label %></h1>
+  </div>
 </div>
 
 <% if @subject.description %>

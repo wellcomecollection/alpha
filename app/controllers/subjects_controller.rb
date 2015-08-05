@@ -36,6 +36,28 @@ class SubjectsController < ApplicationController
       .limit(15)
 
 
+    @trees = []
+
+    @subject.tree_numbers.to_a.each do |tree_number|
+
+      parent_tree_numbers = [tree_number]
+
+      tree_number = tree_number.gsub(/\.?[^\/\.]+\z/, '')
+
+      while !tree_number.blank?
+
+        tree_number = tree_number.gsub(/\.?[^\/\.]+\z/, '')
+        parent_tree_numbers << tree_number unless tree_number.blank?
+
+      end
+
+      @trees << Subject.select('*')
+      .from("(select *, unnest(tree_numbers) as tree_number from subjects) as subjects")
+      .where(tree_number: parent_tree_numbers)
+      .order(:tree_number)
+
+    end
+
   end
 
 end
