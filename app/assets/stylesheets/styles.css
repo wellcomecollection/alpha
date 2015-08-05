@@ -61,7 +61,8 @@ small, code { font-family: 'Inconsolata', ; }
   -webkit-border-radius: 60px;
   -moz-border-radius: 60px;
   border-radius: 60px;
-  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg) no-repeat;
+  background-size: cover;
+  background-color: cadetblue;
   background-position:center 30%;
   margin-left: auto;
   margin-right: auto;  
