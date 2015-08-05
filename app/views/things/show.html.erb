@@ -9,6 +9,26 @@
       <% link_to person.name, person %>
     <% end.to_sentence.html_safe %>
   </p>
+
+  <% people_with_wikipedia_intros = @thing.people.select {|p| p.wikipedia_intro } %>
+
+
+  <% if people_with_wikipedia_intros.length > 0 %>
+
+    <h2>About the <%= people_with_wikipedia_intros.length == 1 ? 'author' : 'authors' %></h2>
+
+    <% people_with_wikipedia_intros.each do |person| %>
+
+      <p>
+        <% person.wikipedia_intro[0..1].each do |s| %>
+          <%= s.gsub(/\[\d+\]/, '') %>
+        <% end %>
+        <% if person.identifiers['wikipedia_en'] %>
+          <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{person.identifiers['wikipedia_en']}" %></small>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
 <% end %>
 
 <h4>Subjects</h4>
