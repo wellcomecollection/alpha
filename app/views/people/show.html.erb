@@ -1,6 +1,10 @@
 <div class="row">
   <div class="two columns center" style="padding-bottom:20px;">
-    <div class="person-portrait"></div>
+
+    <% if @person.wikipedia_image %>
+      <div class="person-portrait" style="background-image: url('<%=  @person.wikipedia_image %>');"></div>
+    <% end %>
+
   </div>
   <div class="ten columns big">
     <h1><%= @person.name %></h1>

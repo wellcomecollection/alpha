@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'json'
 require 'nokogiri'
+require 'digest'
 
 class Person < ActiveRecord::Base
 
@@ -57,7 +58,18 @@ class Person < ActiveRecord::Base
   end
 
   def wikipedia_image
-    wikipedia_images.first
+
+    if wikipedia_images && wikipedia_images.length > 0
+
+      file_name = wikipedia_images.first
+
+      md5 = Digest::MD5.hexdigest file_name
+
+      "https://upload.wikimedia.org/wikipedia/commons/#{md5[0]}/#{md5[0..1]}/#{URI.encode(file_name)}"
+    else
+      nil
+    end
+
   end
 
   def update_wikipedia_intro!

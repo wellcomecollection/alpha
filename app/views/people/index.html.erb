@@ -3,7 +3,11 @@
   <% @top_people.each do |person| %>
 
   <div class="circle">
-    <%= link_to person.name, person, class: 'bg-link', title: pluralize(person.records_count, 'thing') %>
+
+    <% if person.wikipedia_image %>
+      <% style = "background-image: url('#{person.wikipedia_image}');" %>
+    <% end %>
+    <%= link_to person.name, person, class: 'bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
     <%= link_to person.name, person, class: 'name', title: pluralize(person.records_count, 'thing') %>
   </div>
 
