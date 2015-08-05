@@ -38,6 +38,8 @@ class SubjectsController < ApplicationController
 
     @trees = []
 
+    @narrower_subjects = []
+
     @subject.tree_numbers.to_a.each do |tree_number|
 
       parent_tree_numbers = [tree_number]
@@ -55,6 +57,21 @@ class SubjectsController < ApplicationController
       .from("(select *, unnest(tree_numbers) as tree_number from subjects) as subjects")
       .where(tree_number: parent_tree_numbers)
       .order(:tree_number)
+
+    end
+
+    @subject.tree_numbers.to_a.each do |tree_number|
+
+      Subject.select('*')
+        .from("(select id, records_count, label, unnest(tree_numbers) as tree_number from subjects) as subjects")
+        .where(["tree_number LIKE ?", tree_number + '.%'])
+        .order('records_count desc')
+        .limit(10)
+        .each do |subject|
+
+        @narrower_subjects << subject unless @narrower_subjects.include?(subject)
+
+      end
 
     end
 

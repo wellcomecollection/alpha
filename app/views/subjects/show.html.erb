@@ -55,6 +55,23 @@
 </div>
 <% end %>
 
+<% if @narrower_subjects.length > 0 %>
+<br clear="all" />
+<br clear="all" />
+<div class="row breathe">
+  <div class="three columns">
+    <h5>More specific Subjects</h5>
+  </div>
+  <div class="nine columns big">
+    <p>
+      <%= @narrower_subjects.collect do |subject| %>
+        <% link_to subject.label, subject_path(subject) %>
+      <% end.to_sentence.html_safe %>
+    </p>
+  </div>
+</div>
+<% end %>
+
 <% if @people_whove_written_about_it.length > 0 %>
   <h2 style="clear:both;">People who’ve written about it</h2>
 
