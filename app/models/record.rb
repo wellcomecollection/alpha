@@ -20,39 +20,89 @@ class Record < ActiveRecord::Base
 
   def update_taggings_from_metadata!
 
-    name_regex = /\A([^\,]+)\,\s?(.+)\z/
+    name_regex = /\A([^\,]+)\,\s?([^\,]+)\z/
 
     metadata.fetch('650', []).each do |field|
 
       label = field['a']
+      subject_authority_id = field['0']
+      subject_type = nil
 
-      if subject_authority_id = field['0']
-
-        ind2 = field['ind2']
-
-        subject_type = nil
+      if ind2 = field['ind2']
 
         case ind2
         when '0'
           subject_type = 'loc'
-        when '2'
-          subject_type = 'mesh'
-          subject_authority_id = subject_authority_id[/\A(\D\d+)/, 1]
+        # when '2'
+        #   subject_type = 'mesh'
+        #   subject_authority_id = subject_authority_id[/\A(\D\d+)/, 1]
         end
 
-        if subject_type
+        if subject_type == 'mesh'
 
           subject = Subject.where(["identifiers->? = ?", subject_type, subject_authority_id]).take
 
-          if subject
+        elsif subject_type == 'loc'
 
-            tagging = taggings.new(subject: subject, label: label)
+          # First try and find the subject using the ID
+          if subject_authority_id
+            subject = Subject.where(["identifiers->'loc' = ?", subject_authority_id]).take
+          end
 
-            begin
-              tagging.save!
-            rescue ActiveRecord::RecordNotUnique
+          # Otherwise resort to string matching
+          if subject.nil?
+
+            comma_regex = /\A([^\,]+)\,\s([^\,]+)\z/
+            brackets_regex = /\s\(([^)]+)\)\z/
+
+            label = label.gsub(/\.\z/, '')    # remove any trailing full stop
+            label = label.gsub('<p>', '')     # remove any pargraph tags
+
+            if brackets_regex.match(label)
+
+              bracket = label[brackets_regex, 1]
+              pre_bracket = label.gsub(brackets_regex, '')
+
+              if comma_regex.match(pre_bracket)
+                label = "#{pre_bracket[comma_regex, 2]} #{pre_bracket[comma_regex, 1]} (#{bracket})"
+              end
+
+            else
+
+              if comma_regex.match(label)
+                label = "#{label[comma_regex, 2]} #{label[comma_regex,1]}"
+              end
+
             end
 
+            subject = Subject.where(["LOWER(label) = ?", label.downcase]).take
+
+            if subject.nil?
+              subject = Subject.new(label: label, all_labels: [label])
+            end
+
+          end
+
+          if subject && subject_authority_id
+            subject.identifiers ||= {}
+            subject.identifiers['loc'] = subject_authority_id
+          end
+
+        end
+
+
+        if subject
+
+          subject.all_labels << field['a']
+          subject.all_labels = subject.all_labels.uniq
+
+          subject.save!
+
+          tagging = taggings.new(subject: subject, label: field['a'])
+
+          begin
+            tagging.save!
+          rescue ActiveRecord::RecordNotUnique
           end
 
         end
