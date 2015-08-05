@@ -14,18 +14,35 @@
 </div>
 
 <% if @subject.description %>
-  <p class="big"><%= @subject.description %></p>
+<div class="row">
+	<div class="twelve columns big">
+    <p><%= @subject.description %></p>
+	</div>
+</div>
 <% end %>
 
-<div class="pub-history-graph" style="width:100%;background-color:grey;height:120px;">Publishing history graph?</div>
+<div class"row">
+  <div class="nine columns">
+    <div class="pub-history-graph" style="width:100%;background-color:grey;height:120px;">Publishing history graph?</div>
+  </div>
+  <div class="three columns">
+    <p>This is a graph of publishing history of books with this title in the Wellcome Library.</p>
+  </div>
+</div>
 
 <% if @related_subjects.length > 0 %>
-  <h4>Related Subjects</h4>
-  <p class="big">
-    <%= @related_subjects.collect do |subject| %>
-      <% link_to subject.label, subject_path(subject) %>
-    <% end.to_sentence.html_safe %>
-  </p>
+<div class="row">
+  <div class="three columns right">
+    <h4>Related Subjects</h4>
+  </div>
+  <div class="nine columns big">
+    <p>
+      <%= @related_subjects.collect do |subject| %>
+        <% link_to subject.label, subject_path(subject) %>
+      <% end.to_sentence.html_safe %>
+    </p>
+  </div>
+</div>
 <% end %>
 
 <% if @people_whove_written_about_it.length > 0 %>
@@ -38,7 +55,7 @@
   </ul>
 <% end %>
 
-<h2>Things sbout this subject</h2>
+<h2>Things about it</h2>
 <% @things.each do |thing| %>
   <div class="cover-box">
     <div class="cover">
@@ -53,12 +70,17 @@
   </div>
 <% end %>
 
-<h2 style="clear:both;">Identifiers</h2>
-
-<table>
-  <% @subject.identifiers.each_pair do |key, value| %>
-    <tr>
-      <td><%= key %></td>
-      <td><%= value %></td>
-  <% end %>
-</table>
+<div class="row">
+  <div class="three columns">
+    <h4>Identifiers</h4>
+  </div>
+  <div class="nine columns">
+    <table>
+      <% @subject.identifiers.each_pair do |key, value| %>
+        <tr>
+          <td><%= key %></td>
+          <td><%= value %></td>
+      <% end %>
+    </table>
+  </div>
+</div>
