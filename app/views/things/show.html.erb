@@ -1,24 +1,24 @@
 <% content_for :title, @thing.title %>
 
-<h1><%= @thing.title %></h1>
-
 <% if @thing.people.length > 0 %>
-  <div class="row">
+  <div class="row author">
     <div class="twelve columns big">
       <p>
         By
         <%= @thing.people.collect do |person| %>
           <% link_to person.name, person %>
-        <% end.to_sentence.html_safe %>
+        <% end.to_sentence.html_safe %> /
       </p>
     </div>
   </div>
 <% end %>
 
+<h1><%= @thing.title %></h1>
+
 <% if @subjects.length > 0 %>
   <div class="row">
-    <div class="three columns"><h4>Subjects</h4></div>
-    <div class="nine columns big">
+    <div class="two columns"><h4>Subjects</h4></div>
+    <div class="ten columns big">
       <p>
         <%= @subjects.collect do |subject| %>
           <% link_to subject.label, subject %>
