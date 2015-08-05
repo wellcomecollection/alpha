@@ -32,27 +32,27 @@ small, code { font-family: 'Inconsolata', ; }
 .name small { background-color: #e5e3d9; padding: 4px; }
 
 .sm-circle {
-	width: 100px;
-	height: 100px;
-	text-align:center;
-	float:left;
-	margin: 10px;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    float: left;
+    margin: 20px;
 }
 .sm-bg-link {
     background-size: cover;
-    background-color: cadetblue;
-    display:block;
-    width: 100px;
-    height: 100px;
+    background-color: rgba(145, 184, 185, 0.5);
+    display: block;
+    width: 120px;
+    height: 120px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    text-indent:-9999px;    
+    text-indent: -9999px;   
 }
 .sm-name {
-	margin-top: -30px;
-	padding: 5px;
-	display: block;
+    margin-top: -30px;
+    display: block;
+    font-size: 0.825em;
 }
 
 /* Person */
