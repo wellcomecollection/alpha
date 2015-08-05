@@ -24,7 +24,7 @@ class Record < ActiveRecord::Base
 
     metadata.fetch('650', []).each do |field|
 
-      label = field['a']
+      label = field['a'].to_s
       subject_authority_id = field['0']
       subject_type = nil
 
