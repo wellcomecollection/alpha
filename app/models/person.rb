@@ -34,19 +34,21 @@ class Person < ActiveRecord::Base
       # TODO: figure out why my local openssl installation doesn't have up-to-date certs
       # response = JSON.parse(open(wikipedia_api_url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read)
 
-      images = response.fetch('parse', []).fetch('images', []) - ["Commons-logo.svg"]
+      images = response.fetch('parse', {}).fetch('images', []) - ["Commons-logo.svg"]
 
       images.reject! { |image| image =~ /\.svg\z/ }
 
       self.wikipedia_images = images
 
-      text = response.fetch('parse', []).fetch('text', [])['*']
+      text = response.fetch('parse', {}).fetch('text', {})['*']
 
-      first_paragraph = Nokogiri::HTML(text).css('p').first.content
+      if text
+        first_paragraph = Nokogiri::HTML(text).css('p').first.content
 
-      if first_paragraph
-        self.wikipedia_intro_paragraph = first_paragraph
-        parse_wikipedia_paragraph_into_sentences!
+        if first_paragraph
+          self.wikipedia_intro_paragraph = first_paragraph
+          parse_wikipedia_paragraph_into_sentences!
+        end
       end
 
       save!
