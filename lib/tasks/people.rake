@@ -2,6 +2,31 @@ namespace :people do
 
 
 
+  desc 'Update data from Wikipedia'
+  task update_from_wikipedia: :environment do
+
+    $stdout.sync = true
+
+    time = Time.now
+
+    Person.where("identifiers ? 'wikipedia_en'")
+      .find_in_batches(batch_size: 500)
+      .with_index do |batch, batch_number|
+
+      print "Processing batch #{batch_number + 1}... "
+
+      batch.each do |person|
+        person.update_from_wikipedia!
+      end
+
+      puts "Done in #{Time.now - time} seconds"
+      time = Time.now
+
+    end
+
+  end
+
+
   desc 'Get identifiers from VIAF'
   task get_identifiers: :environment do
 
