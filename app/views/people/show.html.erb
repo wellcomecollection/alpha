@@ -32,11 +32,16 @@
     </p>
     
     <h4>Subjects</h4>
-    <p>
-      <% @top_subjects_written_about.each do |subject| %>
-        <%= link_to subject.label, subject_path(subject) %>
+    
+      <% if @top_subjects_written_about.length > 0 %>
+	<p>
+		<% @top_subjects_written_about.each do |subject| %>
+        		<%= link_to subject.label, subject_path(subject) %>
+      		<% end %>
+      	</p>
+      <% else %>
+	<p class="nogo">We couldn't find any subjects.</p>       
       <% end %>
-    </p>
 
     <h4>Timeline</h4>
 
