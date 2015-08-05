@@ -46,6 +46,7 @@ class Person < ActiveRecord::Base
 
       if first_paragraph
         self.wikipedia_intro_paragraph = first_paragraph
+        parse_wikipedia_paragraph_into_sentences!
       end
 
       save!
