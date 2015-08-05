@@ -18,19 +18,19 @@ class SubjectsController < ApplicationController
 
     thing_ids = @subject.records.pluck(:id)
 
-    @people_whove_written_about_it = Creator
-      .joins(:person)
+    @people_whove_written_about_it = Person
+      .joins(:creators)
       .select("people.*, count(creators.id) as count")
-      .where(record_id: thing_ids)
+      .where(creators: {record_id: thing_ids})
       .group('people.id')
       .order('count desc')
       .limit(20)
 
-    @related_subjects = Tagging
-      .joins(:subject)
+    @related_subjects = Subject
+      .joins(:taggings)
       .select("subjects.*, count(subjects.id) as count")
-      .where(record_id: thing_ids)
-      .where.not(subject_id: @subject.id)
+      .where(taggings: {record_id: thing_ids})
+      .where.not(id: @subject.id)
       .group('subjects.id')
       .order('count desc')
       .limit(10)

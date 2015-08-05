@@ -43,10 +43,10 @@ class PeopleController < ApplicationController
       .order('year')
       .count
 
-    @top_subjects_written_about = Tagging
-      .joins(:subject)
+    @top_subjects_written_about = Subject
+      .joins(:taggings)
       .select("subjects.*, count(taggings.id) as count")
-      .where(record_id: thing_ids)
+      .where(taggings: {record_id: thing_ids})
       .group('subjects.id')
       .order('count desc')
       .limit(10)
