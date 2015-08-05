@@ -42,9 +42,7 @@ class SubjectsController < ApplicationController
 
     @subject.tree_numbers.to_a.each do |tree_number|
 
-      parent_tree_numbers = [tree_number]
-
-      tree_number = tree_number.gsub(/\.?[^\/\.]+\z/, '')
+      parent_tree_numbers = []
 
       while !tree_number.blank?
 
