@@ -1,42 +1,28 @@
 <h1><%= @thing.title %></h1>
-<p><%= @thing.identifier %></p>
-
 
 <% if @thing.people.length > 0 %>
-  <p>
-    By
-    <%= @thing.people.collect do |person| %>
-      <% link_to person.name, person %>
-    <% end.to_sentence.html_safe %>
-  </p>
-
-  <% people_with_wikipedia_intros = @thing.people.select {|p| p.wikipedia_intro } %>
-
-
-  <% if people_with_wikipedia_intros.length > 0 %>
-
-    <h2>About the <%= people_with_wikipedia_intros.length == 1 ? 'author' : 'authors' %></h2>
-
-    <% people_with_wikipedia_intros.each do |person| %>
-
+  <div class="row">
+    <div class="twelve columns big">
       <p>
-        <% person.wikipedia_intro[0..1].each do |s| %>
-          <%= s.gsub(/\[\d+\]/, '') %>
-        <% end %>
-        <% if person.identifiers['wikipedia_en'] %>
-          <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{person.identifiers['wikipedia_en']}" %></small>
-        <% end %>
+        By
+        <%= @thing.people.collect do |person| %>
+          <% link_to person.name, person %>
+        <% end.to_sentence.html_safe %>
       </p>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 <% end %>
 
-<h4>Subjects</h4>
-<p>
-  <%= @subjects.collect do |subject| %>
-    <% link_to subject.label, subject %>
-  <% end.to_sentence.html_safe %>
-</p>
+<div class="row">
+  <div class="three columns"><h4>Subjects</h4></div>
+  <div class="nine columns big">
+    <p>
+      <%= @subjects.collect do |subject| %>
+        <% link_to subject.label, subject %>
+      <% end.to_sentence.html_safe %>
+    </p>    
+  </div>
+</div>
 
 <% if @thing.image_urls.length > 0 %>
   <div style="width: 100%;background-color:#666;">
@@ -51,6 +37,8 @@
       <%= image_tag "#{image_service_url}/full/!200,200/0/default.jpg", style: 'width: auto;' %>
     <% end %>
   <% end %>
+
+<p><%= @thing.identifier %></p>
 
 <% else %>
 
