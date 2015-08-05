@@ -11,7 +11,7 @@
 			<div class="percent-done" style="background-color:orange; height:5px; width: 64px;float:left;">&nbsp;</div>
 		</div>
   </div>
-</div> 
+</div>
 
 <% if @subject.description %>
   <p class="big"><%= @subject.description %></p>
@@ -19,19 +19,24 @@
 
 <div class="pub-history-graph" style="width:100%;background-color:grey;height:120px;">Publishing history graph?</div>
 
+<% if @related_subjects.length > 0 %>
   <h4>Related Subjects</h4>
   <p class="big">
     <%= @related_subjects.collect do |subject| %>
       <% link_to subject.label, subject_path(subject) %>
     <% end.to_sentence.html_safe %>
+  </p>
+<% end %>
 
-<h2 style="clear:both;">People who’ve written about it</h2>
+<% if @people_whove_written_about_it.length > 0 %>
+  <h2 style="clear:both;">People who’ve written about it</h2>
 
-<ul>
-  <% @people_whove_written_about_it.each do |person| %>
-    <li><%= link_to person.name, person_path(person) %> (<%= pluralize_with_delimiter(person.count, 'thing') %>)</li>
-  <% end %>
-</ul>
+  <ul>
+    <% @people_whove_written_about_it.each do |person| %>
+      <li><%= link_to person.name, person_path(person) %> (<%= pluralize_with_delimiter(person.count, 'thing') %>)</li>
+    <% end %>
+  </ul>
+<% end %>
 
 <h2>Things sbout this subject</h2>
 <% @things.each do |thing| %>
