@@ -80,11 +80,17 @@
 
 <% if @contemporaries && @contemporaries.length > 0 %>
   <h3>Contemporaries</h3>
-  <p>
+  
     <% @contemporaries.each do |author| %>
-      <%= link_to author.name, person_path(author) %>
+  <div class="sm-circle">
+    <% if author.wikipedia_image %>
+      <% style = "background-image: url('#{author.wikipedia_image}');" %>
     <% end %>
-  </p>
+    <%= link_to author.name, person, class: 'sm-bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
+    <%= link_to author.name, person, class: 'sm-name', title: pluralize(person.records_count, 'thing') %>
+  </div>
+    <% end %>
+  
 <% end %>
 
 <br clear="all" />
