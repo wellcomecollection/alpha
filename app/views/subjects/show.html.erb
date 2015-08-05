@@ -20,7 +20,10 @@
 <div class="pub-history-graph" style="width:100%;background-color:grey;height:120px;">Publishing history graph?</div>
 
   <h4>Related Subjects</h4>
-  <p class="big"><a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> <a href="/subjects/123">Subject</a> </p>
+  <p class="big">
+    <%= @related_subjects.collect do |subject| %>
+      <% link_to subject.label, subject_path(subject) %>
+    <% end.to_sentence.html_safe %>
 
 <h2 style="clear:both;">People who’ve written about it</h2>
 

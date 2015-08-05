@@ -26,6 +26,16 @@ class SubjectsController < ApplicationController
       .order('count desc')
       .limit(20)
 
+    @related_subjects = Tagging
+      .joins(:subject)
+      .select("subjects.*, count(subjects.id) as count")
+      .where(record_id: thing_ids)
+      .where.not(subject_id: @subject.id)
+      .group('subjects.id')
+      .order('count desc')
+      .limit(10)
+
+
   end
 
 end
