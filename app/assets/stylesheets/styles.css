@@ -97,6 +97,7 @@ background-color: rgba(145, 184, 185, 0.5);
 
 /* Subject */
 .definition { font-size: 2em; }
+.breathe { margin-top: 15px; margin-bottom: 15px;}
 
 /* Nav */
 .nav {
