@@ -12,14 +12,3 @@
   </div>
 
   <% end %>
-
-
-<br clear="all" />
-<br clear="all" />
-<br clear="all" />
-<br clear="all" />
-<ol>
-  <% @top_people.each do |person| %>
-    <li><%= link_to person.name, person %> <small><%= pluralize(person.records_count, 'thing') %></small></li>
-  <% end %>
-</ol>
