@@ -33,7 +33,7 @@ class SubjectsController < ApplicationController
       .where.not(id: @subject.id)
       .group('subjects.id')
       .order('count desc')
-      .limit(10)
+      .limit(15)
 
 
   end
