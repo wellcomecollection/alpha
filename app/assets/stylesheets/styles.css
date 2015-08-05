@@ -111,7 +111,12 @@ background-color: rgba(145, 184, 185, 0.5);
   border-bottom: 1px dotted #7F7E79;
   margin-bottom: 20px;  
 }
-.subnav a { rgba(99, 212, 8, 0.57); color: #403F3C; padding: 2px; text-decoration: none;}
+.subnav a {     
+	background-color: rgba(99, 212, 8, 0.57); 
+	color: #403F3C; 
+	padding: 2px; 
+	text-decoration: none;
+}
 
 .footer {
   color: #BFBEB5;
