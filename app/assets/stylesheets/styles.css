@@ -78,13 +78,13 @@ background-color: rgba(145, 184, 185, 0.5);
   letter-spacing: 0em;
 }
 .cover-box {
-  float:left; 
-  margin:10px;
-  width: 120px;
-  height: 180px;
-  overflow: hidden;
-  padding: 0px;
-  border: 1px solid #BFBEB5;
+    float: left;
+    margin: 10px;
+    height: 220px;
+    width: 170px;
+    overflow: hidden;
+    padding: 0px;
+    border: 1px solid #BFBEB5;
 }
 .cover {
 	padding: 8px;
