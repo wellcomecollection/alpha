@@ -61,7 +61,7 @@ class Person < ActiveRecord::Base
 
     if wikipedia_images && wikipedia_images.length > 0
 
-      file_name = wikipedia_images.first
+      file_name = wikipedia_images.reject {|f| f =~ /\.flac\z/ }.first
 
       md5 = Digest::MD5.hexdigest file_name
 
