@@ -1,6 +1,6 @@
 class Subject < ActiveRecord::Base
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :records, through: :taggings
 
   def to_param
