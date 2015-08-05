@@ -86,8 +86,8 @@
     <% if author.wikipedia_image %>
       <% style = "background-image: url('#{author.wikipedia_image}');" %>
     <% end %>
-    <%= link_to author.name, person, class: 'sm-bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
-    <%= link_to author.name, person, class: 'sm-name', title: pluralize(person.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
   </div>
     <% end %>
   
