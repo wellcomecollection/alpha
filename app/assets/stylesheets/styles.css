@@ -1,5 +1,6 @@
 body { background-color: #E5E3D9; color: #403F3C; }
 a { background-color: #FFFDF2; color: #403F3C; padding: 2px; text-decoration: none;}
+.subnav a { background-color: rgb(255, 232, 5); color: #403F3C; padding: 2px; text-decoration: none;}
 
 /* Google fonts */ 
 body, p, li { font-family: 'Lora', sans-serif; }
@@ -86,7 +87,9 @@ background-color: rgba(145, 184, 185, 0.5);
   border: 1px solid #BFBEB5;
 }
 .cover {
-  padding: 3px;
+	padding: 8px;
+	font-size: 0.825em;
+	line-height:1.75em;
 }
 
 .lil-vis {
