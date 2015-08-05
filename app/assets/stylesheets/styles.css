@@ -32,24 +32,25 @@ small, code { font-family: 'Inconsolata', ; }
 .name small { background-color: #e5e3d9; padding: 4px; }
 
 .sm-circle {
-	width: 200px;
-	height: 200px;
+	width: 100px;
+	height: 100px;
 	text-align:center;
 	float:left;
-	margin: 20px;
+	margin: 10px;
 }
 .sm-bg-link {
-    background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg/220px-Renaissance_C14_F%C3%BCllmaurer_Leonhart_Fuchs.jpg);
+    background-size: cover;
+    background-color: cadetblue;
     display:block;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
     text-indent:-9999px;    
 }
 .sm-name {
-	margin-top: -40px;
+	margin-top: -30px;
 	padding: 5px;
 	display: block;
 }
