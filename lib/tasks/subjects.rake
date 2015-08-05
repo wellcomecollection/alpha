@@ -1,6 +1,21 @@
 namespace :subjects do
 
 
+  task remove_single_commas: :environment do
+
+    $stdout.sync = true
+
+    time = Time.now
+
+    Subject.select(:id, :label, :all_labels)
+      .find_each(batch_size: 5000) do |subject|
+
+      subject.reverse_label_if_contains_single_comma!
+
+    end
+
+  end
+
 
   task update_records_count: :environment do
 

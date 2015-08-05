@@ -12,6 +12,22 @@ class Subject < ActiveRecord::Base
     save!
   end
 
+  def reverse_label_if_contains_single_comma!
+
+    regex = /\A([^\,]+)\,\s([^\,]+)\z/
+
+    match = regex.match(label)
+
+    if match
+
+      self.all_labels << label
+      self.label = "#{match[2]} #{match[1]}"
+      save!
+
+    end
+
+  end
+
   def copy_mesh_identifier!
     if identifier
       identifiers['mesh'] ||= identifier
