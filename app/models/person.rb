@@ -110,7 +110,7 @@ class Person < ActiveRecord::Base
 
   def wikipedia_api_url
     if identifiers['wikipedia_en']
-      "https://en.wikipedia.org/w/api.php?action=parse&format=json&page=#{identifiers['wikipedia_en']}&contentmodel=wikitext"
+      "https://en.wikipedia.org/w/api.php?action=parse&format=json&page=#{URI.escape(identifiers['wikipedia_en'])}&contentmodel=wikitext"
     else
       nil
     end
