@@ -117,13 +117,18 @@
 <% end %>
 
 <br clear="all" />
-
-<h2>Identifiers</h2>
-
-<table>
-  <% @person.identifiers.each_pair do |key, value| %>
-    <tr>
-      <td><%= key %></td>
-      <td><%= value %></td>
-  <% end %>
-</table>
+<br clear="all" />
+<div class="row nerds" style="clear: both;">
+  <div class="three columns">
+    <h4>Identifiers</h4>
+  </div>
+  <div class="nine columns">
+	<table>
+	  <% @person.identifiers.each_pair do |key, value| %>
+	    <tr>
+	      <td><%= key %></td>
+	      <td><%= value %></td>
+	  <% end %>
+	</table>
+	</div>
+</div>
