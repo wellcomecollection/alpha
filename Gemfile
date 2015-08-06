@@ -5,6 +5,8 @@ gem 'pg'
 gem 'rails_12factor'
 gem 'puma'
 gem 'elasticsearch'
+gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails', '~> 5.0'
 
 
 group :development, :test do
