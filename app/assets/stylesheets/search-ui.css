@@ -13,5 +13,5 @@
 }
 
 .ui-autocomplete li:hover {
-  background-color: orange;
+	background-color: rgba(99, 212, 8, 0.40);
 }
