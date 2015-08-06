@@ -22,7 +22,9 @@ class Record < ActiveRecord::Base
 
     name_regex = /\A([^\,]+)\,\s?([^\,]+)\z/
 
-    metadata.fetch('650', []).each do |field|
+    metadata.fetch('650', []) +
+    metadata.fetch('651', []) +
+    metadata.fetch('610', []).each do |field|
 
       label = field['a'].to_s
       subject_authority_id = field['0']
