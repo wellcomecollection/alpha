@@ -1,5 +1,14 @@
 <% content_for :title, @subject.label %>
 
+<% content_for :head do %>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@wellcomelibrary" />
+  <meta name="twitter:title" content="<%= @subject.label %>" />
+  <% if @subject.description %>
+    <meta name="twitter:description" content="<%= @subject.description %>" />
+  <% end %>
+<% end %>
+
 <% if @trees.length > 0 %>
 <div class="row" style="padding-bottom:20px;">
   <div class="two columns">
@@ -7,7 +16,7 @@
   </div>
   <div class="ten columns">
       <% @trees.each do |tree| %>
-          &bull; 
+          &bull;
           <%= tree.collect do |subject| %>
             <% link_to subject.label, subject %>
           <% end.join(" &rarr; ").html_safe %>
