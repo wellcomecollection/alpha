@@ -10,8 +10,8 @@
           &bull;
           <%= tree.collect do |subject| %>
             <% link_to subject.label, subject %>
-          <% end.join(" / ").html_safe %>
-          / <br />
+          <% end.join(" &rarr; ").html_safe %>
+          &rarr; <br />
       <% end %>
   </div>
 </div>
