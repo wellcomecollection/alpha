@@ -1,11 +1,11 @@
+require 'elasticsearch'
 class PeopleLookupController < ApplicationController
 
   def index
     @name = params[:name].to_s
     limit = params[:limit] || 20
 
-    @people = people_with_names_starting(@name, limit)
-
+    @people = search(@name, limit)
 
     respond_to do |format|
       format.html do
@@ -22,7 +22,7 @@ class PeopleLookupController < ApplicationController
 
   def show
     @name = params[:id]
-    @people = people_with_names_starting(@name)
+    @people = search(@name)
     respond_to do |format|
       format.html do
         if (@people.length == 1)
@@ -37,12 +37,24 @@ class PeopleLookupController < ApplicationController
 
   private
 
-  def people_with_names_starting(name, limit = 50)
+
+  def search(name, limit = 50)
+    client = Elasticsearch::Client.new log: true
+
+
+    results = client.search index: 'people',
+      body: {
+        query: {
+          match: {
+            'name' => name.downcase
+          }
+        },
+        size: limit
+      }
+
     Person
-      .select(:id, :name, :wikipedia_images, :records_count)
-      .where(["LOWER(name) LIKE ? ", name.downcase + '%'])
+      .where(id: results['hits']['hits'].collect {|r| r['_id'].gsub('P', '') })
       .order('records_count desc')
-      .limit(limit)
   end
 
 end
