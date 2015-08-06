@@ -16,6 +16,20 @@ class Person < ActiveRecord::Base
     {id: to_param, name: name, records_count: records_count}
   end
 
+  def to_elasticsearch
+
+    {
+      name: name,
+      id: to_param,
+      records_count: records_count,
+      identifiers: identifiers,
+      born_in: born_in,
+      died_in: died_in,
+      wikipedia_intro_paragraph: wikipedia_intro_paragraph
+    }
+
+  end
+
   def remove_full_stops_from_name!
 
     regex = /([a-z])\./
