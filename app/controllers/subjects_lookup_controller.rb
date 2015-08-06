@@ -7,7 +7,7 @@ class SubjectsLookupController < ApplicationController
     respond_to do |format|
       format.html do
         if (@subjects.length == 1)
-          redirect_to subject_path(@subject.first)
+          redirect_to subject_path(@subjects.first)
         else
           render :show
         end
@@ -22,7 +22,7 @@ class SubjectsLookupController < ApplicationController
     respond_to do |format|
       format.html do
         if (@subjects.length == 1)
-          redirect_to subject_path(@subject.first)
+          redirect_to subject_path(@subjects.first)
         else
           render :show
         end
