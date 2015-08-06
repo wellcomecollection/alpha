@@ -119,6 +119,7 @@ background-color: rgba(145, 184, 185, 0.5);
 	text-decoration: none;
 }
 
+.nerds h5 {padding-top:5px;}
 .footer {
   color: #BFBEB5;
   border-top: 1px dotted #7F7E79;
