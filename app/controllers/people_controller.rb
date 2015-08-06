@@ -49,7 +49,7 @@ class PeopleController < ApplicationController
       .where(taggings: {record_id: thing_ids})
       .group('subjects.id')
       .order('count desc')
-      .limit(10)
+      .limit(18)
 
     @things = @person.records.select(:identifier, :title, :package)
       .order('digitized desc')
