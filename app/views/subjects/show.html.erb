@@ -29,10 +29,7 @@
 	<div class="twelve columns big">
     		<p>
     			<%= @subject.description %>
-    		
-    		        <!-- IF Subject Description -->
-			        <small><a href="link to MeSH browser" title="View this subject in the Medical Subject Headings browser">MeSH</a></small>
-    			<!-- /IF -->
+		        <small><a href="https://wellcome-mesh-browser.herokuapp.com/<%= @subject.identifiers['mesh'] %>" title="View this subject in the Medical Subject Headings browser">MeSH</a></small>
     		</p>
 	</div>
 </div>
