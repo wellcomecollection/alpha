@@ -7,10 +7,11 @@
   </div>
   <div class="ten columns">
       <% @trees.each do |tree| %>
+          &bull;
           <%= tree.collect do |subject| %>
             <% link_to subject.label, subject %>
           <% end.join(" / ").html_safe %>
-          <br />
+          / <br />
       <% end %>
   </div>
 </div>
