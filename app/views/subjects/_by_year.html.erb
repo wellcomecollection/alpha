@@ -1,0 +1,68 @@
+<% real_years = [] %>
+
+<% years.each do |y|
+  if y[0] =~ /\d{4}/ && y[0] < (Time.now.year + 1).to_s
+    real_years << y
+  end
+end
+%>
+
+<% if real_years.length > 0 %>
+
+  <div class="count-bars">
+
+    <%
+      maximum_height = 150
+      maximum_count = real_years.map { |year| year[1] }.max || 1
+      vertical_scale_factor = maximum_height.to_f / maximum_count
+    %>
+
+    <% years_hash = real_years.to_h %>
+
+    <% real_years.first[0].upto(real_years.last[0]).each do |year| %>
+      <%= content_tag 'div', class: "bar" do %>
+        <%= content_tag :span, '', class: 'box undigitised', style: "height: #{years_hash[year].to_i * vertical_scale_factor}px;" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="count-bars-labels">
+    <% real_years.first[0].upto(real_years.last[0]).each do |year| %>
+      <div class="label"><span><%= year %></span></div>
+    <% end %>
+  </div>
+
+  <script>
+    var bars = document.getElementsByClassName('count-bars')[0];
+    var labels = document.getElementsByClassName('count-bars-labels')[0];
+
+    bars.addEventListener('mouseover', function (event) {
+      var element = event.target;
+
+      while(element !== null && element.tagName !== 'DIV') {
+        element = element.parentElement;
+      }
+
+      if (element === null) {
+        return;
+      }
+
+      var index = Array.prototype.indexOf.call(element.parentElement.children, element);
+
+      var shownLabels = labels.getElementsByClassName('show');
+      for (var i = shownLabels.length - 1; i >= 0; i--) {
+        shownLabels[i].classList.remove('show')
+      };
+
+      var label = labels.children[index];
+      label.classList.add('show')
+    });
+
+    bars.addEventListener('mouseout', function (event) {
+      var shownLabels = labels.getElementsByClassName('show');
+      for (var i = shownLabels.length - 1; i >= 0; i--) {
+        shownLabels[i].classList.remove('show')
+      };
+    });
+  </script>
+<% end %>

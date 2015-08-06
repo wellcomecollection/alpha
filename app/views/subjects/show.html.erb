@@ -37,12 +37,13 @@
 
 <div class"row">
   <div class="nine columns">
-    <div class="pub-history-graph" style="width:100%;background-color:grey;height:120px;">Publishing history graph</div>
+
+    <%= render 'by_year', years: @year_counts %>
   </div>
   <div class="three columns">
     <p>
       This graph shows when books at Wellcome on this subject were published. <br />
-      <small>White tip = digitised version</small>
+      <!--<small>White tip = digitised version</small>-->
     </p>
   </div>
 </div>

@@ -1,0 +1,55 @@
+.count-bars, .count-bars-labels {
+  display: table;
+  width: 100%;
+}
+
+.count-bars .bar {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.count-bars .bar:hover {
+  background: gold;
+}
+
+.count-bars .bar .box {
+  display: block;
+}
+
+.count-bars .bar.bad .box {
+  opacity: 0.5;
+}
+
+.count-bars .bar .box.digitised {
+  background: white;
+}
+
+.count-bars .bar .box.undigitised {
+  background: black;
+}
+
+.count-bars-labels {
+  margin-top: 3px;
+  margin-bottom: 20px;
+}
+
+.count-bars-labels .label {
+  display: table-cell;
+  position: relative;
+}
+
+.count-bars-labels .label span {
+  position: absolute;
+  left: 50%; top: 0;
+  width: 40px;
+  margin-left: -20px;
+  text-align: center;
+  background: black;
+  color: white;
+  padding: 2px;
+  visibility: hidden;
+}
+
+.count-bars-labels .label.show span {
+  visibility: visible;
+}

@@ -35,6 +35,11 @@ class SubjectsController < ApplicationController
       .order('count desc')
       .limit(15)
 
+    @year_counts = @subject
+      .records
+      .group('records.year')
+      .order('year')
+      .count
 
     @trees = []
 
