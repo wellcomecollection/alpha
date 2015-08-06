@@ -1,14 +1,5 @@
 <% content_for :title, @subject.label %>
 
-<% content_for :head do %>
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@wellcomelibrary" />
-  <meta name="twitter:title" content="<%= @subject.label %>" />
-  <% if @subject.description %>
-    <meta name="twitter:description" content="<%= @subject.description %>" />
-  <% end %>
-<% end %>
-
 <% if @trees.length > 0 %>
 <div class="row" style="padding-bottom:20px;">
   <div class="two columns">
