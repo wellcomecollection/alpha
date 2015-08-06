@@ -1,7 +1,7 @@
 class SubjectsLookupController < ApplicationController
 
   def index
-    @label = params[:label]
+    @label = params[:label].to_s
     @subjects = subjects_with_labels_starting(@label)
 
     respond_to do |format|

@@ -1,7 +1,7 @@
 class PeopleLookupController < ApplicationController
 
   def index
-    @name = params[:name]
+    @name = params[:name].to_s
     @people = people_with_names_starting(@name)
 
     respond_to do |format|
