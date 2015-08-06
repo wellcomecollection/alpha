@@ -6,6 +6,11 @@ body, p, li { font-family: 'Lora', sans-serif; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
+/* Graphs */
+
+.digitised { height:5px;background-color:white; margin-top:10px; }
+.percent-done { background-color:black; height:5px; float:left; }
+
 .circle {
 	width: 200px;
 	height: 200px;
