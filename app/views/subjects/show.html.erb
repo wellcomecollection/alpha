@@ -11,6 +11,7 @@
           <%= tree.collect do |subject| %>
             <% link_to subject.label, subject %>
           <% end.join(" &rarr; ").html_safe %>
+          <br />
       <% end %>
   </div>
 </div>
