@@ -1,4 +1,17 @@
 <% content_for :title, "Subjects" %>
+
+<% content_for :head do %>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@wellcomelibrary" />
+  <meta name="twitter:title" content="Explore the Wellcome Library collection" />
+  <% if @subject.description %>
+    <meta name="twitter:description" content="Find out what's in the library by browsing around the major concepts of the scientific endeavour itself, exploring subjects and authors in the Wellcome Library." />
+  <% end %>
+  <meta property="og:title" content="Explore the Wellcome Library collection" />
+  <meta property="og:description" content="Find out what's in the library by browsing around the major concepts of the scientific endeavour itself, exploring subjects and authors in the Wellcome Library." />
+  <meta property="article:author" content="Good, Form & Spectacle (gfns.uk), for The Wellcome Trust" />
+<% end %>
+
 <h1>Subjects</h1>
 
 <%= form_tag subjects_lookup_index_path, method: :get, enforce_utf8: false do %>
