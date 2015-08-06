@@ -98,11 +98,10 @@
 
 <div class="row" style="clear:both;">
   <div class="six columns">
-    <h2>Things about it</h2>
+    <h2><%= pluralize(@subject.records_count, 'thing') %> things about it</h2>
   </div>
   <div class="three columns right lil-vis">
     <small>
-      <%= pluralize(@subject.records_count, 'thing') %> &bull;
       <%= percentage_with_varying_accuracy(@digitized_count.to_f / @subject.records_count) %>  digitised
     </small>
   </div>
