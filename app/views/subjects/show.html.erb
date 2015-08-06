@@ -1,7 +1,7 @@
 <% content_for :title, @subject.label %>
 
 <% if @trees.length > 0 %>
-<div class="row">
+<div class="row" style="padding-bottom:20px;">
   <div class="two columns">
 	<small>SUBJECT TREE</small>
   </div>
@@ -48,7 +48,7 @@
 <br clear="all" />
 <div class="row breathe">
   <div class="three columns">
-    <h5>Co-occuring Subjects</h5>
+    <h5>Often Seen With</h5>
   </div>
   <div class="nine columns big">
     <p>
@@ -63,7 +63,7 @@
 <% if @narrower_subjects.length > 0 %>
 <div class="row breathe">
   <div class="three columns">
-    <h5>More specific Subjects</h5>
+    <h5>Go More Specific</h5>
   </div>
   <div class="nine columns big">
     <p>
