@@ -2,10 +2,10 @@
 
 <% if @trees.length > 0 %>
 <div class="row">
-  <div class="three columns">
+  <div class="two columns">
 	<small>SUBJECT TREE</small>
   </div>
-  <div class="nine columns">
+  <div class="ten columns">
       <% @trees.each do |tree| %>
           <%= tree.collect do |subject| %>
             <% link_to subject.label, subject %>
