@@ -15,9 +15,9 @@
         <% end %>
       <% end %>
 
-      <%= link_to person.name, person %> 
-      <% if @person.born_in || @person.died_in %>
-        <span class="dates">&bull; <%= @person.born_in %>-<%= @person.died_in %></span>
+      <%= link_to person.name, person %>
+      <% if person.born_in || person.died_in %>
+        <span class="dates">&bull; <%= person.born_in %>-<%= person.died_in %></span>
       <% end %>
       - <%= pluralize_with_delimiter(person.records_count, 'thing') %>
 
