@@ -91,11 +91,17 @@ class Person < ActiveRecord::Base
 
     if wikipedia_images && wikipedia_images.length > 0
 
-      file_name = wikipedia_images.reject {|f| f =~ /\.flac\z/ }.first
+      file_name = wikipedia_images.reject do |f|
+        (f =~ /\.flac\z/) ||
+        (f == 'Crystal_Clear_app_Login_Manager_2.png')
+      end.first
 
-      md5 = Digest::MD5.hexdigest file_name
 
-      "https://upload.wikimedia.org/wikipedia/commons/#{md5[0]}/#{md5[0..1]}/#{URI.encode(file_name)}"
+      if file_name
+        md5 = Digest::MD5.hexdigest file_name
+
+        "https://upload.wikimedia.org/wikipedia/commons/#{md5[0]}/#{md5[0..1]}/#{URI.encode(file_name)}"
+      end
     else
       nil
     end
