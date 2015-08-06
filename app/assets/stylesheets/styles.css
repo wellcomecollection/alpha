@@ -119,6 +119,11 @@ background-color: rgba(145, 184, 185, 0.5);
 .breathe { margin-top: 15px; margin-bottom: 15px;}
 
 /* Nav */
+.pagination {
+    padding-top: 60px;
+    clear: both;
+    padding-bottom: 40px;
+} 
 .nav {
   color: #BFBEB5;
   border-bottom: 1px dotted #7F7E79;
