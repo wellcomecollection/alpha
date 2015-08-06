@@ -1,5 +1,5 @@
 <%= form_tag people_lookup_index_path, method: :get, enforce_utf8: false do %>
-  <%= search_field_tag :name, @name, autocomplete: 'off' %>
+  <%= search_field_tag :name, @name, autocomplete: 'off', class: 'people-search' %>
   <%= content_tag 'button', "lookup" %>
 <% end %>
 

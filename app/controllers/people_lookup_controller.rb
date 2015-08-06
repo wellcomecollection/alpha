@@ -2,7 +2,10 @@ class PeopleLookupController < ApplicationController
 
   def index
     @name = params[:name].to_s
-    @people = people_with_names_starting(@name)
+    limit = params[:limit] || 20
+
+    @people = people_with_names_starting(@name, limit)
+
 
     respond_to do |format|
       format.html do
@@ -34,12 +37,12 @@ class PeopleLookupController < ApplicationController
 
   private
 
-  def people_with_names_starting(name)
+  def people_with_names_starting(name, limit = 50)
     Person
       .select(:id, :name, :wikipedia_images, :records_count)
       .where(["LOWER(name) LIKE ? ", name.downcase + '%'])
       .order('records_count desc')
-      .limit(50)
+      .limit(limit)
   end
 
 end
