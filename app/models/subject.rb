@@ -11,6 +11,17 @@ class Subject < ActiveRecord::Base
     {id: to_param, label: label, records_count: records_count}
   end
 
+  def to_elasticsearch
+
+    {
+      id: to_param,
+      label: label,
+      records_count: records_count,
+      identifiers: identifiers
+    }
+
+  end
+
   def update_records_count!
     self.records_count = records.count
     save!
