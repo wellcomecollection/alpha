@@ -24,7 +24,7 @@ class SubjectsController < ApplicationController
       .where(creators: {record_id: thing_ids})
       .group('people.id')
       .order('count desc')
-      .limit(20)
+      .limit(36)
 
     @related_subjects = Subject
       .joins(:taggings)
