@@ -109,7 +109,7 @@
   </div>
   <div class="three columns lil-vis">
 		<div class="digitised" style="height:5px;background-color:black; margin-top:10px;">
-			<div class="percent-done" style="background-color:orange; height:5px; width: 64px;float:left;">&nbsp;</div>
+			<div class="percent-done" style="background-color:white; height:5px; width: <%= (100 * @digitized_count.to_f / @subject.records_count) %>%;float:left;">&nbsp;</div>
 		</div>
   </div>
 </div>
