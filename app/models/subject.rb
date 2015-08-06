@@ -7,6 +7,10 @@ class Subject < ActiveRecord::Base
     "S#{id}"
   end
 
+  def to_api
+    {id: to_param, label: label, records_count: records_count}
+  end
+
   def update_records_count!
     self.records_count = records.count
     save!

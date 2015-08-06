@@ -156,3 +156,7 @@ background-color: rgba(145, 184, 185, 0.5);
 a.portrait {
   background-color: transparent;
 }
+
+input[type=search] {
+  width: 50em;
+}

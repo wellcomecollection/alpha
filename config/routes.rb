@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :people, only: ['show'], controller: 'people_lookup'
 
-  resources :subjects, only: ['show', 'index']
+  resources :subjects_lookup, only: ['index'], controller: 'subjects_lookup'
+  resources :subjects, only: ['show', 'index'], constraints: {id: /S\d+/}
+  resources :subjects, only: ['show'], controller: 'subjects_lookup'
 
   resources :things, only: ['show'], path: ''
 

@@ -1,11 +1,25 @@
 class PeopleLookupController < ApplicationController
 
   def index
-    redirect_to "/people/#{params[:name]}"
+    @name = params[:name]
+    @people = people_with_names_starting(@name)
+
+    respond_to do |format|
+      format.html do
+        if (@people.length == 1)
+          redirect_to person_path(@people.first)
+        else
+          render :show
+        end
+      end
+      format.json { render json: @people.collect(&:to_api) }
+    end
+
   end
 
   def show
-    @people = people_with_names_starting(params[:id])
+    @name = params[:id]
+    @people = people_with_names_starting(@name)
     respond_to do |format|
       format.html do
         if (@people.length == 1)
