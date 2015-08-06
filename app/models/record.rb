@@ -59,6 +59,7 @@ class Record < ActiveRecord::Base
 
             label = label.gsub(/\.\z/, '')    # remove any trailing full stop
             label = label.gsub('<p>', '')     # remove any pargraph tags
+            label = label.strip
 
             if brackets_regex.match(label)
 
@@ -72,7 +73,7 @@ class Record < ActiveRecord::Base
             else
 
               if comma_regex.match(label)
-                label = "#{label[comma_regex, 2]} #{label[comma_regex,1]}"
+                label = "#{label[comma_regex, 2]} #{label[comma_regex,1]}".strip
               end
 
             end
