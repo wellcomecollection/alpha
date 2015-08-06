@@ -1,0 +1,20 @@
+
+
+
+<ul class="results">
+  <% @people.each do |person| %>
+    <li>
+
+      <%= link_to person, class: 'portrait' do %>
+        <% if person.wikipedia_image %>
+          <div class="person-mini-portrait" style="background-image: url('<%=  person.wikipedia_image %>');"></div>
+        <% else %>
+          <div class="person-mini-portrait">&nbsp;</div>
+        <% end %>
+      <% end %>
+
+      <%= link_to person.name, person %> - <%= pluralize_with_delimiter(person.records_count, 'thing') %>
+
+    </li>
+  <% end %>
+</ul>

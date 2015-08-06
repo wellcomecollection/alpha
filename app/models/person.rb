@@ -12,6 +12,9 @@ class Person < ActiveRecord::Base
     "P#{id}"
   end
 
+  def to_api
+    {id: to_param, name: name, records_count: records_count}
+  end
 
   def remove_full_stops_from_name!
 

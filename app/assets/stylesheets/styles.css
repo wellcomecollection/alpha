@@ -1,7 +1,7 @@
 body { background-color: #E5E3D9; color: #403F3C; }
 a { background-color: #FFFDF2; color: #403F3C; padding: 2px; text-decoration: none;}
 
-/* Google fonts */ 
+/* Google fonts */
 body, p, li { font-family: 'Lora', sans-serif; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
@@ -22,7 +22,7 @@ small, code { font-family: 'Inconsolata', ; }
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    text-indent:-9999px;    
+    text-indent:-9999px;
 }
 .name {
 	margin-top: -40px;
@@ -47,12 +47,16 @@ small, code { font-family: 'Inconsolata', ; }
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    text-indent: -9999px;   
+    text-indent: -9999px;
 }
 .sm-name {
     margin-top: -30px;
     display: block;
     font-size: 0.825em;
+}
+
+ul.results {
+  list-style-type: none;
 }
 
 /* Person */
@@ -66,12 +70,27 @@ background-size: cover;
 background-color: rgba(145, 184, 185, 0.5);
   background-position:center 30%;
   margin-left: auto;
-  margin-right: auto;  
+  margin-right: auto;
 }
+
+.person-mini-portrait {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+
+  background-size: cover;
+  background-color: rgba(145, 184, 185, 0.5);
+}
+
 .big p { font-size: 1.5em;}
 .big .dates { font-weight:bold;}
 .nogo { color: #BFBEB5; font-style:italic;}
-.help-note {     
+.help-note {
   padding-left: 15px;
   font-size: 0.375em;
   letter-spacing: 0em;
@@ -110,12 +129,12 @@ background-color: rgba(145, 184, 185, 0.5);
 .subnav {
   padding-bottom: 10px;
   border-bottom: 1px dotted #7F7E79;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
 }
-.subnav a {     
-	background-color: rgba(99, 212, 8, 0.57); 
-	color: #403F3C; 
-	padding: 2px; 
+.subnav a {
+	background-color: rgba(99, 212, 8, 0.57);
+	color: #403F3C;
+	padding: 2px;
 	text-decoration: none;
 }
 .nerds { clear: both; margin-top: 30px;}
@@ -132,4 +151,8 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 .center {
   text-align:center;
+}
+
+a.portrait {
+  background-color: transparent;
 }

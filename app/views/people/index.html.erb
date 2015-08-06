@@ -1,6 +1,11 @@
 <% content_for :title, "People" %>
 <h1>People</h1>
 
+<%= form_tag people_lookup_index_path, method: :get, enforce_utf8: false do %>
+  <%= text_field_tag :name %>
+  <%= content_tag 'button', "search" %>
+<% end %>
+
   <% @top_people.each do |person| %>
 
   <div class="circle">
