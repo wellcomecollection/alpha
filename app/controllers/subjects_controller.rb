@@ -18,6 +18,8 @@ class SubjectsController < ApplicationController
     id = params[:id].gsub('S','')
 
     @subject = Subject.find(id)
+    
+    @digitized_count = @subject.records.where(digitized: true).count
 
     @things = @subject.records.select(:identifier, :title, :package)
       .order('digitized desc')
