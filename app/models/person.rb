@@ -65,9 +65,13 @@ class Person < ActiveRecord::Base
       # TODO: figure out why my local openssl installation doesn't have up-to-date certs
       # response = JSON.parse(open(wikipedia_api_url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read)
 
-      images = response.fetch('parse', {}).fetch('images', []) - ["Commons-logo.svg"]
+      images = response.fetch('parse', {}).fetch('images', [])
 
-      images.reject! { |image| image =~ /\.svg\z/ }
+      images.reject! do |image|
+        (image =~ /\.svg\z/) ||
+        (image =~ /\.flac\z/) ||
+        (image == 'Crystal_Clear_app_Login_Manager_2.png')
+      end
 
       self.wikipedia_images = images
 
