@@ -35,7 +35,7 @@ small, code { font-family: 'Inconsolata', ; }
 	display: block;
 }
 .name small { background-color: #e5e3d9; padding: 4px; }
-small.dates { background-color: ##FFFDF2; padding: 4px; }
+small.dates { background-color: #FFFDF2; padding: 4px; }
 
 .sm-circle {
     width: 110px;
