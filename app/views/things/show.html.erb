@@ -43,6 +43,32 @@
   <p>Part of the <%= content_tag 'span', "#{@thing.collection} collection", class: @thing.collection.downcase %></p>
 <% end %>
 
+<% if @thing.summary %>
+  <div class="row nerds" style="clear: both;">
+    <div class="four columns">
+      <h4>Summary</h4>
+    </div>
+    <div class="eight columns">
+      <div class="summary">
+        <%= @thing.summary.html_safe %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @thing.about %>
+  <div class="row nerds" style="clear: both;">
+    <div class="four columns">
+      <h4>About</h4>
+    </div>
+    <div class="eight columns">
+      <div class="about">
+        <%= @thing.about.html_safe %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% if @thing.pdf_file %>
 
   <embed src="<%= @thing.pdf_file %>" width="100%" height="600" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">

@@ -10,6 +10,14 @@ class Record < ActiveRecord::Base
     identifier
   end
 
+  def summary
+    metadata['520'].to_a.first.to_h['a']
+  end
+
+  def about
+    metadata['545'].to_a.first.to_h['a']
+  end
+
   def archives_tree
 
     ref = archives_ref
