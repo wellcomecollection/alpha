@@ -15,13 +15,10 @@ class SubjectsController < ApplicationController
       .order('digitized desc')
       .limit(100)
 
-
-    thing_ids = @subject.records.pluck(:id)
-
     @people_whove_written_about_it = Person
       .joins(:creators)
       .select("people.*, count(creators.id) as count")
-      .where(creators: {record_id: thing_ids})
+      .where(["creators.record_id IN (select taggings.record_id from taggings where taggings.subject_id = ?)", @subject.id])
       .group('people.id')
       .order('count desc')
       .limit(36)
@@ -29,7 +26,7 @@ class SubjectsController < ApplicationController
     @related_subjects = Subject
       .joins(:taggings)
       .select("subjects.*, count(subjects.id) as count")
-      .where(taggings: {record_id: thing_ids})
+      .where(["taggings.record_id IN (select taggings.record_id from taggings where taggings.subject_id = ?)", @subject.id])
       .where.not(id: @subject.id)
       .group('subjects.id')
       .order('count desc')

@@ -10,14 +10,12 @@ class PeopleController < ApplicationController
 
     @person = Person.find(id)
 
-    thing_ids = @person.records.pluck(:id)
-
     @digitized_count = @person.records.where(digitized: true).count
 
     @co_authors = Creator
       .joins(:person)
       .select("people.*, count(creators.id) as count")
-      .where(record_id: thing_ids)
+      .where(["creators.record_id IN (select creators.record_id from creators where creators.person_id = ?)", @person.id])
       .where.not(person_id: @person.id)
       .group('people.id')
       .order('count desc')
@@ -37,7 +35,7 @@ class PeopleController < ApplicationController
 
     @publication_years = Record
       .select('year')
-      .where(id: thing_ids)
+      .where(["records.id IN (select creators.record_id from creators where creators.person_id = ?)", @person.id])
       .where.not(year: nil)
       .group('year')
       .order('year')
@@ -46,7 +44,7 @@ class PeopleController < ApplicationController
     @top_subjects_written_about = Subject
       .joins(:taggings)
       .select("subjects.*, count(taggings.id) as count")
-      .where(taggings: {record_id: thing_ids})
+      .where(["taggings.record_id IN (select creators.record_id from creators where creators.person_id = ?)", @person.id])
       .group('subjects.id')
       .order('count desc')
       .limit(18)
