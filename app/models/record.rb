@@ -59,9 +59,11 @@ class Record < ActiveRecord::Base
 
     name_regex = /\A([^\,]+)\,\s?([^\,]+)\z/
 
-    metadata.fetch('650', []) +
-    metadata.fetch('651', []) +
-    metadata.fetch('610', []).each do |field|
+    (
+      metadata.fetch('650', []) +
+      metadata.fetch('651', []) +
+      metadata.fetch('610', [])
+    ).each do |field|
 
       label = field['a'].to_s
       subject_authority_id = field['0']
@@ -72,14 +74,33 @@ class Record < ActiveRecord::Base
         case ind2
         when '0'
           subject_type = 'loc'
-        # when '2'
-        #   subject_type = 'mesh'
-        #   subject_authority_id = subject_authority_id[/\A(\D\d+)/, 1]
+        when '2'
+          subject_type = 'mesh'
+          subject_authority_id = subject_authority_id.to_s[/\A(\D\d+)/, 1]
         end
 
         if subject_type == 'mesh'
 
-          subject = Subject.where(["identifiers->? = ?", subject_type, subject_authority_id]).take
+          # reverse label if it contains a single comma
+          match = /\A([^\,]+)\,\s([^\,]+)\z/.match(label)
+          if match
+            label = "#{match[2]} #{match[1]}".strip
+          end
+
+          label = label.gsub(/\.\z/, '')    # remove any trailing full stop
+          label = label.gsub('<p>', '')     # remove any pargraph tags
+          label = label.strip
+
+          if subject_authority_id.blank?
+
+            subject = Subject.where(["LOWER(label) = ?", label.downcase]).take ||
+              Subject.new(label: label, all_labels: [label], identifiers: {})
+
+          else
+            subject = Subject.where(["identifiers->? = ?", subject_type, subject_authority_id]).take
+          end
+
+
 
         elsif subject_type == 'loc'
 
