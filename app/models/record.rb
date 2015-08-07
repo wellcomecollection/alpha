@@ -10,6 +10,22 @@ class Record < ActiveRecord::Base
     identifier
   end
 
+  def archives_tree
+
+    ref = archives_ref
+
+    tree = []
+
+    while !ref.blank?
+      ref = ref.gsub(/\/?[^\/]+\z/, '')
+      unless ref.blank?
+        tree << ref
+      end
+    end
+
+    Record.where(archives_ref: tree.reverse.compact)
+  end
+
   def collection
     if metadata['244']
       "Archives"

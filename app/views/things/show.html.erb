@@ -13,6 +13,10 @@
   </div>
 <% end %>
 
+<%= @thing.archives_tree.collect do |record|  %>
+  <% link_to record.title, thing_path(record) %>
+<% end.join(' / ').html_safe %>
+
 <h1><%= @thing.title %></h1>
 
 <% if @subjects.length > 0 %>
