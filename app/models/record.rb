@@ -50,6 +50,11 @@ class Record < ActiveRecord::Base
     publishers.length > 0 ? publishers : nil
   end
 
+  # Remove trailing slash. Artefact of MARC?
+  def title
+    read_attribute(:title).gsub(/\/\z/, '').strip
+  end
+
   def update_taggings_from_metadata!
 
     name_regex = /\A([^\,]+)\,\s?([^\,]+)\z/
