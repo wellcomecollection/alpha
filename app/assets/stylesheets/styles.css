@@ -30,11 +30,12 @@ small, code { font-family: 'Inconsolata', ; }
     text-indent:-9999px;
 }
 .name {
-	margin-top: -40px;
+	margin-top: -50px;
 	padding: 5px;
 	display: block;
 }
 .name small { background-color: #e5e3d9; padding: 4px; }
+small.dates { background-color: gainsboro; padding: 4px; }
 
 .sm-circle {
     width: 110px;
@@ -128,7 +129,7 @@ background-color: rgba(145, 184, 185, 0.5);
     padding-top: 60px;
     clear: both;
     padding-bottom: 40px;
-} 
+}
 .nav {
   color: #BFBEB5;
   border-bottom: 1px dotted #7F7E79;
