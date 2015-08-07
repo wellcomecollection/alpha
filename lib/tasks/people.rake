@@ -86,7 +86,7 @@ namespace :people do
         ).each do |name_field|
 
           id = name_field['0']
-          name = name_field.fetch('a', '').strip.gsub(/\,\z/, '')
+          name = name_field.fetch('a', '').strip.gsub(/\,\z/, '').gsub(/([a-z])\./, '')
 
           all_names = []
           all_names << name unless name.blank?
@@ -120,28 +120,30 @@ namespace :people do
           end
 
           if id.blank?
-            # Don't do anything yet.
-          else
 
+            person = Person.where(["LOWER(name) = ?", name.downcase]).order('records_count desc').take ||
+              Person.new
+
+          else
             person = Person.where(["identifiers->'loc' = ? ", id]).take ||
               Person.new(identifiers: {'loc' => id})
-
-            person.name ||= name
-            person.all_names = (person.all_names.to_a + all_names).uniq
-            person.born_in ||= born_in
-            person.died_in ||= died_in
-
-            person.save!
-
-            creator = record.creators.new(person: person)
-            creator.as = name
-
-            begin
-              creator.save!
-            rescue ActiveRecord::RecordNotUnique
-            end
-
           end
+
+          person.name ||= name
+          person.all_names = (person.all_names.to_a + all_names).uniq
+          person.born_in ||= born_in
+          person.died_in ||= died_in
+
+          person.save!
+
+          creator = record.creators.new(person: person)
+          creator.as = name
+
+          begin
+            creator.save!
+          rescue ActiveRecord::RecordNotUnique
+          end
+
 
         end
 
