@@ -18,6 +18,11 @@ class Record < ActiveRecord::Base
     image_assets.map { |asset| "http://wellcomelibrary.org/iiif-img/#{identifier}-#{asset.fetch(:sequence_index)}/#{asset.fetch(:identifier)}" }
   end
 
+  def publishers
+    publishers = metadata.fetch('260', []).collect {|x| x['b'].to_s.gsub(/\,\z/, '').gsub(/[\[\]]/, '').strip}.reject(&:blank?)
+    publishers.length > 0 ? publishers : nil
+  end
+
   def update_taggings_from_metadata!
 
     name_regex = /\A([^\,]+)\,\s?([^\,]+)\z/
