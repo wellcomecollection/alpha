@@ -5,7 +5,7 @@ $(function() {
   $( ".subjects-search" ).autocomplete({
     source: function(request, response) {
       $.ajax({
-          url: "/subjects_lookup",
+          url: "/subjects_lookup.json",
           dataType: "json",
           data: {label: request.term, limit: 10},
           success: function(data) {
@@ -20,7 +20,7 @@ $(function() {
   $( ".people-search" ).autocomplete({
     source: function(request, response) {
       $.ajax({
-          url: "/people_lookup",
+          url: "/people_lookup.json",
           dataType: "json",
           data: {name: request.term, limit: 10},
           success: function(data) {
