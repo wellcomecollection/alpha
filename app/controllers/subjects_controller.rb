@@ -1,9 +1,17 @@
 class SubjectsController < ApplicationController
 
   def index
+    @from = params[:from].to_i.abs
+
+    @per_page = 200
+
     @top_subjects = Subject
       .order('records_count desc')
-      .limit(200)
+      .offset(@from)
+      .limit(@per_page)
+
+    @total_subjects_count = Subject.count
+
   end
 
   def show

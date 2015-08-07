@@ -7,7 +7,7 @@
   <%= content_tag 'button', "lookup" %>
 <% end %>
 
-<ol>
+<ol start="<%= @from + 1 %>">
   <% @top_subjects.each do |subject| %>
     <li><%= link_to subject.label, subject %> – <%= pluralize_with_delimiter(subject.records_count, 'thing') %></li>
   <% end %>
@@ -18,9 +18,12 @@
 <div class="row pagination">
   <div class="four columns">&nbsp;</div>
   <div class="four columns center">
-    <button>Previous</button>&nbsp;&nbsp;<button>Next</button>
+    <% unless @from == 0 %>
+      <%= link_to "Previous", subjects_path(from: @from - @per_page), class: 'button' %>
+    <% end %>
+    <%= link_to "Next", subjects_path(from: @from + @per_page), class: 'button' %>
     <br />
-    <small>246,345 results &bull; Page 2 of 4,567</small>
+    <small><%= number_with_delimiter(@total_subjects_count) %> subjects &bull; Page <%= (@from.to_i / @per_page).round + 1 %> of <%= number_with_delimiter((@total_subjects_count.to_f / @per_page).floor) %></small>
   </div>
-  <div class="four columns">&nbsp;</div>  
+  <div class="four columns">&nbsp;</div>
 </div>

@@ -16,9 +16,22 @@
 <div class="row pagination">
   <div class="four columns">&nbsp;</div>
   <div class="four columns center">
-    <button>Previous</button>&nbsp;&nbsp;<button>Next</button>
+
+    <% if @from > 0 %>
+      <%= link_to "Previous", subjects_lookup_index_path(label: @label, from: (@from - @per_page), limit: @per_page), class: 'button' %>
+    <% end %>
+
+      &nbsp;&nbsp;
+
+    <% if (@from + @per_page) < (@total_count) %>
+      <%= link_to 'Next', subjects_lookup_index_path(label: @label, from: (@from + @per_page), limit: @per_page), class: 'button' %>
+    <% end %>
+
     <br />
-    <small>246,345 results &bull; Page 2 of 4,567</small>
+    <small><%= pluralize_with_delimiter(@total_count, 'result') %>
+      &bull; Page <%= (@from.to_f / @per_page).floor + 1 %> of
+      <%= (@total_count.to_f / @per_page).ceil %>
+    </small>
   </div>
-  <div class="four columns">&nbsp;</div>  
+  <div class="four columns">&nbsp;</div>
 </div>
