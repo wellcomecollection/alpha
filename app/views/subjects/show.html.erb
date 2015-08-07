@@ -36,13 +36,19 @@
 <% end %>
 
 <div class"row">
-  <div class="nine columns">
-
+  <div class="twelve columns">
     <%= render 'by_year', years: @year_counts %>
   </div>
-  <div class="three columns">
+</div>
+<div class="row years">
+	<div class="one column">YYYY</div>
+	<div class="ten columns">&nbsp;</div>
+	<div class="one column">YYYY</div>
+</div>
+<div class"row">
+  <div class="twelve columns right">
     <p>
-      This graph shows when books at Wellcome on this subject were published. <br />
+      <small>This graph shows when books at Wellcome on this subject were published.</small>
       <!--<small>White tip = digitised version</small>-->
     </p>
   </div>
