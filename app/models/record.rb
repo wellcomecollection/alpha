@@ -10,8 +10,35 @@ class Record < ActiveRecord::Base
     identifier
   end
 
-  def image_urls(size: 800)
-    image_service_urls.map { |url| "#{url}/full/!#{size},#{size}/0/default.jpg" }
+  def pdf_file
+    file_path = (package || {})
+      .fetch('assetSequences', [])
+      .collect {|x| x.fetch('assets', []).collect{|y| y['fileUri']} }
+      .flatten
+      .keep_if {|file| file =~ /\.pdf\z/ }
+      .first
+
+    file_path ? "http://wellcomelibrary.org#{file_path}" : nil
+  end
+
+  def pdf_thumbnail_url
+    file_path = (package || {})
+      .fetch('assetSequences', [])
+      .collect {|x| x.fetch('assets', []) }
+      .flatten
+      .keep_if {|x| x['fileUri'].to_s =~ /\.pdf\z/ }
+      .collect {|x| x['thumbnailPath'] }
+      .first
+
+    file_path ? "http://wellcomelibrary.org#{file_path}" : nil
+  end
+
+  def image_url(width = 150, height = 300)
+    pdf_thumbnail_url || image_urls(width, height).first
+  end
+
+  def image_urls(width = 800, height = 800)
+    image_service_urls.map { |url| "#{url}/full/!#{width},#{height}/0/default.jpg" }
   end
 
   def image_service_urls

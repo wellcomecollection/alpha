@@ -35,9 +35,13 @@
   </p>
 <% end %>
 
-<% if @thing.image_urls.length > 0 %>
+<% if @thing.pdf_file %>
+
+  <embed src="<%= @thing.pdf_file %>" width="100%" height="600" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
+
+<% elsif @thing.image_urls.length > 0 %>
   <div style="width: 100%;background-color:#666;">
-    <% url = @thing.image_urls(size: 2000).first %>
+    <% url = @thing.image_urls(2000, 2000).first %>
     <%= link_to url do %>
       <%= image_tag url, style: 'width: 100%;' %>
     <% end %>

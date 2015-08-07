@@ -91,8 +91,8 @@
   <div class="cover-box">
     <div class="cover">
       <%= link_to thing_path(thing) do %>
-        <% if thing.image_service_urls.length > 0 %>
-          <%= image_tag thing.image_service_urls.first + "/full/!150,300/0/default.jpg" %>
+        <% if thing.image_url %>
+          <%= image_tag thing.image_url(150,300) %>
         <% else %>
           <%= thing.title %>
         <% end %>
