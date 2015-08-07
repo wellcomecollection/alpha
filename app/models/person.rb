@@ -87,7 +87,7 @@ class Person < ActiveRecord::Base
 
   end
 
-  def wikipedia_image
+  def wikipedia_image(width = 300)
 
     if wikipedia_images && wikipedia_images.length > 0
 
@@ -100,7 +100,7 @@ class Person < ActiveRecord::Base
       if file_name
         md5 = Digest::MD5.hexdigest file_name
 
-        "https://upload.wikimedia.org/wikipedia/commons/#{md5[0]}/#{md5[0..1]}/#{URI.encode(file_name)}"
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/#{md5[0]}/#{md5[0..1]}/#{URI.encode(file_name)}/#{width}px-#{URI.encode(file_name)}"
       end
     else
       nil
