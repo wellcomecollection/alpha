@@ -171,3 +171,7 @@ a.portrait {
 input[type=search] {
   width: 50em;
 }
+
+
+.archives {background-color: deeppink; color:white; padding:2px;}
+.iconographic {background-color: deepskyblue; color:white; padding:2px;}

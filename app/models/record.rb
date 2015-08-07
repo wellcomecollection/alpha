@@ -10,6 +10,16 @@ class Record < ActiveRecord::Base
     identifier
   end
 
+  def collection
+    if metadata['244']
+      "Archives"
+    elsif metadata['001'].to_a.first.to_s.end_with? 'i'
+      "Iconographic"
+    else
+      nil
+    end
+  end
+
   def pdf_file
     file_path = (package || {})
       .fetch('assetSequences', [])

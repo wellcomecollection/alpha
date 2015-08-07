@@ -35,6 +35,10 @@
   </p>
 <% end %>
 
+<% if @thing.collection %>
+  <p>Part of the <%= content_tag 'span', "#{@thing.collection} collection", class: @thing.collection.downcase %></p>
+<% end %>
+
 <% if @thing.pdf_file %>
 
   <embed src="<%= @thing.pdf_file %>" width="100%" height="600" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">
