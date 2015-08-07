@@ -1,3 +1,6 @@
+.count-bars {
+  border-bottom: 4px solid white;
+}
 .count-bars, .count-bars-labels {
   display: table;
   width: 100%;
