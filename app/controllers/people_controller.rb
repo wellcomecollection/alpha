@@ -1,7 +1,10 @@
 class PeopleController < ApplicationController
 
   def index
-    @top_people = Person.order(:records_count).reverse_order.limit(200)
+    @top_people = Person
+      .where("array_length(wikipedia_images, 1) > 0")
+      .where('records_count > 4')
+      .order('random()').limit(200)
   end
 
   def show
