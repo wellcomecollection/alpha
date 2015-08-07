@@ -56,3 +56,7 @@
 .count-bars-labels .label.show span {
   visibility: visible;
 }
+
+.count-bars-labels .label.always-show span {
+  visibility: visible;
+}
