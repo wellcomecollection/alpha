@@ -86,7 +86,7 @@ namespace :people do
         ).each do |name_field|
 
           id = name_field['0']
-          name = name_field.fetch('a', '').strip.gsub(/\,\z/, '').gsub(/([a-z])\./, '')
+          name = name_field.fetch('a', '').strip.gsub(/\,\z/, '').gsub(/([a-z])\./, '\1')
 
           all_names = []
           all_names << name unless name.blank?
