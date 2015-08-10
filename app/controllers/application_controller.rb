@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter do
-    set_cache_header(10)  # 20 seconds
+    set_cache_header(60 * 60 * 24 * 7)  # 7 days
   end
 
   private
