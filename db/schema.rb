@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804162305) do
+ActiveRecord::Schema.define(version: 20150810085309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "unaccent"
-  enable_extension "pg_stat_statements"
   enable_extension "hstore"
+  enable_extension "pg_stat_statements"
+  enable_extension "unaccent"
 
   create_table "collections", force: :cascade do |t|
     t.text    "name",                             null: false
@@ -100,11 +100,12 @@ ActiveRecord::Schema.define(version: 20150804162305) do
     t.text    "identifier"
     t.text    "label"
     t.text    "description"
-    t.text    "all_labels",                                    array: true
-    t.text    "related_identifiers",                           array: true
-    t.text    "tree_numbers",                                  array: true
-    t.hstore  "identifiers",         default: {}, null: false
-    t.integer "records_count",       default: 0,  null: false
+    t.text    "all_labels",                                        array: true
+    t.text    "related_identifiers",                               array: true
+    t.text    "tree_numbers",                                      array: true
+    t.hstore  "identifiers",             default: {}, null: false
+    t.integer "records_count",           default: 0,  null: false
+    t.integer "digitized_records_count", default: 0,  null: false
   end
 
   create_table "taggings", force: :cascade do |t|

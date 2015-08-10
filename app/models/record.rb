@@ -6,6 +6,8 @@ class Record < ActiveRecord::Base
   has_many :taggings
   has_many :subjects, through: :taggings
 
+  scope :digitized, -> { where(digitized: true) }
+
   def to_param
     identifier
   end

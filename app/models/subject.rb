@@ -27,6 +27,11 @@ class Subject < ActiveRecord::Base
     save!
   end
 
+  def update_digitized_records_count!
+    self.digitized_records_count = records.digitized.count
+    save!
+  end
+
   def reverse_label_if_contains_single_comma!
 
     regex = /\A([^\,]+)\,\s([^\,]+)\z/
