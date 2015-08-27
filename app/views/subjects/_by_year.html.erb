@@ -1,7 +1,7 @@
 <% real_years = [] %>
 
 <% years.each do |y|
-  if y[0] =~ /\d{4}/ && y[0] < (Time.now.year + 1).to_s
+  if y[0] =~ /\d{4}/ && y[0] < (Time.now.year + 1).to_s && y[0] != "0000"
     real_years << y
   end
 end
