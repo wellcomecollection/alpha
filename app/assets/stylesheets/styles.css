@@ -1,9 +1,9 @@
 body { background-color: #F0F1EC; color: #333; }
-a { color: #005870; padding: 2px; text-decoration: none;}
+a { color: #005870; background-color: white; padding: 2px; text-decoration: none;}
 
 /* Google fonts */
-body, p, li { font-family: Verdana, Trebuchet, sans-serif; }
-h1, h2, h3, h4, h5, h6 { font-family: 'Helvetica Neue', sans-serif; color: black;}
+body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
+h1, h2, h3, h4, h5, h6 { font-family: Georgia, Verdana, Trebuchet, sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
 /* Graphs */
@@ -35,7 +35,7 @@ small, code { font-family: 'Inconsolata', ; }
 	display: block;
 }
 .name small { background-color: #e5e3d9; padding: 4px; }
-small.dates { background-color: #FFFDF2; padding: 4px; }
+small.dates { background-color: white; padding: 4px; }
 
 .sm-circle {
     width: 110px;
@@ -59,6 +59,7 @@ small.dates { background-color: #FFFDF2; padding: 4px; }
     margin-top: -30px;
     display: block;
     font-size: 0.825em;
+    background-color: white;
 }
 
 ul.results {
