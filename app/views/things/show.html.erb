@@ -98,30 +98,7 @@
 <br clear="all" />
 <br clear="all" />
 
-<div class="row nerds" style="clear: both;">
-  <div class="two columns">
-    <h5>Data & IDs</h5>
-  </div>
-  <div class="ten columns">
-  	<table>
-  	    <tr>
-  	      <td>Week 1 View</td>
-  	      <td>
-  	      	<a href="http://scope.whatsinthelibrary.com/<%= @thing.identifier %>"><%= @thing.identifier %></a> (view the metadata record)
-  	      </td>
-  	   </tr>
-  	    <tr>
-  	      <td>Wellcome Library</td>
-  	      <td>
-  	      	<% if @thing.image_urls.length > 0 %>
-  	      		<a href="http://wellcomelibrary.org/player/<%= @thing.identifier %>"><%= @thing.identifier %></a>
-  	      	<% else %>
-  	      		<%= @thing.identifier %>
-  	      	<% end %>
-  	      	</td>
-  	   </tr>
-  	</table>
-	</div>
-</div>
-
-<%= link_to "JSON view", thing_path(format: :json) %>
+<p>
+  <a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">View on Wellcome Library</a> |
+  <%= link_to "JSON data", thing_path(format: :json) %>
+</p>
