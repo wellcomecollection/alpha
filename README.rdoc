@@ -1,6 +1,7 @@
-== Week 4 at Wellcome
+== Wellcome Library Alpha
 
-This week is all about gathering the work we've done so far at http://whatsinthelibrary.com and seeing what we can do to enhance the catalogue browsing experience, but at scale. Week 1 saw us looking over the whole MARC dataset to see is topology and grain (and lack of depth); Week 2 saw us Showing the Thing where we could (instead of showing its rather dry metadata record); Week 3 had us pulling back out of the big catalogue data, and down deep into a single subject to see what we could do to make it a great browsing/learning experience. Week 4, we're working on how we can enhance the browsing experience at scale. We'll see what happens!
+We're taking the work done in our What's In The Library? project -- http://whatsinthelibrary.com -- and moving it into the Wellcome Library infrastructure. It'll be a link from the existing Sandbox area -- https://wellcomelibrary.org/what-we-do/sandbox/ -- and positioned as an experimental first step. 
+
 
 (What you see below is standard Ruby blurt.)
 
