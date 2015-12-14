@@ -1,11 +1,10 @@
 <% content_for :title, "Home" %>
-<h1>Welcome to Week 4!</h1>
+<h1>Wellcome Library Alpha</h1>
 
-<p style="margin-bottom:0;">Our work this week is about Scalability. We're hoping to take the work of the previous three weeks - <a href="http://scope.whatsinthelibrary.com">scope</a>, <a href="http://thing.whatsinthelibrary.com">show the thing</a> and <a href="http://context.whatsinthelibrary.com">context</a> - and bundle it together in a fourth exploration. We're curious to see how we can enrich the MaRC across 962,000 records programmatically. Here are a few pointers to help you get started:</p>
 <div class="row">
   <div class="six columns center" style="padding:25px 25px 50px 25px;">
     <h4>Interesting People</h4>
-    <a href="/people/P2797">Galen</a>, 
+    <a href="/people/P2797">Galen</a>,
     <a href="/people/P835">Marie Stopes</a>,
     <a href="/people/P2802">Henry S. Wellcome</a>
     our <a href="http://context.whatsinthelibrary.com">Week 3</a> friend, <a href="/people/P27577">James Gillray</a>,
@@ -16,7 +15,7 @@
     <a href="/people/P2175">John Snow</a>,
     <a href="/people/P432">Florence Nightingale</a>,
     <a href="/people/P530">Melanie Klein</a>
-  </div>  
+  </div>
   <div class="six columns center" style="padding:25px 25px 50px 25px;">
     <h4>Curious Subjects</h4>
     <a href="/subjects/S3154">Cooking</a>,
@@ -28,80 +27,8 @@
     <a href="/subjects/S46428">Apparent death</a>,
     <a href="/subjects/S6475">Psychiatric hospitals</a>,
     <a href="/subjects/s5094">Fetishism</a>,
-    <a href="/subjects/S401">Alchemy</a>, 
+    <a href="/subjects/S401">Alchemy</a>,
     <a href="/subjects/S21156">Flowers</a>, and
     <a href="/subjects/S3293">Crutches</a>
-  </div>
-</div>
-
-<h2>Daily Work Log</h2>
-<div class="row">
-  <div class="three columns">
-   <h4>Day 1</h4>
-  </div>
-  <div class="nine columns">
-    <ul>
-      <li>We've started building a list of <a href="/people">People</a>.</li>
-      <li>Here's a subject page about <%= link_to 'Blood', subject_path('S1683') %></li>
-      <li><%= link_to 'On hemorrhoids', thing_path('b19798945') %> thing page</li>
-    </ul>
-  </div>
-</div>
-
-<div class="row">
-  <div class="three columns">
-   <h4>Day 2</h4>
-  </div>
-  <div class="nine columns">
-    <ul>
-      <li>We're working on the view of a person, like <a href="/people/P5581">Andreas Vesalius</a>, showing books, subjects, and contemporaries.</li>
-      <li>We're building an interface into Wikipedia so we can grab author images and a short blurb about them.</li>
-      <li>Continuing to refine the <a href="/people">People</a> view.</li>
-      <li>Added handy <span style="background-color: rgba(99, 212, 8, 0.57);">subnav</span> at the top to help get around.</li>
-      <li>Thinking about simple tidying of subjects we could do so you can see blended lists of [Medicine] AND [Medicine.]. </li>
-      <li>Working on layout for subject page, for example, <a href="/subjects/S11127">Public Health</a>.</li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="three columns">
-   <h4>Day 3</h4>
-  </div>
-  <div class="nine columns">
-    <ul>
-      <li>Wikipedia integration continues apace! Authors now with biographies, images and links to Wikipedia!</li>
-      <li>Related subjects now appear, so you can see that <a href="/subjects/S14165">Viruses</a> are related to Virus Diseases, Virology, Bacteria, Viruses (pathogenicity), Microbiology, Fungi, Communicable Diseases, Viruses (genetics), Molecular Biology, and Viruses (classification).</li>
-      <li>Now making those blended lists of [Medicine] AND [Medicine.] we were thinking about on Day 1.</li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="three columns">
-   <h4>Day 4</h4>
-  </div>
-  <div class="nine columns">
-    <ul>
-      <li>Now we're going all agile, and have a backlog of stuff we want to do, and are doing.</li>
-      <li>We're working on getting more authors into the system (we'd only loaded those with Library of Congress IDs to date).</li>
-      <li>Massaging subjects more, adding people-as-subjects and places-as-subject.</li>
-      <li>Adding an auto-complete box for <a href="/people">People</a> and <a href="/subjects">Subjects</a> so you can look for specific stuff.</li>
-      <li>Borrowed the publishing graphs from Week 2 for our subject pages. Shows things like when <a href="/subjects/S4401">Electric Stimulation Therapy</a> was popular.</li>
-      <li>And, more...!</li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="three columns">
-   <h4>Day 5</h4>
-  </div>
-  <div class="nine columns">
-    <ul>
-      <li>Trying to maintain focus on work when there's a fun spelunker to poke about in.</li>
-      <li>Continuing to munge more subject types, like organisations, e.g. <a href="/subjects/S44025">Catholic Church</a> or <a href="https://wellcome-scalability.herokuapp.com/subjects_lookup?label=wellcome">Wellcome-related things</a>.</li>
-      <li>Adding pagination around the site so you can see more stuff.</li>
-      <li>Polishing UI bits and pieces.</li>
-      <li>Squishing bugs!</li>
-      <li>Oh, and at the 11th hour, we added .json views for everything.</li>
-    </ul>
   </div>
 </div>
