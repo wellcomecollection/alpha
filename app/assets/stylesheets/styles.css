@@ -1,9 +1,9 @@
-body { background-color: #E5E3D9; color: #403F3C; }
-a { background-color: #FFFDF2; color: #403F3C; padding: 2px; text-decoration: none;}
+body { background-color: white; color: #403F3C; }
+a { color: #005870; padding: 2px; text-decoration: none;}
 
 /* Google fonts */
-body, p, li { font-family: 'Lora', sans-serif; }
-h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; }
+body, p, li { font-family: 'Helvetica Neue', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Helvetica Neue', sans-serif; }
 small, code { font-family: 'Inconsolata', ; }
 
 /* Graphs */
