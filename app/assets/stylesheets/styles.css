@@ -1,9 +1,9 @@
-body { background-color: white; color: #403F3C; }
+body { background-color: #F0F1EC; color: #333; }
 a { color: #005870; padding: 2px; text-decoration: none;}
 
 /* Google fonts */
-body, p, li { font-family: 'Helvetica Neue', sans-serif; }
-h1, h2, h3, h4, h5, h6 { font-family: 'Helvetica Neue', sans-serif; }
+body, p, li { font-family: Verdana, Trebuchet, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Helvetica Neue', sans-serif; color: black;}
 small, code { font-family: 'Inconsolata', ; }
 
 /* Graphs */
@@ -132,30 +132,43 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 .nav {
   color: #BFBEB5;
-  border-bottom: 1px dotted #7F7E79;
+  border-bottom: 1px solid #333;
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.alpha-note {
+	padding-left: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.alpha-note span {
+	color: #ed3441;
+	font-style: italic;
+	font-weight: bold;
+}
 .subnav {
   padding-bottom: 10px;
-  border-bottom: 1px dotted #7F7E79;
+  padding-left: 10px;
+  border-bottom: 1px solid #333;
   margin-bottom: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .subnav a {
-	background-color: rgba(99, 212, 8, 0.57);
-	color: #403F3C;
+	background-color: white;
+	color: black;
 	padding: 2px;
-	text-decoration: none;
 }
 .nerds { clear: both; margin-top: 30px;}
 .nerds h5 {padding-top:5px;}
 .footer {
-  color: #BFBEB5;
-  border-top: 1px dotted #7F7E79;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-top: 1px solid #333;
   margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.top {
+	padding-left: 10px;
 }
 .right {
   text-align:right;

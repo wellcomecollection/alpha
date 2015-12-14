@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield :title %> | Wellcome Week 4: Scalability</title>
+  <title><%= yield :title %> | Alpha Wellcome Library</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:700|Lora|Inconsolata" rel="stylesheet" type="text/css">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <meta name="robots" content="noindex">
-  <meta description="Welcome to Week 4 of What's In The Library. A four-week, rapid fire digital prototyping project by Good, Form & Spectacle, in partnership with the good folk at Wellcome Library.">
+  <meta description="This is the alpha, experimental version of a new Wellcome Library catalogue explorer. We hope you enjoy it!">
   <%= yield :head %>
 </head>
 <body>
+
   <a name="top" style="display:none;"></a>
   <div class="container">
     <div class="row nav">
-      <div class="nine columns">
-        Wellcome Library Alpha
-      </div>
-      <div class="three columns right">
+    	<div class="two columns">
+   	        <a href="/" alt="wellcome logo"><%= image_tag "wellcome-logo.png" %></a>
+		</div>
+      <div class="ten columns alpha-note">
+        <span>ALPHA</span>
       </div>
     </div>
     <div class="row">
@@ -31,18 +33,12 @@
   </div>
 
   <div class="container">
-    <div class="row footer">
-      <div class="one column"></div>
-      <div class="eight columns"></div>
-      <div class="three columns right"></div>
-    </div>
-  <div class="row">
-    <div class="one column">&nbsp;</div>
-    <div class="ten columns">
-      <p><small>PLEASE NOTE: All author images and biographies come from <a href="http://wikipedia.org">Wikipedia</a>. Most are in the public domain, but please check Wikipedia for specific attribution details.</small></p>
-    </div>
-    <div class="one column">&nbsp;</div>
-  </div>
+	  <div class="row footer">
+		<div class="two columns top"><a href="#top">&uarr; Top</a></div>
+		<div class="ten columns">
+		  <small>PLEASE NOTE: All author images and biographies come from <a href="http://wikipedia.org">Wikipedia</a>. Most are in the public domain, but please check Wikipedia for specific attribution details.</small>
+		</div>
+	  </div>
   </div>
 
 
