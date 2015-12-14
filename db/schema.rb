@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810085309) do
+ActiveRecord::Schema.define(version: 20151214165257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,6 @@ ActiveRecord::Schema.define(version: 20150810085309) do
   end
 
   add_index "creators", ["record_id", "person_id"], name: "index_creators_on_record_id_and_person_id", unique: true, using: :btree
-
-  create_table "fields", force: :cascade do |t|
-    t.text    "tag",                              null: false
-    t.integer "count",                            null: false
-    t.integer "non_electronic_count", default: 0, null: false
-  end
-
-  add_index "fields", ["tag"], name: "index_fields_on_tag", unique: true, using: :btree
 
   create_table "people", force: :cascade do |t|
     t.text     "name",                                   null: false
@@ -84,16 +76,6 @@ ActiveRecord::Schema.define(version: 20150810085309) do
   add_index "records", ["package"], name: "index_records_on_package", using: :gin
   add_index "records", ["year", "digitized"], name: "index_records_on_year_and_digitized", using: :btree
   add_index "records", ["year"], name: "index_records_on_year", using: :btree
-
-  create_table "subfield_content_counts", force: :cascade do |t|
-    t.integer "field_id",        null: false
-    t.string  "subfield",        null: false
-    t.string  "content",         null: false
-    t.integer "count",           null: false
-    t.integer "digitized_count"
-  end
-
-  add_index "subfield_content_counts", ["field_id", "subfield"], name: "index_subfield_content_counts_on_field_id_and_subfield", using: :btree
 
   create_table "subjects", force: :cascade do |t|
     t.text    "scheme"
