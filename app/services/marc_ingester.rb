@@ -9,8 +9,6 @@ class MarcIngester
 
   def ingest!
 
-    puts "#{Record.count} records in existing database"
-
     files = 0
     records_count = 0
     new_records_count = 0
