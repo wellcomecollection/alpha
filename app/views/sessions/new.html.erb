@@ -1,0 +1,13 @@
+<h1>Login</h1>
+
+<%= form_tag session_path do %>
+
+  <%= label_tag :email, 'e-mail address' %>
+  <%= email_field_tag :email %>
+
+  <%= label_tag :password, 'password' %>
+  <%= password_field_tag :password %>
+
+  <button type="submit">Login</button>
+
+<% end %>

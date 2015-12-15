@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :things, only: ['show'], path: ''
 
+  resource :session, only: [:new, :create, :destroy]
+
   root 'home#show'
 
 end

@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 module WellcomeWeek4Scalability
   class Application < Rails::Application
 
-    config.session_store :disabled
+    config.session_store :cookie_store, key: '_wellcomelibrary_alpha'
 
     config.serve_static_files = true
 

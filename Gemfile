@@ -9,6 +9,7 @@ gem 'elasticsearch'
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'jbuilder'
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'byebug'

@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
   <meta name="robots" content="noindex">
   <meta description="This is the alpha, experimental version of a new Wellcome Library catalogue explorer. We hope you enjoy it!">
-  
+
   <!-- Chloe's twitter card experiment -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@wellcomelibrary">
@@ -16,7 +16,7 @@
   <meta name="twitter:title" content="This will be the title of something">
   <meta name="twitter:description" content="This will be some exciting description">
   <meta name="twitter:image" content="http://wellcomelibrary.org/content/events/event-images/54121.jpg">
-  
+
   <%= yield :head %>
 </head>
 <body>
@@ -36,9 +36,12 @@
         <a href="/">Home</a>&nbsp;&nbsp;<a href="/people">People</a>&nbsp;&nbsp;<a href="/subjects">Subjects</a>
       </div>
       <div class="six columns subnav right">
-        <a href="#">Log in</a>&nbsp;&nbsp;<a href="#">Sign up</a>
-        <!-- logged in -->
-        <!-- <a href="#">Your edits</a>&nbsp;&nbsp;<a href="#">All edits</a>&nbsp;&nbsp;<a href="#">Log out</a> -->
+
+        <% if current_user %>
+          Logged in <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Logout</button><% end %>
+        <% else %>
+          <%= link_to "Log in", new_session_path %>
+        <% end %>
       </div>
     </div>
 
