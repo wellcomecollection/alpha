@@ -1,0 +1,13 @@
+<h1>Add admin user</h1>
+
+<%= form_for @user do |form| %>
+
+  <%= form.label :email, 'e-mail address' %>
+  <%= form.email_field :email %>
+
+  <%= form.label :password, 'password' %>
+  <%= form.password_field :password %>
+
+  <button type="submit">Create user</button>
+
+<% end %>
