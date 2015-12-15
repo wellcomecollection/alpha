@@ -1,6 +1,6 @@
 <% content_for :title, @person.name %>
 <div class="row">
-  <div class="two columns center" style="padding-bottom:20px;">
+  <div class="two columns center" style="padding:10px;">
 
     <% if @person.wikipedia_image %>
       <div class="person-portrait" style='background-image: url("<%= @person.wikipedia_image(150) %>");'></div>
@@ -71,8 +71,14 @@
   </div>
 </div>
 
+<!-- Crick -->
 <% if @person.id == 20649 %>
   <%= render 'p20649.html' %>
+<% end %>
+
+<!-- Gillray -->
+<% if @person.id == 27577 %>
+  <%= render 'p27577.html' %>
 <% end %>
 
 <br clear="all" />

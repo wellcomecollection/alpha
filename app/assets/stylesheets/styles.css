@@ -94,7 +94,8 @@ background-color: rgba(145, 184, 185, 0.5);
   background-size: cover;
   background-color: rgba(145, 184, 185, 0.5);
 }
-
+.identifiers { width: 100%; }
+.identifiers td { font-family: monospace;}
 .big p { font-size: 1.5em;}
 .big .dates { font-weight:bold;}
 .nogo { color: #BFBEB5; font-style:italic;}
