@@ -2,6 +2,8 @@
 
 <h1>Subjects</h1>
 
+<%= render 'subjects/search', {value: ''} %>
+
 <ol start="<%= @from + 1 %>">
   <% @top_subjects.each do |subject| %>
     <li><%= link_to subject.label, subject %> – <%= pluralize_with_delimiter(subject.records_count, 'thing') %></li>

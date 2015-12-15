@@ -1,7 +1,4 @@
-<%= form_tag people_lookup_index_path, method: :get, enforce_utf8: false do %>
-  <%= search_field_tag :name, @name, autocomplete: 'off', class: 'people-search' %>
-  <%= content_tag 'button', "lookup" %>
-<% end %>
+<%= render 'people/search', {value: @name} %>
 
 <ul class="results">
   <% @people.each do |person| %>
@@ -34,5 +31,5 @@
     <br />
     <small>246,345 results &bull; Page 2 of 4,567</small>
   </div>
-  <div class="four columns">&nbsp;</div>  
+  <div class="four columns">&nbsp;</div>
 </div>

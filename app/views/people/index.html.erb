@@ -1,5 +1,8 @@
 <% content_for :title, "People" %>
+
 <h1>People</h1>
+
+<%= render 'people/search', {value: ''} %>
 
   <% @top_people.each do |person| %>
 
