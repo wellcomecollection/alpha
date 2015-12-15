@@ -44,10 +44,10 @@
 
 <% if @related_subjects.length > 0 %>
 <div class="row breathe">
-  <div class="three columns">
-    <h5>Often Seen With</h5>
+  <div class="three columns right">
+    <h6>Often Seen With</h6>
   </div>
-  <div class="nine columns big">
+  <div class="nine columns">
     <p>
       <%= @related_subjects.collect do |subject| %>
         <% link_to subject.label, subject_path(subject) %>
@@ -59,10 +59,10 @@
 
 <% if @narrower_subjects.length > 0 %>
 <div class="row breathe">
-  <div class="three columns">
-    <h5>Go More Specific</h5>
+  <div class="three columns right">
+    <h6>Go More Specific</h6>
   </div>
-  <div class="nine columns big">
+  <div class="nine columns">
     <p>
       <%= @narrower_subjects.collect do |subject| %>
         <% link_to subject.label, subject_path(subject) %>
