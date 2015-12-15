@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214165257) do
+ActiveRecord::Schema.define(version: 20151215144219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20151214165257) do
     t.text    "access_conditions"
     t.text    "year"
     t.boolean "digitized"
+    t.text    "pdf_thumbnail_url"
   end
 
   add_index "records", ["archives_ref"], name: "index_records_on_archives_ref", using: :btree

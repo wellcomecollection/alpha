@@ -52,7 +52,7 @@ class PeopleController < ApplicationController
       .order('count desc')
       .limit(18)
 
-    @things = @person.records.select(:identifier, :title, :package)
+    @things = @person.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
       .order('digitized desc')
       .limit(100)
   end

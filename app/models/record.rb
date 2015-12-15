@@ -8,6 +8,8 @@ class Record < ActiveRecord::Base
 
   scope :digitized, -> { where(digitized: true) }
 
+  before_save :set_cover_image_uris, :set_pdf_thumbnail_url
+
   def to_param
     identifier
   end
@@ -57,20 +59,19 @@ class Record < ActiveRecord::Base
     file_path ? "http://wellcomelibrary.org#{file_path}" : nil
   end
 
-  def pdf_thumbnail_url
-    file_path = (package || {})
-      .fetch('assetSequences', [])
-      .collect {|x| x.fetch('assets', []) }
-      .flatten
-      .keep_if {|x| x['fileUri'].to_s =~ /\.pdf\z/ }
-      .collect {|x| x['thumbnailPath'] }
-      .first
-
-    file_path ? "http://wellcomelibrary.org#{file_path}" : nil
+  def image_url(width = 150, height = 300)
+    pdf_thumbnail_url || cover_image_url(width, height) || image_urls(width, height).first
   end
 
-  def image_url(width = 150, height = 300)
-    pdf_thumbnail_url || image_urls(width, height).first
+  def cover_image_url(width = 800, height = 800)
+
+    if pdf_thumbnail_url
+      pdf_thumbnail_url
+    elsif cover_image_uris
+      "#{cover_image_uris.first}/full/!#{width},#{height}/0/default.jpg"
+    else
+      nil
+    end
   end
 
   def image_urls(width = 800, height = 800)
@@ -247,6 +248,31 @@ class Record < ActiveRecord::Base
   end
 
   private
+
+  def set_cover_image_uris
+
+    if image_service_urls.length > 0
+      cover_image_uris = [image_service_urls.first]
+    else
+      cover_image_uris = nil
+    end
+
+    write_attribute(:cover_image_uris, cover_image_uris)
+  end
+
+  def set_pdf_thumbnail_url
+    file_path = (package || {})
+      .fetch('assetSequences', [])
+      .collect {|x| x.fetch('assets', []) }
+      .flatten
+      .keep_if {|x| x['fileUri'].to_s =~ /\.pdf\z/ }
+      .collect {|x| x['thumbnailPath'] }
+      .first
+
+    pdf_thumbnail_url = file_path ? "http://wellcomelibrary.org#{file_path}" : nil
+
+    write_attribute(:pdf_thumbnail_url, pdf_thumbnail_url)
+  end
 
   def image_asset_sequences
     # this will probably only return the first sequence, but that’s fine for now

@@ -108,8 +108,8 @@
   <div class="cover-box">
     <div class="cover">
       <%= link_to thing_path(thing) do %>
-        <% if thing.image_url %>
-          <%= image_tag thing.image_url(150,300) %>
+        <% if thing.cover_image_url %>
+          <%= image_tag thing.cover_image_url(150,300) %>
         <% else %>
           <%= thing.title %>
         <% end %>

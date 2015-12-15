@@ -19,7 +19,7 @@ class SubjectsController < ApplicationController
 
     @subject = Subject.find(id)
 
-    @things = @subject.records.select(:identifier, :title, :package)
+    @things = @subject.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
       .order('digitized desc')
       .limit(100)
 
