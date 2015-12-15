@@ -157,6 +157,7 @@ background-color: rgba(145, 184, 185, 0.5);
 .subnav {
   padding-bottom: 10px;
   padding-left: 10px;
+  padding-right: 10px;
   border-bottom: 1px solid #333;
   margin-bottom: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
