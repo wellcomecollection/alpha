@@ -71,8 +71,14 @@
   </div>
 </div>
 
+<!-- Crick -->
 <% if @person.id == 20649 %>
   <%= render 'p20649.html' %>
+<% end %>
+
+<!-- Gillray -->
+<% if @person.id == 27577 %>
+  <%= render 'p27577.html' %>
 <% end %>
 
 <br clear="all" />
@@ -142,13 +148,11 @@
 <br clear="all" />
 
 <div class="row nerds" style="clear: both;">
-  <div class="three columns">
+  <div class="two columns">
     <h5>Data & IDs</h5>
-    <p><%= @person.name %> is referenced in lots of other catalogues around the world.</p>
-    <p>This is a list of other identifiers we've discovered.</p>
   </div>
-  <div class="offset-by-one eight columns">
-	<table class="identifiers">
+  <div class="ten columns">
+	<table>
 	  <% @person.identifiers.each_pair do |key, value| %>
 	    <tr>
 	      <td><%= key %></td>
