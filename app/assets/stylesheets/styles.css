@@ -176,12 +176,8 @@ background-color: rgba(145, 184, 185, 0.5);
 .top {
 	padding-left: 10px;
 }
-.right {
-  text-align:right;
-}
-.center {
-  text-align:center;
-}
+.right { text-align:right; }
+.center { text-align:center; }
 
 a.portrait {
   background-color: transparent;
