@@ -1,9 +1,10 @@
 body { background-color: #F0F1EC; color: #333; }
-a { color: #005870; padding: 2px; text-decoration: none;}
+a { color: #005870; background-color: white; padding: 2px; text-decoration: none;}
 
 /* Google fonts */
-body, p, li { font-family: Verdana, Trebuchet, sans-serif; }
-h1, h2, h3, h4, h5, h6 { font-family: 'Helvetica Neue', sans-serif; color: black;}
+body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
+h1, h2, h3, h4, h5, h6 { font-family: Georgia, Verdana, Trebuchet, sans-serif; }
+h1 { line-height: 1.25em;}
 small, code { font-family: 'Inconsolata', ; }
 
 /* Graphs */
@@ -31,11 +32,11 @@ small, code { font-family: 'Inconsolata', ; }
 }
 .name {
 	margin-top: -50px;
-	padding: 5px;
+	padding: 3px;
 	display: block;
 }
 .name small { background-color: #e5e3d9; padding: 4px; }
-small.dates { background-color: #FFFDF2; padding: 4px; }
+small.dates { background-color: white; padding: 4px; }
 
 .sm-circle {
     width: 110px;
@@ -59,6 +60,7 @@ small.dates { background-color: #FFFDF2; padding: 4px; }
     margin-top: -30px;
     display: block;
     font-size: 0.825em;
+    background-color: white;
 }
 
 ul.results {
@@ -137,6 +139,11 @@ background-color: rgba(145, 184, 185, 0.5);
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.logo a {
+	text-decoration: none;
+	border: none;
+	background-color: #F0F1EC;
+}
 .alpha-note {
 	padding-left: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -152,11 +159,6 @@ background-color: rgba(145, 184, 185, 0.5);
   border-bottom: 1px solid #333;
   margin-bottom: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.subnav a {
-	background-color: white;
-	color: black;
-	padding: 2px;
 }
 .nerds { clear: both; margin-top: 30px;}
 .nerds h5 {padding-top:5px;}

@@ -71,6 +71,10 @@
   </div>
 </div>
 
+<% if @person.id == 20649 %>
+  <%= render 'p20649.html' %>
+<% end %>
+
 <br clear="all" />
 
 <div class="row">
@@ -116,6 +120,9 @@
 	  </div>
   <% end %>
 <% end %>
+
+<br clear="all" />
+<br clear="all" />
 
 <% if @contemporaries && @contemporaries.length > 0 %>
   <h3>Contemporaries</h3>
