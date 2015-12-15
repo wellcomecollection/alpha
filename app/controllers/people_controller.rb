@@ -50,7 +50,7 @@ class PeopleController < ApplicationController
       .where(["taggings.record_id IN (select creators.record_id from creators where creators.person_id = ?)", @person.id])
       .group('subjects.id')
       .order('count desc')
-      .limit(18)
+      .limit(100)
 
     @things = @person.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
       .order('digitized desc')
