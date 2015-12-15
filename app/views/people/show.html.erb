@@ -142,11 +142,13 @@
 <br clear="all" />
 
 <div class="row nerds" style="clear: both;">
-  <div class="two columns">
+  <div class="three columns">
     <h5>Data & IDs</h5>
+    <p><%= @person.name %> is referenced in lots of other catalogues around the world.</p>
+    <p>This is a list of other identifiers we've discovered.</p>
   </div>
-  <div class="ten columns">
-	<table>
+  <div class="offset-by-one eight columns">
+	<table class="identifiers">
 	  <% @person.identifiers.each_pair do |key, value| %>
 	    <tr>
 	      <td><%= key %></td>
