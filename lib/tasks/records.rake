@@ -1,4 +1,4 @@
-
+include ActionView::Helpers::DateHelper
 namespace :records do
 
   desc 'Import MARC records'
@@ -20,7 +20,10 @@ namespace :records do
         record.save
         records_done += 1
 
-        print "\r(#{records_done}/#{total_records_count} processed)"
+        records_left_to_do = total_records_count - records_done
+        seconds_left = records_left_to_do * ((Time.now - time) / records_done)
+
+        print "\r(#{records_done}/#{total_records_count} processed) ETA: #{distance_of_time_in_words(Time.now, seconds_left.seconds.from_now)}"
         STDOUT.flush
 
       end
