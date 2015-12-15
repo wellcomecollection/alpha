@@ -2,11 +2,11 @@ body { background-color: #F0F1EC; color: #333; }
 a,
 button.link { color: #005870; background-color: white; padding: 2px; text-decoration: none;}
 
-/* Google fonts */
 body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
 h1, h2, h3, h4, h5, h6 { font-family: Georgia, Verdana, Trebuchet, sans-serif; }
 h1 { line-height: 1.25em;}
-small, code { font-family: 'Inconsolata', ; }
+small { font-family: monospace; font-size: 1em;}
+code { font-family: monospace; font-size: 1.25em;}
 
 /* Graphs */
 
@@ -31,6 +31,7 @@ small, code { font-family: 'Inconsolata', ; }
     border-radius: 50%;
     text-indent:-9999px;
 }
+.gray p { font-size: smaller; color: #888; margin-top: -13px;}
 .name {
 	margin-top: -50px;
 	padding: 3px;
@@ -136,7 +137,6 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 .nav {
   color: #BFBEB5;
-  border-bottom: 1px solid #333;
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -156,11 +156,12 @@ background-color: rgba(145, 184, 185, 0.5);
 	font-weight: bold;
 }
 .subnav {
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  border-top: 1px solid #333;
   border-bottom: 1px solid #333;
-  margin-bottom: 20px;
+  margin-bottom: 20px;  
+}
+.subnav div {
+  padding: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .nerds { clear: both; margin-top: 30px;}
