@@ -40,11 +40,17 @@ class SubjectsController < ApplicationController
       .order('count desc')
       .limit(15)
 
-    @year_counts = @subject
-      .records
-      .group('records.year')
-      .order('year')
-      .count
+    # Skip year counts for high record count subjects, for now,
+    # until we can improve the query performance.
+    if @subject.records_count < 2000
+      @year_counts = @subject
+        .records
+        .group('records.year')
+        .order('year')
+        .count
+    else
+      @year_counts = []
+    end
 
     @trees = []
 

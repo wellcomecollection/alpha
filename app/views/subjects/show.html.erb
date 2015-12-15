@@ -39,20 +39,11 @@
 </div>
 <% end %>
 
-<div class"row">
-  <div class="twelve columns">
-    <%= render 'by_year', years: @year_counts %>
-  </div>
-</div>
-<div class"row">
-  <div class="twelve columns right">
-    <p>
-      <small>This graph shows publishing history of books on this subject held at Wellcome.</small>
-      <!--<small>White tip = digitised version</small>-->
-    </p>
-  </div>
-</div>
-<br clear="all" />
+<% if @year_counts.length > 0 %>
+  <%= render 'by_year', years: @year_counts %>
+<% end %>
+
+
 <br clear="all" />
 
 <% if @related_subjects.length > 0 %>
