@@ -35,10 +35,10 @@
       <div class="six columns">
         <a href="/">Home</a>&nbsp;&nbsp;<a href="/people">People</a>&nbsp;&nbsp;<a href="/subjects">Subjects</a>
       </div>
-      <div class="six columns subnav right">
+      <div class="six columns right">
 
         <% if current_user %>
-          Logged in <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Logout</button><% end %>
+          Hi. <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
         <% else %>
           <%= link_to "Log in", new_session_path %>
         <% end %>
