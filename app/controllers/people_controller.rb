@@ -7,6 +7,10 @@ class PeopleController < ApplicationController
       .order('random()').limit(200)
   end
 
+  def edit
+    @person = Person.find(params[:id].gsub('P', ''))
+  end
+
   def show
 
     id = params[:id].gsub("P", "")
