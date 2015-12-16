@@ -1,6 +1,11 @@
 <% content_for :title, "Home" %>
-<h1>Hello.</h1>
 
+        <% if current_user %>
+			<h1>Woo!</h1>
+		<% else %>
+			<h1>Hello.</h1>
+		<% end %>
+			
 <div class="row">
   <div class="six columns">
     <h4>Interesting People</h4>

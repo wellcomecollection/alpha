@@ -1,8 +1,9 @@
-<h1>Users</h1>
+<% content_for :title, "Editors" %>
+<h1>Editors</h1>
 
-<%= link_to 'Add user', new_user_path %>
+<%= link_to 'Add Editor', new_user_path %>
 
-<table>
+<table width="100%">
   <% @users.each do |user| %>
     <tr><td><%= user.email %></td></tr>
   <% end %>

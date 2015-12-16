@@ -72,6 +72,12 @@
 </div>
 <% end %>
 
+<% if @subject.id == 21975 %>		
+  <%= render 's21975.html' %>		
+<% end %>
+
+
+
 <% if @people_whove_written_about_it.length > 0 %>
   <h2 style="clear:both;">People who’ve made things about it</h2>
 
