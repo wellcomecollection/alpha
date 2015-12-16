@@ -9,8 +9,8 @@
   <meta property="og:title" content="<%= @thing.title %>" />
 
   <% if @thing.cover_image_url %>
-    <meta name="twitter:image" content="<%= thing.cover_image_url(1800,1800) %>">
-    <meta property="og:image" content="<%= thing.cover_image_url(1800,1800) %>" />
+    <meta name="twitter:image" content="<%= @thing.cover_image_url(1800,1800) %>">
+    <meta property="og:image" content="<%= @thing.cover_image_url(1800,1800) %>" />
   <% end %>
 
   <% if @thing.year %>
