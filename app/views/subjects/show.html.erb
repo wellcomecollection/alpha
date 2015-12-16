@@ -7,7 +7,10 @@
   <meta name="twitter:title" content="<%= @subject.label %>" />
   <meta property="og:title" content="<%= @subject.label %>" />
 
-  <% if @subject.description %>
+  <% if @subject.wellcome_intro %>
+    <meta name="twitter:description" content="<%= @subject.wellcome_intro %>" />
+    <meta property="og:description" content="<%= @subject.wellcome_intro %>" />
+  <% elsif @subject.description %>
     <meta name="twitter:description" content="<%= @subject.description %>" />
     <meta property="og:description" content="<%= @subject.description %>" />
   <% end %>
