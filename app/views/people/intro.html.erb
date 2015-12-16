@@ -1,30 +1,53 @@
-<h1>Edit introduction for <%= link_to @person.name, @person %></h1>
+<% content_for :title, @person.name %>
+<div class="row">
+	<div class="two columns center" style="padding:10px;">
+<% if @person.wikipedia_image %>
+		<div class="person-portrait" style='background-image: url(&quot;&lt;%= @person.wikipedia_image(150) %&gt;&quot;);'>
+		</div>
+<% else %>
+		<div class="person-portrait">
+			&nbsp;
+		</div>
 
-
-<h2>Wikipedia intro</h2>
+<% end %>
+	</div>
+	<div class="ten columns">
+		<h1>
+<%= link_to @person.name, @person %>
+			/ Edit
+		</h1>
+		<h4>
+			From Wikipedia
+		</h4>
+		<div class="big" style="background-color: white; padding: 20px 20px 5px 20px;">
+			<p>
 
 <%= render 'people/wikipedia_intro', person: @person %>
-
+			</p>
+		</div>
 <% if @person.identifiers['wikipedia_en'] %>
-  <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %>
-
-  <%= form_tag person_wikipedia_path(@person), method: 'patch' do %>
-    <button type="submit">Update</button>
-  <% end %>
-
+<%= form_tag person_wikipedia_path(@person), method: 'patch' do %>
+		<button type="submit">GET LATEST</button> 
 <% end %>
-
-<h2>Wellcome intro</h2>
-
-<% if @person.wellcome_intro_updated_by %>
-  <p>Last updated <%= time_ago_in_words(@person.wellcome_intro_updated_at) %> ago by <%= @person.wellcome_intro_updated_by.email %>.</p>
 <% end %>
+		<h4>
+			Wellcome-specific paragraph
+		</h4>
 
 <%= form_for @person, url: person_intro_path(@person) do |form| %>
-
-  <div>
-    <%= form.text_area :wellcome_intro %>
-  </div>
-
-  <button type="submit">Update</button>
+		<div>
+<%= form.text_area :wellcome_intro, {class: "intro-box"} %>
+		</div>
+		<p>
+			<button type="submit">SAVE</button> &nbsp;&nbsp;&nbsp; <em> No HTML, please &nbsp;&nbsp;&nbsp; Keep it short 
+<% if @person.wellcome_intro_updated_by %>
+		 &nbsp;&nbsp;&nbsp; Last updated 
+<%= time_ago_in_words(@person.wellcome_intro_updated_at) %>
+			ago by 
+<%= @person.wellcome_intro_updated_by.email %>
 <% end %>
+			</em>
+		</p>
+<% end %>
+	</div>
+</div>

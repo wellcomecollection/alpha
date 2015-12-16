@@ -36,17 +36,18 @@
 
   </div>
   <div class="ten columns big">
+  
     <h1><%= @person.name %></h1>
 
+	<% if logged_in_as_admin? %>
+	<div style="float: right; margin-left: 20px; margin-bottom: 30px; ">
+	  <%= link_to 'Edit introduction', person_intro_path(@person), class: "is-admin" %>
+	</div>
+	<% end %>  
+
     <% if @person.born_in || @person.died_in %>
-      <div><span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span></div>
+      <div class="dates"><%= @person.born_in %>-<%= @person.died_in %></div>
     <% end %>
-
-    <% if @person.wellcome_intro %>
-
-      <p><%= @person.wellcome_intro %></p>
-
-    <% else %>
 
       <p>
         <%= render 'wikipedia_intro', person: @person %>
@@ -56,19 +57,27 @@
         <% end %>
 
         <% if @person.identifiers['loc'].nil? %>
-          <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
+          We didn't find a Library of Congress identifier for this author in the database, so we couldn't connect to Wikipedia.
         <% end %>
       </p>
-    <% end %>
 
-    <% if logged_in_as_admin? %>
-      <%= link_to 'Edit introduction', person_intro_path(@person) %>
+    <% if @person.wellcome_intro %>
+      <p><%= @person.wellcome_intro %></p>
     <% end %>
+    
   </div>
 </div>
+
+
 <div class="row">
-	<div class="eight columns">
-    <h4>Subjects</h4>
+
+<% if @person.editorial %>
+	<div class="offset-by-two six columns">
+<% else %>
+	<div class="offset-by-two eight columns">
+<% end %>
+   		   		
+   		<h4>Subjects</h4>
 
       <% if @top_subjects_written_about.length > 0 %>
 		<p>
@@ -77,24 +86,11 @@
       		<% end %>
       	</p>
       <% else %>
-	<p class="nogo">We couldn't find any!</p>
+		<p class="nogo">We couldn't find any.</p>
       <% end %>
-	</div>
-	<div class="four columns" style="background-color: white; padding: 20px;">
+      
 
-    <% if @person.editorial %>
-		  <h4><%= @person.editorial_title %></h4>
-		  <%= @person.editorial_content.html_safe %>
-    <% end %>
-
-    <% if logged_in_as_admin? %>
-      <%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person) %>
-    <% end %>
-	</div>
-</div>
-<div class="row">
-	<div class="twelve columns">
-	<h4>Timeline</h4>
+		<h4>Publishing Timeline</h4>
 
 	<% years = {} %>
 
@@ -117,9 +113,30 @@
 		  <div class="thing"><small><%= year[1] %></small></div>
 		</div>
 	  <% end %>
+	        
+	</div>
+	
+<% if @person.editorial %>
+	<div class="four columns">
+		<div class="editorial">
+			<h5><%= @person.editorial_title %></h5>
+			<%= @person.editorial_content.html_safe %>
+		<% if logged_in_as_admin? %>
+			<br /><%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person), {class: 'is-admin'} %>
+		<% end %>
+		</div>
+	</div>
+<% else %>
+	<div class="two columns">
+		<% if logged_in_as_admin? %>
+			<%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person), {class: 'is-admin'} %>
+		<% end %>
+	</div>	
+<% end %>
 
-  </div>
 </div>
+
+<br clear="all" />
 
 <!-- Crick -->
 <% if @person.id == 20649 %>

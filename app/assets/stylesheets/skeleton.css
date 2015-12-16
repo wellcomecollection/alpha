@@ -208,12 +208,13 @@ input[type="password"],
 textarea,
 select {
   height: 38px;
+  font-size: 13px;  
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: #fff;
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
-  width: 300px;
+  width: 400px;
   box-sizing: border-box; }
 /* Removes awkward default styles on some inputs for iOS */
 input[type="email"],

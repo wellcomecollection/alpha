@@ -3,11 +3,22 @@ a,
 button.link { color: #005870; background-color: white; padding: 2px; text-decoration: none;}
 
 body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
-h1, h2, h3, h4, h5, h6 { font-family: Georgia, Verdana, Trebuchet, sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; }
 h1 { line-height: 1.25em;}
 small { font-family: monospace; font-size: 1em;}
 code { font-family: monospace; font-size: 1.25em;}
 
+
+.is-admin {
+	background-color: #ffce00;
+	padding: 3px;
+}
+.intro-box {
+	height: 100px;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	width: 790px
+}
 /* Graphs */
 
 .digitised { height:5px;background-color:white; margin-top:10px; }
@@ -69,6 +80,15 @@ ul.results {
   list-style-type: none;
 }
 
+.editorial {
+	background: white;
+	padding: 20px;
+	color: #666;
+}
+.editorial h5 {
+	color: #006170;
+	margin-bottom: 10px;
+}
 /* Person */
 .person-portrait {
 	width: 130px;
@@ -137,9 +157,8 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 .nav {
   color: #BFBEB5;
-  margin-bottom: 10px;
-  padding-top: 10px;
   padding-bottom: 10px;
+  padding-top: 10px;
 }
 .logo a {
 	text-decoration: none;
