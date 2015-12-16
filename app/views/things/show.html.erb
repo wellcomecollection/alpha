@@ -27,8 +27,8 @@
   <% end %>
 
   <% if @thing.summary %>
-    <meta name="twitter:description" content="<%= truncate(@thing.summary, length: 200, separator: ' ') %>" />
-    <meta property="og:description" content="<%= truncate(@thing.summary, length: 200, separator: ' ') %>" />
+    <meta name="twitter:description" content="<%= truncate(@thing.summary, length: 300, separator: ' ') %>" />
+    <meta property="og:description" content="<%= truncate(@thing.summary, length: 300, separator: ' ') %>" />
   <% end %>
 
   <meta property="og:url" content="<%= thing_url(@thing) %>" />
