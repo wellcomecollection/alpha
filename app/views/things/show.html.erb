@@ -1,5 +1,35 @@
 <% content_for :title, @thing.title %>
 
+<% content_for :head do %>
+
+  <meta name="twitter:card" content="product">
+  <meta property="og:type" content="article" />
+
+  <meta name="twitter:title" content="<%= @thing.title %>">
+  <meta property="og:title" content="<%= @thing.title %>" />
+
+  <% if @thing.cover_image_url %>
+    <meta name="twitter:image" content="<%= thing.cover_image_url(1800,1800) %>">
+    <meta property="og:image" content="<%= thing.cover_image_url(1800,1800) %>" />
+  <% end %>
+
+  <% if @thing.year %>
+    <meta name="twitter:label1" content="Year of publication">
+    <meta name="twitter:data1" content="<%= @thing.year %>">
+  <% end %>
+
+  <% if @thing.people.length == 1 %>
+    <meta name="twitter:label2" content="Author">
+    <meta name="twitter:data2" content="<%= @thing.people.first.name %>">
+  <% elsif @thing.people.length > 1 %>
+    <meta name="twitter:label2" content="Authors">
+    <meta name="twitter:data2" content="<%= @thing.people.collect(&:name).to_sentence %>">
+  <% end %>
+
+  <meta property="og:url" content="<%= thing_url(@thing) %>" />
+
+<% end %>
+
 <% if @thing.people.length > 0 %>
   <div class="row author">
     <div class="twelve columns big">
