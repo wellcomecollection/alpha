@@ -47,8 +47,15 @@
       <% end %>
 	</div>
 	<div class="four columns" style="background-color: white; padding: 20px;">
-		<h4>Editor's Choice</h4>
-		<p>There was an exhibition about Consciousness at the Wellcome Collection from Date to Date. We've written up an introduction to Crick's relationship to Consciousness to help you dive into library materials.</p>
+
+    <% if @person.editorial %>
+		  <h4><%= @person.editorial_title %></h4>
+		  <%= @person.editorial_content.html_safe %>
+    <% end %>
+
+    <% if logged_in_as_admin? %>
+      <%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person) %>
+    <% end %>
 	</div>
 </div>
 <div class="row">

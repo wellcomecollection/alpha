@@ -8,6 +8,10 @@ class Person < ActiveRecord::Base
   has_many :creators
   has_many :records, through: :creators
 
+  belongs_to :editorial_updated_by, class_name: 'User'
+
+  before_save :set_editorial_updated_at, :set_editorial_to_null_if_both_blank
+
   def to_param
     "P#{id}"
   end
@@ -28,6 +32,10 @@ class Person < ActiveRecord::Base
       wikipedia_intro_paragraph: wikipedia_intro_paragraph
     }
 
+  end
+
+  def editorial
+    editorial_title ? true : false
   end
 
   def remove_full_stops_from_name!
@@ -162,6 +170,19 @@ class Person < ActiveRecord::Base
   end
 
   private
+
+  def set_editorial_to_null_if_both_blank
+    if editorial_title.blank? && editorial_content.blank?
+      write_attribute(:editorial_title, nil)
+      write_attribute(:editorial_content, nil)
+    end
+  end
+
+  def set_editorial_updated_at
+    if editorial_title_changed? || editorial_content_changed?
+      write_attribute(:editorial_updated_at, Time.now)
+    end
+  end
 
   def wikipedia_api_url
     if identifiers['wikipedia_en']

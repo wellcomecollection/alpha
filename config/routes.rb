@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   resources :people_lookup, only: ['index'], controller: 'people_lookup'
 
-  resources :people, only: ['show', 'index', 'edit'], constraints: {id: /P\d+/}
+  resources :people, only: ['show', 'index', 'edit'], constraints: {id: /P\d+/} do
+
+    resource :editorial, only: ['show', 'update'], controller: 'people_editorial'
+  end
 
   resources :people, only: ['show'], controller: 'people_lookup'
 

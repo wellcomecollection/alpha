@@ -1,0 +1,20 @@
+<h1>Edit editorial for <%= link_to @person.name, @person %></h1>
+
+<% if @person.editorial %>
+  <p>Last updated <%= time_ago_in_words(@person.editorial_updated_at) %> ago by <%= @person.editorial_updated_by.email %>.</p>
+<% end %>
+
+<%= form_for @person, url: person_editorial_path(@person) do |form| %>
+
+  <div>
+    <%= form.label :editorial_title, "Title" %>
+    <%= form.text_field :editorial_title %>
+  </div>
+
+  <div>
+    <%= form.label :editorial_content, "Content" %>
+    <%= form.text_area :editorial_content %>
+  </div>
+
+  <button type="submit">Update</button>
+<% end %>

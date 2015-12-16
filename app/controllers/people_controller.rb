@@ -1,5 +1,7 @@
 class PeopleController < ApplicationController
 
+  before_filter :authorize, except: ['show', 'index']
+
   def index
     @top_people = Person
       .where("array_length(wikipedia_images, 1) > 0")
