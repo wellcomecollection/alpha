@@ -39,6 +39,17 @@
 <div class="row">
   <div class="twelve columns">
     <h1><%= @subject.label %></h1>
+
+    <% if logged_in_as_admin? %>
+      <%= form_for @subject do |form| %>
+
+        <%= form.hidden_field :highlighted, value: !@subject.highlighted %>
+
+        <button type="submit"><%= @subject.highlighted ? 'Un-highlight' : 'Highlight this subject' %></button>
+
+      <% end %>
+    <% end %>
+
   </div>
 </div>
 

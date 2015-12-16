@@ -4,6 +4,30 @@
 
 <%= render 'subjects/search', {value: ''} %>
 
+<% if @highlighted_subjects.length > 0 %>
+
+  <% @highlighted_subjects.in_groups_of(4) do |group| %>
+    <div class="row">
+      <% group.each do |subject| %>
+        <div class="three columns">
+
+          <% if subject %>
+            <p>
+              <%= link_to subject.label, subject %><br>
+
+              <% if subject.wellcome_intro %>
+                <%= truncate(subject.wellcome_intro, length: 30, separator: ' ') %><br>
+              <% end %>
+              <%= pluralize_with_delimiter(subject.records_count, 'thing') %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>
+
 <ol start="<%= @from + 1 %>">
   <% @top_subjects.each do |subject| %>
     <li><%= link_to subject.label, subject %> – <%= pluralize_with_delimiter(subject.records_count, 'thing') %></li>

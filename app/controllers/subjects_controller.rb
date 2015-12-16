@@ -1,9 +1,15 @@
 class SubjectsController < ApplicationController
 
+  before_filter :authorize, except: ['show', 'index']
+
   def index
     @from = params[:from].to_i.abs
 
     @per_page = 200
+
+    @highlighted_subjects = Subject.highlighted
+      .limit(8)
+      .order('random()')
 
     @top_subjects = Subject
       .order('records_count desc')
@@ -89,6 +95,21 @@ class SubjectsController < ApplicationController
 
     end
 
+  end
+
+  def update
+
+    @subject = Subject.find(params[:id].gsub('S', ''))
+
+    @subject.update_attributes(subject_params)
+
+    redirect_to subject_path(@subject)
+  end
+
+  private
+
+  def subject_params
+    params.require(:subject).permit(:highlighted)
   end
 
 end

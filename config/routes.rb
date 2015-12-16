@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :subjects_lookup, only: ['index'], controller: 'subjects_lookup'
 
-  resources :subjects, only: ['show', 'index'], constraints: {id: /S\d+/} do
+  resources :subjects, only: ['show', 'index', 'update'], constraints: {id: /S\d+/} do
     resource :intro, only: ['show', 'update'], controller: 'subjects_intro'
   end
 
