@@ -12,25 +12,32 @@
   <div class="ten columns big">
     <h1><%= @person.name %></h1>
 
-    <p>
-      <% if @person.born_in || @person.died_in %>
-        <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span><br />
-      <% end %>
+    <% if @person.born_in || @person.died_in %>
+      <div><span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span></div>
+    <% end %>
 
-      <% if @person.wikipedia_intro && @person.wikipedia_intro.length > 0 %>
-          <% @person.wikipedia_intro[0..1].each do |s| %>
-            <%= s.gsub(/\[\d+\]/, '').gsub(/\s?\([^\)]+\)/, '') %>
-          <% end %>
-      <% end %>
+    <% if @person.wellcome_intro %>
 
-      <% if @person.identifiers['wikipedia_en'] %>
-        <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
-      <% end %>
+      <p><%= @person.wellcome_intro %></p>
 
-      <% if @person.identifiers['loc'].nil? %>
-        <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
-      <% end %>
-    </p>
+    <% else %>
+
+      <p>
+        <%= render 'wikipedia_intro', person: @person %>
+
+        <% if @person.identifiers['wikipedia_en'] %>
+          <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
+        <% end %>
+
+        <% if @person.identifiers['loc'].nil? %>
+          <span class="nogo">There was no LC ID for this author in the database, so we couldn't connect to Wikipedia.</span>
+        <% end %>
+      </p>
+    <% end %>
+
+    <% if logged_in_as_admin? %>
+      <%= link_to 'Edit introduction', person_intro_path(@person) %>
+    <% end %>
   </div>
 </div>
 <div class="row">

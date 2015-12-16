@@ -1,0 +1,25 @@
+<h1>Edit introduction for <%= link_to @person.name, @person %></h1>
+
+
+<h2>Wikipedia intro</h2>
+
+<%= render 'people/wikipedia_intro', person: @person %>
+
+<% if @person.identifiers['wikipedia_en'] %>
+  <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %>
+<% end %>
+
+<h2>Wellcome intro</h2>
+
+<% if @person.wellcome_intro_updated_by %>
+  <p>Last updated <%= time_ago_in_words(@person.wellcome_intro_updated_at) %> ago by <%= @person.wellcome_intro_updated_by.email %>.</p>
+<% end %>
+
+<%= form_for @person, url: person_intro_path(@person) do |form| %>
+
+  <div>
+    <%= form.text_area :wellcome_intro %>
+  </div>
+
+  <button type="submit">Update</button>
+<% end %>

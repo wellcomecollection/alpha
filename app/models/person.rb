@@ -9,8 +9,11 @@ class Person < ActiveRecord::Base
   has_many :records, through: :creators
 
   belongs_to :editorial_updated_by, class_name: 'User'
+  belongs_to :wellcome_intro_updated_by, class_name: 'User'
 
   before_save :set_editorial_updated_at, :set_editorial_to_null_if_both_blank
+  before_save :set_wellcome_intro_updated_at, if: :wellcome_intro_changed?
+  before_save :set_wellcome_intro_to_null, if: "wellcome_intro.blank?"
 
   def to_param
     "P#{id}"
@@ -182,6 +185,14 @@ class Person < ActiveRecord::Base
     if editorial_title_changed? || editorial_content_changed?
       write_attribute(:editorial_updated_at, Time.now)
     end
+  end
+
+  def set_wellcome_intro_updated_at
+    write_attribute(:wellcome_intro_updated_at, Time.now)
+  end
+
+  def set_wellcome_intro_to_null
+    write_attribute(:wellcome_intro, nil)
   end
 
   def wikipedia_api_url

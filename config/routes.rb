@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :people, only: ['show', 'index', 'edit'], constraints: {id: /P\d+/} do
 
     resource :editorial, only: ['show', 'update'], controller: 'people_editorial'
+    resource :intro, only: ['show', 'update'], controller: 'people_intro'
   end
 
   resources :people, only: ['show'], controller: 'people_lookup'
