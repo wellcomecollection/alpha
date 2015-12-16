@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     resource :editorial, only: ['show', 'update'], controller: 'people_editorial'
     resource :intro, only: ['show', 'update'], controller: 'people_intro'
+    resource :wikipedia, only: ['update'], controller: 'people_wikipedia'
   end
 
   resources :people, only: ['show'], controller: 'people_lookup'

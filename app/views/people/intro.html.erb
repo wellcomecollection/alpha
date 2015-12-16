@@ -7,6 +7,11 @@
 
 <% if @person.identifiers['wikipedia_en'] %>
   <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %>
+
+  <%= form_tag person_wikipedia_path(@person), method: 'patch' do %>
+    <button type="submit">Update</button>
+  <% end %>
+
 <% end %>
 
 <h2>Wellcome intro</h2>
