@@ -42,24 +42,31 @@
   </div>
 </div>
 
-<% if @subject.description %>
 <div class="row">
+<% if logged_in_as_admin? %>
+	<div class="ten columns big">
+<% else %>
 	<div class="twelve columns big">
+<% end %>
+
+<% if @subject.description %>
     		<p>
     			<%= @subject.description %>
 		        <small><a href="https://wellcome-mesh-browser.herokuapp.com/<%= @subject.identifiers['mesh'] %>" title="View this subject in the Medical Subject Headings browser">MeSH</a></small>
     		</p>
-	</div>
-</div>
 <% end %>
 
 <% if @subject.wellcome_intro %>
   <p><%= @subject.wellcome_intro %></p>
 <% end %>
+	</div>
 
 <% if logged_in_as_admin? %>
-  <%= link_to 'Edit introduction', subject_intro_path(@subject) %>
+	<div class="two columns right">
+  <%= link_to 'Edit introduction', subject_intro_path(@subject), {class: 'is-admin'} %>
+	</div>
 <% end %>
+</div>
 
 <% if @year_counts.length > 0 %>
   <%= render 'by_year', years: @year_counts %>
