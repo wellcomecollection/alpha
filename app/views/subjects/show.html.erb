@@ -35,6 +35,10 @@
 </div>
 <% end %>
 
+<% if @subject.wellcome_intro %>
+  <p><%= @subject.wellcome_intro %></p>
+<% end %>
+
 <% if @year_counts.length > 0 %>
   <%= render 'by_year', years: @year_counts %>
 <% end %>
