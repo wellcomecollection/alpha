@@ -1,4 +1,30 @@
 <% content_for :title, @person.name %>
+
+<% content_for :head do %>
+
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= person_url(@person) %>" />
+
+  <meta name="twitter:title" content="<%= @person.name %>" />
+  <meta property="og:title" content="<%= @person.name %>" />
+
+  <% if @person.wellcome_intro %>
+
+    <meta name="twitter:description" content="<%= @person.wellcome_intro %>" />
+
+  <% elsif @person.wikipedia_intro %>
+
+    <meta name="twitter:description" content="<%= @person.wikipedia_intro %>" />
+  <% end %>
+
+  <% if @person.wikipedia_image %>
+    <meta name="twitter:image" content="<%= @person.wikipedia_image(600) %>" />
+    <meta property="og:image" content="<%= @person.wikipedia_image(600) %>" />
+  <% end %>
+
+<% end %>
+
 <div class="row">
   <div class="two columns center" style="padding:10px;">
 
