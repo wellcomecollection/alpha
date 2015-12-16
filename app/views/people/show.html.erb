@@ -127,7 +127,7 @@
 		</div>
 	</div>
 <% else %>
-	<div class="two columns">
+	<div class="two columns right">
 		<% if logged_in_as_admin? %>
 			<%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person), {class: 'is-admin'} %>
 		<% end %>

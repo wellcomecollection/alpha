@@ -13,6 +13,7 @@
 				<li>&lt;a href=""&gt;link&lt;/a&gt;</li>
 			</ul>
 		</li>
+		<li>To delete the editorial, clear all the fields and save</li>
 	
 	<% if @person.editorial %>
 	  	<li>Last updated <%= time_ago_in_words(@person.editorial_updated_at) %> ago by <%= @person.editorial_updated_by.email %></li>
@@ -34,7 +35,7 @@
 		<%= form.text_area :editorial_content %>
 	  </div>
 	</div>
-  <button type="submit">Update</button>
+  <button type="submit">SAVE</button>
 <% end %>
 	</div>
 </div>
