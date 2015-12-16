@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215160719) do
+ActiveRecord::Schema.define(version: 20151216112104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(version: 20151215160719) do
     t.text     "wikipedia_intro",                                     array: true
     t.text     "wikipedia_images",                                    array: true
     t.text     "wikipedia_intro_paragraph"
+    t.text     "editorial_title"
+    t.text     "editorial_content"
+    t.datetime "editorial_updated_at"
+    t.integer  "editorial_updated_by"
   end
 
   create_table "records", force: :cascade do |t|
