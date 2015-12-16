@@ -157,11 +157,12 @@
 <br clear="all" />
 
 <div class="row nerds" style="clear: both;">
-  <div class="two columns">
+  <div class="three columns">
     <h5>Data & IDs</h5>
+    <p>We've collected identifiers for <%= @person.name %> from other catalogues around the world.</p>
   </div>
-  <div class="ten columns">
-	<table>
+  <div class="nine columns">
+	<table width="100%">
 	  <% @person.identifiers.each_pair do |key, value| %>
 	    <tr>
 	      <td><%= key %></td>
