@@ -1,0 +1,18 @@
+<h1>Edit introduction for <%= link_to @subject.label, @subject %></h1>
+
+
+
+<h2>Wellcome intro</h2>
+
+<% if @subject.wellcome_intro_updated_by %>
+  <p>Last updated <%= time_ago_in_words(@subject.wellcome_intro_updated_at) %> ago by <%= @subject.wellcome_intro_updated_by.email %>.</p>
+<% end %>
+
+<%= form_for @subject, url: subject_intro_path(@subject) do |form| %>
+
+  <div>
+    <%= form.text_area :wellcome_intro %>
+  </div>
+
+  <button type="submit">Update</button>
+<% end %>

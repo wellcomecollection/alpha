@@ -3,6 +3,12 @@ class Subject < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :records, through: :taggings
 
+  belongs_to :wellcome_intro_updated_by, class_name: 'User'
+
+  before_save :set_wellcome_intro_updated_at, if: :wellcome_intro_changed?
+  before_save :set_wellcome_intro_to_null, if: "wellcome_intro.blank?"
+
+
   def to_param
     "S#{id}"
   end
@@ -53,6 +59,16 @@ class Subject < ActiveRecord::Base
       identifiers['mesh'] ||= identifier
       save!
     end
+  end
+
+  private
+
+  def set_wellcome_intro_updated_at
+    write_attribute(:wellcome_intro_updated_at, Time.now)
+  end
+
+  def set_wellcome_intro_to_null
+    write_attribute(:wellcome_intro, nil)
   end
 
 end

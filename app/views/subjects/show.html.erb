@@ -39,6 +39,10 @@
   <p><%= @subject.wellcome_intro %></p>
 <% end %>
 
+<% if logged_in_as_admin? %>
+  <%= link_to 'Edit introduction', subject_intro_path(@subject) %>
+<% end %>
+
 <% if @year_counts.length > 0 %>
   <%= render 'by_year', years: @year_counts %>
 <% end %>
@@ -76,8 +80,8 @@
 </div>
 <% end %>
 
-<% if @subject.id == 21975 %>		
-  <%= render 's21975.html' %>		
+<% if @subject.id == 21975 %>
+  <%= render 's21975.html' %>
 <% end %>
 
 
