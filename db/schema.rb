@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216120959) do
+ActiveRecord::Schema.define(version: 20151216140617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,16 +86,19 @@ ActiveRecord::Schema.define(version: 20151216120959) do
   add_index "records", ["year"], name: "index_records_on_year", using: :btree
 
   create_table "subjects", force: :cascade do |t|
-    t.text    "scheme"
-    t.text    "identifier"
-    t.text    "label"
-    t.text    "description"
-    t.text    "all_labels",                                        array: true
-    t.text    "related_identifiers",                               array: true
-    t.text    "tree_numbers",                                      array: true
-    t.hstore  "identifiers",             default: {}, null: false
-    t.integer "records_count",           default: 0,  null: false
-    t.integer "digitized_records_count", default: 0,  null: false
+    t.text     "scheme"
+    t.text     "identifier"
+    t.text     "label"
+    t.text     "description"
+    t.text     "all_labels",                                             array: true
+    t.text     "related_identifiers",                                    array: true
+    t.text     "tree_numbers",                                           array: true
+    t.hstore   "identifiers",                  default: {}, null: false
+    t.integer  "records_count",                default: 0,  null: false
+    t.integer  "digitized_records_count",      default: 0,  null: false
+    t.text     "wellcome_intro"
+    t.datetime "wellcome_intro_updated_at"
+    t.integer  "wellcome_intro_updated_by_id"
   end
 
   create_table "taggings", force: :cascade do |t|
