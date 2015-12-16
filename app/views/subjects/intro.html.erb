@@ -1,18 +1,27 @@
-<h1>Edit introduction for <%= link_to @subject.label, @subject %></h1>
+<% content_for :title, @subject.label %>
+
+<h1><%= link_to @subject.label, @subject %> / Edit</h1>
 
 
-
-<h2>Wellcome intro</h2>
-
-<% if @subject.wellcome_intro_updated_by %>
-  <p>Last updated <%= time_ago_in_words(@subject.wellcome_intro_updated_at) %> ago by <%= @subject.wellcome_intro_updated_by.email %>.</p>
-<% end %>
+		<h4>
+			Wellcome-specific intro
+		</h4>
 
 <%= form_for @subject, url: subject_intro_path(@subject) do |form| %>
-
-  <div>
-    <%= form.text_area :wellcome_intro %>
-  </div>
-
-  <button type="submit">Update</button>
+		<div>
+<%= form.text_area :wellcome_intro, {class: "intro-box"} %>
+		</div>
+		<p>
+			<button type="submit">SAVE</button> &nbsp;&nbsp;&nbsp; 
+			<em> 
+				No HTML, please &nbsp;&nbsp;&nbsp; 
+				Keep it short 
+<% if @subject.wellcome_intro_updated_by %>
+		 		&nbsp;&nbsp;&nbsp; Last updated 
+<%= time_ago_in_words(@subject.wellcome_intro_updated_at) %>
+				ago by 
+<%= @subject.wellcome_intro_updated_by.email %>
+<% end %>
+			</em>
+		</p>
 <% end %>
