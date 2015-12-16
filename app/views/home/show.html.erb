@@ -5,7 +5,7 @@
 		<% else %>
 			<h1>Hello.</h1>
 		<% end %>
-			
+
 <div class="row">
   <div class="six columns">
     <h4>Interesting People</h4>
@@ -23,17 +23,8 @@
   </div>
   <div class="six columns">
     <h4>Curious Subjects</h4>
-    <a href="/subjects/S3154">Cooking</a>,
-    <a href="/subjects/S11127">Public health</a>,
-    <a href="/subjects/S9299">Nurses</a>,
-    <a href="/subjects/S840">Cultural anthropology</a>
-    <a href="/subjects/S678">Anatomy</a>,
-    <a href="/subjects/S10457">Plague</a>,
-    <a href="/subjects/S46428">Apparent death</a>,
-    <a href="/subjects/S6475">Psychiatric hospitals</a>,
-    <a href="/subjects/s5094">Fetishism</a>,
-    <a href="/subjects/S401">Alchemy</a>,
-    <a href="/subjects/S21156">Flowers</a>, and
-    <a href="/subjects/S3293">Crutches</a>
+
+    <%= @subjects.collect {|s| link_to s.label, s}.to_sentence.html_safe %>
+
   </div>
 </div>
