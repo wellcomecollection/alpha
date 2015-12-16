@@ -41,6 +41,12 @@ class Person < ActiveRecord::Base
     editorial_title ? true : false
   end
 
+  def wikipedia_sentences(number)
+    wikipedia_intro.first(number).collect do |s|
+      s.gsub(/\[\d+\]/, '').gsub(/\s?\([^\)]+\)/, '')
+    end.join(' ')
+  end
+
   def remove_full_stops_from_name!
 
     regex = /([a-z])\./

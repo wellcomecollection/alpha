@@ -15,7 +15,7 @@
 
   <% elsif @person.wikipedia_intro %>
 
-    <meta name="twitter:description" content="<%= @person.wikipedia_intro %>" />
+    <meta name="twitter:description" content="<%= @person.wikipedia_sentences(2) %>" />
   <% end %>
 
   <% if @person.wikipedia_image %>

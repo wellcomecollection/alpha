@@ -1,5 +1,3 @@
 <% if person.wikipedia_intro && person.wikipedia_intro.length > 0 %>
-    <% person.wikipedia_intro[0..1].each do |s| %>
-      <%= s.gsub(/\[\d+\]/, '').gsub(/\s?\([^\)]+\)/, '') %>
-    <% end %>
+    <%= person.wikipedia_sentences(2) %>
 <% end %>
