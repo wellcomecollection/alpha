@@ -32,6 +32,9 @@ a:visited.is-admin {
 a:hover.is-admin {
 	color: black;
 }
+.hilite {
+	float: right;
+}
 .intro-box {
 	height: 100px;
 	font-size: 1.5em;

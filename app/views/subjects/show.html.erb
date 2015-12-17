@@ -37,18 +37,18 @@
 
 
 <div class="row">
-  <div class="eleven columns">
-    <h1><%= @subject.label %></h1>
-  </div>
+  <div class="twelve columns">
     <% if logged_in_as_admin? %>
-	<div class="one column">
+	<div class="hilite">
       <%= form_for @subject do |form| %>
         <%= form.hidden_field :highlighted, value: !@subject.highlighted %>
         <button type="submit" class="is-admin"><%= @subject.highlighted ? '-' : '+' %></button>
       <% end %>
 	</div>
     <% end %>
-  
+
+    <h1><%= @subject.label %></h1>
+  </div>  
 </div>
 
 <div class="row">

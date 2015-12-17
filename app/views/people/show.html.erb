@@ -33,15 +33,17 @@
 
   </div>
   <div class="ten columns big">
-  
-    <h1><%= @person.name %></h1>
-
-    <% if logged_in_as_admin? %>
-      <%= form_for @person do |form| %>
-        <%= form.hidden_field :highlighted, value: !@person.highlighted %>
-        <button type="submit"><%= @person.highlighted ? 'Un-highlight' : 'Highlight this subject' %></button>
-      <% end %>
-    <% end %>
+	<% if logged_in_as_admin? %>
+	<div class="hilite">
+	  <%= form_for @person do |form| %>
+		<%= form.hidden_field :highlighted, value: !@person.highlighted %>
+		<button type="submit" class="is-admin"><%= @person.highlighted ? '-' : '+' %></button>
+	  <% end %>
+	</div>
+	<% end %>
+    <h1>
+    	<%= @person.name %>     
+	</h1>
 
 	<% if logged_in_as_admin? %>
 	<div style="float: right; margin-left: 20px; margin-bottom: 30px; ">
