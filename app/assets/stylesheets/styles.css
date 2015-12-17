@@ -26,6 +26,9 @@ button.is-admin {
 a:link.is-admin {
 	color: white;
 }
+a:visited.is-admin {
+	color: white;
+}
 a:hover.is-admin {
 	color: black;
 }
