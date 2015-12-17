@@ -10,6 +10,7 @@ class Record < ActiveRecord::Base
 
   before_save :set_cover_image_uris, :set_pdf_thumbnail_url
   before_save :set_digitized
+  before_save :set_access_conditions
 
   def to_param
     identifier
@@ -249,6 +250,20 @@ class Record < ActiveRecord::Base
   end
 
   private
+
+  # This copies the 'access conditions' from the image package
+  # to a separate column, for speedier querying.
+  def set_access_conditions
+
+    if package
+      access_conditions = package['assetSequences']
+      .to_a.first.to_h['rootSection'].to_h['extensions'].to_h['accessCondition']
+    else
+      access_conditions = nil
+    end
+
+    write_attribute(:access_conditions, access_conditions)
+  end
 
   def set_digitized
     digitized = !(package.nil? || package == {})
