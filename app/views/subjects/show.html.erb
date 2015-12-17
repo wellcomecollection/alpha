@@ -59,17 +59,20 @@
 <% end %>
 
 <% if @subject.description %>
-    		<p>
-    			<%= @subject.description %>
-		        <small><a href="https://wellcome-mesh-browser.herokuapp.com/<%= @subject.identifiers['mesh'] %>" title="View this subject in the Medical Subject Headings browser">MeSH</a></small>
-    		</p>
-<% else %>
-			<p>We don't have a description for this subject yet.</p>
-<% end %>
+	<p>
+		<%= @subject.description %>
+		<small><a href="https://wellcome-mesh-browser.herokuapp.com/<%= @subject.identifiers['mesh'] %>" title="View this subject in the Medical Subject Headings browser">MeSH</a></small>
+	</p>
+<% elsif %>
 
 <% if @subject.wellcome_intro %>
   <p><%= @subject.wellcome_intro %></p>
 <% end %>
+
+<% elsif %>
+			<p>We don't have a description for this subject yet.</p>
+<% end %>
+
 	</div>
 
 <% if logged_in_as_admin? %>

@@ -96,6 +96,8 @@ small.dates { background-color: white; padding: 4px; }
     display: block;
     font-size: 0.825em;
     background-color: white;
+line-height:1.25em;
+padding:4px;    
 }
 
 ul.results {

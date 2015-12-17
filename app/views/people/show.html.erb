@@ -168,7 +168,7 @@
 <% @things.each do |thing| %>
   <div class="cover-box">
     <div class="cover">
-      <%= link_to thing_path(thing) do %>
+      <%= link_to thing_path(thing), title: thing.title do %>
         <% if thing.cover_image_url %>
           <%= image_tag thing.cover_image_url(150,300) %>
         <% else %>

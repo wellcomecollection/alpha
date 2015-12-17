@@ -53,6 +53,7 @@ class PeopleLookupController < ApplicationController
       }
 
     Person
+      .select(:id, :name, :wikipedia_images, :born_in, :died_in, :records_count)
       .where(id: results['hits']['hits'].collect {|r| r['_id'].gsub('P', '') })
       .order('records_count desc')
   end

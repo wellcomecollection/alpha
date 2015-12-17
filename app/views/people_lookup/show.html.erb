@@ -1,6 +1,11 @@
 <% content_for :title, "Person Search" %>
 
+
+<h1>People</h1>
+
 <%= render 'people/search', {value: @name} %>
+
+<hr />
 
 <ul class="results">
   <% @people.each do |person| %>
@@ -18,7 +23,8 @@
       <% if person.born_in || person.died_in %>
         <span class="dates">&bull; <%= person.born_in %>-<%= person.died_in %></span>
       <% end %>
-      - <%= pluralize_with_delimiter(person.records_count, 'thing') %>
+		
+      <small><%= pluralize_with_delimiter(person.records_count, 'thing') %></small>
 
     </li>
   <% end %>

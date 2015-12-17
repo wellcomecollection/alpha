@@ -6,6 +6,7 @@
 
 <hr />
 
+<h3>Explore some popular subjects</h3>
 <% if @highlighted_subjects.length > 0 %>
 <% @highlighted_subjects.in_groups_of(3) do |group| %>
 
@@ -40,41 +41,3 @@
 </div>
 <% end %>
 <% end %>
-
-<ol start="&lt;%= @from + 1 %&gt;">
-<% @top_subjects.each do |subject| %>
-	<li>
-	
-	<%= link_to subject.label, subject %>
-	– 
-				<%= number_with_delimiter(subject.digitized_records_count) %>
-				of 
-				<%= number_with_delimiter(subject.records_count) %>
-				things digitised
-
-	</li>
-<% end %>
-</ol>
-<!-- Pagination -->
-<div class="row pagination">
-	<div class="four columns">
-		&nbsp;
-	</div>
-	<div class="four columns center">
-
-<% unless @from == 0 %>
-<%= link_to "Previous", subjects_path(from: @from - @per_page), class: 'button' %>
-<% end %>
-<%= link_to "Next", subjects_path(from: @from + @per_page), class: 'button' %>
-		<br />
-		<small><%= number_with_delimiter(@total_subjects_count) %>
-		subjects &bull; Page 
-<%= (@from.to_i / @per_page).round + 1 %>
-		of 
-<%= number_with_delimiter((@total_subjects_count.to_f / @per_page).floor) %>
-		</small> 
-	</div>
-	<div class="four columns">
-		&nbsp;
-	</div>
-</div>
