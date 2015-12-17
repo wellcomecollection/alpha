@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216171444) do
+ActiveRecord::Schema.define(version: 20151217104608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,16 +40,16 @@ ActiveRecord::Schema.define(version: 20151216171444) do
   add_index "creators", ["record_id", "person_id"], name: "index_creators_on_record_id_and_person_id", unique: true, using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.text     "name",                                      null: false
-    t.text     "all_names",                                              array: true
-    t.integer  "records_count",                default: 0,  null: false
+    t.text     "name",                                         null: false
+    t.text     "all_names",                                                 array: true
+    t.integer  "records_count",                default: 0,     null: false
     t.integer  "born_in"
     t.integer  "died_in"
-    t.hstore   "identifiers",                  default: {}, null: false
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.text     "wikipedia_intro",                                        array: true
-    t.text     "wikipedia_images",                                       array: true
+    t.hstore   "identifiers",                  default: {},    null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.text     "wikipedia_intro",                                           array: true
+    t.text     "wikipedia_images",                                          array: true
     t.text     "wikipedia_intro_paragraph"
     t.text     "editorial_title"
     t.text     "editorial_content"
@@ -58,7 +58,10 @@ ActiveRecord::Schema.define(version: 20151216171444) do
     t.text     "wellcome_intro"
     t.datetime "wellcome_intro_updated_at"
     t.integer  "wellcome_intro_updated_by_id"
+    t.boolean  "highlighted",                  default: false, null: false
   end
+
+  add_index "people", ["highlighted"], name: "index_people_on_highlighted", where: "(highlighted IS TRUE)", using: :btree
 
   create_table "records", force: :cascade do |t|
     t.text    "title",                          null: false
