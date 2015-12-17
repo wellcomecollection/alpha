@@ -1,10 +1,22 @@
+<% content_for :title, 'Subject search' %>
+
+<h1>Subjects</h1>
+
 <%= render 'subjects/search', {value: @label} %>
+
+<hr />
 
 <ul class="results">
   <% @subjects.each do |subject| %>
     <li>
-      <%= link_to subject.label, subject %> - <%= pluralize_with_delimiter(subject.records_count, 'thing') %>
-    </li>
+      <%= link_to subject.label, subject %>
+				
+		<small>
+		<%= pluralize_with_delimiter(subject.records_count, 'thing') %>, 
+		<%= number_to_human(100 * subject.digitized_records_count.to_f / subject.records_count) %>%	digitised
+		</small>
+		
+		</li>
   <% end %>
 </ul>
 

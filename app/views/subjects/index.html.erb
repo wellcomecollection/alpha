@@ -43,9 +43,15 @@
 
 <ol start="&lt;%= @from + 1 %&gt;">
 <% @top_subjects.each do |subject| %>
-	<li><%= link_to subject.label, subject %>
+	<li>
+	
+	<%= link_to subject.label, subject %>
 	– 
-<%= pluralize_with_delimiter(subject.records_count, 'thing') %>
+				<%= number_with_delimiter(subject.digitized_records_count) %>
+				of 
+				<%= number_with_delimiter(subject.records_count) %>
+				things digitised
+
 	</li>
 <% end %>
 </ol>

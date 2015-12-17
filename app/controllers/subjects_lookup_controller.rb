@@ -48,7 +48,7 @@ class SubjectsLookupController < ApplicationController
 
   def subjects_with_labels_starting(label, limit=50, from)
     Subject
-      .select(:id, :label, :records_count)
+      .select(:id, :label, :records_count, :digitized_records_count)
       .where(["LOWER(label) LIKE ? ", label.downcase + '%'])
       .order('records_count desc')
       .offset(@from)

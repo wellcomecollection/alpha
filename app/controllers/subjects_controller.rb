@@ -8,7 +8,6 @@ class SubjectsController < ApplicationController
     @per_page = 200
 
     @highlighted_subjects = Subject.highlighted
-      .limit(8)
       .order('random()')
 
     @top_subjects = Subject
