@@ -215,6 +215,7 @@
   <div class="three columns">
     <h5>Data & IDs</h5>
     <p>We've collected identifiers for <%= @person.name %> from other catalogues around the world.</p>
+    <p>You can also download a <%= link_to "JSON view", person_path(@person, format: :json) %>.</p>
   </div>
   <div class="nine columns">
 	<table width="100%">
@@ -226,5 +227,3 @@
 	</table>
 	</div>
 </div>
-
-<%= link_to "JSON view", person_path(@person, format: :json) %>

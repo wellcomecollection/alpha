@@ -185,6 +185,7 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 .nerds { clear: both; margin-top: 30px;}
 .nerds h5 {padding-top:5px;}
+.nerds td { font-family:monospace; }
 .footer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-top: 1px solid #333;
