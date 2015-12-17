@@ -34,4 +34,13 @@ namespace :records do
 
   end
 
+  desc 'Download packages'
+  task download_packages: :environment do
+    $stdout.sync = true
+
+    ActiveRecord::Base.uncached do
+      Record.download_packages!
+    end
+  end
+
 end

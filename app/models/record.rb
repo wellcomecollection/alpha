@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Record < ActiveRecord::Base
 
   has_many :creators
@@ -307,6 +309,53 @@ class Record < ActiveRecord::Base
         { sequence_index: index, identifier: asset.fetch('identifier') }
       end
     end
+  end
+
+  def self.download_packages!
+
+    loop do
+
+      record_ids = where("metadata->'759'->0->>'a' LIKE '%dig%' AND NOT(metadata ? '856')")
+        .where(package: nil).limit(200).pluck(:identifier)
+
+      if record_ids.length == 0
+        puts "Done"
+        break
+      end
+
+      record_ids.each do |record_id|
+
+        package_url = "http://wellcomelibrary.org/package/#{record_id}/"
+
+        begin
+
+          response = open(package_url)
+          status = response.status.first
+
+          if status == '200'
+
+            Record.find_by(identifier: record_id).update_attributes(package: JSON.parse(response.read))
+          else
+            raise "#{record_id}: #{status}"
+          end
+
+        rescue OpenURI::HTTPError => e
+
+          error_code = e.io.status.first
+
+          if error_code == '500'
+
+            Record.find_by(identifier: record_id).update_attributes(package: {})
+
+          else
+            raise "Error #{error_code} when fetching #{package_url}"
+          end
+        end
+
+      end
+
+    end
+
   end
 
 end
