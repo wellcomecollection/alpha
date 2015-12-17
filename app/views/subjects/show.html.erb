@@ -37,20 +37,18 @@
 
 
 <div class="row">
-  <div class="twelve columns">
+  <div class="eleven columns">
     <h1><%= @subject.label %></h1>
-
-    <% if logged_in_as_admin? %>
-      <%= form_for @subject do |form| %>
-
-        <%= form.hidden_field :highlighted, value: !@subject.highlighted %>
-
-        <button type="submit"><%= @subject.highlighted ? 'Un-highlight' : 'Highlight this subject' %></button>
-
-      <% end %>
-    <% end %>
-
   </div>
+    <% if logged_in_as_admin? %>
+	<div class="one column">
+      <%= form_for @subject do |form| %>
+        <%= form.hidden_field :highlighted, value: !@subject.highlighted %>
+        <button type="submit" class="is-admin"><%= @subject.highlighted ? '-' : '+' %></button>
+      <% end %>
+	</div>
+    <% end %>
+  
 </div>
 
 <div class="row">
@@ -65,6 +63,8 @@
     			<%= @subject.description %>
 		        <small><a href="https://wellcome-mesh-browser.herokuapp.com/<%= @subject.identifiers['mesh'] %>" title="View this subject in the Medical Subject Headings browser">MeSH</a></small>
     		</p>
+<% else %>
+			<p>We don't have a description for this subject yet.</p>
 <% end %>
 
 <% if @subject.wellcome_intro %>
