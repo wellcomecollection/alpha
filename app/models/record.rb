@@ -9,6 +9,7 @@ class Record < ActiveRecord::Base
   scope :digitized, -> { where(digitized: true) }
 
   before_save :set_cover_image_uris, :set_pdf_thumbnail_url
+  before_save :set_digitized
 
   def to_param
     identifier
@@ -248,6 +249,11 @@ class Record < ActiveRecord::Base
   end
 
   private
+
+  def set_digitized
+    digitized = !(package.nil? || package == {})
+    write_attribute(:digitized, digitized)
+  end
 
   def set_cover_image_uris
 
