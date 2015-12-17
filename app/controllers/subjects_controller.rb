@@ -104,7 +104,7 @@ class SubjectsController < ApplicationController
 
     @subject.update_attributes(subject_params)
 
-    redirect_to subject_path(@subject)
+    redirect_to subject_url(@subject)
   end
 
   private
