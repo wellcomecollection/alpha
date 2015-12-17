@@ -7,7 +7,9 @@
 <hr />
 
 <h3>Explore some popular subjects</h3>
+
 <% if @highlighted_subjects.length > 0 %>
+
 <% @highlighted_subjects.in_groups_of(3) do |group| %>
 
 <div class="row search-result">
