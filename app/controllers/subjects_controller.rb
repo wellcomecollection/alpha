@@ -73,11 +73,13 @@ class SubjectsController < ApplicationController
 
       end
 
-      @trees << Subject.select('*')
-      .from("(select *, unnest(tree_numbers) as tree_number from subjects) as subjects")
-      .where(tree_number: parent_tree_numbers)
-      .order(:tree_number)
+      if parent_tree_numbers.length > 0
 
+        @trees << Subject.select('*')
+        .from("(select *, unnest(tree_numbers) as tree_number from subjects) as subjects")
+        .where(tree_number: parent_tree_numbers)
+        .order(:tree_number)
+      end
     end
 
     @subject.tree_numbers.to_a.each do |tree_number|
