@@ -4,47 +4,71 @@
 
 <%= render 'subjects/search', {value: ''} %>
 
+<hr />
+
 <% if @highlighted_subjects.length > 0 %>
+<% @highlighted_subjects.in_groups_of(3) do |group| %>
 
-  <% @highlighted_subjects.in_groups_of(4) do |group| %>
-    <div class="row">
-      <% group.each do |subject| %>
-        <div class="three columns">
+<div class="row search-result">
+<% group.each do |subject| %>
+	<div class="four columns">
 
-          <% if subject %>
-            <p>
-              <%= link_to subject.label, subject %><br>
+<% if subject %>
+		<h5><%= link_to subject.label, subject %></h5>
+		<p>
 
-              <% if subject.wellcome_intro %>
-                <%= truncate(subject.wellcome_intro, length: 30, separator: ' ') %><br>
-              <% end %>
-              <%= pluralize_with_delimiter(subject.records_count, 'thing') %>
-            </p>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+	<% if subject.description %>
+			<%= truncate(subject.description, length: 100, separator: ' ') %>
+			<br> 
+	<% end %>
 
+	<% if subject.wellcome_intro %>
+			<%= truncate(subject.wellcome_intro, length: 100, separator: ' ') %>
+			<br> 
+	<% end %>
+
+			<small>
+				<%= number_with_delimiter(subject.digitized_records_count) %>
+				of 
+				<%= number_with_delimiter(subject.records_count) %>
+				things digitised
+			</small> 
+		</p>
+<% end %>
+	</div>
+<% end %>
+</div>
+<% end %>
 <% end %>
 
-<ol start="<%= @from + 1 %>">
-  <% @top_subjects.each do |subject| %>
-    <li><%= link_to subject.label, subject %> – <%= pluralize_with_delimiter(subject.records_count, 'thing') %></li>
-  <% end %>
+<ol start="&lt;%= @from + 1 %&gt;">
+<% @top_subjects.each do |subject| %>
+	<li><%= link_to subject.label, subject %>
+	– 
+<%= pluralize_with_delimiter(subject.records_count, 'thing') %>
+	</li>
+<% end %>
 </ol>
-
 <!-- Pagination -->
-
 <div class="row pagination">
-  <div class="four columns">&nbsp;</div>
-  <div class="four columns center">
-    <% unless @from == 0 %>
-      <%= link_to "Previous", subjects_path(from: @from - @per_page), class: 'button' %>
-    <% end %>
-    <%= link_to "Next", subjects_path(from: @from + @per_page), class: 'button' %>
-    <br />
-    <small><%= number_with_delimiter(@total_subjects_count) %> subjects &bull; Page <%= (@from.to_i / @per_page).round + 1 %> of <%= number_with_delimiter((@total_subjects_count.to_f / @per_page).floor) %></small>
-  </div>
-  <div class="four columns">&nbsp;</div>
+	<div class="four columns">
+		&nbsp;
+	</div>
+	<div class="four columns center">
+
+<% unless @from == 0 %>
+<%= link_to "Previous", subjects_path(from: @from - @per_page), class: 'button' %>
+<% end %>
+<%= link_to "Next", subjects_path(from: @from + @per_page), class: 'button' %>
+		<br />
+		<small><%= number_with_delimiter(@total_subjects_count) %>
+		subjects &bull; Page 
+<%= (@from.to_i / @per_page).round + 1 %>
+		of 
+<%= number_with_delimiter((@total_subjects_count.to_f / @per_page).floor) %>
+		</small> 
+	</div>
+	<div class="four columns">
+		&nbsp;
+	</div>
 </div>

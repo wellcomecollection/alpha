@@ -111,7 +111,9 @@ ul.results {
 	color: #006170;
 	margin-bottom: 10px;
 }
+
 /* Person */
+
 .person-portrait {
 	width: 130px;
 	height: 130px;
@@ -168,10 +170,15 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 
 /* Subject */
+
 .definition { font-size: 2em; }
 .breathe { margin-top: 15px; margin-bottom: 15px;}
+.search-result {}
+.search-result h5 { margin-bottom: 5px;}
+.search-result small { color: #666;}
 
 /* Nav */
+
 .pagination {
     padding-top: 60px;
     clear: both;
@@ -230,8 +237,8 @@ input[type=search] {
 }
 
 
-.archives {background-color: deeppink; color:white; padding:2px;}
-.iconographic {background-color: deepskyblue; color:white; padding:2px;}
+.archives {background-color: #a64895; color:white; padding:2px;}
+.iconographic {background-color: #ea9617; color:white; padding:2px;}
 
 form.inline {
   display: inline;
