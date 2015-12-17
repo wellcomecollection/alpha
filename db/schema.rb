@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217104608) do
+ActiveRecord::Schema.define(version: 20151217124516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20151217104608) do
     t.jsonb   "metadata",          default: {}, null: false
     t.text    "leader",                         null: false
     t.text    "archives_ref"
-    t.jsonb   "image_manifest"
     t.text    "cover_image_uris",                            array: true
     t.text    "title_page_uris",                             array: true
     t.jsonb   "package"
@@ -82,7 +81,6 @@ ActiveRecord::Schema.define(version: 20151217104608) do
   add_index "records", ["archives_ref"], name: "index_records_on_archives_ref", using: :btree
   add_index "records", ["digitized"], name: "index_records_on_digitized", using: :btree
   add_index "records", ["identifier"], name: "index_records_on_identifier", unique: true, using: :btree
-  add_index "records", ["image_manifest"], name: "index_records_on_image_manifest", using: :gin
   add_index "records", ["metadata"], name: "index_records_on_metadata", using: :gin
   add_index "records", ["package"], name: "index_records_on_package", using: :gin
   add_index "records", ["year", "digitized"], name: "index_records_on_year_and_digitized", using: :btree
