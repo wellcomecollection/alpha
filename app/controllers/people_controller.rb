@@ -63,4 +63,16 @@ class PeopleController < ApplicationController
       .limit(100)
   end
 
+  def update
+    @person = Person.find(params[:id].gsub('P', ''))
+    @person.update_attributes(person_params)
+    redirect_to person_path(@person)
+  end
+
+  private
+
+  def person_params
+    params.require(:person).permit(:highlighted)
+  end
+
 end

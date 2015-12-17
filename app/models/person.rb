@@ -15,6 +15,8 @@ class Person < ActiveRecord::Base
   before_save :set_wellcome_intro_updated_at, if: :wellcome_intro_changed?
   before_save :set_wellcome_intro_to_null, if: "wellcome_intro.blank?"
 
+  scope :highlighted, -> { where(highlighted: true) }
+
   def to_param
     "P#{id}"
   end

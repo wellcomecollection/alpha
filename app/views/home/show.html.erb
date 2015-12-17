@@ -11,17 +11,8 @@
 <div class="row">
   <div class="six columns">
     <h4>Interesting People</h4>
-    <a href="/people/P2797">Galen</a>,
-    <a href="/people/P835">Marie Stopes</a>,
-    <a href="/people/P2802">Henry S. Wellcome</a>,
-    <a href="/people/P27577">James Gillray</a>,
-    <a href="/people/P13514">Edward Jenner</a>,
-    <a href="/people/P5581">Vesalius</a>,
-    <a href="/people/P2">Charles Darwin</a>,
-    <a href="/people/P20649">Francis Crick</a>,
-    <a href="/people/P2175">John Snow</a>,
-    <a href="/people/P432">Florence Nightingale</a>,
-    <a href="/people/P530">Melanie Klein</a>
+
+    <%= @people.collect {|person| link_to person.name, person}.to_sentence.html_safe %>
   </div>
   <div class="six columns">
     <h4>Curious Subjects</h4>
