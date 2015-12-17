@@ -31,8 +31,8 @@
       	<div class="six columns right">
 
         <% if current_user %>
-          Hi, <span class="is-admin">Editor</span>. 
-          <a href="#" class="is-admin">Recent changes</a> &nbsp; 
+          Hi, <span class="is-admin">Editor</span>.
+          <%= link_to "Recent changes", recent_changes_path, class: 'is-admin' %>
           <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
         <% else %>
           <%= link_to "Log in", new_session_path %>

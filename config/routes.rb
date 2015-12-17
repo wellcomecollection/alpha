@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resource :wikipedia, only: ['update'], controller: 'people_wikipedia'
   end
 
+  resource :recent_changes, only: ['show'], controller: 'recent_changes'
+
   resources :people, only: ['show'], controller: 'people_lookup'
 
   resources :subjects_lookup, only: ['index'], controller: 'subjects_lookup'

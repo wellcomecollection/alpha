@@ -1,0 +1,17 @@
+<% content_for :title, "Recent changes" %>
+<h1>Recent changes</h1>
+
+<% @recent_changes.each do |recent_change| %>
+
+  <div>
+    <% if recent_change.thing == 'subject' %>
+      <%= link_to recent_change.thing_name, subject_path(recent_change.thing_id) %>
+    <% elsif recent_change.thing == 'person' %>
+      <%= link_to recent_change.thing_name, person_path(recent_change.thing_id) %>
+    <% end %>
+    <%= recent_change.field %>
+    updated by <%= recent_change.updated_by_email %>
+    <%= time_ago_in_words(recent_change.updated_at) %> ago.
+  </div>
+
+<% end %>

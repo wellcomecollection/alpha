@@ -24,7 +24,7 @@ class MarcIngester
     record_elements = document.xpath('//marc:record')
     records_count += record_elements.length
 
-    record_elements.each_with_index do |record_element, index|
+    record_elements[145270..-1].each_with_index do |record_element, index|
 
       marc_record = MarcRecord.new(record_element)
 
