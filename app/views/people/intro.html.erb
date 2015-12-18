@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="two columns center" style="padding:10px;">
 <% if @person.wikipedia_image %>
-		<div class="person-portrait" style='background-image: url(&quot;&lt;%= @person.wikipedia_image(150) %&gt;&quot;);'>
+		<div class="person-portrait" style="background-image: url('<%= @person.wikipedia_image(150) %>');">
 		</div>
 <% else %>
 		<div class="person-portrait">
