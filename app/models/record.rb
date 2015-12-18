@@ -289,6 +289,7 @@ class Record < ActiveRecord::Base
   def set_digitized
     digitized = !(package.nil? || package == {})
     write_attribute(:digitized, digitized)
+    return true
   end
 
   def set_cover_image_uris
