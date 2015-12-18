@@ -100,6 +100,8 @@
 	</div>
 	
 	<div class="offset-by-one seven columns">
+
+      <!-- MaRC 520 -->
       <h4>Archival Summary</h4>
 <% if @thing.summary %>
         <p><%= @thing.summary.html_safe %></p>
@@ -107,6 +109,7 @@
 		<p>None that we have found. (That doesn't mean there isn't one.)</p>
 <% end %>
 	
+      <!-- MaRC 545 -->
       <h4>About</h4>
 <% if @thing.about %>
         <p><%= @thing.about.html_safe %></p>
