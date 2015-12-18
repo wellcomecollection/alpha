@@ -45,20 +45,28 @@ namespace :records do
 
     records_done = 0
 
-    Record
-      .where(year: nil)
-      .find_in_batches(batch_size: 100)
-      .with_index do |batch, batch_number|
+    loop do
 
-      batch.each do |record|
-        record.save
-        records_done += 1
+      records = Record.where(year: nil).limit(100)
+
+      if records.length == 0
+        puts "Done"
+        break
+
+
+      else
+
+        records.each do |record|
+          record.save
+          records_done += 1
+        end
       end
 
       records_left_to_do = total_records_count - records_done
       seconds_left = records_left_to_do * ((Time.now - time) / records_done)
 
       puts "(#{records_done}/#{total_records_count} processed) ETA: #{distance_of_time_in_words(Time.now, seconds_left.seconds.from_now)}"
+
 
     end
 
