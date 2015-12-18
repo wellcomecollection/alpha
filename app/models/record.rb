@@ -13,6 +13,7 @@ class Record < ActiveRecord::Base
   before_save :set_cover_image_uris, :set_pdf_thumbnail_url
   before_save :set_digitized
   before_save :set_access_conditions
+  before_save :set_year
 
   def to_param
     identifier
@@ -279,6 +280,10 @@ class Record < ActiveRecord::Base
     end
 
     write_attribute(:access_conditions, access_conditions)
+  end
+
+  def set_year
+    write_attribute(:year, metadata['008'].first[7..10])
   end
 
   def set_digitized
