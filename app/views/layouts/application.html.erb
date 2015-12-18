@@ -31,9 +31,11 @@
       	<div class="six columns right">
 
         <% if current_user %>
-          Hi, <span class="is-admin">Editor</span>.
+          Aloha, <span class="is-admin">Editor</span>
+          &nbsp;&bull;&nbsp;
           <%= link_to "Recent changes", recent_changes_path, class: 'is-admin' %>
-          &nbsp;&nbsp;
+          <%= link_to "Editors", users_path, class: 'is-admin' %>
+          &nbsp;&bull;&nbsp;          
           <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
         <% else %>
           <%= link_to "Log in", new_session_path %>
@@ -48,7 +50,7 @@
   <div class="container">
 	  <div class="row footer">
 		<div class="two columns top"><a href="#top">&uarr; Top</a></div>
-		<div class="ten columns">
+		<div class="ten columns" style="padding-right: 10px;">
 		  <small>PLEASE NOTE: All author images and biographies come from <a href="http://wikipedia.org">Wikipedia</a>. Most are in the public domain, but please check Wikipedia for specific attribution details.</small>
 		</div>
 	  </div>
