@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217124516) do
+ActiveRecord::Schema.define(version: 20151218135055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,17 +64,17 @@ ActiveRecord::Schema.define(version: 20151217124516) do
   add_index "people", ["highlighted"], name: "index_people_on_highlighted", where: "(highlighted IS TRUE)", using: :btree
 
   create_table "records", force: :cascade do |t|
-    t.text    "title",                          null: false
-    t.text    "identifier",                     null: false
-    t.jsonb   "metadata",          default: {}, null: false
-    t.text    "leader",                         null: false
+    t.text    "title",                             null: false
+    t.text    "identifier",                        null: false
+    t.jsonb   "metadata",          default: {},    null: false
+    t.text    "leader",                            null: false
     t.text    "archives_ref"
-    t.text    "cover_image_uris",                            array: true
-    t.text    "title_page_uris",                             array: true
+    t.text    "cover_image_uris",                               array: true
+    t.text    "title_page_uris",                                array: true
     t.jsonb   "package"
     t.text    "access_conditions"
     t.text    "year"
-    t.boolean "digitized"
+    t.boolean "digitized",         default: false, null: false
     t.text    "pdf_thumbnail_url"
   end
 
