@@ -8,9 +8,9 @@
 
 <% @top_people.in_groups_of(4) do |group| %>
 
-<div class="row">
+<div class="row people-list">
   <% group.each do |person| %>
-	<div class="three columns">
+	<div class="three columns circle">
 		<% if person.wikipedia_image %>
 		  <% style = "background-image: url('#{person.wikipedia_image(200)}');" %>
 		<% end %>
