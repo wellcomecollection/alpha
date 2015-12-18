@@ -94,6 +94,7 @@
 		<h5>Links</h5>
 		<ul>
 			<li><a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">View on Wellcome Library</a></li>
+			<li><a href="http://search.wellcomelibrary.org/iii/encore/record/C__R<%= @thing.identifier[0..-2] %>">Full catalogue record</a></li>
 			<li><%= link_to "JSON data", thing_path(format: :json) %></li>
 		</ul>
 	</div>
