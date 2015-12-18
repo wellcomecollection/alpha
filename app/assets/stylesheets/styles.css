@@ -41,6 +41,7 @@ a:hover.is-admin {
 	line-height: 1.5em;
 	width: 790px
 }
+
 /* Graphs */
 
 .digitised { height:5px;background-color:white; margin-top:10px; }
@@ -195,13 +196,15 @@ background-color: rgba(145, 184, 185, 0.5);
   padding-bottom: 10px;
   padding-top: 10px;
 }
+.logo { padding-left: 20px; }
 .logo a {
 	text-decoration: none;
 	border: none;
 	background-color: #F0F1EC;
 }
 .alpha-note {
-	padding-left: 20px;
+	margin-left: -18px;
+	margin-top:24px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .alpha-note span {
