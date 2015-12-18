@@ -26,6 +26,20 @@ class Record < ActiveRecord::Base
     metadata['545'].to_a.first.to_h['a']
   end
 
+  def to_elasticsearch
+
+    {
+      id: to_param,
+      title: title,
+      digitized: digitized,
+      year: year,
+      pdf_thumbnail_url: pdf_thumbnail_url,
+      cover_image_uris: cover_image_uris,
+      archives_ref: archives_ref
+    }
+
+  end
+
   def archives_tree
 
     ref = archives_ref
