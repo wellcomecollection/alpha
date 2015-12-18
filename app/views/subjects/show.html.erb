@@ -69,17 +69,11 @@
   <p><%= @subject.wellcome_intro %></p>
 <% end %>
 
-<% if !@subject.wellcome_intro && !@subject.description %>
-			<p>We don't have a description for this subject yet.</p>
-<% end %>
-
-	</div>
-
 <% if logged_in_as_admin? %>
-	<div class="two columns right">
-  <%= link_to 'Edit intro', subject_intro_path(@subject), {class: 'is-admin'} %>
-	</div>
+  Editor, there's no description yet. <%= link_to 'Edit intro?', subject_intro_path(@subject), {class: 'is-admin'} %>
 <% end %>
+
+	</div>
 </div>
 
 <% if @year_counts.length > 0 %>
