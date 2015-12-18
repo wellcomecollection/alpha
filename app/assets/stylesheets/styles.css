@@ -4,7 +4,7 @@ button.link { color: #005870; background-color: white; padding: 2px; text-decora
 
 body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; }
-h1 { line-height: 1.25em;}
+h1, h2 { line-height: 1.25em;}
 small { font-size: 0.75em; color: #666;}
 code { font-family: monospace; font-size: 1.25em;}
 
@@ -146,6 +146,15 @@ background-color: rgba(145, 184, 185, 0.5);
 
   background-size: cover;
   background-color: rgba(145, 184, 185, 0.5);
+}
+
+.print p {
+	font-family: 'Lora', serif; 
+	text-align: center;
+	font-size: 0.75em;
+}
+.context {
+	padding: 30px;
 }
 .identifiers { width: 100%; }
 .identifiers td { font-family: monospace;}
