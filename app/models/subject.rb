@@ -55,13 +55,6 @@ class Subject < ActiveRecord::Base
 
   end
 
-  def copy_mesh_identifier!
-    if identifier
-      identifiers['mesh'] ||= identifier
-      save!
-    end
-  end
-
   private
 
   def set_wellcome_intro_updated_at
