@@ -5,7 +5,7 @@ require 'digest'
 
 class Person < ActiveRecord::Base
 
-  has_many :creators
+  has_many :creators, dependent: :destroy
   has_many :records, through: :creators
 
   belongs_to :editorial_updated_by, class_name: 'User'
