@@ -2,19 +2,6 @@ namespace :people do
 
 
   desc 'Update data from Wikipedia'
-  task remove_full_stops: :environment do
-
-    $stdout.sync = true
-
-    Person.select(:id, :name, :all_names)
-      .find_each do |person|
-        person.remove_full_stops_from_name!
-    end
-
-  end
-
-
-  desc 'Update data from Wikipedia'
   task update_from_wikipedia: :environment do
 
     $stdout.sync = true
