@@ -49,20 +49,20 @@ namespace :people do
 
   end
 
-  task update_from_records: :environment do
+  task queue_all_for_update_from_records: :environment do
 
     $stdout.sync = true
 
     time = Time.now
 
-    Record.select(:id, :metadata)
+    Record.select(:id)
       .find_in_batches(batch_size: 500)
       .with_index do |batch, batch_number|
 
       print "Processing batch #{batch_number + 1}... "
 
       batch.each do |record|
-        record.update_people_from_metadata!
+        UpdateCreatorsFromMetadataJob.perform_later(record)
       end
 
       puts "Done in #{Time.now - time} seconds"
