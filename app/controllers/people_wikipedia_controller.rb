@@ -6,7 +6,7 @@ class PeopleWikipediaController < ApplicationController
   def update
     @person = Person.find(params[:person_id].gsub('P', ''))
 
-    @person.update_from_wikipedia!
+    UpdatePersonFromWikipediaJob.perform_later(@person)
 
     redirect_to person_intro_path(@person)
   end
