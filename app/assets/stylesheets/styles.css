@@ -128,7 +128,7 @@ ul.results {
     padding-bottom: 40px;
 }
 .nav {
-  color: #BFBEB5;
+  color: #E1E1E1;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -149,8 +149,8 @@ ul.results {
 	font-weight: bold;
 }
 .subnav {
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   margin-bottom: 20px;  
 }
 .subnav div {
@@ -162,7 +162,7 @@ ul.results {
 .nerds td { font-family:monospace; }
 .footer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border-top: 1px solid #333;
+  border-top: 1px solid #ddd;
   margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px;

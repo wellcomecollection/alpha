@@ -6,12 +6,13 @@
 .people-list div {
 	text-align:center; 
 }
+
 .big-circle-container {
-	height: 190px;
+	height: 205px;
 	margin-bottom: 40px;
 }
 .big-circle-link {
-	height: 190px;
+	height: 205px;
     background-size: cover;
     background-color: rgba(145, 184, 185, 0.5);
     display:block;
@@ -22,6 +23,7 @@
 	position:relative;
 	z-index:1;
 }
+
 .name {
 	margin-top: -40px;
 	padding: 3px;
