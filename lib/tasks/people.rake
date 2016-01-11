@@ -33,13 +33,13 @@ namespace :people do
 
     time = Time.now
 
-    Person.select(:id, :identifiers)
+    Person.select(:id)
       .find_in_batches(batch_size: 500).with_index do |batch, batch_number|
 
         print "Processing batch #{batch_number + 1}... "
 
         batch.each do |person|
-          person.set_other_identifiers_from_viaf!
+          UpdateIdentifiersFromViafJob.perform_later person
         end
 
         puts "Done in #{Time.now - time} seconds"
