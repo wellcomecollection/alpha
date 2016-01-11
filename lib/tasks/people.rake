@@ -14,8 +14,8 @@ namespace :people do
   end
 
 
-  desc 'Update data from Wikipedia'
-  task update_from_wikipedia: :environment do
+  desc 'Queues all people for an update from Wikipedia'
+  task queue_all_for_update_from_wikipedia: :environment do
 
     $stdout.sync = true
 
@@ -28,7 +28,7 @@ namespace :people do
       print "Processing batch #{batch_number + 1}... "
 
       batch.each do |person|
-        person.update_from_wikipedia!
+        UpdatePersonFromWikipediaJob.perform_later(person)
       end
 
       puts "Done in #{Time.now - time} seconds"
