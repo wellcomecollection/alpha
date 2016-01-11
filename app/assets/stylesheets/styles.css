@@ -149,7 +149,14 @@ background-color: rgba(145, 184, 185, 0.5);
 }
 
 .person-url {
-  word-wrap:break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;  
 }
 
 .print p {
