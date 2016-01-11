@@ -5,7 +5,7 @@ require 'digest'
 
 class Person < ActiveRecord::Base
 
-  has_many :creators
+  has_many :creators, dependent: :destroy
   has_many :records, through: :creators
 
   belongs_to :editorial_updated_by, class_name: 'User'
@@ -49,17 +49,6 @@ class Person < ActiveRecord::Base
     end.join(' ')
   end
 
-  def remove_full_stops_from_name!
-
-    regex = /([a-z])\./
-    match = name.match(regex)
-
-    if match
-      self.name = name.gsub(regex, $1)
-      save!
-    end
-
-  end
 
   def parse_wikipedia_paragraph_into_sentences!
 

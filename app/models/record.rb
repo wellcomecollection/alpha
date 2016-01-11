@@ -111,6 +111,7 @@ class Record < ActiveRecord::Base
     read_attribute(:title).gsub(/\/\z/, '').strip
   end
 
+
   def update_taggings_from_metadata!
 
     name_regex = /\A([^\,]+)\,\s?([^\,]+)\z/
