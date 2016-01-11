@@ -15,3 +15,7 @@
 .ui-autocomplete li:hover {
 	background-color: rgba(99, 212, 8, 0.40);
 }
+
+input[type=search] {
+  width: 60%;
+}
