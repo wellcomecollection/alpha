@@ -1,0 +1,97 @@
+/* List of People */
+.people-list {
+	padding-bottom: 40px;
+	clear: both;
+}
+.people-list div {
+	text-align:center; 
+}
+.big-circle-container {
+	height: 190px;
+	margin-bottom: 40px;
+}
+.big-circle-link {
+	height: 190px;
+    background-size: cover;
+    background-color: rgba(145, 184, 185, 0.5);
+    display:block;
+	-webkit-clip-path: circle(50% at 50% 50%);
+	clip-path: circle(50% at 50% 50%);
+    text-indent:-9999px;
+	background-position:center;
+	position:relative;
+	z-index:1;
+}
+.name {
+	margin-top: -40px;
+	padding: 3px;
+	display: block;
+	position:relative;
+	z-index:2;	
+}
+small.dates { 
+	background-color: white; 
+	padding: 4px; 
+	position:relative;
+	z-index:3;
+}
+.gray p { font-size: smaller; color: #888; margin-top: -13px;}
+
+/* Person page */
+
+.sm-circle {
+	background-color: green;
+    width: 110px;
+    height: 110px;
+    text-align: center;
+    float: left;
+    margin: 20px 30px 20px 40px;
+}
+.sm-bg-link {
+    background-size: cover;
+    background-color: rgba(145, 184, 185, 0.5);
+    display: block;
+    width: 110px;
+    height: 110px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    text-indent: -9999px;
+}
+.sm-name {
+    margin-top: -30px;
+    display: block;
+    font-size: 0.825em;
+    background-color: white;
+	line-height:1.25em;
+	padding:4px;    
+}
+
+.person-portrait {
+	background-color: pink;
+	width: 130px;
+	height: 130px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background-size: cover;
+	/* background-color: rgba(145, 184, 185, 0.5); */
+	background-position:center 20%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.person-mini-portrait {
+	background-color: pink
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+
+  background-size: cover;
+/*  background-color: rgba(145, 184, 185, 0.5); */
+}
