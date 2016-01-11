@@ -148,6 +148,10 @@ background-color: rgba(145, 184, 185, 0.5);
   background-color: rgba(145, 184, 185, 0.5);
 }
 
+.person-url {
+  word-wrap:break-word;
+}
+
 .print p {
 	font-family: 'Lora', serif; 
 	text-align: center;
