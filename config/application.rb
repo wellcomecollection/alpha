@@ -15,7 +15,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module WellcomeWeek4Scalability
+module WellcomeLibrary
   class Application < Rails::Application
 
 
