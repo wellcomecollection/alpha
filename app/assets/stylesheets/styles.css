@@ -154,7 +154,8 @@ ul.results {
   margin-bottom: 20px;  
 }
 .subnav div {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .nerds { clear: both; margin-top: 30px;}
@@ -168,7 +169,6 @@ ul.results {
   padding-bottom: 10px;
 }
 .top {
-	padding-left: 10px;
 }
 .right { text-align:right; }
 .center { text-align:center; }
