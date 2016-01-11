@@ -42,69 +42,6 @@ a:hover.is-admin {
 	width: 790px
 }
 
-/* Graphs */
-
-.digitised { height:5px;background-color:white; margin-top:10px; }
-.percent-done { background-color:black; height:5px; float:left; }
-
-.people-list {
-	padding-bottom: 40px;
-	clear: both;
-}
-.people-list div { 	text-align:center; }
-.circle {
-	width: 190px;
-	height: 190px;
-	display: block;
-	margin: 15px;
-}
-.bg-link {
-    background-size: cover;
-    background-color: rgba(145, 184, 185, 0.5);
-    display:block;
-    width: 190px;
-    height: 190px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    text-indent:-9999px;
-}
-.gray p { font-size: smaller; color: #888; margin-top: -13px;}
-.name {
-	margin-top: -40px;
-	padding: 3px;
-	display: block;
-}
-.name small { background-color: #e5e3d9; padding: 4px; }
-small.dates { background-color: white; padding: 4px; }
-
-.sm-circle {
-    width: 110px;
-    height: 110px;
-    text-align: center;
-    float: left;
-    margin: 20px 30px 20px 40px;
-}
-.sm-bg-link {
-    background-size: cover;
-    background-color: rgba(145, 184, 185, 0.5);
-    display: block;
-    width: 110px;
-    height: 110px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    text-indent: -9999px;
-}
-.sm-name {
-    margin-top: -30px;
-    display: block;
-    font-size: 0.825em;
-    background-color: white;
-line-height:1.25em;
-padding:4px;    
-}
-
 ul.results {
   list-style-type: none;
 }
@@ -119,33 +56,23 @@ ul.results {
 	margin-bottom: 10px;
 }
 
-/* Person */
+/* Graphs */
 
-.person-portrait {
-	width: 130px;
-	height: 130px;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-background-size: cover;
-background-color: rgba(145, 184, 185, 0.5);
-  background-position:center 20%;
-  margin-left: auto;
-  margin-right: auto;
-}
+.digitised { height:5px;background-color:white; margin-top:10px; }
+.percent-done { background-color:black; height:5px; float:left; }
 
-.person-mini-portrait {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  vertical-align: middle;
-  margin-right: 10px;
+/* Person Page */
 
-  background-size: cover;
-  background-color: rgba(145, 184, 185, 0.5);
+.person-url {
+  word-wrap:break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;  
 }
 
 .print p {
@@ -201,7 +128,7 @@ background-color: rgba(145, 184, 185, 0.5);
     padding-bottom: 40px;
 }
 .nav {
-  color: #BFBEB5;
+  color: #E1E1E1;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -222,8 +149,8 @@ background-color: rgba(145, 184, 185, 0.5);
 	font-weight: bold;
 }
 .subnav {
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   margin-bottom: 20px;  
 }
 .subnav div {
@@ -235,7 +162,7 @@ background-color: rgba(145, 184, 185, 0.5);
 .nerds td { font-family:monospace; }
 .footer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border-top: 1px solid #333;
+  border-top: 1px solid #ddd;
   margin-top: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -249,11 +176,6 @@ background-color: rgba(145, 184, 185, 0.5);
 a.portrait {
   background-color: transparent;
 }
-
-input[type=search] {
-  width: 50em;
-}
-
 
 .archives {background-color: #a64895; color:white; padding:2px;}
 .iconographic {background-color: #ea9617; color:white; padding:2px;}

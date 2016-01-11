@@ -35,24 +35,22 @@
 
     	<div class="three columns logo"><a href="/" alt="wellcome logo"><%= image_tag "wellcome-logo.png" %></a></div>
       	<div class="nine columns alpha-note">
-      		<span>ALPHA</span>&nbsp;&nbsp;<small><a href="">What's this</a>?</small>
+      		<span>ALPHA</span>&nbsp;&nbsp;<small><a href="/about">What's this</a>?</small>
       	</div>
     </div>
     <div class="row subnav">
-      	<div class="six columns">
+      	<div class="twelve columns">
         	<a href="/">Home</a>&nbsp;&nbsp;<a href="/people">People</a>&nbsp;&nbsp;<a href="/subjects">Subjects</a>
-      	</div>
-      	<div class="six columns right">
 
         <% if current_user %>
-          Aloha, <span class="is-admin">Editor</span>
+          &nbsp;&nbsp;&nbsp; Aloha, <span class="is-admin">Editor</span>
           &nbsp;&bull;&nbsp;
           <%= link_to "Recent changes", recent_changes_path, class: 'is-admin' %>
           <%= link_to "Editors", users_path, class: 'is-admin' %>
           &nbsp;&bull;&nbsp;          
           <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
         <% else %>
-          <%= link_to "Log in", new_session_path %>
+          &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
         <% end %>
       	</div>
     </div>

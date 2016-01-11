@@ -10,15 +10,19 @@
 
 <div class="row people-list">
   <% group.each do |person| %>
-	<div class="three columns circle">
-		<% if person.wikipedia_image %>
-		  <% style = "background-image: url('#{person.wikipedia_image(200)}');" %>
-		<% end %>
-		<%= link_to person.name, person, class: 'bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
-		<%= link_to person.name, person, class: 'name', title: pluralize(person.records_count, 'thing') %>
-		<% if person.born_in || person.died_in %>
-		  <small class="dates"><%= person.born_in %> - <%= person.died_in %></small>
-		<% end %>
+	<div class="three columns">
+		<div class="big-circle-container">
+			<% if person.wikipedia_image %>
+			  <% style = "background-image: url('#{person.wikipedia_image(200)}');" %>
+			<% end %>
+
+			<%= link_to person.name, person, class: 'big-circle-link', style: style, title: pluralize(person.records_count, 'thing') %>
+
+			<%= link_to person.name, person, class: 'name', title: pluralize(person.records_count, 'thing') %>
+			<% if person.born_in || person.died_in %>
+			  <small class="dates"><%= person.born_in %> - <%= person.died_in %></small>
+			<% end %>
+		</div>
  	</div>
   <% end %>
 </div>

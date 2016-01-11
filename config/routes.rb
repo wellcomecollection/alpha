@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :users, only: [:index, :create, :new]
 
+  resource :about, only: 'show', controller: 'pages', id: 'about'
 
   resources :people_lookup, only: ['index'], controller: 'people_lookup'
 
@@ -27,6 +31,7 @@ Rails.application.routes.draw do
   resources :things, only: ['show'], path: ''
 
   resource :session, only: [:new, :create, :destroy]
+
 
   root 'home#show'
 
