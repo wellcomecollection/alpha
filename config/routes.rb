@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :subjects, only: ['show'], controller: 'subjects_lookup'
 
-  resources :things, only: ['show'], path: ''
+  resources :things, only: ['show'], path: '', constraints: {id: /b\d+/}
 
   resource :session, only: [:new, :create, :destroy]
 
