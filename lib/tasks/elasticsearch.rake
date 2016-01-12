@@ -73,7 +73,10 @@ namespace :elasticsearch do
 
     client = Elasticsearch::Client.new url: ENV.fetch('ELASTICSEARCH_URL'), log: logging
 
-    client.indices.delete index: index_name
+
+    if client.indices.exists? index: index_name
+      client.indices.delete index: index_name
+    end
 
     client.indices.create index: index_name,
       body: {
