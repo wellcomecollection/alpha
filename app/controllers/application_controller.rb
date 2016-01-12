@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path unless current_user.try(:admin)
   end
 
+
+  rescue_from(ActiveRecord::RecordNotFound) do
+    render :template => "errors/not_found", :status => 404
+  end
+
   private
 
   def set_cache_header(seconds)
