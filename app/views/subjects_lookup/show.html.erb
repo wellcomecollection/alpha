@@ -10,12 +10,15 @@
   <% @subjects.each do |subject| %>
     <li>
       <%= link_to subject.label, subject %>
-				
+
 		<small>
-		<%= pluralize_with_delimiter(subject.records_count, 'thing') %>, 
-		<%= number_to_human(100 * subject.digitized_records_count.to_f / subject.records_count) %>%	digitised
+		<%= pluralize_with_delimiter(subject.records_count, 'thing') %>,
+
+    <% if subject.records_count > 0 %>
+		  <%= number_to_human(100 * subject.digitized_records_count.to_f / subject.records_count) %>%	digitised
+    <% end %>
 		</small>
-		
+
 		</li>
   <% end %>
 </ul>

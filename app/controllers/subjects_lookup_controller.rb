@@ -6,9 +6,9 @@ class SubjectsLookupController < ApplicationController
     @per_page = 200 unless (1..200).include?(@per_page)
     @from = params[:from].to_i
 
-    @subjects = subjects_with_labels_starting(@label, @per_page, @from)
+    @subjects = search(@label, @per_page, @from)
 
-    @total_count = count_subjects_with_labels_starting(@label)
+    @total_count = count(@label)
 
     view
   end
@@ -40,19 +40,47 @@ class SubjectsLookupController < ApplicationController
     end
   end
 
-  def count_subjects_with_labels_starting(label)
-    Subject
-      .where(["LOWER(label) LIKE ? ", label.downcase + '%'])
-      .count
+  def count(label)
+
+    client = Elasticsearch::Client.new log: true
+
+    results = client.count index: 'subjects',
+      body: {
+        query: {
+          match: {
+            'label' => label.downcase
+          }
+        }
+      }
+
+
+    puts results.inspect
+
+
+    return results['count']
+
   end
 
-  def subjects_with_labels_starting(label, limit=50, from)
+  def search(label, limit = 50, from = 0)
+    client = Elasticsearch::Client.new log: true
+
+    results = client.search index: 'subjects',
+      body: {
+        query: {
+          match: {
+            'label' => label.downcase
+          }
+        },
+        sort: [{'records_count' => {'order' => 'desc'}}],
+        size: limit,
+        from: from
+      }
+
+
     Subject
       .select(:id, :label, :records_count, :digitized_records_count)
-      .where(["LOWER(label) LIKE ? ", label.downcase + '%'])
+      .where(id: results['hits']['hits'].collect {|r| r['_id'].gsub('S', '') })
       .order('records_count desc')
-      .offset(@from)
-      .limit(limit)
   end
 
 end
