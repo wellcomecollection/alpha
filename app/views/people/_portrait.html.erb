@@ -1,5 +1,5 @@
 <% if person.wikipedia_image %>
-  <% style = "background-image: url(#{person.wikipedia_image(150)});" %>
+  <% style = "background-image: url('#{person.wikipedia_image(150)}');" %>
 <% end %>
 
 <%= content_tag 'div', '', style: style, class: 'person-portrait' %>
