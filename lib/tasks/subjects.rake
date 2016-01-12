@@ -53,14 +53,14 @@ namespace :subjects do
 
     time = Time.now
 
-    Record.select(:id, :metadata)
+    Record.select(:id)
       .find_in_batches(batch_size: 500)
       .with_index do |batch, batch_number|
 
       print "Processing batch #{batch_number + 1}... "
 
       batch.each do |record|
-        record.update_taggings_from_metadata!
+        UpdateTaggingsFromMetadataJob.perform_later record
       end
 
       puts "Done in #{Time.now - time} seconds"
