@@ -61,7 +61,7 @@ class Record < ActiveRecord::Base
     if metadata['244']
       "Archives"
     elsif metadata['001'].to_a.first.to_s.end_with? 'i'
-      "Iconographic"
+      "Art"
     else
       nil
     end
