@@ -44,4 +44,27 @@ namespace :records do
     end
   end
 
+  task update_creators_count: :environment do
+
+    $stdout.sync = true
+
+    time = Time.now
+
+    Record
+      .find_in_batches(batch_size: 100)
+      .with_index do |batch, batch_number|
+
+      print "Processing batch #{batch_number + 1}... "
+
+      batch.each do |record|
+        record.update_creators_count!
+      end
+
+      puts "Done in #{Time.now - time} seconds"
+      time = Time.now
+
+    end
+
+  end
+
 end

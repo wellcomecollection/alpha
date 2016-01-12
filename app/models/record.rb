@@ -111,6 +111,11 @@ class Record < ActiveRecord::Base
     read_attribute(:title).gsub(/\/\z/, '').strip
   end
 
+  def update_creators_count!
+    self.creators_count = creators.count
+    save!
+  end
+
 
   def update_taggings_from_metadata!
 
