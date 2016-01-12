@@ -1,36 +1,25 @@
-== Wellcome Library Alpha
+# Wellcome Library Alpha
 
 We're taking the work done in our What's In The Library? project -- http://whatsinthelibrary.com -- and moving it into the Wellcome Library infrastructure. It'll be a link from the existing Sandbox area -- https://wellcomelibrary.org/what-we-do/sandbox/ -- and positioned as an experimental first step. 
 
+## Installation
 
-(What you see below is standard Ruby blurt.)
+The website requires the following services to be installed and running on a server somewhere:
 
+### Postgres
 
-== README
+[Postgres](http://www.postgresql.org) is used as the primary database. It is an open source project, and can either be compiled and installed from source, or you can use a commerical cloud service (like Heroku or Amazon RDS).
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For local development on a Mac, the easiest way to get it up and running is via [Postgres.app](http://postgresapp.com), a packaged OSX app.
 
-Things you may want to cover:
+The project requires version 9.4 or greater.
 
-* Ruby version
+### Redis
 
-* System dependencies
+[Redis](http://redis.io) is used a secondary datastore for managing the 'job queue' (tasks that need to be run). Again, it can be compiled and run from source, or you can use a commerical cloud service (like Heroku or Amazon ElastiCache).
 
-* Configuration
+The project requires version 2.8 or greater (3.0.3+ is recommended for large installations). These requirements come from [Sidekiq](https://github.com/mperham/sidekiq), the queue manager.
 
-* Database creation
+### ElasticSearch
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+[ElasticSearch](https://www.elastic.co) is used a secondary datastore for fast searching and querying.  Again, it can be compiled and run from source, or you can use a commerical cloud service (like Searchly, QBox or Amazon).
