@@ -18,9 +18,8 @@ class SubjectsLookupController < ApplicationController
     @per_page = 200
     @from = params[:from].to_i
 
-    @subjects = subjects_with_labels_starting(params[:id], @per_page, @from)
-    @total_count = count_subjects_with_labels_starting(@label)
-
+    @subjects = search(params[:id], @per_page, @from)
+    @total_count = count(@label)
 
     view
   end
