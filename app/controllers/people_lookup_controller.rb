@@ -3,9 +3,13 @@ class PeopleLookupController < ApplicationController
 
   def index
     @name = params[:name].to_s
-    limit = params[:limit] || 20
+    @per_page = params[:limit].to_i
+    @per_page = 200 unless (1..200).include?(@per_page)
 
-    @people = search(@name, limit)
+    @from = params[:from].to_i
+
+    @people = search(@name, @per_page, @from)
+    @total_count = count(@name)
 
     respond_to do |format|
       format.html do
@@ -22,6 +26,8 @@ class PeopleLookupController < ApplicationController
 
   def show
     @name = params[:id]
+    @per_page = 200
+
     @people = search(@name)
     respond_to do |format|
       format.html do
@@ -38,7 +44,24 @@ class PeopleLookupController < ApplicationController
   private
 
 
-  def search(name, limit = 50)
+  def count(name)
+
+    client = Elasticsearch::Client.new log: true
+
+    results = client.count index: 'people',
+      body: {
+        query: {
+          match: {
+            'name' => name.downcase
+          }
+        }
+      }
+
+    return results['count']
+
+  end
+
+  def search(name, limit = 50, from = 0)
     client = Elasticsearch::Client.new log: true
 
 
@@ -51,6 +74,8 @@ class PeopleLookupController < ApplicationController
         },
         size: limit
       }
+
+    puts results.inspect
 
     Person
       .select(:id, :name, :wikipedia_images, :born_in, :died_in, :records_count)

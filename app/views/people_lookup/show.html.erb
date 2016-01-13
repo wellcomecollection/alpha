@@ -23,7 +23,7 @@
       <% if person.born_in || person.died_in %>
         <span class="dates">&bull; <%= person.born_in %>-<%= person.died_in %></span>
       <% end %>
-		
+
       <small><%= pluralize_with_delimiter(person.records_count, 'thing') %></small>
 
     </li>
@@ -35,9 +35,22 @@
 <div class="row pagination">
   <div class="four columns">&nbsp;</div>
   <div class="four columns center">
-    <button>Previous</button>&nbsp;&nbsp;<button>Next</button>
+
+    <% if @from > 0 %>
+      <%= link_to "Previous", people_lookup_index_path(name: @name, from: (@from - @per_page), limit: @per_page), class: 'button' %>
+    <% end %>
+
+      &nbsp;&nbsp;
+
+    <% if (@from + @per_page) < (@total_count) %>
+      <%= link_to 'Next', people_lookup_index_path(name: @name, from: (@from + @per_page), limit: @per_page), class: 'button' %>
+    <% end %>
+
     <br />
-    <small>246,345 results &bull; Page 2 of 4,567</small>
+    <small><%= pluralize_with_delimiter(@total_count, 'result') %>
+      &bull; Page <%= (@from.to_f / @per_page).floor + 1 %> of
+      <%= (@total_count.to_f / @per_page).ceil %>
+    </small>
   </div>
   <div class="four columns">&nbsp;</div>
 </div>
