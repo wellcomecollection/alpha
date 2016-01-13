@@ -1,0 +1,227 @@
+<% content_for :title, @person.name %>
+
+<% content_for :head do %>
+
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= person_url(@person) %>" />
+
+  <meta name="twitter:title" content="<%= @person.name %>" />
+  <meta property="og:title" content="<%= @person.name %>" />
+
+  <% if @person.wellcome_intro %>
+    <meta name="twitter:description" content="<%= @person.wellcome_intro %>" />
+  <% elsif @person.wikipedia_intro %>
+    <meta name="twitter:description" content="<%= @person.wikipedia_sentences(2) %>" />
+  <% end %>
+
+  <% if @person.wikipedia_image %>
+    <meta name="twitter:image" content="<%= @person.wikipedia_image(600) %>" />
+    <meta property="og:image" content="<%= @person.wikipedia_image(600) %>" />
+  <% end %>
+
+<% end %>
+
+<div class="row">
+  <div class="two columns center">
+    <%= render 'people/portrait', person: @person %>
+  </div>
+  <div class="ten columns big">
+	<% if logged_in_as_admin? %>
+	<div class="hilite">
+	  <%= form_for @person do |form| %>
+		<%= form.hidden_field :highlighted, value: !@person.highlighted %>
+		<button type="submit" class="is-admin"><%= @person.highlighted ? '-' : '+' %></button>
+	  <% end %>
+	</div>
+	<% end %>
+    <h1>
+    	<%= @person.name %>     
+	</h1>
+
+	<% if logged_in_as_admin? %>
+	<div style="float: right; margin-left: 20px; margin-bottom: 30px; ">
+	  <%= link_to 'Edit introduction', person_intro_path(@person), class: "is-admin" %>
+	</div>
+	<% end %>  
+
+    <% if @person.born_in || @person.died_in %>
+      <div class="dates"><%= @person.born_in %>-<%= @person.died_in %></div>
+    <% end %>
+
+      <p>
+        <%= render 'wikipedia_intro', person: @person %>
+
+        <% if @person.identifiers['wikipedia_en'] %>
+          <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
+        <% end %>
+
+        <% if @person.identifiers['loc'].nil? %>
+          We didn't find a Library of Congress identifier for this author in the database, so we couldn't connect to Wikipedia.
+        <% end %>
+      </p>
+
+    <% if @person.wellcome_intro %>
+      <p><%= @person.wellcome_intro %></p>
+    <% end %>
+    
+  </div>
+</div>
+
+
+<div class="row">
+
+<% if @person.editorial %>
+	<div class="offset-by-two six columns">
+<% else %>
+	<div class="offset-by-two eight columns">
+<% end %>
+   		   		
+   		<h4>Subjects</h4>
+
+      <% if @top_subjects_written_about.length > 0 %>
+		<p>
+		<% @top_subjects_written_about.each do |subject| %>
+        		<%= link_to subject.label, subject_path(subject) %>
+      		<% end %>
+      	</p>
+      <% else %>
+		<p class="nogo">We couldn't find any.</p>
+      <% end %>
+      
+
+		<h4>Publishing Timeline</h4>
+
+	<% years = {} %>
+
+	  <% @publication_years.each do |year| %>
+		<% years[year[0].gsub(' ', '?')] = pluralize(year[1], '') %>
+	  <% end %>
+
+	  <% if @person.born_in %>
+		<% years[@person.born_in.to_s] = "born" %>
+	  <% end %>
+
+	  <% if @person.died_in %>
+		<% years[@person.died_in.to_s] = "died" %>
+	  <% end %>
+
+
+	  <% years.sort_by {|k,v| k}.each do |year| %>
+		<div class="year-container center" style="width:40px; float:left;">
+		  <div class="year"><small><%= year[0] %></small></div>
+		  <div class="thing"><small><%= year[1] %></small></div>
+		</div>
+	  <% end %>
+
+	</div>
+
+<% if @person.editorial %>
+	<div class="four columns">
+		<div class="editorial">
+			<h5><%= @person.editorial_title %></h5>
+			<%= @person.editorial_content.html_safe %>
+		<% if logged_in_as_admin? %>
+			<br /><%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person), {class: 'is-admin'} %>
+		<% end %>
+		</div>
+	</div>
+<% else %>
+	<div class="two columns right">
+		<% if logged_in_as_admin? %>
+			<%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person), {class: 'is-admin'} %>
+		<% end %>
+	</div>	
+<% end %>
+
+</div>
+
+<br clear="all" />
+
+<!-- Gillray -->
+<% if @person.id == 27577 %>
+  <%= render 'p27577.html' %>
+<% end %>
+
+<br clear="all" />
+
+<div class="row">
+  <div class="nine columns"><h2><%= pluralize(@person.records_count, 'thing') %></h2></div>
+  <div class="three columns">
+	<div class="lil-vis">
+		<div class="digitised">
+			<div class="percent-done" style="width: <%= (100 * @digitized_count.to_f / @person.records_count) %>%;">&nbsp;</div>
+		</div>
+   		<%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
+	</div>
+  </div>
+</div>
+
+<% @things.each do |thing| %>
+  <div class="cover-box">
+    <div class="cover">
+      <%= link_to thing_path(thing), title: thing.title do %>
+        <% if thing.cover_image_url %>
+          <%= image_tag thing.cover_image_url(150,300) %>
+        <% else %>
+          <%= thing.title %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<br clear="all" />
+<br clear="all" />
+
+<% if @co_authors.length > 0 %>
+  <h3>Co-authors</h3>
+  <% @co_authors.each do |author| %>
+	  <div class="sm-circle">
+	    <% if author.wikipedia_image %>
+	      <% style = "background-image: url('#{author.wikipedia_image}');" %>
+	    <% end %>
+	    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
+	    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
+	  </div>
+  <% end %>
+<% end %>
+
+<br clear="all" />
+<br clear="all" />
+
+<% if @contemporaries && @contemporaries.length > 0 %>
+  <h3>Contemporaries</h3>
+    <% @contemporaries.each do |author| %>
+  <div class="sm-circle">
+    <% if author.wikipedia_image %>
+      <% style = "background-image: url('#{author.wikipedia_image}');" %>
+    <% end %>
+    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
+  </div>
+    <% end %>
+
+<% end %>
+
+<br clear="all" />
+<br clear="all" />
+
+<div class="row nerds" style="clear: both;">
+  <div class="three columns">
+    <h5>Data & IDs</h5>
+<% if @person.identifiers.length > 0 %>
+    <p>We've collected identifiers for <%= @person.name %> from other catalogues around the world.</p>
+<% end %>
+    <p>You can also download a <%= link_to "JSON view", person_path(@person, format: :json) %>.</p>
+  </div>
+  <div class="nine columns">
+	<table width="100%">
+	  <% @person.identifiers.each_pair do |key, value| %>
+	    <tr>
+	      <td><%= key %></td>
+	      <td class="person-url"><%= value %></td>
+	  <% end %>
+	</table>
+	</div>
+</div>
