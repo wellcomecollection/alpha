@@ -146,16 +146,14 @@
 <br clear="all" />
 
 <div class="row">
-  <div class="six columns"><h2><%= pluralize(@person.records_count, 'thing') %></h2></div>
-  <div class="three columns right lil-vis">
-    <small>
-      <%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
-    </small>
-  </div>
-  <div class="three columns lil-vis">
+  <div class="nine columns"><h2><%= pluralize(@person.records_count, 'thing') %></h2></div>
+  <div class="three columns">
+	<div class="lil-vis">
 		<div class="digitised">
 			<div class="percent-done" style="width: <%= (100 * @digitized_count.to_f / @person.records_count) %>%;">&nbsp;</div>
 		</div>
+   		<%= percentage_with_varying_accuracy(@digitized_count.to_f / @person.records_count) %>  digitised
+	</div>
   </div>
 </div>
 

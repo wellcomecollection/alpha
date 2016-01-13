@@ -61,10 +61,11 @@ ul.results {
 	border-bottom: 1px dotted lightblue;
 }
 
-/* Graphs */
+/* Vis */
 
-.digitised { height:5px;background-color:white; margin-top:10px; }
-.percent-done { background-color:black; height:5px; float:left; }
+.lil-vis {  font-size: .825em; padding-top: 20px;}
+.digitised { display:block; height:10px;background-color:white; margin-bottom: 5px; }
+.percent-done { background-color:black; height:10px; float:left; }
 
 /* Person Page */
 
@@ -111,10 +112,6 @@ ul.results {
 	padding: 8px;
 	font-size: 0.825em;
 	line-height:1.75em;
-}
-
-.lil-vis {
-  padding-top: 24px;
 }
 
 /* Subject */
