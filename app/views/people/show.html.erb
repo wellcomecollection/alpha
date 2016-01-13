@@ -207,14 +207,8 @@
 <br clear="all" />
 <br clear="all" />
 
+<h5><%= @person.name %> in other catalogues</h5>
 <div class="row nerds" style="clear: both;">
-  <div class="three columns">
-    <h5>Data & IDs</h5>
-<% if @person.identifiers.length > 0 %>
-    <p>We've collected identifiers for <%= @person.name %> from other catalogues around the world.</p>
-<% end %>
-    <p>You can also download a <%= link_to "JSON view", person_path(@person, format: :json) %>.</p>
-  </div>
   <div class="nine columns">
 	<table width="100%">
 	  <% @person.identifiers.each_pair do |key, value| %>
@@ -223,5 +217,8 @@
 	      <td class="person-url"><%= value %></td>
 	  <% end %>
 	</table>
-	</div>
+  </div>
+  <div class="three columns">
+    <p>You can also download a <%= link_to "JSON view", person_path(@person, format: :json) %> of this Wellcome Library metadata record.</p>
+  </div>	
 </div>
