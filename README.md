@@ -54,4 +54,6 @@ The hostname, port, username and password should be set in an environmnent varia
 
 [ElasticSearch](https://www.elastic.co) is used a secondary datastore for fast searching and querying.  Again, it can be compiled and run from source, or you can use a commerical cloud service (like Searchly, QBox or Amazon).
 
+You should use version 1.7.*
+
 The hostname, username and password should be set in an environmnent variable called `ELASTICSEARCH_URL` (eg `https://user:pass@host`).
