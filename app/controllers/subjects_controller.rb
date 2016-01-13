@@ -45,17 +45,30 @@ class SubjectsController < ApplicationController
       .order('count desc')
       .limit(15)
 
-    # Skip year counts for high record count subjects, for now,
-    # until we can improve the query performance.
-    if @subject.records_count < 2000
-      @year_counts = @subject
-        .records
-        .group('records.year')
-        .order('year')
-        .count
-    else
-      @year_counts = []
-    end
+    client = Elasticsearch::Client.new
+
+    results = client.search index: 'records',
+      size: 0, # no hits please
+      body: {
+        query: {
+          match: {
+            subject_ids: @subject.id
+          }
+        },
+        aggs: {
+          years: {
+            terms: {
+              field: 'year',
+              size: 0 # all buckets please
+            }
+          }
+        }
+      }
+
+    @year_counts = results['aggregations']['years']['buckets']
+      .map { |h| h.values_at('key', 'doc_count') }
+      .sort
+      .to_h
 
     @trees = []
 
