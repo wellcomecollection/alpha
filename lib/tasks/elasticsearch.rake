@@ -160,7 +160,8 @@ namespace :elasticsearch do
               pdf_thumbnail_url: {type: 'string', index: :not_analyzed},
               cover_image_uris: {type: 'string', index: :not_analyzed},
               archives_ref: {type: 'string', index: :not_analyzed},
-              subject_ids: {type: 'integer', index: :not_analyzed}
+              subject_ids: {type: 'integer', index: :not_analyzed},
+              person_ids: {type: 'integer', index: :not_analyzed}
             }
           }
         }

@@ -35,7 +35,8 @@ class Record < ActiveRecord::Base
       pdf_thumbnail_url: pdf_thumbnail_url,
       cover_image_uris: cover_image_uris,
       archives_ref: archives_ref,
-      subject_ids: taggings.pluck(:subject_id)
+      subject_ids: taggings.pluck(:subject_id),
+      person_ids: creators.pluck(:person_id)
     }
 
   end
