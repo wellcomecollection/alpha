@@ -10,6 +10,7 @@
   display: table-cell;
   vertical-align: bottom;
   padding: 0;
+  background: inherit;
 }
 
 .count-bars .bar:hover {
