@@ -9,6 +9,7 @@
 .count-bars .bar {
   display: table-cell;
   vertical-align: bottom;
+  padding: 0;
 }
 
 .count-bars .bar:hover {

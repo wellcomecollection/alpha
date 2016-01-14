@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :subjects, only: ['show', 'index', 'update'], constraints: {id: /S\d+/} do
     resource :intro, only: ['show', 'update'], controller: 'subjects_intro'
     member do
-      get ':year', action: :show
+      get ':year', action: :show, as: :year
     end
   end
 

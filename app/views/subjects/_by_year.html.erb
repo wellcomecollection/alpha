@@ -22,7 +22,7 @@ end
         <% years_hash = real_years.to_h %>
 
         <% real_years.first[0].upto(real_years.last[0]).each do |year| %>
-          <%= content_tag 'div', class: "bar" do %>
+          <%= link_to year_subject_path(subject, year), class: 'bar' do %>
             <%= content_tag :span, '', class: "box undigitised #{'highlighted' if year == highlighted_year}", style: "height: #{years_hash[year].to_i * vertical_scale_factor}px;" %>
           <% end %>
         <% end %>
@@ -51,7 +51,7 @@ end
     bars.addEventListener('mouseover', function (event) {
       var element = event.target;
 
-      while(element !== null && element.tagName !== 'DIV') {
+      while(element !== null && !element.classList.contains('bar')) {
         element = element.parentElement;
       }
 
