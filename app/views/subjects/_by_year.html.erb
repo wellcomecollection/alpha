@@ -22,7 +22,7 @@ end
         <% years_hash = real_years.to_h %>
 
         <% real_years.first[0].upto(real_years.last[0]).each do |year| %>
-          <%= link_to year_subject_path(subject, year), class: 'bar' do %>
+          <%= content_tag (years_hash[year].to_i.zero? ? :div : :a), href: year_subject_path(subject, year), class: 'bar' do %>
             <%= content_tag :span, '', class: "box undigitised #{'highlighted' if year == highlighted_year}", style: "height: #{years_hash[year].to_i * vertical_scale_factor}px;" %>
           <% end %>
         <% end %>
