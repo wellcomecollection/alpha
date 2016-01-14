@@ -56,6 +56,7 @@
   color: white;
   padding: 2px;
   visibility: hidden;
+  z-index: 2;
 }
 
 .count-bars-labels .label.show span {
@@ -64,5 +65,5 @@
 
 .count-bars-labels .label.always-show span {
   visibility: visible;
-  z-index: -1;
+  z-index: 1;
 }
