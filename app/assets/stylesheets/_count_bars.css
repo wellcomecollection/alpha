@@ -9,6 +9,8 @@
 .count-bars .bar {
   display: table-cell;
   vertical-align: bottom;
+  padding: 0;
+  background: inherit;
 }
 
 .count-bars .bar:hover {
@@ -31,6 +33,10 @@
   background: black;
 }
 
+.count-bars .bar .box.highlighted {
+  background: gold;
+}
+
 .count-bars-labels {
   margin-top: 3px;
   margin-bottom: 20px;
@@ -51,12 +57,19 @@
   color: white;
   padding: 2px;
   visibility: hidden;
+  z-index: 2;
 }
 
 .count-bars-labels .label.show span {
   visibility: visible;
 }
 
-.count-bars-labels .label.always-show span {
+.count-bars-labels .label.always-show span, .count-bars-labels .label.highlighted span {
   visibility: visible;
+  z-index: 1;
+}
+
+.count-bars-labels .label.highlighted span {
+  color: black;
+  background: gold;
 }

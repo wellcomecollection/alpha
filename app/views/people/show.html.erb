@@ -36,7 +36,7 @@
 	</div>
 	<% end %>
     <h1>
-    	<%= @person.name %>     
+    	<%= @person.name %>    
 	</h1>
 
 	<% if logged_in_as_admin? %>
@@ -46,9 +46,10 @@
 	<% end %>  
 
     <% if @person.born_in || @person.died_in %>
-      <div class="dates"><%= @person.born_in %>-<%= @person.died_in %></div>
+      <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &bull;
     <% end %>
-
+	  <span class="small-count"><%= pluralize_with_delimiter(@person.records_count, 'thing') %> at Wellcome Library</span> 
+	
       <p>
         <%= render 'wikipedia_intro', person: @person %>
 
@@ -146,7 +147,7 @@
 <br clear="all" />
 
 <div class="row">
-  <div class="nine columns"><h2><%= pluralize(@person.records_count, 'thing') %></h2></div>
+  <div class="nine columns"><h2><%= pluralize_with_delimiter(@person.records_count, 'thing') %></h2></div>
   <div class="three columns">
 	<div class="lil-vis">
 		<div class="digitised">
@@ -181,8 +182,8 @@
 	    <% if author.wikipedia_image %>
 	      <% style = "background-image: url('#{author.wikipedia_image}');" %>
 	    <% end %>
-	    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
-	    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
+	    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(author.records_count, 'thing') %>
+	    <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
 	  </div>
   <% end %>
 <% end %>
@@ -197,8 +198,8 @@
     <% if author.wikipedia_image %>
       <% style = "background-image: url('#{author.wikipedia_image}');" %>
     <% end %>
-    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
-    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
   </div>
     <% end %>
 
@@ -206,22 +207,26 @@
 
 <br clear="all" />
 <br clear="all" />
+<br clear="all" />
 
-<div class="row nerds" style="clear: both;">
-  <div class="three columns">
-    <h5>Data & IDs</h5>
-<% if @person.identifiers.length > 0 %>
-    <p>We've collected identifiers for <%= @person.name %> from other catalogues around the world.</p>
-<% end %>
-    <p>You can also download a <%= link_to "JSON view", person_path(@person, format: :json) %>.</p>
-  </div>
+<h5><%= @person.name %> Links & Metadata</h5>
+<div class="row">
   <div class="nine columns">
-	<table width="100%">
+	<h6>Links to other catalogues</h6>
+	<table class="nerds" width="100%">
+		<th width="33%">Catalogue</th>
+		<th>ID</th>	
 	  <% @person.identifiers.each_pair do |key, value| %>
 	    <tr>
 	      <td><%= key %></td>
 	      <td class="person-url"><%= value %></td>
 	  <% end %>
 	</table>
-	</div>
+  </div>
+  <div class="three columns">
+    <h6>Wellcome Library Metadata</h6>
+    <ul>
+    	<li><%= link_to "JSON file", person_path(@person, format: :json) %></li>
+    </ul>
+  </div>	
 </div>

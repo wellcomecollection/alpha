@@ -1,7 +1,14 @@
+class LoggedInConstraint
+  def matches?(request)
+    return true if request.session[:user_id]
+  end
+end
+
 Rails.application.routes.draw do
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+
+  mount Sidekiq::Web => '/sidekiq', constraints: LoggedInConstraint.new
 
   resources :users, only: [:index, :create, :new]
 
@@ -24,7 +31,12 @@ Rails.application.routes.draw do
 
   resources :subjects, only: ['show', 'index', 'update'], constraints: {id: /S\d+/} do
     resource :intro, only: ['show', 'update'], controller: 'subjects_intro'
+    member do
+      get ':year', action: :show, as: :year
+    end
   end
+
+  resource :search, only: 'show', controller: 'search'
 
   resources :subjects, only: ['show'], controller: 'subjects_lookup'
 

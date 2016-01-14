@@ -47,7 +47,14 @@
 	</div>
     <% end %>
 
-    <h1><%= @subject.label %></h1>
+    <h1>
+      <% if @year.present? %>
+        <%= link_to @subject.label, subject_path(@subject) %> / <%= @year %>
+      <% else %>
+        <%= @subject.label %>
+        <span class="subj-small-count"><%= pluralize_with_delimiter(@subject.records_count, 'thing') %> at Wellcome Library</span>
+      <% end %>
+    </h1>
   </div>  
 </div>
 
@@ -84,7 +91,7 @@
 <br clear="all" />
 
 <% if @year_counts.length > 0 %>
-  <%= render 'by_year', years: @year_counts %>
+  <%= render 'by_year', years: @year_counts, subject: @subject, highlighted_year: @year %>
 <% end %>
 
 <br clear="all" />
@@ -133,27 +140,33 @@
     <% if person.wikipedia_image %>
       <% style = "background-image: url('#{person.wikipedia_image}');" %>
     <% end %>
-    <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
-    <%= link_to person.name, person, class: 'sm-name', title: pluralize(person.records_count, 'thing') %>
+    <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(person.records_count, 'thing') %>
+    <%= link_to person.name, person, class: 'sm-name', title: pluralize_with_delimiter(person.records_count, 'thing') %>
   </div>
     <% end %>
 <% end %>
 
 <br clear="all" /><br clear="all" />
 
-<div class="row" style="clear:both;">
-  <div class="six columns">
-    <h2><%= pluralize(@subject.records_count, 'thing') %></h2>
+<div class="row">
+  <div class="nine columns">
+    <h2>
+      <% if @year.present? %>
+        Things
+      <% else %>
+        <%= pluralize_with_delimiter(@subject.records_count, 'thing') %>
+      <% end %>
+    </h2>
   </div>
-  <div class="three columns right lil-vis">
-    <small>
+  <div class="three columns">
+	<div class="lil-vis">
+    <% if @year.blank? %>
+      <div class="digitised">
+        <div class="percent-done" style="width: <%= (100 * @subject.digitized_records_count.to_f / @subject.records_count) %>%;">&nbsp;</div>
+      </div>
       <%= percentage_with_varying_accuracy(@subject.digitized_records_count.to_f / @subject.records_count) %>  digitised
-    </small>
-  </div>
-  <div class="three columns lil-vis">
-		<div class="digitised">
-			<div class="percent-done" style="width: <%= (100 * @subject.digitized_records_count.to_f / @subject.records_count) %>%;">&nbsp;</div>
-		</div>
+    <% end %>
+	</div>
   </div>
 </div>
 
@@ -172,22 +185,27 @@
 <% end %>
 
 <br clear="all" />
-<div class="row nerds" style="clear: both;">
-  <div class="three columns">
-    <h5>Data & IDs</h5>
-    
-<% if @subject.identifiers.length > 0 %>
-    <p>We've collected identifiers for <%= @subject.label %> from other catalogues around the world.</p>
-<% end %>
-    <p>Download a <%= link_to "JSON view", subject_path(@subject, format: :json) %>.</p>
-  </div>
+<br clear="all" />
+<br clear="all" />
+
+<h5><%= @subject.label %> Links & Metadata</h5>
+<div class="row">
   <div class="nine columns">
-    <table width="100%">
-      <% @subject.identifiers.each_pair do |key, value| %>
-        <tr>
-          <td><%= key %></td>
-          <td><%= value %></td>
-      <% end %>
-    </table>
+	<h6>Links to other catalogues</h6>
+	<table class="nerds" width="100%">
+		<th width="33%">Catalogue</th>
+		<th>ID</th>
+	  <% @subject.identifiers.each_pair do |key, value| %>
+	    <tr>
+	      <td><%= key %></td>
+	      <td class="person-url"><%= value %></td>
+	  <% end %>
+	</table>
   </div>
+  <div class="three columns">
+    <h6>Wellcome Library Metadata</h6>
+    <ul>
+    	<li><%= link_to "JSON file", subject_path(@subject, format: :json) %></li>
+    </ul>
+  </div>	
 </div>

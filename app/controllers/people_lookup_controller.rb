@@ -8,8 +8,14 @@ class PeopleLookupController < ApplicationController
 
     @from = params[:from].to_i
 
-    @people = search(@name, @per_page, @from)
-    @total_count = count(@name)
+    search_results = search(@name, @per_page, @from)
+
+    @people = Person
+      .select(:id, :name, :wikipedia_images, :born_in, :died_in, :records_count)
+      .where(id: search_results['hits']['hits'].collect {|r| r['_id'].gsub('P', '') })
+      .order('records_count desc')
+
+    @total_count = search_results['hits']['total']
 
     respond_to do |format|
       format.html do
@@ -28,7 +34,17 @@ class PeopleLookupController < ApplicationController
     @name = params[:id]
     @per_page = 200
 
-    @people = search(@name)
+    @from = 0
+
+    search_results = search(@name, @per_page, @from)
+
+    @people = Person
+      .select(:id, :name, :wikipedia_images, :born_in, :died_in, :records_count)
+      .where(id: search_results['hits']['hits'].collect {|r| r['_id'].gsub('P', '') })
+      .order('records_count desc')
+
+    @total_count = search_results['hits']['total']
+
     respond_to do |format|
       format.html do
         if (@people.length == 1)
@@ -43,24 +59,6 @@ class PeopleLookupController < ApplicationController
 
   private
 
-
-  def count(name)
-
-    client = Elasticsearch::Client.new log: true
-
-    results = client.count index: 'people',
-      body: {
-        query: {
-          match: {
-            'name' => name.downcase
-          }
-        }
-      }
-
-    return results['count']
-
-  end
-
   def search(name, limit = 50, from = 0)
     client = Elasticsearch::Client.new log: true
 
@@ -69,18 +67,16 @@ class PeopleLookupController < ApplicationController
       body: {
         query: {
           match: {
-            'name' => name.downcase
+            name: {
+              query: name.downcase,
+              operator: 'and'
+            }
           }
         },
         size: limit
       }
 
-    puts results.inspect
 
-    Person
-      .select(:id, :name, :wikipedia_images, :born_in, :died_in, :records_count)
-      .where(id: results['hits']['hits'].collect {|r| r['_id'].gsub('P', '') })
-      .order('records_count desc')
   end
 
 end
