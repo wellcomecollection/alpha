@@ -46,7 +46,7 @@
 	<% end %>  
 
     <% if @person.born_in || @person.died_in %>
-      <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &bull;
+      <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &nbsp;&bull;&nbsp; 
     <% end %>
 	  <span class="small-count"><%= pluralize_with_delimiter(@person.records_count, 'thing') %> at Wellcome Library</span> 
 	
