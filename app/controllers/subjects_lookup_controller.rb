@@ -6,9 +6,14 @@ class SubjectsLookupController < ApplicationController
     @per_page = 200 unless (1..200).include?(@per_page)
     @from = params[:from].to_i
 
-    @subjects = search(@label, @per_page, @from)
+    search_results = search(@label, @per_page, @from)
 
-    @total_count = count(@label)
+    @subjects = Subject
+      .select(:id, :label, :records_count, :digitized_records_count)
+      .where(id: search_results['hits']['hits'].collect {|r| r['_id'].gsub('S', '') })
+      .order('records_count desc')
+
+    @total_count = search_results['hits']['total']
 
     view
   end
@@ -18,8 +23,14 @@ class SubjectsLookupController < ApplicationController
     @per_page = 200
     @from = params[:from].to_i
 
-    @subjects = search(params[:id], @per_page, @from)
-    @total_count = count(@label)
+    search_results = search(@label, @per_page, @from)
+
+    @subjects = Subject
+      .select(:id, :label, :records_count, :digitized_records_count)
+      .where(id: search_results['hits']['hits'].collect {|r| r['_id'].gsub('S', '') })
+      .order('records_count desc')
+
+    @total_count = search_results['hits']['total']
 
     view
   end
@@ -39,26 +50,6 @@ class SubjectsLookupController < ApplicationController
     end
   end
 
-  def count(label)
-
-    client = Elasticsearch::Client.new log: true
-
-    results = client.count index: 'subjects',
-      body: {
-        query: {
-          match: {
-            'label' => label.downcase
-          }
-        }
-      }
-
-
-    puts results.inspect
-
-
-    return results['count']
-
-  end
 
   def search(label, limit = 50, from = 0)
     client = Elasticsearch::Client.new log: true
@@ -67,19 +58,16 @@ class SubjectsLookupController < ApplicationController
       body: {
         query: {
           match: {
-            'label' => label.downcase
+            label: {
+              query: label.downcase,
+              operator: 'and'
+            }
           }
         },
         sort: [{'records_count' => {'order' => 'desc'}}],
         size: limit,
         from: from
       }
-
-
-    Subject
-      .select(:id, :label, :records_count, :digitized_records_count)
-      .where(id: results['hits']['hits'].collect {|r| r['_id'].gsub('S', '') })
-      .order('records_count desc')
   end
 
 end
