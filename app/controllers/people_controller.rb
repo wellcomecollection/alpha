@@ -21,6 +21,8 @@ class PeopleController < ApplicationController
 
     @digitized_count = @person.records.where(digitized: true).count
 
+    record_ids = @person.records.select(:id)
+
     if @person.born_in
 
       born_in_range = (@person.born_in - 10)..(@person.born_in + 10)
@@ -35,7 +37,7 @@ class PeopleController < ApplicationController
 
     @publication_years = Record
       .select('year')
-      .where(["records.id IN (select creators.record_id from creators where creators.person_id = ?)", @person.id])
+      .where("records.id IN (#{record_ids.to_sql})")
       .where.not(year: nil)
       .group('year')
       .order('year')
@@ -44,7 +46,7 @@ class PeopleController < ApplicationController
     @top_subjects_written_about = Subject
       .joins(:taggings)
       .select("subjects.*, count(taggings.id) as count")
-      .where(["taggings.record_id IN (select creators.record_id from creators where creators.person_id = ?)", @person.id])
+      .where("taggings.record_id IN (#{record_ids.to_sql})")
       .group('subjects.id')
       .order('count desc')
       .limit(40)
