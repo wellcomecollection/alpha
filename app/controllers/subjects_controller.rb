@@ -21,17 +21,26 @@ class SubjectsController < ApplicationController
 
   def show
     id = params[:id].gsub('S','')
+    @year = params[:year]
 
     @subject = Subject.find(id)
 
     @things = @subject.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
       .order('digitized desc')
       .limit(100)
+    @things = @things.where(year: @year) if @year.present?
+
+    subselect =
+      if @year.present?
+        'select taggings.record_id from taggings inner join records on records.id = taggings.record_id where taggings.subject_id = ? and records.year = ?'
+      else
+        'select taggings.record_id from taggings where taggings.subject_id = ?'
+      end
 
     @people_whove_written_about_it = Person
       .joins(:creators)
       .select("people.*, count(creators.id) as count")
-      .where(["creators.record_id IN (select taggings.record_id from taggings where taggings.subject_id = ?)", @subject.id])
+      .where(["creators.record_id IN (#{subselect})", @subject.id, @year].compact)
       .group('people.id')
       .order('count desc')
       .limit(36)
@@ -39,7 +48,7 @@ class SubjectsController < ApplicationController
     @related_subjects = Subject
       .joins(:taggings)
       .select("subjects.*, count(subjects.id) as count")
-      .where(["taggings.record_id IN (select taggings.record_id from taggings where taggings.subject_id = ?)", @subject.id])
+      .where(["taggings.record_id IN (#{subselect})", @subject.id, @year].compact)
       .where.not(id: @subject.id)
       .group('subjects.id')
       .order('count desc')
