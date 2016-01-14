@@ -26,8 +26,8 @@
 	<% end %>
 
 	<% if subject.wellcome_intro %>
-			<%= truncate(subject.wellcome_intro, length: 100, separator: ' ') %>
-			<br> 
+			<%= truncate(strip_tags(subject.wellcome_intro), length: 100, separator: ' ') %>
+			<br>
 	<% end %>
 
 			<small>

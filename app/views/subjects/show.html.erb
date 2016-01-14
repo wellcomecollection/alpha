@@ -73,7 +73,7 @@
 <% end %>
 
 <% if @subject.wellcome_intro %>
-  <p><%= @subject.wellcome_intro %></p>
+  <p><%= @subject.wellcome_intro.html_safe %></p>
 <% end %>
 
 <% if logged_in_as_admin? && !@subject.wellcome_intro %>
@@ -199,5 +199,5 @@
     <ul>
     	<li><%= link_to "JSON file", subject_path(@subject, format: :json) %></li>
     </ul>
-  </div>	
+  </div>
 </div>
