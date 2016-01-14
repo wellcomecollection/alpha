@@ -36,7 +36,8 @@
 	</div>
 	<% end %>
     <h1>
-    	<%= @person.name %>     
+    	<%= @person.name %>   
+    	<span class="small-count"><%= pluralize(@person.records_count, 'thing') %> at Wellcome Library</span>  
 	</h1>
 
 	<% if logged_in_as_admin? %>
@@ -219,6 +220,6 @@
 	</table>
   </div>
   <div class="three columns">
-    <p>You can also download a <%= link_to "JSON view", person_path(@person, format: :json) %> of this Wellcome Library metadata record.</p>
+    <p>You can also download a <%= link_to ".JSON", person_path(@person, format: :json) %> version of this Wellcome Library record.</p>
   </div>	
 </div>
