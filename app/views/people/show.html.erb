@@ -48,7 +48,7 @@
     <% if @person.born_in || @person.died_in %>
       <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &bull;
     <% end %>
-	  <span class="small-count"><%= pluralize(@person.records_count, 'thing') %> at Wellcome Library</span> 
+	  <span class="small-count"><%= pluralize_with_delimiter(@person.records_count, 'thing') %> at Wellcome Library</span> 
 	
       <p>
         <%= render 'wikipedia_intro', person: @person %>
@@ -147,7 +147,7 @@
 <br clear="all" />
 
 <div class="row">
-  <div class="nine columns"><h2><%= pluralize(@person.records_count, 'thing') %></h2></div>
+  <div class="nine columns"><h2><%= pluralize_with_delimiter(@person.records_count, 'thing') %></h2></div>
   <div class="three columns">
 	<div class="lil-vis">
 		<div class="digitised">
@@ -182,8 +182,8 @@
 	    <% if author.wikipedia_image %>
 	      <% style = "background-image: url('#{author.wikipedia_image}');" %>
 	    <% end %>
-	    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
-	    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
+	    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(author.records_count, 'thing') %>
+	    <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
 	  </div>
   <% end %>
 <% end %>
@@ -198,8 +198,8 @@
     <% if author.wikipedia_image %>
       <% style = "background-image: url('#{author.wikipedia_image}');" %>
     <% end %>
-    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize(author.records_count, 'thing') %>
-    <%= link_to author.name, author, class: 'sm-name', title: pluralize(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
   </div>
     <% end %>
 

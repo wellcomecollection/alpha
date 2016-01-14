@@ -49,7 +49,7 @@
 
     <h1>
     	<%= @subject.label %>
-		<span class="subj-small-count"><%= pluralize(@subject.records_count, 'thing') %> at Wellcome Library</span>  
+		<span class="subj-small-count"><%= pluralize_with_delimiter(@subject.records_count, 'thing') %> at Wellcome Library</span>  
     </h1>
   </div>  
 </div>
@@ -136,8 +136,8 @@
     <% if person.wikipedia_image %>
       <% style = "background-image: url('#{person.wikipedia_image}');" %>
     <% end %>
-    <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize(person.records_count, 'thing') %>
-    <%= link_to person.name, person, class: 'sm-name', title: pluralize(person.records_count, 'thing') %>
+    <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(person.records_count, 'thing') %>
+    <%= link_to person.name, person, class: 'sm-name', title: pluralize_with_delimiter(person.records_count, 'thing') %>
   </div>
     <% end %>
 <% end %>
@@ -145,7 +145,7 @@
 <br clear="all" /><br clear="all" />
 
 <div class="row">
-  <div class="nine columns"><h2><%= pluralize(@subject.records_count, 'thing') %></h2></div>
+  <div class="nine columns"><h2><%= pluralize_with_delimiter(@subject.records_count, 'thing') %></h2></div>
   <div class="three columns">
 	<div class="lil-vis">
 		<div class="digitised">
