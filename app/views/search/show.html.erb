@@ -1,0 +1,52 @@
+
+<%= form_for search_path, method: 'get' do %>
+  <%= search_field_tag :q, @query %>
+  <button type="submit">Search</button>
+<% end %>
+
+<% if @records.length > 0 %>
+
+  <% @records.each do |record| %>
+    <div class="cover-box">
+      <div class="cover">
+        <%= link_to thing_path(record['_id']), title: record['_source']['title'] do %>
+          <% if record['_source']['cover_image_uris'] %>
+            <%= image_tag "#{record['_source']['cover_image_uris'].first}/full/!150,300/0/default.jpg" %>
+          <% else %>
+            <%= record['_source']['title'] %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Pagination -->
+  <div class="row pagination">
+    <div class="four columns">&nbsp;</div>
+    <div class="four columns center">
+
+      <% if @from > 0 %>
+        <%= link_to "Previous", search_path(q: @query, from: (@from - @per_page), limit: @per_page), class: 'button' %>
+      <% end %>
+
+        &nbsp;&nbsp;
+
+      <% if (@from + @per_page) < (@total_count) %>
+        <%= link_to 'Next', search_path(q: @query, from: (@from + @per_page), limit: @per_page), class: 'button' %>
+      <% end %>
+
+      <br />
+      <small><%= pluralize_with_delimiter(@total_count, 'result') %>
+        &bull; Page <%= (@from.to_f / @per_page).floor + 1 %> of
+        <%= (@total_count.to_f / @per_page).ceil %>
+      </small>
+    </div>
+    <div class="four columns">&nbsp;</div>
+  </div>
+
+
+<% else %>
+  <p>No results %>
+<% end %>
+
+

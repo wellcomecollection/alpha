@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :search, only: 'show', controller: 'search'
+
   resources :subjects, only: ['show'], controller: 'subjects_lookup'
 
   resources :things, only: ['show'], path: '', constraints: {id: /b[\dx]+/}
