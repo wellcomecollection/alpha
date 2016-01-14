@@ -23,7 +23,7 @@ class PeopleController < ApplicationController
 
     if @person.born_in
 
-      born_in_range = (@person.born_in - 4)..(@person.born_in + 4)
+      born_in_range = (@person.born_in - 10)..(@person.born_in + 10)
 
       @contemporaries = Person
         .where(born_in: born_in_range)
