@@ -79,7 +79,6 @@ small.dates {
 }
 
 .person-mini-portrait {
-	background-color: pink;
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -90,5 +89,5 @@ small.dates {
   margin-right: 10px;
 
   background-size: cover;
-/*  background-color: rgba(145, 184, 185, 0.5); */
+  background-color: rgba(145, 184, 185, 0.5);
 }
