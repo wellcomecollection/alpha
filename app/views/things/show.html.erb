@@ -52,7 +52,7 @@
   <% link_to record.title, thing_path(record) %>
 <% end.join(' / ').html_safe %>
 
-<h1><%= @thing.title %></h1>
+<h1><% if @thing.year %><%= @thing.year %>:<% end %> <%= @thing.title %></h1>
 
 <% if @thing.pdf_file %>
 
