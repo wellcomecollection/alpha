@@ -109,10 +109,12 @@ ul.results {
     height: 240px;
     width: 170px;
     background-color: #e4e7e1;
+   	overflow: hidden;
 }
 .cover {
-	overflow: hidden;
 	padding-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
 	text-align: center;
 	font-size: 0.825em;
 	line-height:1.75em;
