@@ -31,6 +31,10 @@
   background: black;
 }
 
+.count-bars .bar .box.highlighted {
+  background: gold;
+}
+
 .count-bars-labels {
   margin-top: 3px;
   margin-bottom: 20px;
