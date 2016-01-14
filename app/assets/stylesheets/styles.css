@@ -61,8 +61,8 @@ ul.results {
 	border-bottom: 1px dotted lightblue;
 }
 
-.subj-small-count { font-family: 'Helvetica Neue', sans-serif; font-size: 0.25em; color: #333; font-weight: normal; }
-.small-count { color: #333; font-weight: normal; }
+.subj-small-count { font-family: 'Helvetica Neue', sans-serif; font-size: 0.3em; font-weight: normal; }
+.small-count { font-weight: normal; }
 .people-list {margin-top: 40px;}
 
 /* Vis */
