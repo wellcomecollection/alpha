@@ -45,7 +45,9 @@ class Person < ActiveRecord::Base
 
   def wikipedia_sentences(number)
     wikipedia_intro.first(number).collect do |s|
-      s.gsub(/\[\d+\]/, '').gsub(/\s?\([^\)]+\)/, '')
+      s.gsub(/\[\d+\]/, '')                 # Remove Wikipedia references
+      .gsub(/\s?\([^\)]+\)/, '')            # Remove anything in parenthesis
+      .gsub(/\.\.+\z/, '.')                 # Remove extra full stops at the end of each sentence
     end.join(' ')
   end
 
