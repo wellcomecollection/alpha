@@ -1,6 +1,9 @@
 class LoggedInConstraint
   def matches?(request)
-    return true if request.session[:user_id]
+
+    # FIXME: This doesn't decrypt the cookie value, because
+    # cookies.encrypted[:user_id] doesn't work here.
+    return true if request.cookies['user_id']
   end
 end
 
