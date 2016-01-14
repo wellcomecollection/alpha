@@ -48,8 +48,12 @@
     <% end %>
 
     <h1>
-    	<%= @subject.label %>
-		<span class="subj-small-count"><%= pluralize_with_delimiter(@subject.records_count, 'thing') %> at Wellcome Library</span>  
+      <% if @year.present? %>
+        <%= link_to @subject.label, subject_path(@subject) %> / <%= @year %>
+      <% else %>
+        <%= @subject.label %>
+        <span class="subj-small-count"><%= pluralize_with_delimiter(@subject.records_count, 'thing') %> at Wellcome Library</span>
+      <% end %>
     </h1>
   </div>  
 </div>
