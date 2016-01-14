@@ -63,7 +63,12 @@
   visibility: visible;
 }
 
-.count-bars-labels .label.always-show span {
+.count-bars-labels .label.always-show span, .count-bars-labels .label.highlighted span {
   visibility: visible;
   z-index: 1;
+}
+
+.count-bars-labels .label.highlighted span {
+  color: black;
+  background: gold;
 }

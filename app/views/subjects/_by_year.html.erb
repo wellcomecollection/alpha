@@ -31,7 +31,7 @@ end
 
       <div class="count-bars-labels">
         <% real_years.first[0].upto(real_years.last[0]).each_with_index do |year, index| %>
-          <div class="label <%= 'always-show' if index == 0 || year == real_years.last[0] || year == highlighted_year %>"><span><%= year %></span></div>
+          <div class="label <%= 'always-show' if index == 0 || year == real_years.last[0] %> <%= 'highlighted' if year == highlighted_year %>"><span><%= year %></span></div>
         <% end %>
       </div>
     </div>
