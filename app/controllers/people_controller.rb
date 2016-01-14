@@ -27,9 +27,14 @@ class PeopleController < ApplicationController
 
       born_in_range = (@person.born_in - 10)..(@person.born_in + 10)
 
+      subject_ids = Tagging.select(:subject_id).where("record_id IN (#{record_ids.to_sql})")
+      subject_record_ids = Tagging.select(:record_id).where("subject_id IN (#{subject_ids.to_sql})")
+      subject_people_ids = Creator.select(:person_id).where("record_id IN (#{subject_record_ids.to_sql})")
+
       @contemporaries = Person
         .where(born_in: born_in_range)
         .where.not(id: @person.id)
+        .where("id IN (#{subject_people_ids.to_sql})")
         .order('records_count desc')
         .limit(10)
 
