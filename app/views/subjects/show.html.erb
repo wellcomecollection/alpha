@@ -154,12 +154,10 @@
   </div>
   <div class="three columns">
 	<div class="lil-vis">
-    <% if @year.blank? %>
-      <div class="digitised">
-        <div class="percent-done" style="width: <%= (100 * @subject.digitized_records_count.to_f / @records_count) %>%;">&nbsp;</div>
-      </div>
-      <%= percentage_with_varying_accuracy(@subject.digitized_records_count.to_f / @records_count) %>  digitised
-    <% end %>
+    <div class="digitised">
+      <div class="percent-done" style="width: <%= (100 * @digitized_records_count.to_f / @records_count) %>%;">&nbsp;</div>
+    </div>
+    <%= percentage_with_varying_accuracy(@digitized_records_count.to_f / @records_count) %>  digitised
 	</div>
   </div>
 </div>

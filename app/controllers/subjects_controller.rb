@@ -81,8 +81,10 @@ class SubjectsController < ApplicationController
 
     if @year.present?
       @records_count = @year_counts[@year] || 0
+      @digitized_records_count = @subject.records.where(year: @year, digitized: true).count
     else
       @records_count = @subject.records_count
+      @digitized_records_count = @subject.digitized_records_count
     end
 
     @trees = []
