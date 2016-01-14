@@ -1,3 +1,5 @@
+require 'open-uri'
+
 include ActionView::Helpers::DateHelper
 namespace :records do
 
@@ -36,12 +38,27 @@ namespace :records do
 
 
   desc 'Download packages'
-  task download_packages: :environment do
+  task queue_download_package_job_for_newly_digitized_things: :environment do
     $stdout.sync = true
 
-    ActiveRecord::Base.uncached do
-      Record.download_packages!
+    response = open("http://wellcomelibrary.org/resource/collections/access/all-open/")
+
+    regex = /\<http\:\/\/wellcomelibrary\.org\/data\/(b[0-9x]+)\>/
+
+    identifiers = response.read.scan(regex).flatten
+
+    puts "#{identifiers.length} records have been digitized (with open access)"
+
+    records = Record
+      .select(:id)
+      .where(identifier: identifiers, digitized: false)
+
+    puts "Of those, #{records.length} weren't digitized in our database, so queuing those."
+
+    records.each do |record|
+      DownloadPackageJob.perform_later record
     end
+
   end
 
   task update_creators_count: :environment do
