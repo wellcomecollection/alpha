@@ -57,11 +57,11 @@
           <small><%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/#{@person.identifiers['wikipedia_en']}" %></small>
         <% end %>
 
-	<% if logged_in_as_admin? %>
-        <% if @person.identifiers['loc'].nil? %>
-          We didn't find a Library of Congress identifier for this author in the database, so we couldn't connect to Wikipedia.
-        <% end %>
-    <% end %>
+		<% if logged_in_as_admin? %>
+			<% if @person.identifiers['loc'].nil? %>
+			  We didn't find a Library of Congress identifier for this author in the database, so we couldn't connect to Wikipedia.
+			<% end %>
+		<% end %>
       </p>
 
     <% if @person.wellcome_intro %>

@@ -5,7 +5,7 @@ button.link { color: #005870; background-color: white; padding: 2px; text-decora
 body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
 h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; }
 h1, h2 { line-height: 1.25em;}
-small { font-size: 0.75em; color: #666;}
+small { font-size: 0.75em; color: #333;}
 code { font-family: monospace; font-size: 1.25em;}
 
 
@@ -61,8 +61,8 @@ ul.results {
 	border-bottom: 1px dotted lightblue;
 }
 
-.subj-small-count { font-family: 'Helvetica Neue', sans-serif; font-size: 0.25em; color: #666; font-weight: normal; }
-.small-count { color: #666; font-weight: normal; }
+.subj-small-count { font-family: 'Helvetica Neue', sans-serif; font-size: 0.25em; color: #333; font-weight: normal; }
+.small-count { color: #333; font-weight: normal; }
 .people-list {margin-top: 40px;}
 
 /* Vis */
@@ -129,7 +129,7 @@ ul.results {
 .breathe { margin-top: 15px; margin-bottom: 15px;}
 .search-result {}
 .search-result h5 { margin-bottom: 5px;}
-.search-result small { color: #666;}
+.search-result small { }
 
 /* Nav */
 
