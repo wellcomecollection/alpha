@@ -1,11 +1,11 @@
 .count-bars {
   border-bottom: 4px solid white;
+  margin-top: -20px;
 }
 .count-bars, .count-bars-labels {
   display: table;
   width: 100%;
 }
-
 .count-bars .bar {
   display: table-cell;
   vertical-align: bottom;
@@ -39,7 +39,7 @@
 
 .count-bars-labels {
   margin-top: 3px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .count-bars-labels .label {
