@@ -63,4 +63,5 @@
 
 .count-bars-labels .label.always-show span {
   visibility: visible;
+  z-index: -1;
 }
