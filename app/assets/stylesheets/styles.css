@@ -61,7 +61,8 @@ ul.results {
 	border-bottom: 1px dotted lightblue;
 }
 
-.small-count { font-family: 'Helvetica Neue', sans-serif; font-size: 0.25em; color: #666; font-weight: normal; }
+.subj-small-count { font-family: 'Helvetica Neue', sans-serif; font-size: 0.25em; color: #666; font-weight: normal; }
+.small-count { color: #666; font-weight: normal; }
 
 /* Vis */
 
@@ -163,9 +164,7 @@ ul.results {
   padding-bottom: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.nerds { clear: both; margin-top: 30px;}
-.nerds h5 {padding-top:5px;}
-.nerds td { font-family:monospace; }
+.nerds td, .nerds th { font-family:monospace; }
 .footer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-top: 1px solid #ddd;

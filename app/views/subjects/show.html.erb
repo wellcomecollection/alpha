@@ -49,7 +49,7 @@
 
     <h1>
     	<%= @subject.label %>
-		<span class="small-count"><%= pluralize(@subject.records_count, 'thing') %> at Wellcome Library</span>  
+		<span class="subj-small-count"><%= pluralize(@subject.records_count, 'thing') %> at Wellcome Library</span>  
     </h1>
   </div>  
 </div>
@@ -171,22 +171,28 @@
 <% end %>
 
 <br clear="all" />
-<div class="row nerds" style="clear: both;">
-  <div class="three columns">
-    <h5>Data & IDs</h5>
-    
-<% if @subject.identifiers.length > 0 %>
-    <p>We've collected identifiers for <%= @subject.label %> from other catalogues around the world.</p>
-<% end %>
-    <p>Download a <%= link_to "JSON view", subject_path(@subject, format: :json) %>.</p>
-  </div>
+<br clear="all" />
+<br clear="all" />
+<hr />
+
+<h5><%= @subject.label %> Links & Metadata</h5>
+<div class="row">
   <div class="nine columns">
-    <table width="100%">
-      <% @subject.identifiers.each_pair do |key, value| %>
-        <tr>
-          <td><%= key %></td>
-          <td><%= value %></td>
-      <% end %>
-    </table>
+	<h6>Links to other catalogues</h6>
+	<table class="nerds" width="100%">
+		<th width="33%">Catalogue</th>
+		<th>ID</th>
+	  <% @subject.identifiers.each_pair do |key, value| %>
+	    <tr>
+	      <td><%= key %></td>
+	      <td class="person-url"><%= value %></td>
+	  <% end %>
+	</table>
   </div>
+  <div class="three columns">
+    <h6>Wellcome Library</h6>
+    <ul>
+    	<li><%= link_to "JSON file", subject_path(@subject, format: :json) %></li>
+    </ul>
+  </div>	
 </div>

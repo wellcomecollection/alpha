@@ -36,8 +36,7 @@
 	</div>
 	<% end %>
     <h1>
-    	<%= @person.name %>   
-    	<span class="small-count"><%= pluralize(@person.records_count, 'thing') %> at Wellcome Library</span>  
+    	<%= @person.name %>    
 	</h1>
 
 	<% if logged_in_as_admin? %>
@@ -47,9 +46,10 @@
 	<% end %>  
 
     <% if @person.born_in || @person.died_in %>
-      <div class="dates"><%= @person.born_in %>-<%= @person.died_in %></div>
+      <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &bull;
     <% end %>
-
+	  <span class="small-count"><%= pluralize(@person.records_count, 'thing') %> at Wellcome Library</span> 
+	
       <p>
         <%= render 'wikipedia_intro', person: @person %>
 
@@ -207,11 +207,16 @@
 
 <br clear="all" />
 <br clear="all" />
+<br clear="all" />
+<hr />
 
-<h5><%= @person.name %> in other catalogues</h5>
-<div class="row nerds" style="clear: both;">
+<h5><%= @person.name %> Links & Metadata</h5>
+<div class="row">
   <div class="nine columns">
-	<table width="100%">
+	<h6>Links to other catalogues</h6>
+	<table class="nerds" width="100%">
+		<th width="33%">Catalogue</th>
+		<th>ID</th>	
 	  <% @person.identifiers.each_pair do |key, value| %>
 	    <tr>
 	      <td><%= key %></td>
@@ -220,6 +225,9 @@
 	</table>
   </div>
   <div class="three columns">
-    <p>You can also download a <%= link_to ".JSON", person_path(@person, format: :json) %> version of this Wellcome Library record.</p>
+    <h6>Wellcome Library Metadata</h6>
+    <ul>
+    	<li><%= link_to "JSON file", person_path(@person, format: :json) %></li>
+    </ul>
   </div>	
 </div>
