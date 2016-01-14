@@ -79,6 +79,12 @@ class SubjectsController < ApplicationController
       .sort
       .to_h
 
+    if @year.present?
+      @records_count = @year_counts[@year] || 0
+    else
+      @records_count = @subject.records_count
+    end
+
     @trees = []
 
     @narrower_subjects = []
