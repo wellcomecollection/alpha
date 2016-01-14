@@ -21,7 +21,7 @@ module WellcomeLibrary
 
     config.active_job.queue_adapter = :sidekiq
 
-    config.session_store :cookie_store, key: '_wellcomelibrary_alpha'
+    config.session_store :disabled
 
     config.serve_static_files = true
 

@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
 
   def new
-    reset_session
+    cookies.delete(:user_id)
   end
 
   def create
 
     user = User.find_by(email: params[:email])
     if user.try(:authenticate, params[:password])
-      session[:user_id] = user.id
+      cookies.encrypted[:user_id] = {value: user.id, expires: 30.days.from_now}
       puts "Saving session as #{user.id}"
       redirect_to root_path
     else
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    cookies.delete(:user_id)
     redirect_to root_path
   end
 

@@ -1,6 +1,6 @@
 class LoggedInConstraint
   def matches?(request)
-    return true if request.session[:user_id]
+    request.cookie_jar.encrypted[:user_id].present?
   end
 end
 
