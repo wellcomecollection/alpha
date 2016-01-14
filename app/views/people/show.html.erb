@@ -140,6 +140,25 @@
 </div>
 
 <br clear="all" />
+<br clear="all" />
+
+<% if @contemporaries && @contemporaries.length > 0 %>
+
+  <h3>Contemporaries</h3>
+    <% @contemporaries.each do |author| %>
+  <div class="sm-circle">
+    <% if author.wikipedia_image %>
+      <% style = "background-image: url('#{author.wikipedia_image}');" %>
+    <% end %>
+    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(author.records_count, 'thing') %>
+    <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
+  </div>
+    <% end %>
+    
+<% end %>
+
+
+<br clear="all" />
 
 <!-- Gillray -->
 <% if @person.id == 27577 %>
@@ -172,23 +191,6 @@
       <% end %>
     </div>
   </div>
-<% end %>
-
-<br clear="all" />
-<br clear="all" />
-
-<% if @contemporaries && @contemporaries.length > 0 %>
-  <h3>Contemporaries</h3>
-    <% @contemporaries.each do |author| %>
-  <div class="sm-circle">
-    <% if author.wikipedia_image %>
-      <% style = "background-image: url('#{author.wikipedia_image}');" %>
-    <% end %>
-    <%= link_to author.name, author, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(author.records_count, 'thing') %>
-    <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
-  </div>
-    <% end %>
-
 <% end %>
 
 <br clear="all" />
