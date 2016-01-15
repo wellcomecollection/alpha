@@ -93,8 +93,9 @@
 	
 		<h5>Links</h5>
 		<ul>
-			<li><a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">View on Wellcome Library</a></li>
-			<li><a href="http://search.wellcomelibrary.org/iii/encore/record/C__R<%= @thing.identifier[0..-2] %>">Full catalogue record</a></li>
+			<li><a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">Open in the player</a></li>
+			<li><a href="http://search.wellcomelibrary.org/iii/encore/record/C__R<%= @thing.identifier[0..-2] %>">View detailed library catalogue record</a><br />
+			<small>You can request the book for reference, if you're a Wellcome Library member.</small></li>
 			<li><%= link_to "JSON data", thing_path(format: :json) %></li>
 		</ul>
 	</div>
