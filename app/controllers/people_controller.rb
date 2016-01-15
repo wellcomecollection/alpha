@@ -25,19 +25,72 @@ class PeopleController < ApplicationController
 
     if @person.born_in
 
-      born_in_range = (@person.born_in - 10)..(@person.born_in + 10)
+      client = Elasticsearch::Client.new
 
-      subject_ids = Tagging.select(:subject_id).where("record_id IN (#{record_ids.to_sql})")
-      subject_record_ids = Tagging.select(:record_id).where("subject_id IN (#{subject_ids.to_sql})")
-      subject_people_ids = Creator.select(:person_id).where("record_id IN (#{subject_record_ids.to_sql})")
+      results = client.search index: 'records',
+        size: 0,
+        body: {
+          query: {
+            match: {
+              person_ids: @person.id
+            }
+          },
+          aggs: {
+            subject_ids: {
+              terms: {
+                field: 'subject_ids',
+                size: 0
+              }
+            }
+          }
+        }
+      subject_ids = results['aggregations']['subject_ids']['buckets'].map { |bucket| bucket['key'] }
 
-      @contemporaries = Person
-        .where(born_in: born_in_range)
-        .where.not(id: @person.id)
-        .where("id IN (#{subject_people_ids.to_sql})")
-        .order('records_count desc')
-        .limit(10)
+      results = client.search index: 'people',
+        size: 0,
+        body: {
+          query: {
+            range: {
+              born_in: {
+                gte: @person.born_in - 10,
+                lte: @person.born_in + 10
+              }
+            }
+          },
+          aggs: {
+            person_ids: {
+              terms: {
+                field: 'id',
+                size: 1000
+              }
+            }
+          }
+        }
+      person_ids = results['aggregations']['person_ids']['buckets'].map { |bucket| bucket['key'].sub(/^P/, '').to_i } - [@person.id]
 
+      results = client.search index: 'records',
+        size: 0,
+        body: {
+          query: {
+            bool: {
+              must: [
+                { terms: { person_ids: person_ids } },
+                { terms: { subject_ids: subject_ids } }
+              ]
+            }
+          },
+          aggs: {
+            person_ids: {
+              terms: {
+                field: 'person_ids',
+                size: 10
+              }
+            }
+          }
+        }
+      subject_person_ids = results['aggregations']['person_ids']['buckets'].map { |bucket| bucket['key'] }
+
+      @contemporaries = Person.find(subject_person_ids).sort_by { |person| subject_person_ids.index(person.id) }
     end
 
     @publication_years = Record
