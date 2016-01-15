@@ -70,4 +70,29 @@ namespace :subjects do
 
   end
 
+
+  task fix_labels: :environment do
+
+    regex = /\A([^\(\)]+)(\([^\)]+\))([^\(\)]+)\z/
+
+    Subject.where("label LIKE '%(%'").find_each do |subject|
+
+      if subject.label =~ regex
+
+        match = subject.label.match(regex)
+
+        new_label = "#{match[1]} #{match[3]} #{match[2]}".squeeze(' ')
+
+        subject.all_labels << new_label unless subject.all_labels.include?(new_label)
+
+        subject.label = new_label
+
+        subject.save!
+
+      end
+
+    end
+
+  end
+
 end
