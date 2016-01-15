@@ -141,16 +141,21 @@ ul.results {
 .nav {
   color: #E1E1E1;
   padding-bottom: 10px;
-/*  padding-top: 10px; */
 }
 .logo { padding-left: 20px; }
+.logo img { width: 90% }
 .logo a {
-	text-decoration: none;
-	border: none;
 	background-color: #F0F1EC;
 }
+
+/* For devices smaller than 415px */
+@media (max-width: 415px) {
+  .logo img {
+    width: 120px;
+    padding: 0; }
+}
+
 .alpha-note {
-	margin-left: -18px;
 	margin-top:24px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

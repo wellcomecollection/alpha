@@ -12,12 +12,12 @@
   <div class="six columns">
     <h4>Interesting <a href="/people">People</a></h4>
 
-    <%= @people.collect {|person| link_to person.name, person}.to_sentence.html_safe %>
+    <p><%= @people.collect {|person| link_to person.name, person}.to_sentence.html_safe %></p>
   </div>
   <div class="six columns">
     <h4>Curious <a href="/subjects">Subjects</a></h4>
 
-    <%= @subjects.collect {|s| link_to s.label, s}.to_sentence.html_safe %>
+    <p><%= @subjects.collect {|s| link_to s.label, s}.to_sentence.html_safe %></p>
 
   </div>
 </div>
