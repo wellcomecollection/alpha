@@ -47,4 +47,5 @@ Rails.application.routes.draw do
 
   root 'home#show'
 
+  match '*any', via: :all, to: 'errors#not_found'
 end
