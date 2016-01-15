@@ -8,10 +8,42 @@ module ApplicationHelper
       "Library of Congress"
     when 'wkp'
       "Wikidata"
-    when 'wikipedia_en'
-      "English Wikipedia"
-    when 'wikipedia_de'
-      "German Wikipedia"
+    when 'mesh'
+      "Medical Subject Headings"
+    when 'bnf'
+      "Bibliothèque nationale de France"
+    when 'isni'
+      "International Standard Name Identifier"
+    when 'nta'
+      "Koninklijke Bibliotheek"
+    when 'dnb'
+      "Deutsche Nationalbibliothek"
+    when 'bav'
+      "Biblioteca Apostolica Vaticana"
+    when 'nla'
+      "National Library of Australia"
+    when 'n6i'
+      "National Library of Ireland"
+    when 'nli'
+      "National Library of Israel"  
+    when 'iccu'
+      "Istituto centrale per il Catalogo unico delle biblioteche italiane e per le informazioni bibliografiche"            
+	when 'viaf'
+	  "Virtual International Authority File"
+	when 'nukat'
+	  "Centrum NUKAT Biblioteki Uniwersyteckiej w Warszawie"
+	when 'ptbnp'
+	  "Biblioteca Nacional de Portugal"
+	when 'sudoc'
+	  "Système Universitaire de Documentation"
+	when 'selibr'
+	  "Kungliga biblioteket - Sveriges nationalbibliotek"
+	when 'nkc'
+	  "Národní knihovna České republiky"
+	when 'rero'
+	  "Réseau des bibliothèques de Suisse occidentale"
+	when 'lac'
+	  "Library and Archives Canada" 
     else
       key
     end

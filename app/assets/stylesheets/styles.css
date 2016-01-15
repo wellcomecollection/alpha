@@ -156,8 +156,15 @@ ul.results {
 }
 
 .alpha-note {
+	text-align: right;
 	margin-top:24px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* For devices smaller than 415px */
+@media (max-width: 415px) {
+  .alpha-note {
+	text-align: left;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 }
 .alpha-note span {
 	color: #ed3441;
