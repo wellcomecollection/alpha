@@ -55,7 +55,7 @@
       <% end %>
       <span class="subj-small-count"><a href="#things"><%= pluralize_with_delimiter(@records_count, 'thing') %></a> at Wellcome Library</span>
     </h1>
-  </div>  
+  </div>
 </div>
 
 <div class="row">
@@ -85,7 +85,7 @@
 	<div class="two columns right">
 		<%= link_to 'Edit intro?', subject_intro_path(@subject), {class: 'is-admin'} %>
 	</div>
-<% end %>	
+<% end %>
 </div>
 
 <br clear="all" />
@@ -149,19 +149,21 @@
 <br clear="all" />
 <a name="things" style="background-color:transparent"></a>
 
-<div class="row">
-  <div class="nine columns">
-    <h2><%= pluralize_with_delimiter(@records_count, 'thing') %></h2>
-  </div>
-  <div class="three columns">
-	<div class="lil-vis">
-    <div class="digitised">
-      <div class="percent-done" style="width: <%= (100 * @digitized_records_count.to_f / @records_count) %>%;">&nbsp;</div>
+<% if @records_count > 0 %>
+  <div class="row">
+    <div class="nine columns">
+      <h2><%= pluralize_with_delimiter(@records_count, 'thing') %></h2>
     </div>
-    <%= percentage_with_varying_accuracy(@digitized_records_count.to_f / @records_count) %>  digitised
-	</div>
+    <div class="three columns">
+  	<div class="lil-vis">
+      <div class="digitised">
+        <div class="percent-done" style="width: <%= (100 * @digitized_records_count.to_f / @records_count) %>%;">&nbsp;</div>
+      </div>
+      <%= percentage_with_varying_accuracy(@digitized_records_count.to_f / @records_count) %>  digitised
+  	</div>
+    </div>
   </div>
-</div>
+<% end %>
 
 <% @things.each do |thing| %>
   <div class="cover-box">
