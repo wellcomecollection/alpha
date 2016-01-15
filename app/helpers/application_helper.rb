@@ -52,6 +52,12 @@ module ApplicationHelper
 	  "Biblioteca Nacional de España"
 	when 'imagine'
 	  "מוזיאון ישראל"
+	when 'b2q'
+	  "Bibliothèque et Archives nationales du Québec"
+	when 'bnc'
+	  "Biblioteca de Catalunya"
+	when 'ndl'
+	  "国立国会図書館"  
     else
       key
     end
