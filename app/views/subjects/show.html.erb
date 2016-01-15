@@ -190,9 +190,20 @@
 		<th>ID</th>
 	  <% @subject.identifiers.each_pair do |key, value| %>
 	    <tr>
-	      <td><%= key %></td>
-	      <td class="person-url"><%= value %></td>
+	      <td><%= catalogue_name(key) %></td>
+	      <td class="person-url">
+
+          <% url = library_subject_link(key, value) %>
+
+          <% if url %>
+            <%= link_to value, url %>
+          <% else %>
+            <%= value %>
+          <% end %>
+        </td>
+	  </tr>
 	  <% end %>
+
 	</table>
   </div>
   <div class="three columns">

@@ -44,6 +44,14 @@ module ApplicationHelper
 	  "Réseau des bibliothèques de Suisse occidentale"
 	when 'lac'
 	  "Library and Archives Canada" 
+	when 'jpg'
+	  "Getty Research Institute"
+	when 'nlp'
+	  "Biblioteka Narodowa" 
+	when 'bne'
+	  "Biblioteca Nacional de España"
+	when 'imagine'
+	  "מוזיאון ישראל"
     else
       key
     end
@@ -56,14 +64,30 @@ module ApplicationHelper
     case key
     when 'viaf'
       "http://viaf.org/viaf/#{value}/"
+    when 'isni'
+      "http://isni.org/viaf/#{value}/"
     when 'loc'
       "http://id.loc.gov/authorities/names/#{value.gsub(/\s+/, '')}.html"
-    when 'bnf', 'dnb'
+    when 'bnf', 'dnb', 'imagine'
       value
     when 'wkp'
       "https://www.wikidata.org/wiki/#{value}"
     when /wikipedia_([a-z]{2})/
       "https://#{Regexp.last_match(1)}.wikipedia.org/wiki/#{value}"
+    else
+      nil
+    end
+
+
+  end
+
+  def library_subject_link(key, value)
+
+    case key
+    when 'loc'
+      "http://id.loc.gov/authorities/subjects/#{value.gsub(/\s+/, '')}.html"
+    when 'mesh'
+	  "https://wellcome-mesh-browser.herokuapp.com/#{value}"
     else
       nil
     end
