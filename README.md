@@ -57,3 +57,36 @@ The hostname, port, username and password should be set in an environmnent varia
 You should use version 1.7.*
 
 The hostname, username and password should be set in an environmnent variable called `ELASTICSEARCH_URL` (eg `https://user:pass@host`).
+
+
+## Ingesting MARC XML records
+
+If you are developing locally, it is probably best to import a copy of the live database (using the Postgres backup tools) rather than re-ingesting the MARC XML files (as this way your IDs will be consistent with the live site).
+
+However if starting from scratch, or if wanting to update the live website with new and updated MARC records, you can run the various ingest scripts.
+
+The main one is:
+
+`bundle exec rake ingest:records[filename]` - where `filename` is the name of a MARC XML file (including extension) located in your local `import` folder of the project.
+
+Note: This may take some time, depending on the file size.  You will also need to do this for each separate XML file.
+
+Once ingested, various other scripts may need to be run:
+
+`bundle exec rake people:queue_all_for_update_from_records` – this extracts author information from the records and creates People and Creator (join table) records.
+
+`bundle exec rake subjects:import_from_records` – this extracts subject information from the records and creates Subject and Tagging (join table) records.
+
+`bundle exec rake records:queue_download_package_job_for_newly_digitized_things` – this updates the digitized status of the records.
+
+`bundle exec rake people:get_identifiers` - this gets (other) identifiers for people using the servie VIAF
+
+`bundle exec rake people:queue_all_for_update_from_wikipedia` - this updates Wikipedia information (bio and photos) for people.
+
+### Updating ElasticSearch
+
+ElasticSearch currently can only be updated by deleting the indexes and re-importing all of the data. This can be done with:
+
+`bundle exec rake elasticsearch:people` – People data
+`bundle exec rake elasticsearch:subjects` – Subject data
+`bundle exec rake elasticsearch:records` – Record data
