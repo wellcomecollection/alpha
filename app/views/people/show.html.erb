@@ -48,8 +48,8 @@
     <% if @person.born_in || @person.died_in %>
       <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &nbsp;&bull;&nbsp; 
     <% end %>
-	  <span class="small-count"><%= pluralize_with_delimiter(@person.records_count, 'thing') %> at Wellcome Library</span> 
-	
+		<span class="small-count"><a href="#things"><%= pluralize_with_delimiter(@person.records_count, 'thing') %></a> at Wellcome Library</span> 
+
       <p>
         <%= render 'wikipedia_intro', person: @person %>
 
@@ -67,7 +67,8 @@
     <% if @person.wellcome_intro %>
       <p><%= @person.wellcome_intro %></p>
     <% end %>
-    
+    	  
+
   </div>
 </div>
 
@@ -165,7 +166,7 @@
   <%= render 'p27577.html' %>
 <% end %>
 
-<br clear="all" />
+<a name="things" style="background-color:transparent"></a>
 
 <div class="row">
   <div class="nine columns"><h2><%= pluralize_with_delimiter(@person.records_count, 'thing') %></h2></div>
