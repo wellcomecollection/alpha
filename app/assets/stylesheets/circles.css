@@ -68,6 +68,10 @@ small.dates {
 }
 
 .person-portrait {
+  max-width: 128px;
+}
+
+.person-portrait * {
 	width: 100%;
 	padding-bottom: 100%;
 	-webkit-border-radius: 50%;

@@ -2,4 +2,6 @@
   <% style = "background-image: url('#{person.wikipedia_image(150)}');" %>
 <% end %>
 
-<%= content_tag 'div', '', style: style, class: 'person-portrait' %>
+<%= content_tag 'div', class: 'person-portrait' do %>
+  <%= content_tag 'div', nil, style: style %>
+<% end %>
