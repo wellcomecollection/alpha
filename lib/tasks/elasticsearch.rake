@@ -45,7 +45,7 @@ namespace :elasticsearch do
     puts "Importing people into Elasticsearch…"
 
     Person.find_in_batches do |records|
-      puts "Importing records #{total + 1}–#{total + records.length}…"
+      puts "Importing people #{total + 1}–#{total + records.length}…"
       total = total + records.length
 
       body =
@@ -108,7 +108,7 @@ namespace :elasticsearch do
     puts "Importing subjects into Elasticsearch…"
 
     Subject.find_in_batches do |records|
-      puts "Importing records #{total + 1}–#{total + records.length}…"
+      puts "Importing subjects #{total + 1}–#{total + records.length}…"
       total = total + records.length
 
       body =
