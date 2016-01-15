@@ -8,7 +8,7 @@
 <hr />
 
 <% if @total_count.zero? %>
-  <p>Sorry, we couldn’t find anything.</p>
+  <p>Sorry, we couldn’t find anyone named <b><%= @name %></b>. Would you like to try <a href="/people/P2802">Henry Wellcome</a>?</p>
 <% else %>
   <ul class="results">
     <% @people.each do |person| %>

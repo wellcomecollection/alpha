@@ -7,7 +7,7 @@
 <hr />
 
 <% if @total_count.zero? %>
-  <p>Sorry, we couldn’t find anything.</p>
+  <p>Sorry, we couldn’t find any results for <b><%= @label %></b>. Are you a <a href="/subjects/S2300">cat</a> person or a <a href="/subjects/S4096">dog</a> person?</p>
 <% else %>
   <ul class="results">
     <% @subjects.each do |subject| %>
