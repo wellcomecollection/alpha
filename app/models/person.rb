@@ -59,7 +59,7 @@ class Person < ActiveRecord::Base
       self.wikipedia_intro = wikipedia_intro_paragraph
         .gsub(/\s?\([^\)]+\)/, '')                          # Remove anything in parenthesis
         .gsub(/\[(?:note\s)\d+\]/, '')                      # Remove Wikipedia references
-        .split(/(?<! [A-Z]\.)(?<=\.) +/)                    # Split into sentences (less crudely)
+        .split(/(?<! [A-Z]\.| Sgt\.)(?<=\.) +/)             # Split into sentences (less crudely)
 
       save!
     end
