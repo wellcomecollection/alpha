@@ -58,7 +58,7 @@ class SubjectsLookupController < ApplicationController
       body: {
         query: {
           match: {
-            label: {
+            all_labels: {
               query: label.downcase,
               operator: 'and'
             }

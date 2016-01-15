@@ -29,6 +29,7 @@ class Person < ActiveRecord::Base
 
     {
       name: name,
+      all_names: all_names,
       id: to_param,
       records_count: records_count,
       identifiers: identifiers,

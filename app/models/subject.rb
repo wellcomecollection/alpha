@@ -23,6 +23,7 @@ class Subject < ActiveRecord::Base
     {
       id: to_param,
       label: label,
+      all_labels: all_labels,
       records_count: records_count,
       identifiers: identifiers
     }

@@ -27,6 +27,7 @@ namespace :elasticsearch do
                   raw: {type: 'string', index: :not_analyzed }
                 }
               },
+              all_names: {type: 'string', analyzer: :english },
               id: {type: 'string', index: :not_analyzed},
               records_count: {type: 'integer'},
               identifiers: {type: 'object', index: :not_analyzed },
@@ -92,6 +93,7 @@ namespace :elasticsearch do
                   raw: {type: 'string', index: :not_analyzed }
                 }
               },
+              all_labels: {type: 'string', analyzer: :english},
               id: {type: 'string', index: :not_analyzed},
               records_count: {type: 'integer'},
               identifiers: {type: 'object', index: :not_analyzed }

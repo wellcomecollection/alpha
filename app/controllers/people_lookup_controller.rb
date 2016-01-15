@@ -67,7 +67,7 @@ class PeopleLookupController < ApplicationController
       body: {
         query: {
           match: {
-            name: {
+            all_names: {
               query: name.downcase,
               operator: 'and'
             }
