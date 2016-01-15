@@ -36,19 +36,19 @@
 	</div>
 	<% end %>
     <h1>
-    	<%= @person.name %>    
+    	<%= @person.name %>
 	</h1>
 
 	<% if logged_in_as_admin? %>
 	<div style="float: right; margin-left: 20px; margin-bottom: 30px; ">
 	  <%= link_to 'Edit introduction', person_intro_path(@person), class: "is-admin" %>
 	</div>
-	<% end %>  
+	<% end %>
 
     <% if @person.born_in || @person.died_in %>
-      <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &nbsp;&bull;&nbsp; 
+      <span class="dates"><%= @person.born_in %>-<%= @person.died_in %></span> &nbsp;&bull;&nbsp;
     <% end %>
-		<span class="small-count"><a href="#things"><%= pluralize_with_delimiter(@person.records_count, 'thing') %></a> at Wellcome Library</span> 
+		<span class="small-count"><a href="#things"><%= pluralize_with_delimiter(@person.records_count, 'thing') %></a> at Wellcome Library</span>
 
       <p>
         <%= render 'wikipedia_intro', person: @person %>
@@ -67,7 +67,7 @@
     <% if @person.wellcome_intro %>
       <p><%= @person.wellcome_intro %></p>
     <% end %>
-    	  
+
 
   </div>
 </div>
@@ -80,7 +80,7 @@
 <% else %>
 	<div class="offset-by-two eight columns">
 <% end %>
-   		   		
+
    		<h4>Subjects</h4>
 
       <% if @top_subjects_written_about.length > 0 %>
@@ -92,7 +92,7 @@
       <% else %>
 		<p class="nogo">We couldn't find any.</p>
       <% end %>
-      
+
 
 		<h4>Publishing timeline</h4>
 
@@ -135,7 +135,7 @@
 		<% if logged_in_as_admin? %>
 			<%= link_to (@person.editorial ? 'Edit' : 'Add editorial'), person_editorial_path(@person), {class: 'is-admin'} %>
 		<% end %>
-	</div>	
+	</div>
 <% end %>
 
 </div>
@@ -155,7 +155,7 @@
     <%= link_to author.name, author, class: 'sm-name', title: pluralize_with_delimiter(author.records_count, 'thing') %>
   </div>
     <% end %>
-    
+
 <% end %>
 
 
@@ -204,11 +204,20 @@
 	<h6>Links to other catalogues</h6>
 	<table class="nerds" width="100%">
 		<th width="33%">Catalogue</th>
-		<th>ID</th>	
+		<th>ID</th>
 	  <% @person.identifiers.each_pair do |key, value| %>
 	    <tr>
-	      <td><%= key %></td>
-	      <td class="person-url"><%= value %></td>
+	      <td><%= catalogue_name(key) %></td>
+	      <td class="person-url">
+
+          <% url = library_person_link(key, value) %>
+
+          <% if url %>
+            <%= link_to value, url %>
+          <% else %>
+            <%= value %>
+          <% end %>
+        </td>
 	  <% end %>
 	</table>
   </div>
@@ -217,5 +226,5 @@
     <ul>
     	<li><%= link_to "JSON file", person_path(@person, format: :json) %></li>
     </ul>
-  </div>	
+  </div>
 </div>
