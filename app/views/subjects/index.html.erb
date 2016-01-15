@@ -26,15 +26,16 @@
       <% elsif subject.description %>
     			<%= truncate(subject.description, length: 100, separator: ' ') %>
     			<br>
-    	<% end %>
+      <% end %>
 
-  	<small>
-  		<%= number_with_delimiter(subject.digitized_records_count) %>
-  		of
-  		<%= number_with_delimiter(subject.records_count) %>
-  		things digitised
-  	</small>
-  </p>
+		<small>
+			<%= number_with_delimiter(subject.digitized_records_count) %>
+			of
+			<%= number_with_delimiter(subject.records_count) %>
+			things digitised
+		</small>
+  		</p>
+
 <% end %>
 	</div>
 <% end %>

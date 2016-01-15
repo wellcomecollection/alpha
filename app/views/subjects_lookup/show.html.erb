@@ -11,13 +11,12 @@
     <li>
       <%= link_to subject.label, subject %>
 
+	<% if subject.records_count > 0 %>
 		<small>
-		<%= pluralize_with_delimiter(subject.records_count, 'thing') %>,
-
-    <% if subject.records_count > 0 %>
-		  <%= number_to_human(100 * subject.digitized_records_count.to_f / subject.records_count) %>%	digitised
-    <% end %>
+		<%= pluralize_with_delimiter(subject.records_count, 'thing') %>, 
+        <%= number_to_human(100 * subject.digitized_records_count.to_f / subject.records_count) %>%	digitised
 		</small>
+    <% end %>
 
 		</li>
   <% end %>
