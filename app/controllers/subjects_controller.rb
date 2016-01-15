@@ -26,9 +26,18 @@ class SubjectsController < ApplicationController
     @subject = Subject.find(id)
 
     @things = @subject.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
-      .order('digitized desc')
+      .where(digitized: true)
       .limit(100)
     @things = @things.where(year: @year) if @year.present?
+
+    if @things.length < 100
+      more_things = @subject.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
+        .where(digitized: false)
+        .limit(100 - @things.length)
+      more_things = more_things.where(year: @year) if @year.present?
+
+      @things = @things.to_a + more_things.to_a
+    end
 
     subselect =
       if @year.present?
