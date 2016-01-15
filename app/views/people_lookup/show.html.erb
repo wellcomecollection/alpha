@@ -7,50 +7,56 @@
 
 <hr />
 
-<ul class="results">
-  <% @people.each do |person| %>
-    <li>
+<% if @total_count.zero? %>
+  <p>Sorry, we couldn’t find anything.</p>
+<% else %>
+  <ul class="results">
+    <% @people.each do |person| %>
+      <li>
 
-      <%= link_to person, class: 'portrait' do %>
-        <% if person.wikipedia_image %>
-          <div class="person-mini-portrait" style="background-image: url('<%=  person.wikipedia_image %>');"></div>
-        <% else %>
-          <div class="person-mini-portrait">&nbsp;</div>
+        <%= link_to person, class: 'portrait' do %>
+          <% if person.wikipedia_image %>
+            <div class="person-mini-portrait" style="background-image: url('<%=  person.wikipedia_image %>');"></div>
+          <% else %>
+            <div class="person-mini-portrait">&nbsp;</div>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <%= link_to person.name, person %>
-      <% if person.born_in || person.died_in %>
-        <span class="dates">&bull; <%= person.born_in %>-<%= person.died_in %></span>
-      <% end %>
+        <%= link_to person.name, person %>
+        <% if person.born_in || person.died_in %>
+          <span class="dates">&bull; <%= person.born_in %>-<%= person.died_in %></span>
+        <% end %>
 
-      <small><%= pluralize_with_delimiter(person.records_count, 'thing') %></small>
+        <small><%= pluralize_with_delimiter(person.records_count, 'thing') %></small>
 
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <!-- Pagination -->
 
-<div class="row pagination">
-  <div class="four columns">&nbsp;</div>
-  <div class="four columns center">
+<% unless @total_count.zero? %>
+  <div class="row pagination">
+    <div class="four columns">&nbsp;</div>
+    <div class="four columns center">
 
-    <% if @from > 0 %>
-      <%= link_to "Previous", people_lookup_index_path(name: @name, from: (@from - @per_page), limit: @per_page), class: 'button' %>
-    <% end %>
+      <% if @from > 0 %>
+        <%= link_to "Previous", people_lookup_index_path(name: @name, from: (@from - @per_page), limit: @per_page), class: 'button' %>
+      <% end %>
 
-      &nbsp;&nbsp;
+        &nbsp;&nbsp;
 
-    <% if (@from + @per_page) < (@total_count) %>
-      <%= link_to 'Next', people_lookup_index_path(name: @name, from: (@from + @per_page), limit: @per_page), class: 'button' %>
-    <% end %>
+      <% if (@from + @per_page) < (@total_count) %>
+        <%= link_to 'Next', people_lookup_index_path(name: @name, from: (@from + @per_page), limit: @per_page), class: 'button' %>
+      <% end %>
 
-    <br />
-    <small><%= pluralize_with_delimiter(@total_count, 'result') %>
-      &bull; Page <%= (@from.to_f / @per_page).floor + 1 %> of
-      <%= (@total_count.to_f / @per_page).ceil %>
-    </small>
+      <br />
+      <small><%= pluralize_with_delimiter(@total_count, 'result') %>
+        &bull; Page <%= (@from.to_f / @per_page).floor + 1 %> of
+        <%= (@total_count.to_f / @per_page).ceil %>
+      </small>
+    </div>
+    <div class="four columns">&nbsp;</div>
   </div>
-  <div class="four columns">&nbsp;</div>
-</div>
+<% end %>
