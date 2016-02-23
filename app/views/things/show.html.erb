@@ -94,7 +94,7 @@
 		<h5>Links</h5>
 		<ul>
       <% if @thing.digitized? %>
-        <li><a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">Open in the player</a></li>
+        <li><a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">Open in deep-zoom viewer</a></li>
       <% end %>
 			<li><a href="http://search.wellcomelibrary.org/iii/encore/record/C__R<%= @thing.identifier[0..-2] %>">View detailed library catalogue record</a><br />
 			<small>You can request the book for reference, if you're a Wellcome Library member.</small></li>
