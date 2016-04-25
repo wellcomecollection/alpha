@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425143042) do
+ActiveRecord::Schema.define(version: 20160425150048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160425143042) do
     t.text    "sample_images",                                    array: true
     t.text    "dig_code"
     t.integer "digitized_records_count", default: 0, null: false
+    t.text    "description"
   end
 
   add_index "collections", ["dig_code"], name: "index_collections_on_dig_code", unique: true, using: :btree

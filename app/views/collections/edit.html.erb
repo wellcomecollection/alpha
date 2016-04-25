@@ -1,0 +1,22 @@
+<%= form_for @collection do |form| %>
+
+  <div>
+    <div>
+    <%= form.label :name, "Collection name" %>
+    <%= form.text_field :name %>
+    </div>
+
+    <% if @collection.dig_code %>
+      <div>
+        DIG code: <%= @collection.dig_code %>
+      </div>
+    <% end %>
+
+    <div>
+    <%= form.label :description, "Editorial Description" %>
+    <%= form.text_area :description %>
+    </div>
+
+  </div>
+  <button type="submit">SAVE</button>
+<% end %>
