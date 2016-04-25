@@ -7,11 +7,11 @@ class UpdateTypesFromMetadataJob < ActiveJob::Base
 
     genres.each do |genre|
 
-      genre_name = genre['a'].gsub(/\.\z/, '')
+      genre_name = genre['a'].to_s.gsub(/\.\z/, '')
 
       genre_reference = genre_name.downcase
 
-      if genre_name
+      if !genre_name.blank?
 
         type = Type.find_by_reference(genre_reference) || Type.create!(references: [genre_reference], name: genre_name)
 
