@@ -3,7 +3,7 @@ class CollectionsController < ApplicationController
   before_filter :authorize, except: ['show', 'index']
 
   def index
-    @collections = Collection.all
+    @collections = Collection.order(:records_count).reverse_order
   end
 
   def show
