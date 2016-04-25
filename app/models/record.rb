@@ -9,6 +9,9 @@ class Record < ActiveRecord::Base
   has_many :record_types, dependent: :destroy
   has_many :types, through: :record_types
 
+  has_many :collection_memberships, dependent: :destroy
+  has_many :collections, through: :collection_memberships
+
   scope :digitized, -> { where(digitized: true) }
 
   before_save :set_cover_image_uris, :set_pdf_thumbnail_url

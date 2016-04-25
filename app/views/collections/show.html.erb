@@ -1,0 +1,10 @@
+<% content_for :title, @collection.name %>
+
+<h1><%= @collection.name %></h1>
+
+
+<ul>
+  <% @records.each do |record| %>
+    <li><%= link_to record.title, thing_path(record) %></li>
+  <% end %>
+</ul>

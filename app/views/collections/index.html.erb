@@ -1,2 +1,19 @@
 <% content_for :title, "Collections" %>
+
 <h1>Collections</h1>
+
+<ul>
+  <% @collections.each do |collection| %>
+    <li>
+      <%= link_to collection.name, collection %>
+
+      <small>
+        <%= number_with_delimiter(collection.digitized_records_count) %>
+        of
+        <%= number_with_delimiter(collection.records_count) %>
+        things digitised
+      </small>
+
+    </li>
+  <% end %>
+</ul>
