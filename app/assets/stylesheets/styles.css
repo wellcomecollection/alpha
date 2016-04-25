@@ -181,6 +181,12 @@ ul.results {
   padding-bottom: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.admin-nav {
+  border-bottom: 1px solid #ddd;
+  margin-top: -20px;  
+  margin-bottom: 20px;  
+}
+
 .nerds td, .nerds th { font-family:monospace; }
 .footer {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
