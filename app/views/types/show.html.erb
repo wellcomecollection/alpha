@@ -11,9 +11,9 @@
   	little digitisation bar graph
   	<div class="lil-vis">
       <div class="digitised">
-        <div class="percent-done" style="width: ;">&nbsp;</div>
+        <div class="percent-done" style="width: <%= (100 * @type.digitized_records_count.to_f / @type.records_count) %>%;">&nbsp;</div>
       </div>
-       digitised
+      <%= percentage_with_varying_accuracy(@type.digitized_records_count.to_f / @type.records_count) %>  digitised
   	</div>
     </div>
   </div>
