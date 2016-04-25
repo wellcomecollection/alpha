@@ -8,7 +8,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
-    @records = @collection.records.order(:title).limit(500)
+    @records = @collection.records.order('digitized desc', :title).limit(500)
   end
 
   def edit
