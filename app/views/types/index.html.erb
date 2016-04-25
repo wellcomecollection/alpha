@@ -1,0 +1,15 @@
+<h1>Types of things</h1>
+
+<ul>
+  <% @types.each do |type| %>
+    <li><%= link_to type.name, type %>
+
+      <small>
+        <%= number_with_delimiter(type.digitized_records_count) %>
+        of
+        <%= number_with_delimiter(type.records_count) %>
+        things digitised
+      </small>
+    </li>
+  <% end %>
+</ul>
