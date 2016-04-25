@@ -35,13 +35,12 @@
 
 <% end %>
 
+<% if @thing.collections.size > 0 %>
+  Part of <%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>, 
+<% end %>
 <%= @thing.archives_tree.collect do |record|  %>
   <% link_to record.title, thing_path(record) %>
 <% end.join(' / ').html_safe %>
-
-<% if @thing.collections.size > 0 %>
-  <p>Part of the <%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %> collection.</p>
-<% end %>
 
 <% if @thing.people.length > 0 %>
   <div class="row author">
