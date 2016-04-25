@@ -30,7 +30,6 @@
   <a name="top" style="background-color:transparent;"></a>
   <div class="container">
     <div class="row nav">
-
     	<div class="three columns logo"><a href="/" alt="wellcome logo"><%= image_tag "logo-wellcome-library.svg" %></a></div>
       	<div class="offset-by-five four columns alpha-note">
       		<p><span>This is an "alpha".</span> <a href="/about">Find out more</a>?</p>
@@ -43,19 +42,24 @@
         	<a href="/subjects">Subjects</a>&nbsp;&nbsp;
         	<a href="/collections">Collections</a>&nbsp;&nbsp;
         	<a href="/types">Types of Thing</a>
+		<% if !logged_in_as_admin? %>
+          &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
+        <% end %>
+      	</div>
+    </div>
 
-        <% if current_user %>
+	<% if logged_in_as_admin? %>
+    <div class="row subnav">
+      	<div class="twelve columns">
           &nbsp;&nbsp;&nbsp; Aloha, <span class="is-admin">Editor</span>
           &nbsp;&bull;&nbsp;
           <%= link_to "Recent changes", recent_changes_path, class: 'is-admin' %>
           <%= link_to "Editors", users_path, class: 'is-admin' %>
           &nbsp;&bull;&nbsp;          
           <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
-        <% else %>
-          &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
-        <% end %>
       	</div>
     </div>
+	<% end %>
 
 
 <%= yield %>
