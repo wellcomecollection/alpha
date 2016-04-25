@@ -1,3 +1,5 @@
+<% content_for :title, @type.name %>
+
 <h1><%= @type.name %></h1>
 
 <p><%= pluralize_with_delimiter(@type.records_count, 'record') %></p>
