@@ -8,10 +8,6 @@ h1, h2 { line-height: 1.25em;}
 small { font-size: 0.75em; color: #333;}
 code { font-family: monospace; font-size: 1.25em;}
 
-is-admin-row a {
-	background-color: #ffce00;
-	padding: 3px;
-}
 .is-admin {
 	background-color: #ffce00;
 	padding: 3px;
