@@ -1,7 +1,7 @@
 <% content_for :title, "Editors" %>
 <h1>Editors</h1>
 
-<%= link_to 'Add Editor', new_user_path %>
+<%= link_to 'Add Editor', new_user_path, {class: 'is-admin'} %>
 
 <table width="100%">
   <% @users.each do |user| %>
