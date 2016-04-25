@@ -17,7 +17,7 @@ button.is-admin {
 	padding: 5px; 
 	background-color: #ffce00; 
 	border: 0; 
-/*	font-weight: bold; */
+	font-weight: normal;
 /*	height: 29px;  */
 /*	width: 29px;  */
 	line-height: 1em;
