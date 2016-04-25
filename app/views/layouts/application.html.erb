@@ -56,6 +56,16 @@
         <% end %>
       	</div>
     </div>
+    <% if logged_in_as_admin %>
+
+    <div class="row subnav">
+      	<div class="twelve columns">
+      		admin row
+		</div>
+	</div>
+	
+	<% end %>
+
 
 <%= yield %>
 
