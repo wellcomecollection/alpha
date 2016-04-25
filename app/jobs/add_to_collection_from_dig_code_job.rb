@@ -1,32 +1,32 @@
 class AddToCollectionFromDigCodeJob < ActiveJob::Base
   queue_as :default
 
-  def perform(record)
+  DIG_CODES = {
+    'diggentics' => 'Genetics',
+    'digukmhl' => '',
+    'digmhl(nlm)' => '',
+    'digrecipe' => 'Recipes',
+    'digtdnet' => '',
+    'digmoh' => 'Ministry of Health reports',
+    'digmhl(francis)' => '',
+    'digmhl(cushing)' => '',
+    'dig19th' => '',
+    'digglasgow' => '',
+    'digaids' => '',
+    'digmhl(columbia)' => '',
+    'digmhl(gerstein)' => '',
+    'digucl(ophta)' => '',
+    'digramc' => '',
+    'diglshtm' => '',
+    'digfilm' => '',
+    'digarabic' => '',
+    'digasylum' => '',
+    'digrcpe' => '',
+    'digthomson' => '',
+    'digleeds' => '',
+  }
 
-    DIG_CODES = {
-      'diggentics' => 'Genetics',
-      'digukmhl' => '',
-      'digmhl(nlm)' => '',
-      'digrecipe' => 'Recipes',
-      'digtdnet' => '',
-      'digmoh' => 'Ministry of Health reports',
-      'digmhl(francis)' => '',
-      'digmhl(cushing)' => '',
-      'dig19th' => '',
-      'digglasgow' => '',
-      'digaids' => '',
-      'digmhl(columbia)' => '',
-      'digmhl(gerstein)' => '',
-      'digucl(ophta)' => '',
-      'digramc' => '',
-      'diglshtm' => '',
-      'digfilm' => '',
-      'digarabic' => '',
-      'digasylum' => '',
-      'digrcpe' => '',
-      'digthomson' => '',
-      'digleeds' => '',
-    }
+  def perform(record)
 
     local_codes = record.metadata.fetch('759', []).map {|field| field['a'].to_s.strip }
 
