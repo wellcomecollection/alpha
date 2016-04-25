@@ -8,7 +8,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
-    @records = @collection.records.limit(100)
+    @records = @collection.records.order(:title).limit(500)
   end
 
   def edit
