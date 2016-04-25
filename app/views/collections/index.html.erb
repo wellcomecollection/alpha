@@ -2,19 +2,17 @@
 
 <h1>Collections</h1>
 
+<ol>
 <% @collections.each do |collection| %>
-    <h2><%= link_to collection.name, collection %></h2>
-
-    <% if collection.description %>
-      <p><%= collection.description %></p>
-    <% end %>
-
-    <small>
-      <%= number_with_delimiter(collection.digitized_records_count) %>
-      of
-      <%= number_with_delimiter(collection.records_count) %>
-      things digitised
-    </small>
-
-  </li>
+    <li>
+    	<%= link_to collection.name, collection %>
+		<% if collection.description %>
+		  <br /><%= collection.description %>
+		<% end %>
+		  <%= number_with_delimiter(collection.digitized_records_count) %>
+		  of
+		  <%= number_with_delimiter(collection.records_count) %>
+		  things digitised
+    </li>
 <% end %>
+</ol>
