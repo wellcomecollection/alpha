@@ -1,0 +1,22 @@
+<% content_for :title, "Collections" %>
+<h1>Collections</h1>
+
+<h2>Edit DIG codes</h2>
+
+<form>
+	<table width="100%">
+		<tr>
+			<th>DIG code</th>
+			<th>Human-readable version</th>
+			<th>Display on alpha?</th>
+		</tr>	  
+	<% @collections.each do |collection| %>
+		<tr>
+			<td><input type="text" name="digcode" /></td>
+			<td><input type="text" name="human-digcode" /></td>
+			<td><input type="checkbox" name="for-display" /></td>
+		</tr>
+	  <% end %>
+	</table>
+	<button type="button">Save</button> <a href="">Cancel</a>
+</form>
