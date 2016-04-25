@@ -45,7 +45,7 @@
         	<a href="/collections">Collections</a>&nbsp;&nbsp;
         	<a href="/types">Types of Thing</a>
 
-        <% if !current_user %>
+        <% if !logged_in_as_admin? %>
           &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
       	</div>
     </div>
