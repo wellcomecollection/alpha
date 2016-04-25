@@ -45,19 +45,11 @@
         	<a href="/collections">Collections</a>&nbsp;&nbsp;
         	<a href="/types">Types of Thing</a>
 
-        <% if current_user %>
-          &nbsp;&nbsp;&nbsp; Aloha, <span class="is-admin">Editor</span>
-          &nbsp;&bull;&nbsp;
-          <%= link_to "Recent changes", recent_changes_path, class: 'is-admin' %>
-          <%= link_to "Editors", users_path, class: 'is-admin' %>
-          &nbsp;&bull;&nbsp;          
-          <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
-        <% else %>
+        <% if !logged_in_as_admin? %>
           &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
-        <% end %>
       	</div>
     </div>
-
+    
 <%= yield %>
 
   </div>
