@@ -1,4 +1,4 @@
-namespace :ingest do
+namespace :collections do
 
   desc 'Import collections from DIG codes'
   task queue_all_for_import_from_dig_code: :environment do
