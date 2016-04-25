@@ -6,6 +6,9 @@ class Record < ActiveRecord::Base
   has_many :taggings
   has_many :subjects, through: :taggings
 
+  has_many :record_types, dependent: :destroy
+  has_many :types, through: :record_types
+
   scope :digitized, -> { where(digitized: true) }
 
   before_save :set_cover_image_uris, :set_pdf_thumbnail_url

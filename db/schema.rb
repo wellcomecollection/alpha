@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114172444) do
+ActiveRecord::Schema.define(version: 20160425104440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 20160114172444) do
 
   add_index "people", ["highlighted"], name: "index_people_on_highlighted", where: "(highlighted IS TRUE)", using: :btree
 
+  create_table "record_types", force: :cascade do |t|
+    t.integer "record_id", null: false
+    t.integer "type_id",   null: false
+  end
+
+  add_index "record_types", ["record_id", "type_id"], name: "index_record_types_on_record_id_and_type_id", unique: true, using: :btree
+
   create_table "records", force: :cascade do |t|
     t.text    "title",                             null: false
     t.text    "identifier",                        null: false
@@ -112,6 +119,16 @@ ActiveRecord::Schema.define(version: 20160114172444) do
 
   add_index "taggings", ["record_id", "subject_id"], name: "index_taggings_on_record_id_and_subject_id", unique: true, using: :btree
   add_index "taggings", ["subject_id"], name: "index_taggings_on_subject_id", using: :btree
+
+  create_table "types", force: :cascade do |t|
+    t.text    "name",                                 null: false
+    t.text    "description"
+    t.text    "references",              default: [], null: false, array: true
+    t.integer "records_count",           default: 0,  null: false
+    t.integer "digitized_records_count", default: 0,  null: false
+  end
+
+  add_index "types", ["references"], name: "index_types_on_references", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.text     "email",                           null: false

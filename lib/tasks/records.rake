@@ -84,4 +84,27 @@ namespace :records do
 
   end
 
+
+  desc 'Update Record Types from records'
+  task queue_all_to_update_record_types: :environment do
+
+    time = Time.now
+
+    Record.select(:id)
+      .find_in_batches(batch_size: 500)
+      .with_index do |batch, batch_number|
+
+      print "Processing batch #{batch_number + 1}... "
+
+      batch.each do |record|
+        UpdateTypesFromMetadataJob.perform_later(record)
+      end
+
+      puts "Done in #{Time.now - time} seconds"
+      time = Time.now
+
+    end
+
+  end
+
 end

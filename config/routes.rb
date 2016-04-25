@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :types, only: ['index', 'show']
+
   resource :search, only: 'show', controller: 'search'
 
   resources :subjects, only: ['show'], controller: 'subjects_lookup'
