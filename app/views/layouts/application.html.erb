@@ -49,7 +49,7 @@
           &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
       	</div>
     </div>
-    <% if current_user %>
+    <% if logged_in_as_admin %>
     <div class="row subnav is-admin-row">
       	<div class="twelve columns">
         	Aloha, <span class="is-admin">Editor</span>
