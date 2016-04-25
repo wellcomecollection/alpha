@@ -12,4 +12,8 @@ class Type < ActiveRecord::Base
     find_by(["? = ANY(types.references)", reference])
   end
 
+  def update_digitized_records_count!
+    update_attribute(:digitized_records_count, records.digitized.count)
+  end
+
 end
