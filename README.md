@@ -2,6 +2,8 @@
 
 We're taking the work done in our What's In The Library? project -- http://whatsinthelibrary.com -- and moving it into the Wellcome Library infrastructure. It'll be a link from the existing Sandbox area -- https://wellcomelibrary.org/what-we-do/sandbox/ -- and positioned as an experimental first step.
 
+It's also online at http://alpha.wellcomelibrary.org, if you'd like to have a look.
+
 ## Installation
 
 Running the website, either locally or in production, requires both setting up the code to run the website itself, and some additional services.
