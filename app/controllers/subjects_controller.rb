@@ -137,6 +137,17 @@ class SubjectsController < ApplicationController
 
   end
 
+  def multiple
+
+    @subjects = Subject.find(params[:id].split('+').collect {|id| id.gsub('S', '') } )
+
+    subject_ids = @subjects.collect(&:id)
+
+    @records = Record.joins(:taggings).having(["array_agg(taggings.subject_id) @> ARRAY[?]", subject_ids])
+      .where(taggings: {subject_id: subject_ids}).group('records.id').limit(10)
+
+  end
+
   def update
 
     @subject = Subject.find(params[:id].gsub('S', ''))
