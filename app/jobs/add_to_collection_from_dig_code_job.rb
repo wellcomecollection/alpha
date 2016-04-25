@@ -66,7 +66,7 @@ class AddToCollectionFromDigCodeJob < ActiveJob::Base
       if DIG_CODES[local_code]
 
         collection = Collection.find_by_dig_code(local_code) ||
-          Collection.create!(dig_code: local_code, name: DIG_CODES[local_code])
+          Collection.create!(dig_code: local_code, name: DIG_CODES[local_code], slug: local_code.gsub('dig', ''))
 
         begin
           record.collections << collection

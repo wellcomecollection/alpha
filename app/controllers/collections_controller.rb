@@ -7,16 +7,16 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @collection = Collection.find(params[:id])
+    @collection = Collection.find_by_slug!(params[:id])
     @records = @collection.records.order('digitized desc', :title).limit(500)
   end
 
   def edit
-    @collection = Collection.find(params[:id])
+    @collection = Collection.find_by_slug!(params[:id])
   end
 
   def update
-    @collection = Collection.find(params[:id])
+    @collection = Collection.find_by_slug!(params[:id])
     @collection.update_attributes(collection_params)
     redirect_to @collection
   end
