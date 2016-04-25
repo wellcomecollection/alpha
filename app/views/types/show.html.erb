@@ -4,17 +4,6 @@
 
 <p><%= pluralize_with_delimiter(@type.records_count, 'record') %></p>
 
-<ul>
-  <% @records.each do |record| %>
-
-    <li><%= link_to record.title, thing_path(record) %></li>
-
-  <% end %>
-</ul>
-
-
-
-
 <% @records.each do |record| %>
   <div class="cover-box">
     <div class="cover">
@@ -28,3 +17,12 @@
     </div>
   </div>
 <% end %>
+
+<ul>
+  <% @records.each do |record| %>
+
+    <li><%= link_to record.title, thing_path(record) %></li>
+
+  <% end %>
+</ul>
+
