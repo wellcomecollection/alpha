@@ -31,7 +31,7 @@
 	<div class="hilite">
 	  <%= form_for @person do |form| %>
 		<%= form.hidden_field :highlighted, value: !@person.highlighted %>
-		<button type="submit" class="is-admin"><%= @person.highlighted ? '-' : '+' %></button>
+		<button type="submit" class="is-admin"><%= @person.highlighted ? 'Remove from /people' : 'Add to /people' %></button>
 	  <% end %>
 	</div>
 	<% end %>
