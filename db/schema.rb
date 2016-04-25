@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425104440) do
+ActiveRecord::Schema.define(version: 20160425143042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,15 +19,24 @@ ActiveRecord::Schema.define(version: 20160425104440) do
   enable_extension "pg_stat_statements"
   enable_extension "unaccent"
 
+  create_table "collection_memberships", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "record_id"
+  end
+
+  add_index "collection_memberships", ["collection_id", "record_id"], name: "index_collection_memberships_on_collection_id_and_record_id", unique: true, using: :btree
+
   create_table "collections", force: :cascade do |t|
-    t.text    "name",                             null: false
-    t.text    "code",                             null: false
-    t.integer "records",              default: 0, null: false
+    t.text    "name",                                null: false
+    t.integer "records_count",           default: 0, null: false
     t.integer "parent_collection_id"
     t.integer "record_id"
-    t.text    "sample_images",                                 array: true
-    t.integer "digitized_records"
+    t.text    "sample_images",                                    array: true
+    t.text    "dig_code"
+    t.integer "digitized_records_count", default: 0, null: false
   end
+
+  add_index "collections", ["dig_code"], name: "index_collections_on_dig_code", unique: true, using: :btree
 
   create_table "creators", force: :cascade do |t|
     t.integer  "record_id",  null: false

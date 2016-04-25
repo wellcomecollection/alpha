@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   end
 
   resources :types, only: ['index', 'show']
+  resources :collections, only: ['index', 'show']
 
   resource :search, only: 'show', controller: 'search'
 
