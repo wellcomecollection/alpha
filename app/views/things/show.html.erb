@@ -52,6 +52,11 @@
   <% link_to record.title, thing_path(record) %>
 <% end.join(' / ').html_safe %>
 
+<% if @thing.collections.size > 0 %>
+  <p>Part of <%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>.</p>
+
+<% end %>
+
 <h1><% if @thing.year %><%= @thing.year %>:<% end %> <%= @thing.title %></h1>
 
 <% if @thing.pdf_file %>
@@ -88,9 +93,9 @@
 		<% end.to_sentence.html_safe %>
 		</p>
 	<% else %>
-		<p>None, yet.</p>	
-	<% end %>	
-	
+		<p>None, yet.</p>
+	<% end %>
+
 		<h5>Links</h5>
 		<ul>
       <% if @thing.digitized? %>
@@ -101,7 +106,7 @@
 			<li><%= link_to "JSON data", thing_path(format: :json) %></li>
 		</ul>
 	</div>
-	
+
 	<div class="offset-by-one seven columns">
 
       <!-- MaRC 520 -->
@@ -111,14 +116,14 @@
 <% else %>
 		<p>None that we have found. (That doesn't mean there isn't one.)</p>
 <% end %>
-	
+
       <!-- MaRC 545 -->
       <h4>About</h4>
 <% if @thing.about %>
         <p><%= @thing.about.html_safe %></p>
 <% else %>
 		<p>We didn't find a description of this. (That doesn't mean there isn't one.)</p>
-<% end %>	
+<% end %>
 
 	<ul>
 <% if @thing.year || @thing.publishers %>
