@@ -2,7 +2,22 @@
 
 <h1><%= @type.name %></h1>
 
-<p><%= pluralize_with_delimiter(@type.records_count, 'record') %></p>
+<% if @records_count > 0 %>
+  <div class="row">
+    <div class="nine columns">
+      <h2><%= pluralize_with_delimiter(@type.records_count, 'thing') %></h2>
+    </div>
+    <div class="three columns">
+  	little digitisation bar graph
+  	<div class="lil-vis">
+      <div class="digitised">
+        <div class="percent-done" style="width: ;">&nbsp;</div>
+      </div>
+       digitised
+  	</div>
+    </div>
+  </div>
+<% end %>
 
 <ul>
   <% @records.each do |record| %>
