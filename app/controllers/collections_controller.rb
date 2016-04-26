@@ -4,6 +4,32 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = Collection.order(:records_count).reverse_order
+
+    @subjects = Subject.find_by_sql("select collections.id as collection_id, counts.subject_id as id, subjects.label from collections, lateral (
+        select taggings.subject_id as subject_id, count(taggings.record_id) as records_count from taggings inner join collection_memberships on collection_memberships.record_id = taggings.record_id where collection_memberships.collection_id = collections.id group by taggings.subject_id order by records_count desc limit 6
+
+      ) counts inner join subjects on counts.subject_id = subjects.id")
+
+
+    @types = Type.find_by_sql("select collections.id as collection_id, counts.type_id as id, types.name from collections, lateral (
+        select record_types.type_id as type_id, count(record_types.record_id) as records_count from record_types inner join collection_memberships on collection_memberships.record_id = record_types.record_id where collection_memberships.collection_id = collections.id group by record_types.type_id order by records_count desc limit 6
+
+      ) counts inner join types on counts.type_id = types.id")
+
+
+    @people = Person.find_by_sql("select collections.id as collection_id, counts.person_id as id, people.name, people.wikipedia_images, counts.records_count from collections, lateral (
+        select creators.person_id as person_id, count(creators.record_id) as records_count from creators inner join collection_memberships on collection_memberships.record_id = creators.record_id where collection_memberships.collection_id = collections.id group by creators.person_id order by records_count desc limit 6
+
+      ) counts inner join people on counts.person_id = people.id")
+
+    @records = Record.find_by_sql("select collections.id as collection_id, records.* from collections, lateral (
+      select identifier, title, pdf_thumbnail_url, cover_image_uris from records inner join collection_memberships on collection_memberships.record_id = records.id where collection_memberships.collection_id = collections.id order by digitized desc limit 6
+      ) records")
+
+
+    @people_counts = CollectionMembership.joins(:creators).group(:collection_id).count
+
+    set_cache_header(60 * 60)  # 1 hour cache
   end
 
   def show
