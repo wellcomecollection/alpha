@@ -34,7 +34,9 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find_by_slug!(params[:id])
-    @records = @collection.records.order('digitized desc', :title).limit(500)
+    @records = @collection.records
+      .select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
+      .order('digitized desc', :title).limit(500)
 
     @types = RecordType
       .select('types.*')
