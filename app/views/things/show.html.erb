@@ -36,7 +36,7 @@
 <% end %>
 
 <% if @thing.collections.size > 0 %>
-  Part of <%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>, 
+  Part of <%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
 <% end %>
 <%= @thing.archives_tree.collect do |record|  %>
   <% link_to record.title, thing_path(record) %>
