@@ -2,6 +2,18 @@
 
 <h1><%= @collection.name %></h1>
 
+<p>Types:
+  <% @types.each do |type| %>
+     <%= type['records_in_type_count'] %> <%= link_to type.name, type_path(type) %>
+  <% end %>
+</p>
+
+<p>People:
+  <% @people.each do |person| %>
+     <%= person['records_by_person_count'] %> <%= link_to person.name, person_path("P#{person.id}") %>
+  <% end %>
+</p>
+
 <% if logged_in_as_admin? %>
   <div>
     <%= link_to 'Edit', edit_collection_path(@collection), class: "is-admin" %>
