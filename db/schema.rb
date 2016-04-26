@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425201406) do
+ActiveRecord::Schema.define(version: 20160426132753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160425201406) do
   end
 
   add_index "collection_memberships", ["collection_id", "record_id"], name: "index_collection_memberships_on_collection_id_and_record_id", unique: true, using: :btree
+  add_index "collection_memberships", ["collection_id"], name: "index_collection_memberships_on_collection_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.text    "name",                                null: false
