@@ -114,9 +114,6 @@ namespace :records do
 
     b_numbers = file.scan(/(b\d+[\dx])/).flatten
 
-    puts b_numbers.length
-    puts b_numbers.first
-
     Record.select(:id).where(identifier: b_numbers).where.not(digitized: true).find_each do |record|
       DownloadPackageJob.perform_later(record)
     end
