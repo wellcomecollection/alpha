@@ -107,4 +107,21 @@ namespace :records do
 
   end
 
+  desc 'Get newly-digitized things'
+  task newly_digitized: :environment do
+
+    file = open('http://wellcomelibrary.org/resource/collections/access/all-open/').read
+
+    b_numbers = file.scan(/(b\d+[\dx])/).flatten
+
+    puts b_numbers.length
+    puts b_numbers.first
+
+    Record.select(:id).where(identifier: b_numbers).where.not(digitized: true).find_each do |record|
+      DownloadPackageJob.perform_later(record)
+    end
+
+
+  end
+
 end
