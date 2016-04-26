@@ -22,4 +22,13 @@ namespace :collections do
 
   end
 
+  desc 'Update digitized_records_count on collections'
+  task update_digitized_records_count: :environment do
+
+    Collection.select(:id).find_each do |collection|
+      collection.update_digitized_records_count!
+    end
+
+  end
+
 end
