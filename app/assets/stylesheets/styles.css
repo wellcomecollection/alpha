@@ -1,9 +1,9 @@
-body { background-color: #F0F1EC; color: #333; }
+body { background-color: #F5F5F5; color: #000; }
 a,
 button.link { color: #005870; background-color: white; padding: 2px; text-decoration: none;}
 
 body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
-h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; }
+/* h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; } */
 h1, h2 { line-height: 1.25em;}
 small { font-size: 0.75em; color: #333;}
 code { font-family: monospace; font-size: 1.25em;}
