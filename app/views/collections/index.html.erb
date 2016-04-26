@@ -3,43 +3,43 @@
 <h1>Collections</h1>
 
 <% @collections.each do |collection| %>
-<div>
+<div class="collection">
 	<h2>
 		<%= link_to collection.name, collection %>
 	</h2>
 
 	<% if collection.description %>
-		<p><%= collection.description %></p>
+	<p><%= collection.description %></p>
 	<% end %>
+
 	<div class="row breathe">
 		<div class="three columns">
+
 			<h4 style="margin-bottom:0;"><%= number_with_delimiter(collection.records_count) %> items</h4>
 
-    <div class="lil-vis">
-      <div class="digitised">
-        <div class="percent-done" style="width: <%= (100 * collection.digitized_records_count.to_f / collection.records_count) %>%;">&nbsp;</div>
-      </div>
-      <%= percentage_with_varying_accuracy(collection.digitized_records_count.to_f / collection.records_count) %>  digitised
-    </div>
+			<div class="lil-vis">
+			  <div class="digitised">
+				<div class="percent-done" style="width: <%= (100 * collection.digitized_records_count.to_f / collection.records_count) %>%;">&nbsp;</div>
+			  </div>
+			  <%= percentage_with_varying_accuracy(collection.digitized_records_count.to_f / collection.records_count) %>  digitised
+			</div>
 
 		</div>
 		<div class="nine columns">
 			<ul>
-        <li>
+		        <li>
 
         <% @types.select {|type| type['collection_id'] == collection.id }.each do |type| %>
-
-          <%= link_to type.name, type_path(type) %>
-
+        	<%= link_to type.name, type_path(type) %>
         <% end %>
 
 				</li>
 
-        <li>
+        		<li>
 
           <%= @subjects.select {|s| s['collection_id'] == collection.id }.collect {|subject| link_to(subject.label, subject_path(subject))}.join(', ').html_safe %>
 
-        </li>
+        		</li>
 				<li>Spans YYYY - YYYY</li>
 			</ul>
 		</div>
@@ -50,25 +50,26 @@
 
       <% @records.select {|r| r['collection_id'] == collection.id }.each do |thing| %>
 
-        <div class="cover-box">
-          <div class="cover">
-            <%= link_to thing_path(thing), title: thing.title do %>
-              <% if thing.cover_image_url %>
-                <%= image_tag thing.cover_image_url(150,300) %>
-              <% else %>
-                <%= thing.title %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
+			<div class="cover-box">
+			  <div class="cover">
+				<%= link_to thing_path(thing), title: thing.title do %>
+				  <% if thing.cover_image_url %>
+					<%= image_tag thing.cover_image_url(150,300) %>
+				  <% else %>
+					<%= thing.title %>
+				  <% end %>
+				<% end %>
+			  </div>
+			</div>
 
-      <% end %>
+		  <% end %>
 
 		</div>
 	</div>
 
 	<h4><%= pluralize_with_delimiter(@people_counts[collection.id], 'person') %></a> are involved</h4>
 
+<div class="row">
   <% @people.select {|person| person['collection_id'] == collection.id }.each do |person| %>
 
 
@@ -81,5 +82,9 @@
     </div>
 
   <% end %>
+
+	</div>
+
+<hr />
 
 <% end %>
