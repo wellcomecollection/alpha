@@ -17,7 +17,16 @@ class CollectionsController < ApplicationController
       .where(collection_memberships: {collection_id: @collection.id})
       .group('types.id')
       .order('records_in_type_count desc')
-      .limit(10)
+      .limit(100)
+
+    @people = Creator
+      .select('people.*')
+      .select('count(creators.record_id) as records_by_person_count')
+      .joins(:person, :collection_memberships)
+      .where(collection_memberships: {collection_id: @collection.id})
+      .group('people.id')
+      .order('records_by_person_count desc')
+      .limit(100)
 
   end
 
