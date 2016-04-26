@@ -3,29 +3,31 @@
 <h1>Collections</h1>
 
 <% @collections.each do |collection| %>
-<div>
+<div class="collection">
 	<h2>
 		<%= link_to collection.name, collection %>
 	</h2>
 
 	<% if collection.description %>
-		<p><%= collection.description %></p>
+	<p><%= collection.description %></p>
 	<% end %>
+	
 	<div class="row breathe">
 		<div class="three columns">
+
 			<h4 style="margin-bottom:0;"><%= number_with_delimiter(collection.records_count) %> items</h4>
 
-    <div class="lil-vis">
-      <div class="digitised">
-        <div class="percent-done" style="width: <%= (100 * collection.digitized_records_count.to_f / collection.records_count) %>%;">&nbsp;</div>
-      </div>
-      <%= percentage_with_varying_accuracy(collection.digitized_records_count.to_f / collection.records_count) %>  digitised
-    </div>
+			<div class="lil-vis">
+			  <div class="digitised">
+				<div class="percent-done" style="width: <%= (100 * collection.digitized_records_count.to_f / collection.records_count) %>%;">&nbsp;</div>
+			  </div>
+			  <%= percentage_with_varying_accuracy(collection.digitized_records_count.to_f / collection.records_count) %>  digitised
+			</div>
 
 		</div>
 		<div class="nine columns">
 			<ul>
-        <li>
+		        <li>
 
         <% RecordType
         .select('types.*')
@@ -34,15 +36,15 @@
         .where(collection_memberships: {collection_id: collection.id})
         .group('types.id')
         .order('records_in_type_count desc')
-        .limit(6).each do |type| %>
+        .limit(5).each do |type| %>
 
-          <%= link_to type.name, type_path(type) %>
+        			<%= link_to type.name, type_path(type) %>
 
         <% end %>
 
 				</li>
 
-        <li>
+        		<li>
 
           <%= Subject
             .select('subjects.label, subjects.id')
@@ -53,7 +55,7 @@
             .order('records_in_subject_count desc')
             .limit(6).collect {|subject| link_to(subject.label, subject)}.join(', ').html_safe %>
 
-        </li>
+        		</li>
 				<li>Spans YYYY - YYYY</li>
 			</ul>
 		</div>
@@ -62,45 +64,50 @@
 	<div class="row breathe">
 		<div class="twelve columns">
 
-      <% collection.records.order('digitized desc').limit(6).each do |thing| %>
+		<% collection.records.order('digitized desc').limit(6).each do |thing| %>
 
-        <div class="cover-box">
-          <div class="cover">
-            <%= link_to thing_path(thing), title: thing.title do %>
-              <% if thing.cover_image_url %>
-                <%= image_tag thing.cover_image_url(150,300) %>
-              <% else %>
-                <%= thing.title %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
+			<div class="cover-box">
+			  <div class="cover">
+				<%= link_to thing_path(thing), title: thing.title do %>
+				  <% if thing.cover_image_url %>
+					<%= image_tag thing.cover_image_url(150,300) %>
+				  <% else %>
+					<%= thing.title %>
+				  <% end %>
+				<% end %>
+			  </div>
+			</div>
 
-      <% end %>
+		  <% end %>
 
 		</div>
 	</div>
 
 	<h4><a href="/collections/collection/people">0,000 people</a> are involved</h4>
 
-  <% Person
-      .select('people.*')
-      .select('count(creators.record_id) as records_by_person_count')
-      .joins(:creators => :collection_memberships)
-      .where(collection_memberships: {collection_id: collection.id})
-      .group('people.id')
-      .order('records_by_person_count desc')
-      .limit(6).each do |person| %>
+	<div class="row">
 
+	  <% Person
+		  .select('people.*')
+		  .select('count(creators.record_id) as records_by_person_count')
+		  .joins(:creators => :collection_memberships)
+		  .where(collection_memberships: {collection_id: collection.id})
+		  .group('people.id')
+		  .order('records_by_person_count desc')
+		  .limit(6).each do |person| %>
 
-    <div class="sm-circle">
-      <% if person.wikipedia_image %>
-        <% style = "background-image: url('#{person.wikipedia_image}');" %>
-      <% end %>
-      <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(person.records_count, 'thing') %>
-      <%= link_to person.name, person, class: 'sm-name', title: pluralize_with_delimiter(person.records_count, 'thing') %>
-    </div>
+		<div class="sm-circle">
+			  <% if person.wikipedia_image %>
+				<% style = "background-image: url('#{person.wikipedia_image}');" %>
+			  <% end %>
+			  <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(person.records_count, 'thing') %>
+			  <%= link_to person.name, person, class: 'sm-name', title: pluralize_with_delimiter(person.records_count, 'thing') %>
+		</div>
+	
+	  <% end %>
 
-  <% end %>
+	</div>
+
+<hr />
 
 <% end %>
