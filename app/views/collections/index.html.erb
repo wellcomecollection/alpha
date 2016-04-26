@@ -2,6 +2,96 @@
 
 <h1>Collections</h1>
 
+<% @collections.each do |collection| %>
+<div>
+	<h2>
+		<%= link_to collection.name, collection %> 
+	</h2>
+
+	<% if collection.description %>
+		<p><%= collection.description %></p>
+	<% end %>
+	<div class="row breathe">
+		<div class="three columns">
+			<h4 style="margin-bottom:0;"><%= number_with_delimiter(collection.records_count) %> items</h4>
+		
+			<div class="lil-vis">
+			  <div class="digitised">
+				<div class="percent-done" style="width: ;">&nbsp;</div>
+			  </div>
+			  00% digitised
+			</div>
+		
+		</div>
+		<div class="nine columns">
+			<ul>
+				<li><a href="/collections/collection/type">type</a>, <a href="/collections/collection/type">type</a>, <a href="/collections/collection/type">type</a>, <a href="/collections/collection/type">type</a>, <a href="/collections/collection/type">type</a></li>
+				<li><a href="/collections/collection/subject">subject</a>, <a href="/collections/collection/subject">subject</a>, <a href="/collections/collection/subject">subject</a>, <a href="/collections/collection/subject">subject</a></li>
+				<li>Spans YYYY - YYYY</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row breathe">
+		<div class="twelve columns">
+		  <!-- FOREACH -->
+		  <div class="cover-box">
+			<div class="cover">
+			  img
+			</div>
+		  </div>
+
+		  <div class="cover-box">
+			<div class="cover">
+			  img
+			</div>
+		  </div>
+		  <div class="cover-box">
+			<div class="cover">
+			  img
+			</div>
+		  </div>
+		  <div class="cover-box">
+			<div class="cover">
+			  img
+			</div>
+		  </div>
+		  <div class="cover-box">
+			<div class="cover">
+			  img
+			</div>
+		  </div>
+
+		</div>
+	</div>
+
+	<h4><a href="/collections/collection/people">0,000 people</a> are involved</h4>
+
+	<!-- foreach -->
+	<div class="sm-circle">
+		Name
+	</div>
+	<div class="sm-circle">
+		Name
+	</div>
+	<div class="sm-circle">
+		Name
+	</div>
+	<div class="sm-circle">
+		Name
+	</div>
+	<div class="sm-circle">
+		Name
+	</div>
+	<div class="sm-circle">
+		Name
+	</div>
+
+<br clear="all" />
+	<hr />
+</div>
+<% end %>
+
 <ol>
 <% @collections.each do |collection| %>
     <li>
