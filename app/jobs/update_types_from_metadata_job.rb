@@ -50,7 +50,7 @@ class UpdateTypesFromMetadataJob < ActiveJob::Base
 
     end
 
-    mat_type_codes = record.metadata.fetch('998', []).collect {|m| m['b'] }
+    mat_type_codes = record.metadata.fetch('998', []).collect {|m| m['d'] }.compact.uniq
 
     mat_type_codes.each do |mat_type_code|
 
