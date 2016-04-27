@@ -14,6 +14,12 @@
   <% end %>
 </p>
 
+<p>Subjects:
+  <% @subjects.each do |subject| %>
+     <%= subject['records_in_subject_count'] %> <%= link_to subject.label, collection_subject_path(@collection, subject) %>
+  <% end %>
+</p>
+
 <% if logged_in_as_admin? %>
   <div>
     <%= link_to 'Edit', edit_collection_path(@collection), class: "is-admin" %>

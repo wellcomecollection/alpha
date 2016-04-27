@@ -54,6 +54,15 @@ class CollectionsController < ApplicationController
       .order('records_by_person_count desc')
       .limit(100)
 
+    @subjects = Subject
+      .select(['subjects.id', :label])
+      .select('count(taggings.record_id) as records_in_subject_count')
+      .joins(taggings: [:collection_memberships])
+      .where(collection_memberships: {collection_id: @collection.id})
+      .group('subjects.id')
+      .order('records_in_subject_count desc')
+      .limit(100)
+
   end
 
   def edit
