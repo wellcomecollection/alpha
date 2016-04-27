@@ -29,20 +29,9 @@
 			<ul>
 		        <li>
 
-<<<<<<< HEAD
-        <%= RecordType
-        .select('types.*')
-        .select('count(record_types.record_id) as records_in_type_count')
-        .joins(:type, :collection_memberships)
-        .where(collection_memberships: {collection_id: collection.id})
-        .group('types.id')
-        .order('records_in_type_count desc')
-        .limit(6).collect {|type| link_to type.name, type_path(type)  }.join(', ').html_safe %>
-=======
         <% @types.select {|type| type['collection_id'] == collection.id }.each do |type| %>
         	<%= link_to type.name, type_path(type) %>
         <% end %>
->>>>>>> master
 
 				</li>
 
@@ -59,11 +48,7 @@
 	<div class="row breathe">
 		<div class="twelve columns">
 
-<<<<<<< HEAD
-		<% collection.records.order('digitized desc').limit(5).each do |thing| %>
-=======
       <% @records.select {|r| r['collection_id'] == collection.id }.each do |thing| %>
->>>>>>> master
 
 			<div class="cover-box">
 			  <div class="cover">
@@ -82,30 +67,6 @@
 		</div>
 	</div>
 
-<<<<<<< HEAD
-	<h4><a href="/collections/collection/people" style="color:red">0,000 people</a> are involved</h4>
-
-	<div class="row">
-
-	  <% Person
-		  .select('people.*')
-		  .select('count(creators.record_id) as records_by_person_count')
-		  .joins(:creators => :collection_memberships)
-		  .where(collection_memberships: {collection_id: collection.id})
-		  .group('people.id')
-		  .order('records_by_person_count desc')
-		  .limit(6).each do |person| %>
-
-		<div class="sm-circle">
-			  <% if person.wikipedia_image %>
-				<% style = "background-image: url('#{person.wikipedia_image}');" %>
-			  <% end %>
-			  <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(person.records_count, 'thing') %>
-			  <%= link_to person.name, person, class: 'sm-name', title: pluralize_with_delimiter(person.records_count, 'thing') %>
-		</div>
-	
-	  <% end %>
-=======
 	<h4><%= pluralize_with_delimiter(@people_counts[collection.id], 'person') %></a> are involved</h4>
 
 <div class="row">
@@ -121,7 +82,6 @@
     </div>
 
   <% end %>
->>>>>>> master
 
 	</div>
 
