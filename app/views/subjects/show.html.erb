@@ -104,7 +104,7 @@
   <div class="nine columns">
     <p>
       <%= @related_subjects.collect do |subject| %>
-        <% link_to subject.label, subject_path(subject) %>
+        <% link_to(subject.label, subject_path(subject)) + ' (' + link_to('+', multiple_subject_path("#{@subject.to_param}+#{subject.to_param}")) + ')' %>
       <% end.to_sentence.html_safe %>
     </p>
   </div>

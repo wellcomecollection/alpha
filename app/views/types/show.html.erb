@@ -23,7 +23,7 @@
 					<h6>About</h6>
 				</div>
 				<div class="eleven columns">
-					<a href="" style="color:red;">subject list</span>
+					<%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
     				<br />
 					<b><a href="" style="color:red;">View all</a></b>
 				</div>
@@ -41,12 +41,6 @@
 			</div>
 		</div>
 	</div>
-
-<% if @subjects.length > 0 %>
-  <p>Subjects:
-    <%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
-  </p>
-<% end %>
 
 <% @records.each do |record| %>
   <%= render record %>

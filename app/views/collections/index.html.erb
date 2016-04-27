@@ -67,9 +67,9 @@
 		</div>
 	</div>
 
-	<% count = (@people_counts.detect {|c| c['collection_id'] == collection.id } || {})['count'].to_i %>
+  <% count = (@people_counts.detect {|c| c['collection_id'] == collection.id } || {})['count'].to_i %>
 
-	<h4><span style="color:red;"><%= pluralize_with_delimiter(count, 'person') %> <%= count == 1 ? 'is' : 'are' %> involved</span></h4>
+	<h4><%= pluralize_with_delimiter(count, 'person') %></a> <%= count == 1 ? 'is' : 'are' %> involved</h4>
 
 <div class="row">
   <% @people.select {|person| person['collection_id'] == collection.id }.each do |person| %>
