@@ -61,7 +61,7 @@ class CollectionsController < ApplicationController
       .where(collection_memberships: {collection_id: @collection.id})
       .group('subjects.id')
       .order('records_in_subject_count desc')
-      .limit(100)
+      .limit(20)
 
   end
 

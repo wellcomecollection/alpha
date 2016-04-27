@@ -14,10 +14,11 @@
   <% end %>
 </p>
 
-<p>Subjects:
-  <% @subjects.each do |subject| %>
-     <%= subject['records_in_subject_count'] %> <%= link_to subject.label, collection_subject_path(@collection, subject) %>
-  <% end %>
+<p>Subjects: <%= @subjects.collect do |subject| %>
+    <% link_to subject.label, collection_subject_path(@collection, subject) %>
+  <% end.join(', ').html_safe %>
+
+  <%= link_to 'View all', collection_subjects_path(@collection) %>
 </p>
 
 <% if logged_in_as_admin? %>
