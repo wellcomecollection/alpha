@@ -37,7 +37,7 @@
 
         		<li>
 
-          <%= @subjects.select {|s| s['collection_id'] == collection.id }.collect {|subject| link_to(subject.label, subject_path(subject))}.join(', ').html_safe %>
+          <%= @subjects.select {|s| s['collection_id'] == collection.id }.collect {|subject| link_to(subject.label, collection_subject_path(collection, subject))}.join(', ').html_safe %>
 
         		</li>
 				<li>Spans YYYY - YYYY</li>
