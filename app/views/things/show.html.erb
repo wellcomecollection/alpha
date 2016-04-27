@@ -36,11 +36,28 @@
 <% end %>
 
 <% if @thing.collections.size > 0 %>
-  Part of <%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
+<div class="row">
+	<div class="one columns">
+		<h6>Collection</h6>
+	</div>
+	<div class="eleven columns">
+		<%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
+	</div>
+</div>
 <% end %>
-<%= @thing.archives_tree.collect do |record|  %>
-  <% link_to record.title, thing_path(record) %>
-<% end.join(' / ').html_safe %>
+
+<% if @thing.collections.size > 0 %>
+<div class="row">
+	<div class="one columns">
+		<h6>Archive</h6>
+	</div>
+	<div class="eleven columns">
+		<%= @thing.archives_tree.collect do |record|  %>
+		  <% link_to record.title, thing_path(record) %>
+		<% end.join(' / ').html_safe %>
+	</div>
+</div>
+<% end %>
 
 <% if @thing.people.length > 0 %>
   <div class="row author">
