@@ -28,8 +28,6 @@ class CollectionsController < ApplicationController
 
 
     @people_counts = CollectionMembership.joins(:creators).group(:collection_id).count
-
-    set_cache_header(60 * 60)  # 1 hour cache
   end
 
   def show
