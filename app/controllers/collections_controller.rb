@@ -27,7 +27,10 @@ class CollectionsController < ApplicationController
       ) records")
 
 
-    @people_counts = CollectionMembership.joins(:creators).group(:collection_id).count
+    @people_counts = CollectionMembership
+      .select('collection_id', "count(distinct creators.person_id) as count")
+      .joins(:creators)
+      .group(:collection_id)
   end
 
   def show

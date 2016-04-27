@@ -2,6 +2,7 @@
 
 <h6><a href="/collections">Collections</a> &rarr; <%= link_to @collection.name, @collection %> / <%= link_to "Subjects", collection_subjects_path(@collection) %></h6>
 <h1><%= @subject.label %></h2>
+
 <% @records.each do |record| %>
   <%= render record %>
 <% end %>

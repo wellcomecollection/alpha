@@ -42,16 +42,12 @@
 		</div>
 	</div>
 
-<% @records.each do |thing| %>
-  <div class="cover-box">
-    <div class="cover">
-      <%= link_to thing_path(thing), title: thing.title do %>
-        <% if thing.cover_image_url %>
-          <%= image_tag thing.cover_image_url(150,300) %>
-        <% else %>
-          <%= thing.title %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+<% if @subjects.length > 0 %>
+  <p>Subjects:
+    <%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
+  </p>
+<% end %>
+
+<% @records.each do |record| %>
+  <%= render record %>
 <% end %>
