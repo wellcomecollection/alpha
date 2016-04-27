@@ -23,7 +23,7 @@ class CollectionsController < ApplicationController
       ) counts inner join people on counts.person_id = people.id")
 
     @records = Record.find_by_sql("select collections.id as collection_id, records.* from collections, lateral (
-      select identifier, title, pdf_thumbnail_url, cover_image_uris from records inner join collection_memberships on collection_memberships.record_id = records.id where collection_memberships.collection_id = collections.id order by digitized desc limit 6
+      select identifier, title, pdf_thumbnail_url, cover_image_uris from records inner join collection_memberships on collection_memberships.record_id = records.id where collection_memberships.collection_id = collections.id order by digitized desc limit 5
       ) records")
 
 

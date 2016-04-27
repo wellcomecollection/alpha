@@ -1,6 +1,8 @@
 <% content_for :title, "Subjects within #{@collection.name}" %>
-<h1><%= link_to @collection.name, @collection %></h1>
-<h2><%= @subject.label %></h2>
+
+<h6><a href="/collections">Collections</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
+
+<h2>Subjects</h2>	
 
 <ul>
   <% @subjects.each do |subject| %>

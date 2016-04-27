@@ -1,37 +1,68 @@
 <% content_for :title, @collection.name %>
 
+<h6><a href="/collections">Collections</a> &rarr; </h6>
+
 <h1><%= @collection.name %></h1>
 
-<% if @types.length > 0 %>
-  <p>Types:
-    <% @types.each do |type| %>
-       <%= type['records_in_type_count'] %> <%= link_to type.name, type_path(type) %>
-    <% end %>
-  </p>
-<% end %>
-
-<% if @people.length > 0 %>
-  <p>People:
-    <% @people.each do |person| %>
-       <%= person['records_by_person_count'] %> <%= link_to person.name, person_path("P#{person.id}") %>
-    <% end %>
-  </p>
-<% end %>
-
-<% if @subjects.length > 0 %>
-  <p>Subjects: <%= @subjects.collect do |subject| %>
-      <% link_to subject.label, collection_subject_path(@collection, subject) %>
-    <% end.join(', ').html_safe %>
-
-    <%= link_to 'View all', collection_subjects_path(@collection) %>
-  </p>
-<% end %>
-
 <% if logged_in_as_admin? %>
-  <div>
-    <%= link_to 'Edit', edit_collection_path(@collection), class: "is-admin" %>
-  </div>
+  <p>
+    <%= link_to 'Edit this Collection?', edit_collection_path(@collection), class: "is-admin" %>
+  </p>
 <% end %>
+
+	<div class="row breathe">
+		<div class="three columns">
+
+			<h4 style="margin-bottom:0;">0,000 items</h4>
+
+			<div class="lil-vis">
+			  <div class="digitised">
+				<div class="percent-done" style="width:;">&nbsp;</div>
+			  </div>
+			  00%  digitised
+			</div>
+
+		</div>
+		<div class="nine columns">
+			<div class="row breathe">
+				<div class="three columns">
+					<h6>Types of materials</h6>
+				</div>
+				<div class="nine columns">
+					<% @types.each do |type| %>
+					   <%= link_to type.name, type_path(type) %> <%= type['records_in_type_count'] %>
+					<% end %>
+				</div>
+			</div>
+<% if @subjects.length > 0 %>
+			<div class="row breathe">
+				<div class="three columns">
+					<h6>Subjects</h6>
+				</div>
+				<div class="nine columns">
+					<%= @subjects.collect do |subject| %>
+				    <% link_to subject.label, collection_subject_path(@collection, subject) %>
+    				<% end.join(', ').html_safe %>
+    				<br />
+					<b><%= link_to 'View all', collection_subjects_path(@collection) %></b>
+				</div>
+			</div>
+<% end %>
+<% if @people.length > 0 %>
+			<div class="row breathe">
+				<div class="three columns">
+					<h6>People</h6>
+				</div>
+				<div class="nine columns">
+				<% @people.each do |person| %>
+				    <%= link_to person.name, person_path("P#{person.id}") %> <%= person['records_by_person_count'] %>
+			    <% end %>
+				</div>
+			</div>
+<% end %>		
+		</div>
+	</div>
+
 
 <% @records.each do |thing| %>
   <div class="cover-box">
