@@ -1,29 +1,46 @@
 <% content_for :title, @type.name %>
-
+<h6><a href="/types">Types</a> /</h6>
 <h1><%= @type.name %></h1>
 
-<% if @type.records_count > 0 %>
-  <div class="row">
-    <div class="nine columns">
-      <h2><%= pluralize_with_delimiter(@type.records_count, 'record') %></h2>
-    </div>
-    <div class="three columns">
-  	little digitisation bar graph
-  	<div class="lil-vis">
-      <div class="digitised">
-        <div class="percent-done" style="width: <%= (100 * @type.digitized_records_count.to_f / @type.records_count) %>%;">&nbsp;</div>
-      </div>
-      <%= percentage_with_varying_accuracy(@type.digitized_records_count.to_f / @type.records_count) %>  digitised
-  	</div>
-    </div>
-  </div>
-<% end %>
 
-<% if @subjects.length > 0 %>
-  <p>Subjects:
-    <%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
-  </p>
-<% end %>
+	<div class="row breathe">
+		<div class="three columns">
+
+			<h4 style="margin-bottom:0;"><%= pluralize_with_delimiter(@type.records_count, 'item') %></h4>
+
+			<div class="lil-vis">
+			  <div class="digitised">
+				<div class="percent-done" style="width:<%= (100 * @type.digitized_records_count.to_f / @type.records_count) %>%;">&nbsp;</div>
+			  </div>
+			  <%= percentage_with_varying_accuracy(@type.digitized_records_count.to_f / @type.records_count) %>  digitised
+			</div>
+
+		</div>
+		<div class="nine columns">
+<!-- if subjects > 0 -->
+			<div class="row breathe">
+				<div class="one column right">
+					<h6>About</h6>
+				</div>
+				<div class="eleven columns">
+					<%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
+    				<br />
+					<b><a href="" style="color:red;">View all</a></b>
+				</div>
+			</div>
+<!-- if people > 0 -->
+			<div class="row breathe">
+				<div class="one column right">
+					<h6>By</h6>
+				</div>
+				<div class="eleven columns">
+					<a href="" style="color:red;">people list</span>
+    				<br />
+					<b><a href="" style="color:red;">View all</a></b>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <% @records.each do |record| %>
   <%= render record %>
