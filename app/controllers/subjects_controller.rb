@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
 
-  before_filter :authorize, only: ['show', 'index', 'multiple']
+  before_filter :authorize, except: ['show', 'index', 'multiple']
 
   def index
     @from = params[:from].to_i.abs
