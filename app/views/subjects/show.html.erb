@@ -126,6 +126,19 @@
 </div>
 <% end %>
 
+<% if @types.length > 0 %>
+  <div class="row breathe">
+    <div class="three columns right">
+      <h6>Types</h6>
+    </div>
+    <div class="nine columns">
+      <p>
+      <%= @types.collect {|type| link_to(type.name, type) }.join(', ').html_safe %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
 <% if @subject.id == 21975 %>
   <%= render 's21975.html' %>
 <% end %>

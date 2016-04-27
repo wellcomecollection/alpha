@@ -135,6 +135,15 @@ class SubjectsController < ApplicationController
 
     end
 
+    @types = Type
+      .select(['types.id', 'types.name'])
+      .select('count(record_types.record_id) as records_in_type_count')
+      .joins(record_types: [:taggings])
+      .where(taggings: {subject_id: @subject.id})
+      .group('types.id')
+      .order('records_in_type_count desc')
+      .limit(20)
+
   end
 
   def multiple
