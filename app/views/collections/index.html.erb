@@ -11,7 +11,7 @@
 	<% if collection.description %>
 	<p><%= collection.description %></p>
 	<% end %>
-	
+
 	<div class="row breathe">
 		<div class="three columns">
 
@@ -29,6 +29,7 @@
 			<ul>
 		        <li>
 
+<<<<<<< HEAD
         <%= RecordType
         .select('types.*')
         .select('count(record_types.record_id) as records_in_type_count')
@@ -37,19 +38,17 @@
         .group('types.id')
         .order('records_in_type_count desc')
         .limit(6).collect {|type| link_to type.name, type_path(type)  }.join(', ').html_safe %>
+=======
+        <% @types.select {|type| type['collection_id'] == collection.id }.each do |type| %>
+        	<%= link_to type.name, type_path(type) %>
+        <% end %>
+>>>>>>> master
 
 				</li>
 
         		<li>
 
-          <%= Subject
-            .select('subjects.label, subjects.id')
-            .select('count(taggings.record_id) as records_in_subject_count')
-            .joins(:taggings => :collection_memberships)
-            .where(collection_memberships: {collection_id: collection.id})
-            .group('subjects.id')
-            .order('records_in_subject_count desc')
-            .limit(6).collect {|subject| link_to(subject.label, subject)}.join(', ').html_safe %>
+          <%= @subjects.select {|s| s['collection_id'] == collection.id }.collect {|subject| link_to(subject.label, collection_subject_path(collection, subject))}.join(', ').html_safe %>
 
         		</li>
 				<li>Spans YYYY - YYYY</li>
@@ -60,7 +59,11 @@
 	<div class="row breathe">
 		<div class="twelve columns">
 
+<<<<<<< HEAD
 		<% collection.records.order('digitized desc').limit(5).each do |thing| %>
+=======
+      <% @records.select {|r| r['collection_id'] == collection.id }.each do |thing| %>
+>>>>>>> master
 
 			<div class="cover-box">
 			  <div class="cover">
@@ -79,6 +82,7 @@
 		</div>
 	</div>
 
+<<<<<<< HEAD
 	<h4><a href="/collections/collection/people" style="color:red">0,000 people</a> are involved</h4>
 
 	<div class="row">
@@ -101,6 +105,23 @@
 		</div>
 	
 	  <% end %>
+=======
+	<h4><%= pluralize_with_delimiter(@people_counts[collection.id], 'person') %></a> are involved</h4>
+
+<div class="row">
+  <% @people.select {|person| person['collection_id'] == collection.id }.each do |person| %>
+
+
+    <div class="sm-circle">
+      <% if person.wikipedia_image %>
+        <% style = "background-image: url('#{person.wikipedia_image}');" %>
+      <% end %>
+      <%= link_to person.name, person, class: 'sm-bg-link', style: style, title: pluralize_with_delimiter(person.records_count, 'thing') %>
+      <%= link_to person.name, person, class: 'sm-name', title: pluralize_with_delimiter(person.records_count, 'thing') %>
+    </div>
+
+  <% end %>
+>>>>>>> master
 
 	</div>
 

@@ -163,7 +163,9 @@ namespace :elasticsearch do
               cover_image_uris: {type: 'string', index: :not_analyzed},
               archives_ref: {type: 'string', index: :not_analyzed},
               subject_ids: {type: 'integer', index: :not_analyzed},
-              person_ids: {type: 'integer', index: :not_analyzed}
+              person_ids: {type: 'integer', index: :not_analyzed},
+              type_ids: {type: 'integer', index: :not_analyzed},
+              collection_ids: {type: 'integer', index: :not_analyzed}
             }
           }
         }

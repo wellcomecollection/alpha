@@ -42,7 +42,9 @@ class Record < ActiveRecord::Base
       cover_image_uris: cover_image_uris,
       archives_ref: archives_ref,
       subject_ids: taggings.pluck(:subject_id),
-      person_ids: creators.pluck(:person_id)
+      person_ids: creators.pluck(:person_id),
+      type_ids: record_types.pluck(:type_id),
+      collection_ids: collection_memberships.pluck(:collection_id)
     }
 
   end

@@ -1,0 +1,11 @@
+<% content_for :title, "Subjects within #{@collection.name}" %>
+<h1>Subjects within <%= link_to @collection.name, @collection %></h1>
+
+<ul>
+  <% @subjects.each do |subject| %>
+    <li>
+      <%= link_to subject.label, collection_subject_path(@collection, subject) %>
+      (<%= pluralize_with_delimiter(subject['records_within_subject_and_collection_count'], 'thing') %>)
+    </li>
+  <% end %>
+</ul>
