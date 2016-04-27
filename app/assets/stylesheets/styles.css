@@ -130,6 +130,7 @@ ul.results {
 .search-result {}
 .search-result h5 { margin-bottom: 5px;}
 .search-result small { }
+.plus {margin-left: 5px; background-color: #e4e7e1;}
 
 /* Nav */
 
