@@ -37,21 +37,21 @@
 
 <% if @thing.collections.size > 0 %>
 <div class="row">
-	<div class="one columns">
-		<h6>Collection</h6>
+	<div class="two columns">
+		<h6>Collection<% if @thing.collections.size > 1 %>s<% end %></h6>
 	</div>
-	<div class="eleven columns">
+	<div class="ten columns">
 		<%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
 	</div>
 </div>
 <% end %>
 
-<% if @thing.collections.size > 0 %>
+<% if @thing.archives_tree.size > 0 %>
 <div class="row">
-	<div class="one columns">
+	<div class="two columns">
 		<h6>Archive</h6>
 	</div>
-	<div class="eleven columns">
+	<div class="ten columns">
 		<%= @thing.archives_tree.collect do |record|  %>
 		  <% link_to record.title, thing_path(record) %>
 		<% end.join(' / ').html_safe %>
