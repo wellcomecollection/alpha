@@ -8,11 +8,13 @@
   <% end %>
 </p>
 
-<p>People:
-  <% @people.each do |person| %>
-     <%= person['records_by_person_count'] %> <%= link_to person.name, person_path("P#{person.id}") %>
-  <% end %>
-</p>
+<% if @people.length > 0 %>
+  <p>People:
+    <% @people.each do |person| %>
+       <%= person['records_by_person_count'] %> <%= link_to person.name, person_path("P#{person.id}") %>
+    <% end %>
+  </p>
+<% end %>
 
 <p>Subjects: <%= @subjects.collect do |subject| %>
     <% link_to subject.label, collection_subject_path(@collection, subject) %>
