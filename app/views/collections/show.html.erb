@@ -29,12 +29,10 @@
 					<h6>Mostly</h6>
 				</div>
 				<div class="eleven columns">
-					<span style="color:red">
-					<!-- /collections/collection/types/type -->
-					<% @types.each do |type| %>
-					   <%= link_to type.name, type_path(type) %> <%= type['records_in_type_count'] %>
-					<% end %>
-					</span>
+					<%= @types.collect do |type| %>
+					   <% link_to type.name, collection_type_path(@collection, "T#{type.id}") %>
+					<% end.join(', ').html_safe %>
+          <b><%= link_to 'View&#160;all'.html_safe, collection_types_path(@collection) %></b>
 				</div>
 			</div>
 <% if @subjects.length > 0 %>

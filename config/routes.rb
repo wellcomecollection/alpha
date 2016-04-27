@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :collections, only: ['index', 'show', 'edit', 'update'] do
     resources :subjects, only: ['index', 'show'], controller: 'collection_subjects', constraints: {id: /S\d+/}
     resources :people, only: ['index', 'show'], controller: 'collection_people', constraints: {id: /P\d+/}
+    resources :types, only: ['index', 'show'], controller: 'collection_types', constraints: {id: /T\d+/}
   end
 
   resource :search, only: 'show', controller: 'search'

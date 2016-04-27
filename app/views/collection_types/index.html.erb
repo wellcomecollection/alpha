@@ -1,0 +1,16 @@
+<% content_for :title, "Types within #{@collection.name}" %>
+
+<h6><a href="/collections">Collections</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
+<h2>Types</h2>
+
+<!-- Need a looping row, please -->
+<div class="row">
+
+  <ul>
+    <% @types.each do |type| %>
+      <li><%= link_to type.name, collection_type_path(@collection, "T#{type.id}") %></li>
+    <% end %>
+  </ul>
+
+</div>
+

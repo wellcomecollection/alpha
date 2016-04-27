@@ -5,5 +5,6 @@ class CollectionMembership < ActiveRecord::Base
 
   has_many :creators, primary_key: :record_id, foreign_key: :record_id
   has_many :taggings, primary_key: :record_id, foreign_key: :record_id
+  has_many :record_types, primary_key: :record_id, foreign_key: :record_id
 
 end
