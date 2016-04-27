@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   resources :subjects, only: 'show', constraints: {id: /S\d+\+S\d+/}, controller: 'subjects', action: 'multiple'
 
   resources :types, only: ['index', 'show']
-  resources :collections, only: ['index', 'show', 'edit', 'update']
+  resources :collections, only: ['index', 'show', 'edit', 'update'] do
+    resources :subjects, only: ['index', 'show'], controller: 'collection_subjects'
+  end
 
   resource :search, only: 'show', controller: 'search'
 
