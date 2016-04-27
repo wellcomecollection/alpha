@@ -2,11 +2,13 @@
 
 <h1><%= @collection.name %></h1>
 
-<p>Types:
-  <% @types.each do |type| %>
-     <%= type['records_in_type_count'] %> <%= link_to type.name, type_path(type) %>
-  <% end %>
-</p>
+<% if @types.length > 0 %>
+  <p>Types:
+    <% @types.each do |type| %>
+       <%= type['records_in_type_count'] %> <%= link_to type.name, type_path(type) %>
+    <% end %>
+  </p>
+<% end %>
 
 <% if @people.length > 0 %>
   <p>People:
@@ -16,12 +18,14 @@
   </p>
 <% end %>
 
-<p>Subjects: <%= @subjects.collect do |subject| %>
-    <% link_to subject.label, collection_subject_path(@collection, subject) %>
-  <% end.join(', ').html_safe %>
+<% if @subjects.length > 0 %>
+  <p>Subjects: <%= @subjects.collect do |subject| %>
+      <% link_to subject.label, collection_subject_path(@collection, subject) %>
+    <% end.join(', ').html_safe %>
 
-  <%= link_to 'View all', collection_subjects_path(@collection) %>
-</p>
+    <%= link_to 'View all', collection_subjects_path(@collection) %>
+  </p>
+<% end %>
 
 <% if logged_in_as_admin? %>
   <div>
