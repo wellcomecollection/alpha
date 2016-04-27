@@ -1,20 +1,17 @@
 <% content_for :title, "Subjects within #{@collection.name}" %>
 
 <h6><a href="/collections">Collections</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
-<h2>Subjects</h2>	
+<h2>Subjects</h2>
 
 <!-- Need a looping row, please -->
 <div class="row">
 
-  <% @subjects.each do |subject| %>
-	<div class="three columns">
-		<a href="">
-			<img src="http://wellcomelibrary.org/iiif-img/b21041465-0/55dec6be-93dd-4fa5-98c8-5d4f353db27e/full/!150,300/0/default.jpg" width="95%" />
-			<b><%= link_to subject.label, collection_subject_path(@collection, subject) %></b><br />
-			<%= pluralize_with_delimiter(subject['records_within_subject_and_collection_count'], 'thing') %>
-		</a>
-	</div>
-  <% end %>
+  <ul>
+    <% @subjects.each do |subject| %>
+  		<li><b><%= link_to subject.label, collection_subject_path(@collection, "S#{subject.id}") %></b><br />
+  		<%= pluralize_with_delimiter(subject['records_within_subject_and_collection_count'], 'thing') %></li>
+    <% end %>
+  </ul>
 
 </div>
 
