@@ -13,14 +13,14 @@
 	<div class="row breathe">
 		<div class="three columns">
 
-			<h4 style="margin-bottom:0; color:red;">0,000 items</h4>
+			<h4 style="margin-bottom:0;"><%= pluralize_with_delimiter(@collection.records_count, 'item') %></h4>
 
-			<div class="lil-vis">
-			  <div class="digitised">
-				<div class="percent-done" style="width:;">&nbsp;</div>
-			  </div>
-			  <span style="color:red">00%  digitised</span>
-			</div>
+      <div class="lil-vis">
+        <div class="digitised">
+        <div class="percent-done" style="width: <%= (100 * @collection.digitized_records_count.to_f / @collection.records_count) %>%;">&nbsp;</div>
+        </div>
+        <%= percentage_with_varying_accuracy(@collection.digitized_records_count.to_f / @collection.records_count) %>  digitised
+      </div>
 
 		</div>
 		<div class="nine columns">
@@ -47,7 +47,7 @@
 				    <% link_to subject.label, collection_subject_path(@collection, subject) %>
     				<% end.join(', ').html_safe %>
     				<br />
-					<b><%= link_to 'View all', collection_subjects_path(@collection) %></b>
+					<b><%= link_to 'View&#160;all'.html_safe, collection_subjects_path(@collection) %></b>
 				</div>
 			</div>
 <% end %>
@@ -57,16 +57,15 @@
 					<h6>By</h6>
 				</div>
 				<div class="eleven columns">
-				<span style="color:red">
-				<!-- /collections/collection/people/person -->
+				<span>
 
-				<% @people.each do |person| %>
-				    <%= link_to person.name, person_path("P#{person.id}") %> <%= person['records_by_person_count'] %>
-			    <% end %>
-			    </span>
+				<%= @people.collect do |person| %>
+				    <% link_to person.name, collection_person_path(@collection, "P#{person.id}") %>
+			    <% end.join(', ').html_safe %>
+			    </span> <b><%= link_to 'View&#160;all'.html_safe, collection_people_path(@collection) %></b>
 				</div>
 			</div>
-<% end %>		
+<% end %>
 		</div>
 	</div>
 

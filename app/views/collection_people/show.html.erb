@@ -1,0 +1,9 @@
+<% content_for :title, "#{@person.name} within #{@collection.name}" %>
+
+<h6><%= link_to "Collections", collections_path %> &rarr; <%= link_to @collection.name, @collection %> / <%= link_to("People", collection_people_path(@collection)) %></h6>
+
+<h1><%= @person.name %></h2>
+
+<% @records.each do |record| %>
+  <%= render record %>
+<% end %>

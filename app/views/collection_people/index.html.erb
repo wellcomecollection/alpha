@@ -1,0 +1,10 @@
+<% content_for :title, "People within #{@collection.name}" %>
+
+<h6><a href="/people">People</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
+<h2>People</h2>
+
+<ul>
+  <% @people.each do |person| %>
+    <li><%= link_to person.name, collection_person_path(@collection, "P#{person.id}") %></li>
+  <% end %>
+</ul>

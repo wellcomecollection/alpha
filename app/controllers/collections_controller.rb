@@ -46,7 +46,7 @@ class CollectionsController < ApplicationController
       .where(collection_memberships: {collection_id: @collection.id})
       .group('types.id')
       .order('records_in_type_count desc')
-      .limit(100)
+      .limit(20)
 
     @people = Creator
       .select('people.*')
@@ -55,7 +55,7 @@ class CollectionsController < ApplicationController
       .where(collection_memberships: {collection_id: @collection.id})
       .group('people.id')
       .order('records_by_person_count desc')
-      .limit(100)
+      .limit(20)
 
     @subjects = Subject
       .select(['subjects.id', :label])
