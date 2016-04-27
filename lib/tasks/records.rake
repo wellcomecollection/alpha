@@ -118,6 +118,14 @@ namespace :records do
       DownloadPackageJob.perform_later(record)
     end
 
+  end
+
+  desc 'Reset types counter'
+  task reset_types_counter: :environment do
+
+    Record.select(:id).find_each do |record|
+      Record.reset_counters(record.id, :types)
+    end
 
   end
 
