@@ -36,7 +36,7 @@
         .where(collection_memberships: {collection_id: collection.id})
         .group('types.id')
         .order('records_in_type_count desc')
-        .limit(5).each do |type| %>
+        .limit(6).each do |type| %>
 
         			<%= link_to type.name, type_path(type) %>
 
@@ -64,7 +64,7 @@
 	<div class="row breathe">
 		<div class="twelve columns">
 
-		<% collection.records.order('digitized desc').limit(6).each do |thing| %>
+		<% collection.records.order('digitized desc').limit(5).each do |thing| %>
 
 			<div class="cover-box">
 			  <div class="cover">
