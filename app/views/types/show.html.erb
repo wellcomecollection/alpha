@@ -25,7 +25,7 @@
 				<div class="eleven columns">
 					<%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
     				<br />
-					<b><a href="" style="color:red;">View all</a></b>
+					<b><%= link_to 'View all', type_subjects_path(@type) %></b>
 				</div>
 			</div>
 <!-- if people > 0 -->

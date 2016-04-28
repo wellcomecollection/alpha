@@ -1,0 +1,24 @@
+<% content_for :title, "Subjects within #{@type.name}" %>
+
+<h1>Subjects within <%= link_to @type.name, @type %></h1>
+
+<% @subject_results.in_groups_of(4) do |group| %>
+  <div class="row">
+    <% group.each do |subject| %>
+      <div class="three columns">
+        <% if subject %>
+          <%= link_to type_subject_path(@type, "S#{subject['key']}") do %>
+
+
+            <% if subject['top_subject_hits']['hits']['hits'].first['_source']['cover_image_uris'] %>
+              <img src="<%= subject['top_subject_hits']['hits']['hits'].first['_source']['cover_image_uris'].first %>/full/!200,300/0/default.jpg">
+
+              <%= @subjects.find {|s| s.id == subject['key'] }.label %>
+            <% end %>
+
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

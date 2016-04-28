@@ -46,6 +46,17 @@
 </div>
 <% end %>
 
+<% if @thing.types.size > 0 %>
+  <div class="row">
+    <div class="two columns">
+      <h6><%= @thing.types.size == 1 ? 'Type' : 'Types' %></h6>
+    </div>
+    <div class="ten columns">
+      <%= @thing.types.collect {|type| link_to(type.name, type) }.join(', ').html_safe %>
+    </div>
+  </div>
+<% end %>
+
 <% if @thing.archives_tree.size > 0 %>
 <div class="row">
 	<div class="two columns">
