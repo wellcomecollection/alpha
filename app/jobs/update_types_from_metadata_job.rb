@@ -38,7 +38,10 @@ class UpdateTypesFromMetadataJob < ActiveJob::Base
 
       if !genre_name.blank?
 
-        type = Type.find_by_reference(genre_reference) || Type.create!(references: [genre_reference], name: genre_name)
+        type = Type.find_by_reference(genre_reference) || Type.find_or_initialize_by(name: genre_name)
+
+        type.references << genre_reference unless type.references.include?(genre_reference)
+        type.save!
 
         begin
           record.types << type
