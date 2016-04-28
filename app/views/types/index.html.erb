@@ -2,16 +2,19 @@
 
 <h1>Types of thing</h1>
 
-<ul>
   <% @types.each do |type| %>
-    <li><%= link_to type.name, type %>
+    <div style=" float: left; height: 100px; width: 22%; list-style: none; padding: 0 27px 10px 0;">
 
-      <small>
-        <%= number_with_delimiter(type.digitized_records_count) %>
-        of
-        <%= number_with_delimiter(type.records_count) %>
-        things digitised
-      </small>
-    </li>
+    
+    	<h6 style="margin-bottom:0; padding: 3px; background-color: white;"><%= link_to type.name, type %></h6>
+
+		<div class="lil-vis" style="margin-top: -7px; margin-bottom: 0;">
+		  <div class="digitised" style="margin-top: -11px; margin-bottom: 0;">
+			<div class="percent-done" style="width:<%= (100 * type.digitized_records_count.to_f / type.records_count) %>%;">&nbsp;</div>
+		  </div>
+		</div>
+
+        <small style="padding-left: 3px;"><%= percentage_with_varying_accuracy(type.digitized_records_count.to_f / type.records_count) %>  digitised, <%= number_with_delimiter(type.records_count) %> things</small>
+			
+    </div>
   <% end %>
-</ul>
