@@ -8,11 +8,16 @@ class TypeSubjectsController < ApplicationController
     @subject_results = client.search index: 'records',
       size: 0, # no hits please
       body: {
+        query: {
+          match: {
+            type_ids: @type.id
+          }
+        },
         aggs: {
           top_subjects: {
             terms: {
               field: :subject_ids,
-              size: 10
+              size: 50
             },
             aggs: {
               top_subject_hits: {
