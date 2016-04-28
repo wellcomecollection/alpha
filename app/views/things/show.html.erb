@@ -103,7 +103,7 @@
 	<% if @thing.types.size > 0 %>
 		  <h6>Material/Type</h6>
 		  <p><%= @thing.types.collect {|type| link_to(type.name, type) }.join(', ').html_safe %></p>
-	<% end %>	
+	<% end %>
 
 	<% if @subjects.length > 0 %>
 		<h6>About</h6>
@@ -113,7 +113,7 @@
 		<% end.to_sentence.html_safe %>
 		</p>
 	<% end %>
-	
+
 		<h6>Links</h5>
 		<ul>
       <% if @thing.digitized? %>
@@ -123,6 +123,18 @@
 			<small>You can request the book for reference, if you're a Wellcome Library member.</small></li>
 			<li><%= link_to "JSON data", thing_path(format: :json) %></li>
 		</ul>
+
+    <% if @child_records.try(:length).to_i > 0 %>
+      <h6>Go deeper</h6>
+
+      <ul>
+        <% @child_records.each do |record| %>
+          <li><%= link_to record.title, thing_path(record) %></li>
+        <% end %>
+      </ul>
+
+    <% end %>
+
 	</div>
 
 	<div class="offset-by-one seven columns">
@@ -151,9 +163,8 @@
 	  </li>
 <% end %>
 
-<% if @thing.collection %>
-	  <li>Part of the <%= content_tag 'span', "#{@thing.collection} collection", class: @thing.collection.downcase %></li>
-<% end %>
+
+
 	</ul>
 	</div>
 </div>
