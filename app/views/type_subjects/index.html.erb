@@ -1,6 +1,8 @@
 <% content_for :title, "Subjects within #{@type.name}" %>
 
-<h1>Subjects within <%= link_to @type.name, @type %></h1>
+<h6><%= link_to 'Types', types_path %> &rarr; <%= link_to @type.name, @type %> / </h6>
+
+<h1>Subjects</h1>
 
 <% @subject_results.in_groups_of(4) do |group| %>
   <div class="row">

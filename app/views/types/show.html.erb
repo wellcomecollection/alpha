@@ -1,5 +1,5 @@
 <% content_for :title, @type.name %>
-<h6><a href="/types">Types</a> /</h6>
+<h6><a href="/types">Types</a> &rarr;</h6>
 <h1><%= @type.name %></h1>
 
 
@@ -23,7 +23,7 @@
 					<h6>About</h6>
 				</div>
 				<div class="eleven columns">
-					<%= @subjects.collect {|s| link_to(s.label, s) }.join(', ').html_safe %>
+					<%= @subjects.collect {|s| link_to(s.label, type_subject_path(@type,s)) }.join(', ').html_safe %>
     				<br />
 					<b><%= link_to 'View all', type_subjects_path(@type) %></b>
 				</div>
