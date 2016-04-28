@@ -16,7 +16,7 @@
 
         <%= link_to person, class: 'portrait' do %>
           <% if person.wikipedia_image %>
-            <div class="person-mini-portrait" style="background-image: url('<%=  person.wikipedia_image %>');"></div>
+            <div class="person-mini-portrait" style="background-image: url('<%=  person.wikipedia_image(40) %>'); background-color: yellow;"></div>
           <% else %>
             <div class="person-mini-portrait">&nbsp;</div>
           <% end %>
