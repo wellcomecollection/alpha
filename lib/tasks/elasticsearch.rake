@@ -176,6 +176,8 @@ namespace :elasticsearch do
   desc 'Ingest records into elasticsearch'
   task records: :environment do
 
+    client = Elasticsearch::Client.new url: ENV.fetch('ELASTICSEARCH_URL'), log: logging
+
     total = 0
 
     puts "Importing records into Elasticsearch…"
