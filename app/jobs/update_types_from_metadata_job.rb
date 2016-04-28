@@ -9,11 +9,11 @@ class UpdateTypesFromMetadataJob < ActiveJob::Base
     'd'=> 'Journals',
     'e'=> 'Maps',
     'f'=> 'Videos',
-    'g'=> 'Videorecordings',
-    'h'=> 'Archives and manuscripts',
+    'g'=> 'Video recordings',
+    'h'=> 'Archives',
     'i'=> 'Audio',
     's'=> 'Audio',
-    'j'=> 'E-journals',
+    'j'=> 'Electronic journals',
     'k'=> 'Pictures',
     'l'=> 'Ephemera',
     'm'=> 'CD-Roms',
@@ -21,7 +21,7 @@ class UpdateTypesFromMetadataJob < ActiveJob::Base
     'p'=> 'Mixed materials',
     'r'=> '3-D objects',
     'q'=> 'Digital images',
-    'v'=> 'E-books',
+    'v'=> 'Electronic books',
     'w' => 'Wellcome dissertations',
     'z' => 'Websites'
   }
