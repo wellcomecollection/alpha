@@ -1,6 +1,6 @@
 <% content_for :title, "People within #{@collection.name}" %>
 
-<h6><a href="/people">People</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
+<h6><a href="/collections">Collections</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
 <h2>People</h2>
 
 <ul>
@@ -8,3 +8,26 @@
     <li><%= link_to person.name, collection_person_path(@collection, "P#{person.id}") %></li>
   <% end %>
 </ul>
+
+<!-- @top_people.in_groups_of(4) do |group| -->
+
+<div class="row people-list">
+  <!-- group.each do |person| -->
+	<div class="three columns">
+		<div class="big-circle-container">
+			<!-- if person.wikipedia_image -->
+			  <!-- style = "background-image: url('#{person.wikipedia_image(200)}');" -->
+			<!-- end -->
+
+			<!-- = link_to person.name, collection_person_path(@collection, "P#{person.id}"), class: 'big-circle-link', style: style, title: pluralize(person.records_count, 'thing') -->
+
+			<!-- = link_to person.name, collection_person_path(@collection, "P#{person.id}"), class: 'name', title: pluralize(person.records_count, 'thing') -->
+			<!-- if person.born_in || person.died_in -->
+			  <small class="dates"><!-- = person.born_in --> - <!-- = person.died_in --></small>
+			<!-- end -->
+		</div>
+ 	</div>
+  <!-- end -->
+</div>
+
+<!-- end -->
