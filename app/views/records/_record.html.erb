@@ -1,6 +1,6 @@
 <div class="cover-box">
   <div class="cover">
-    <%= link_to thing_path(record), title: record.title do %>
+    <%= link_to thing_path(record.to_param), title: record.title do %>
       <% if record.cover_image_url %>
         <%= image_tag record.cover_image_url(150,300) %>
       <% else %>

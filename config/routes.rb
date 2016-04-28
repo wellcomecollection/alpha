@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :types, only: ['index', 'show'] do
     resources :subjects, only: ['index', 'show'], controller: 'type_subjects', constraints: {id: /S\d+/}
+    resources :people, only: ['index', 'show'], controller: 'type_people', constraints: {id: /P\d+/}
   end
 
 

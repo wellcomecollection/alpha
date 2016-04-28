@@ -7,18 +7,50 @@ class TypesController < ApplicationController
   def show
     @type = Type.find(params[:id].gsub('T',''))
 
-    @records = @type.records.select(:identifier, :title, :pdf_thumbnail_url,
-      :cover_image_uris).order('digitized desc', :title).limit(100)
+    client = Elasticsearch::Client.new
+
+    @results = client.search index: 'records',
+      size: 20,
+      body: {
+        query: {
+          match: {
+            type_ids: @type.id
+          }
+        },
+        sort: [{digitized: {order: 'desc'}}],
+        aggs: {
+          people: {
+            terms: {
+              field: 'person_ids',
+              size: 16
+            }
+          }, subjects: {
+            terms: {
+              field: 'subject_ids',
+              size: 16
+            }
+          }
+        }
+      }
+
+    people_ids = @results['aggregations']['people']['buckets'].collect {|result| result['key'] }
+
+    @people = Person
+      .find(people_ids)
+
+    subject_ids = @results['aggregations']['subjects']['buckets'].collect {|result| result['key'] }
 
     @subjects = Subject
-      .select(['subjects.id', :label])
-      .select('count(taggings.record_id) as records_in_subject_count')
-      .joins(taggings: [:record_types])
-      .where(record_types: {type_id: @type.id})
-      .group('subjects.id')
-      .order('records_in_subject_count desc')
-      .limit(20)
+      .find(subject_ids)
 
+    @records = @results['hits']['hits'].collect do |hit|
+
+      Record.new(
+        identifier: hit['_id'],
+        title: hit['_source']['title'],
+        cover_image_uris: hit['_source']['cover_image_uris'],
+      )
+    end
 
   end
 

@@ -1,0 +1,31 @@
+<% content_for :title, "People within #{@type.name}" %>
+
+<h6><%= link_to 'Types', types_path %> &rarr; <%= link_to @type.name, @type %> / </h6>
+
+<h1>People</h1>
+
+<% @people.in_groups_of(4) do |group| %>
+
+  <div class="row people-list">
+    <% group.each do |person| %>
+    <div class="three columns">
+
+      <% if person %>
+        <div class="big-circle-container">
+          <% if person.wikipedia_image %>
+            <% style = "background-image: url('#{person.wikipedia_image(200)}');" %>
+          <% end %>
+
+          <%= link_to person.name, person, class: 'big-circle-link', style: style, title: pluralize(person.records_count, 'thing') %>
+
+          <%= link_to person.name, person, class: 'name', title: pluralize(person.records_count, 'thing') %>
+          <% if person.born_in || person.died_in %>
+            <small class="dates"><%= person.born_in %> - <%= person.died_in %></small>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+<% end %>

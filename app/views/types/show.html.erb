@@ -2,7 +2,6 @@
 <h6><a href="/types">Types</a> &rarr;</h6>
 <h1><%= @type.name %></h1>
 
-
 	<div class="row breathe">
 		<div class="three columns">
 
@@ -34,14 +33,14 @@
 					<h6>By</h6>
 				</div>
 				<div class="eleven columns">
-					<a href="" style="color:red;">people list</span>
+          <%= @people.collect {|p| link_to(p.name, type_person_path(@type, p)) }.join(', ').html_safe %>
     				<br />
-					<b><a href="" style="color:red;">View all</a></b>
+					<b><%= link_to 'View all', type_people_path(@type) %></b>
 				</div>
 			</div>
 		</div>
 	</div>
 
 <% @records.each do |record| %>
-  <%= render record %>
+  <%= render 'records/record', record: record %>
 <% end %>
