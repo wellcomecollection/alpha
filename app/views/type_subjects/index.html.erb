@@ -11,12 +11,11 @@
         <% if subject %>
           <%= link_to type_subject_path(@type, "S#{subject['key']}") do %>
 
-
             <% if subject['top_subject_hits']['hits']['hits'].first['_source']['cover_image_uris'] %>
               <img src="<%= subject['top_subject_hits']['hits']['hits'].first['_source']['cover_image_uris'].first %>/full/!200,300/0/default.jpg">
-
-              <%= @subjects.find {|s| s.id == subject['key'] }.label %>
             <% end %>
+            <%= @subjects.find {|s| s.id == subject['key'] }.label %>
+
 
           <% end %>
         <% end %>
