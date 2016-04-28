@@ -48,8 +48,10 @@
 	<div class="row breathe">
 		<div class="twelve columns">
 
-      <% @records.select {|r| r['collection_id'] == collection.id }.each do |thing| %>
+      <% @records_ids_per_collection.select {|r| r['collection_id'] == collection.id }.each do |record_id| %>
 
+
+      <% thing = @records.find {|record| record.id == record_id['record_id'] } %>
 			<div class="cover-box">
 			  <div class="cover">
 				<%= link_to thing_path(thing), title: thing.title do %>

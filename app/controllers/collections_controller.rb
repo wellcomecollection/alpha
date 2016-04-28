@@ -22,9 +22,14 @@ class CollectionsController < ApplicationController
 
       ) counts inner join people on counts.person_id = people.id")
 
-    @records = Record.find_by_sql("select collections.id as collection_id, records.* from collections, lateral (
-      select identifier, title, pdf_thumbnail_url, cover_image_uris from records inner join collection_memberships on collection_memberships.record_id = records.id where collection_memberships.collection_id = collections.id order by digitized desc limit 5
+    @records_ids_per_collection = Record.find_by_sql("select collections.id as collection_id, records.record_id from collections, lateral (
+      select record_id from collection_memberships where collection_memberships.collection_id = collections.id limit 5
       ) records")
+
+
+    @records = Record
+      .select(:id, :identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
+      .find(@records_ids_per_collection.collect {|r| r['record_id']} )
 
 
     @people_counts = CollectionMembership
