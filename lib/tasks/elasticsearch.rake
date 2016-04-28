@@ -132,7 +132,7 @@ namespace :elasticsearch do
   end
 
   desc 'Reset Records mappings (wipes all data)'
-  task :reset_records_mappings: :environment do
+  task reset_records_mappings: :environment do
 
     logging = false
     index_name = 'records'
