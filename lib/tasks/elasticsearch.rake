@@ -131,9 +131,8 @@ namespace :elasticsearch do
 
   end
 
-
-  desc 'Ingest records into elasticsearch'
-  task records: :environment do
+  desc 'Reset Records mappings (wipes all data)'
+  task :reset_records_mappings: :environment do
 
     logging = false
     index_name = 'records'
@@ -171,8 +170,13 @@ namespace :elasticsearch do
         }
       }
 
-    total = 0
+  end
 
+
+  desc 'Ingest records into elasticsearch'
+  task records: :environment do
+
+    total = 0
 
     puts "Importing records into Elasticsearch…"
 
