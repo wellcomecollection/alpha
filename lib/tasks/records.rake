@@ -129,4 +129,29 @@ namespace :records do
 
   end
 
+  desc 'Set parent ID'
+  task set_parent_id: :environment do
+
+    Record
+      .where.not(archives_ref: nil)
+      .where(parent_id: nil)
+      .select(:id, :archives_ref)
+      .find_each do |record|
+
+      parent_ref = record.archives_ref.gsub(/\/?[^\/]+\z/, '')
+
+      unless parent_ref.blank?
+
+        parent = Record.select(:id).find_by(archives_ref: parent_ref)
+
+        if parent
+          record.update_column(:parent_id, parent.id)
+        end
+
+      end
+
+    end
+
+  end
+
 end
