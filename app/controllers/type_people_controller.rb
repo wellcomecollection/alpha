@@ -8,6 +8,11 @@ class TypePeopleController < ApplicationController
     @people_results = client.search index: 'records',
       size: 0, # no hits please
       body: {
+        query: {
+          match: {
+            type_ids: @type.id
+          }
+        },
         aggs: {
           people: {
             terms: {
