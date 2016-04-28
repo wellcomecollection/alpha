@@ -38,7 +38,7 @@
 <% if @thing.collections.size > 0 %>
 <div class="row">
 	<div class="two columns">
-		<h6>Collection<% if @thing.collections.size > 1 %>s<% end %></h6>
+		<h6>Collection<% if @thing.collections.size > 1 %>s<% end %> &rarr;</h6>
 	</div>
 	<div class="ten columns">
 		<%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
@@ -46,21 +46,10 @@
 </div>
 <% end %>
 
-<% if @thing.types.size > 0 %>
-  <div class="row">
-    <div class="two columns">
-      <h6><%= @thing.types.size == 1 ? 'Type' : 'Types' %></h6>
-    </div>
-    <div class="ten columns">
-      <%= @thing.types.collect {|type| link_to(type.name, type) }.join(', ').html_safe %>
-    </div>
-  </div>
-<% end %>
-
 <% if @thing.archives_tree.size > 0 %>
 <div class="row">
 	<div class="two columns">
-		<h6>Archive</h6>
+		<h6>Archive &rarr;</h6>
 	</div>
 	<div class="ten columns">
 		<%= @thing.archives_tree.collect do |record|  %>
@@ -111,18 +100,21 @@
 <hr />
 <div class="row">
 	<div class="four columns">
-		<h5>Subjects</h5>
+	<% if @thing.types.size > 0 %>
+		  <h6>Material/Type</h6>
+		  <p><%= @thing.types.collect {|type| link_to(type.name, type) }.join(', ').html_safe %></p>
+	<% end %>	
+
 	<% if @subjects.length > 0 %>
+		<h6>About</h6>
 		<p>
 		<%= @subjects.collect do |subject| %>
 		  <% link_to subject.label, subject %>
 		<% end.to_sentence.html_safe %>
 		</p>
-	<% else %>
-		<p>None, yet.</p>
 	<% end %>
-
-		<h5>Links</h5>
+	
+		<h6>Links</h5>
 		<ul>
       <% if @thing.digitized? %>
         <li><a href="http://wellcomelibrary.org/item/<%= @thing.identifier %>">Open in deep-zoom viewer</a></li>
@@ -136,7 +128,7 @@
 	<div class="offset-by-one seven columns">
 
       <!-- MaRC 520 -->
-      <h4>Summary</h4>
+      <h5>Summary</h5>
 <% if @thing.summary %>
         <p><%= @thing.summary.html_safe %></p>
 <% else %>
@@ -144,7 +136,7 @@
 <% end %>
 
       <!-- MaRC 545 -->
-      <h4>About</h4>
+      <h5>What else?</h5>
 <% if @thing.about %>
         <p><%= @thing.about.html_safe %></p>
 <% else %>
