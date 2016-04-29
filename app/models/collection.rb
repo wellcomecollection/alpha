@@ -18,8 +18,28 @@ class Collection < ActiveRecord::Base
       description: description,
       all_names: [name],
       records_count: records_count,
-      digitized_records_count: digitized_records_count
+      digitized_records_count: digitized_records_count,
+      from_year: from_year,
+      to_year: to_year
     }
+  end
+
+  def update_from_and_to_years!
+
+    years = records
+      .pluck('distinct year')
+      .select {|year| year =~ /\d{4}/ && year < (Time.now.year + 1).to_s && year != "0000"}.sort_by {|year| year }
+
+
+    if years.length > 0
+
+      from_year = years.first
+      to_year = years.last
+
+    end
+
+    update_columns(from_year: from_year, to_year: to_year)
+
   end
 
 end

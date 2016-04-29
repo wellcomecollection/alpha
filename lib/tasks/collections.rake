@@ -31,4 +31,14 @@ namespace :collections do
 
   end
 
+  desc 'Update from_and_to_years on collections'
+  task update_from_and_to_years: :environment do
+
+    Collection.select(:id).find_each do |collection|
+      collection.update_from_and_to_years!
+    end
+
+  end
+
+
 end

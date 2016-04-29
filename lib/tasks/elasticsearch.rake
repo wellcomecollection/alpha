@@ -243,7 +243,8 @@ namespace :elasticsearch do
               records_count: {type: 'integer'},
               digitized_records_count: {type: 'integer'},
               slug: {type: 'string', index: :no},
-
+              from_year: {type: 'integer'},
+              to_year: {type: 'integer'}
             }
           }
         }
