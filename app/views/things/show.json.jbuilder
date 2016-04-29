@@ -4,7 +4,7 @@ json.authors @thing.people.each do |person|
   json.id person.to_param
   json.(person, :name)
 end
-json.authors @thing.subjects.each do |subject|
+json.subjects @thing.subjects.each do |subject|
   json.id subject.to_param
   json.(subject, :label, :description)
 end
