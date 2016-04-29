@@ -15,17 +15,47 @@ class PeopleController < ApplicationController
 
   def show
 
+    client = Elasticsearch::Client.new
+
     id = params[:id].gsub("P", "")
 
     @person = Person.find(id)
 
     @digitized_count = @person.records.where(digitized: true).count
 
+    results = client.search index: 'records',
+      size: 100,
+      body: {
+        query: {
+          term: {
+            person_ids: @person.id
+          }
+        },
+        sort: [{digitized: {order: 'desc'}}],
+        aggs: {
+          types: {
+            terms: {
+              field: 'type_ids',
+              size: 16
+            }
+          }
+        }
+      }
+
+    @things = results['hits']['hits'].collect do |hit|
+
+      Record.new(
+        identifier: hit['_source']['id'],
+        title: hit['_source']['title'],
+        cover_image_uris: hit['_source']['cover_image_uris']
+      )
+    end
+
+    @types = Type.find(results['aggregations']['types']['buckets'].collect {|r| r['key'] })
+
     record_ids = @person.records.select(:id)
 
     if @person.born_in
-
-      client = Elasticsearch::Client.new
 
       results = client.search index: 'records',
         size: 0,
@@ -108,10 +138,6 @@ class PeopleController < ApplicationController
       .group('subjects.id')
       .order('count desc')
       .limit(40)
-
-    @things = @person.records.select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
-      .order('digitized desc')
-      .limit(100)
   end
 
   def update

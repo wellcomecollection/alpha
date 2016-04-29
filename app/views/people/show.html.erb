@@ -81,6 +81,19 @@
 	<div class="offset-by-two eight columns">
 <% end %>
 
+
+  <% if @types.length > 0 %>
+    <h4>Mostly</h4>
+
+    <p>
+      <%= @types.collect do |type| %>
+        <% link_to type.name, type_path(type) %>
+      <% end.join(', ').html_safe %>
+    </p>
+  <% end %>
+
+
+
    		<h4>Subjects</h4>
 
       <% if @top_subjects_written_about.length > 0 %>
