@@ -4,11 +4,13 @@
 
 <%= render 'collections/search', {value: ''} %>
 
+<hr />
+
 <% @collections.each do |collection| %>
 <div class="collection">
-	<h2>
+	<h3>
 		<%= link_to collection.name, collection %>
-	</h2>
+	</h3>
 
 	<% if collection.description %>
 	<p><%= collection.description %></p>
