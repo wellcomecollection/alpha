@@ -207,4 +207,83 @@ namespace :elasticsearch do
   end
 
 
+  desc 'Reset Collections mappings (wipes all data)'
+  task reset_collections_mappings: :environment do
+
+    logging = false
+    index_name = 'collections'
+
+    client = Elasticsearch::Client.new url: ENV.fetch('ELASTICSEARCH_URL')
+
+    if client.indices.exists? index: index_name
+      client.indices.delete index: index_name
+    end
+
+    client.indices.create index: index_name,
+      body: {
+        mappings: {
+          collection: {
+            properties: {
+              id: {type: 'string', index: :not_analyzed},
+              name: {
+                type: 'string',
+                analyzer: :english,
+                fields: {
+                  raw: {type: 'string', index: :not_analyzed }
+                }
+              },
+              all_names: {type: 'string', analyzer: :english},
+              description: {
+                type: 'string',
+                analyzer: :english,
+                fields: {
+                  raw: {type: 'string', index: :not_analyzed }
+                }
+              },
+              records_count: {type: 'integer'},
+              digitized_records_count: {type: 'integer'},
+              slug: {type: 'string', index: :no},
+
+            }
+          }
+        }
+      }
+
+  end
+
+
+  desc 'Ingest collections into elasticsearch'
+  task collections: :environment do
+
+    client = Elasticsearch::Client.new url: ENV.fetch('ELASTICSEARCH_URL')
+    index_name = 'collections'
+
+    total = 0
+
+    puts "Importing collections into Elasticsearch…"
+
+    Collection.find_in_batches do |collections|
+      puts "Importing collections #{total + 1}–#{total + collections.length}…"
+      total = total + collections.length
+
+      body =
+        collections.map { |collection|
+
+          {
+            index: {
+              _index: index_name,
+              _type:  'collection',
+              _id:    collection.id,
+              data:   collection.to_elasticsearch
+            }
+          }
+        }
+
+      client.bulk body: body
+    end
+
+    puts "Finished importing #{total} records"
+
+  end
+
 end

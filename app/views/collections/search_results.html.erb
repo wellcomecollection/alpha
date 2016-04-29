@@ -1,0 +1,18 @@
+<h1><%= link_to('Collections', collections_path) %> / '<%= @name %>'</h1>
+
+<%= render 'collections/search', {value: @name} %>
+
+<% if @collections.length > 0 %>
+  <% @collections.each do |collection| %>
+    <h2><%= link_to collection['_source']['name'], collection_path(collection['_source']['slug']) %></h2>
+
+    <% if collection.fetch('highlight', {})['description'] %>
+      <p><%= collection['highlight']['description'].join(' … ').html_safe %></p>
+    <% else %>
+      <p><%= truncate(collection['_source']['description'],200) %></p>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <p>No results</p>
+<% end %>

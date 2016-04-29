@@ -11,4 +11,15 @@ class Collection < ActiveRecord::Base
     update_attribute(:digitized_records_count, records.digitized.count)
   end
 
+  def to_elasticsearch
+    {
+      name: name,
+      slug: slug,
+      description: description,
+      all_names: [name],
+      records_count: records_count,
+      digitized_records_count: digitized_records_count
+    }
+  end
+
 end
