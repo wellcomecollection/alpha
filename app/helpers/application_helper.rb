@@ -25,9 +25,9 @@ module ApplicationHelper
     when 'n6i'
       "National Library of Ireland"
     when 'nli'
-      "National Library of Israel"  
+      "National Library of Israel"
     when 'iccu'
-      "Istituto centrale per il Catalogo unico delle biblioteche italiane e per le informazioni bibliografiche"            
+      "Istituto centrale per il Catalogo unico delle biblioteche italiane e per le informazioni bibliografiche"
 	when 'viaf'
 	  "Virtual International Authority File"
 	when 'nukat'
@@ -43,11 +43,11 @@ module ApplicationHelper
 	when 'rero'
 	  "Réseau des bibliothèques de Suisse occidentale"
 	when 'lac'
-	  "Library and Archives Canada" 
+	  "Library and Archives Canada"
 	when 'jpg'
 	  "Getty Research Institute"
 	when 'nlp'
-	  "Biblioteka Narodowa" 
+	  "Biblioteka Narodowa"
 	when 'bne'
 	  "Biblioteca Nacional de España"
 	when 'imagine'
@@ -57,7 +57,7 @@ module ApplicationHelper
 	when 'bnc'
 	  "Biblioteca de Catalunya"
 	when 'ndl'
-	  "国立国会図書館"  
+	  "国立国会図書館"
     else
       key
     end
@@ -99,6 +99,16 @@ module ApplicationHelper
     end
 
 
+  end
+
+
+  def digitized_graph(digitized_records_count, records_count)
+
+    "<div class=\"lil-vis\" style=\"margin-top: -7px; margin-bottom: 0;\">
+      <div class=\"digitised\" style=\"margin-top: -11px; margin-bottom: 0;\">
+      <div class=\"percent-done\" style=\"width: #{(100 * digitized_records_count.to_f / records_count) }%;\">&nbsp;</div>
+      </div>
+    </div>".html_safe
   end
 
 end

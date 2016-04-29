@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   resources :subjects, only: 'show', constraints: {id: /S\d+\+S\d+/}, controller: 'subjects', action: 'multiple', as: 'multiple_subjects'
 
+  resource :types_search, only: 'show', path: 'types/search', controller: 'types_search'
+
   resources :types, only: ['index', 'show'] do
     resources :subjects, only: ['index', 'show'], controller: 'type_subjects', constraints: {id: /S\d+/}
     resources :people, only: ['index', 'show'], controller: 'type_people', constraints: {id: /P\d+/}

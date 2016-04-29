@@ -1,0 +1,20 @@
+<h1><%= link_to('Types', collections_path) %> / '<%= @q %>'</h1>
+
+<%= render 'types/search', {value: @q} %>
+
+<% if @types.length > 0 %>
+  <% @types.each do |type| %>
+
+    <h2><%= link_to type['_source']['name'], type_path(type['_id']) %></h2>
+
+    <div style="max-width: 200px;">
+      <%= digitized_graph(type['_source']['digitized_records_count'], type['_source']['records_count'])
+      %>
+      <small style="padding-left: 3px;"><%= percentage_with_varying_accuracy(type['_source']['digitized_records_count'].to_f / type['_source']['records_count']) %>  digitised, <%= number_with_delimiter(type['_source']['records_count']) %> things</small>
+    </div>
+
+  <% end %>
+
+<% else %>
+  <p>No results</p>
+<% end %>

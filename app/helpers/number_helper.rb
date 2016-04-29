@@ -6,7 +6,7 @@ module NumberHelper
 
     decimal_places = percentage < 0.01 ? 5 : 2
 
-    percentage.round(decimal_places).to_s + "%"
+    number_to_percentage(percentage, precision: decimal_places, strip_insignificant_zeros: true)
   end
 
   # Same as pluralize helper but with the number formatted using

@@ -286,4 +286,80 @@ namespace :elasticsearch do
 
   end
 
+
+  desc 'Reset Types mappings (wipes all data)'
+  task reset_types_mappings: :environment do
+
+    logging = false
+    index_name = 'types'
+
+    client = Elasticsearch::Client.new url: ENV.fetch('ELASTICSEARCH_URL')
+
+    if client.indices.exists? index: index_name
+      client.indices.delete index: index_name
+    end
+
+    client.indices.create index: index_name,
+      body: {
+        mappings: {
+          collection: {
+            properties: {
+              name: {
+                type: 'string',
+                analyzer: :english,
+                fields: {
+                  raw: {type: 'string', index: :not_analyzed }
+                }
+              },
+              all_names: {type: 'string', analyzer: :english},
+              description: {
+                type: 'string',
+                analyzer: :english,
+                fields: {
+                  raw: {type: 'string', index: :not_analyzed }
+                }
+              },
+              records_count: {type: 'integer'},
+              digitized_records_count: {type: 'integer'}
+            }
+          }
+        }
+      }
+
+  end
+
+  desc 'Ingest type into elasticsearch'
+  task types: :environment do
+
+    client = Elasticsearch::Client.new url: ENV.fetch('ELASTICSEARCH_URL')
+    index_name = 'types'
+
+    total = 0
+
+    puts "Importing types into Elasticsearch…"
+
+    Type.find_in_batches do |types|
+      puts "Importing types #{total + 1}–#{total + types.length}…"
+      total = total + types.length
+
+      body =
+        types.map { |type|
+
+          {
+            index: {
+              _index: index_name,
+              _type:  'type',
+              _id:    type.to_param,
+              data:   type.to_elasticsearch
+            }
+          }
+        }
+
+      client.bulk body: body
+    end
+
+    puts "Finished importing #{total} records"
+
+  end
+
 end
