@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428204455) do
+ActiveRecord::Schema.define(version: 20160429124551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20160428204455) do
     t.integer "digitized_records_count", default: 0, null: false
     t.text    "description"
     t.text    "slug",                                null: false
+    t.integer "from_year"
+    t.integer "to_year"
   end
 
   add_index "collections", ["dig_code"], name: "index_collections_on_dig_code", unique: true, using: :btree
