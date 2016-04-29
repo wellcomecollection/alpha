@@ -81,7 +81,7 @@
 <% elsif @thing.image_urls.length > 0 %>
 
     <% url = @thing.image_urls(2000, 2000).first %>
-    <%= link_to url do %>
+    <%= link_to thing_page_path(@thing, 1) do %>
       <%= image_tag url, style: 'width: 100%;' %>
     <% end %>
 

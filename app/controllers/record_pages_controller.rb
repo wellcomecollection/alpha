@@ -9,4 +9,12 @@ class RecordPagesController < ApplicationController
     render 'things/page'
   end
 
+  def index
+
+    @thing = Record.find_by!(identifier: params[:thing_id])
+
+
+    render 'things/pages'
+  end
+
 end
