@@ -57,7 +57,9 @@ Rails.application.routes.draw do
 
   resources :subjects, only: ['show'], controller: 'subjects_lookup'
 
-  resources :things, only: ['show'], path: '', constraints: {id: /b[\dx]+/}
+  resources :things, only: ['show'], path: '', constraints: {id: /b[\dx]+/} do
+    resources :pages, only: ['index', 'show'], constraints: {id: /\d+/}, controller: 'record_pages'
+  end
 
   resource :session, only: [:new, :create, :destroy]
 

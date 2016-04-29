@@ -85,8 +85,8 @@
       <%= image_tag url, style: 'width: 100%;' %>
     <% end %>
 
-  <% @thing.image_service_urls.drop(1).each do |image_service_url| %>
-    <%= link_to "#{image_service_url}/full/!1600,1600/0/default.jpg" do %>
+  <% @thing.image_service_urls.drop(1).each_with_index do |image_service_url, page| %>
+    <%= link_to thing_page_path(@thing.to_param, page + 1) do %>
       <%= image_tag "#{image_service_url}/full/!200,200/0/default.jpg", style: 'width: auto;' %>
     <% end %>
   <% end %>
