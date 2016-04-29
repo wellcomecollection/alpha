@@ -30,7 +30,7 @@
 		        <li>
 
         <% @types.select {|type| type['collection_id'] == collection.id }.each do |type| %>
-        	<%= link_to type.name, type_path(type) %>
+        	<%= link_to type.name, collection_type_path(collection, type) %>
         <% end %>
 
 				</li>
