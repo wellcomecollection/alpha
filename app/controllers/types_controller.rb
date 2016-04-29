@@ -10,7 +10,7 @@ class TypesController < ApplicationController
     client = Elasticsearch::Client.new
 
     @results = client.search index: 'records',
-      size: 20,
+      size: 200,
       body: {
         query: {
           match: {
