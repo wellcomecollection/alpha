@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429124551) do
+ActiveRecord::Schema.define(version: 20160429142419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,19 @@ ActiveRecord::Schema.define(version: 20160429124551) do
     t.datetime "wellcome_intro_updated_at"
     t.integer  "wellcome_intro_updated_by_id"
     t.boolean  "highlighted",                  default: false, null: false
+    t.integer  "records_as_subject_count",     default: 0,     null: false
   end
 
   add_index "people", ["highlighted"], name: "index_people_on_highlighted", where: "(highlighted IS TRUE)", using: :btree
+
+  create_table "people_as_subjects", force: :cascade do |t|
+    t.integer "record_id"
+    t.integer "person_id"
+    t.string  "as",        null: false
+  end
+
+  add_index "people_as_subjects", ["person_id"], name: "index_people_as_subjects_on_person_id", using: :btree
+  add_index "people_as_subjects", ["record_id", "person_id"], name: "index_people_as_subjects_on_record_id_and_person_id", unique: true, using: :btree
 
   create_table "record_types", force: :cascade do |t|
     t.integer "record_id", null: false
@@ -87,22 +97,23 @@ ActiveRecord::Schema.define(version: 20160429124551) do
   add_index "record_types", ["type_id"], name: "index_record_types_on_type_id", using: :btree
 
   create_table "records", force: :cascade do |t|
-    t.text    "title",                             null: false
-    t.text    "identifier",                        null: false
-    t.jsonb   "metadata",          default: {},    null: false
-    t.text    "leader",                            null: false
+    t.text    "title",                                    null: false
+    t.text    "identifier",                               null: false
+    t.jsonb   "metadata",                 default: {},    null: false
+    t.text    "leader",                                   null: false
     t.text    "archives_ref"
-    t.text    "cover_image_uris",                               array: true
-    t.text    "title_page_uris",                                array: true
+    t.text    "cover_image_uris",                                      array: true
+    t.text    "title_page_uris",                                       array: true
     t.jsonb   "package"
     t.text    "access_conditions"
     t.text    "year"
-    t.boolean "digitized",         default: false, null: false
+    t.boolean "digitized",                default: false, null: false
     t.text    "pdf_thumbnail_url"
-    t.integer "creators_count",    default: 0,     null: false
-    t.hstore  "identifiers",       default: {},    null: false
-    t.integer "types_count",       default: 0,     null: false
+    t.integer "creators_count",           default: 0,     null: false
+    t.hstore  "identifiers",              default: {},    null: false
+    t.integer "types_count",              default: 0,     null: false
     t.integer "parent_id"
+    t.integer "people_as_subjects_count", default: 0,     null: false
   end
 
   add_index "records", ["archives_ref"], name: "index_records_on_archives_ref", using: :btree
