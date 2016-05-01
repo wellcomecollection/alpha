@@ -36,10 +36,6 @@ class UpdateCreatorsFromMetadataJob < ActiveJob::Base
         name = personal_name
       end
 
-      if id
-        person = Person.where(["identifiers->'loc' = ? ", id]).take
-      end
-
       if dates
         born_in = dates[date_regex, 1]
         died_in = dates[date_regex, 2]
@@ -52,10 +48,8 @@ class UpdateCreatorsFromMetadataJob < ActiveJob::Base
       all_names << "#{name} #{numeration}" if numeration
       all_names << "#{attribution_qualifier} #{name}" if attribution_qualifier
 
+      person = Person.find_by_id_or_name_and_dates(id, name, born_in, died_in) || Person.new
 
-      person ||= Person.where(["LOWER(name) = ?", name.downcase]).order('records_count desc').take
-
-      person ||= Person.new
 
 
       person.name ||= name

@@ -72,4 +72,27 @@ namespace :people do
 
   end
 
+  task queue_all_for_update_as_subject_from_records: :environment do
+
+    $stdout.sync = true
+
+    time = Time.now
+
+    Record.select(:id)
+      .find_in_batches(batch_size: 500)
+      .with_index do |batch, batch_number|
+
+      print "Processing batch #{batch_number + 1}... "
+
+      batch.each do |record|
+        UpdatePeopleAsSubjectsFromRecordsJob.perform_later(record)
+      end
+
+      puts "Done in #{Time.now - time} seconds"
+      time = Time.now
+
+    end
+
+  end
+
 end

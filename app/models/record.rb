@@ -12,6 +12,9 @@ class Record < ActiveRecord::Base
   has_many :collection_memberships, dependent: :destroy
   has_many :collections, through: :collection_memberships
 
+  has_many :person_as_subjects, dependent: :destroy, class_name: 'PersonAsSubject'
+  has_many :people_as_subjects, through: :person_as_subjects, class_name: 'Person', source: :person
+
   scope :digitized, -> { where(digitized: true) }
 
   before_save :set_cover_image_uris, :set_pdf_thumbnail_url

@@ -52,6 +52,24 @@ class Person < ActiveRecord::Base
     end.join(' ')
   end
 
+  def self.find_by_id_or_name_and_dates(id, name, born_in, died_in)
+
+    if id.present?
+      person = where(["identifiers->'loc' = ? ", id]).take
+    end
+
+    if born_in.present? || died_in.present?
+      person ||= where(["LOWER(name) = ?", name.downcase])
+        .where(born_in: born_in)
+        .where(died_in: died_in)
+        .order('records_count desc').take
+    end
+
+    person ||= where(["LOWER(name) = ?", name.downcase]).order('records_count desc').take
+
+    person
+  end
+
 
   def parse_wikipedia_paragraph_into_sentences!
 
