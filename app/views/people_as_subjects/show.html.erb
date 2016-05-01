@@ -1,0 +1,33 @@
+<% content_for :title, @person.name %>
+
+<% content_for :head do %>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:type" content="article" />
+
+  <meta name="twitter:title" content="<%= @person.name %>" />
+  <meta property="og:title" content="<%= @person.name %>" />
+
+  <meta property="og:url" content="<%= person_as_subject_url(@person) %>" />
+<% end %>
+
+<div class="row">
+  <div class="twelve columns">
+    <h1>
+      Things about <%= @person.name %>
+    </h1>
+  </div>
+</div>
+
+<% @things.each do |thing| %>
+  <div class="cover-box">
+    <div class="cover">
+      <%= link_to thing_path(thing), title: thing.title do %>
+        <% if thing.cover_image_url %>
+          <%= image_tag thing.cover_image_url(150,300) %>
+        <% else %>
+          <%= thing.title %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

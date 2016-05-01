@@ -8,6 +8,9 @@ class Person < ActiveRecord::Base
   has_many :creators, dependent: :restrict_with_exception
   has_many :records, through: :creators
 
+  has_many :person_as_subjects, dependent: :destroy, class_name: 'PersonAsSubject'
+  has_many :records_as_subject, through: :person_as_subjects, class_name: 'Record', source: :record
+
   belongs_to :editorial_updated_by, class_name: 'User'
   belongs_to :wellcome_intro_updated_by, class_name: 'User'
 

@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :person_as_subjects, only: 'show', constraints: {id: /P\d+/}, path: 'subjects', controller: 'people_as_subjects'
+
   resources :subjects, only: 'show', constraints: {id: /S\d+\+S\d+/}, controller: 'subjects', action: 'multiple', as: 'multiple_subjects'
 
   resource :types_search, only: 'show', path: 'types/search', controller: 'types_search'
