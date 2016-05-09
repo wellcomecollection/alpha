@@ -36,6 +36,18 @@ namespace :records do
 
   end
 
+  desc 'Queue a job to try and get missing metadata for all records with metadata missing'
+  task queue_jobs_to_fetch_missing_metadata: :environment do
+
+    records = Record
+      .select(:id)
+      .where(leader: nil)
+      .find_each do |record|
+      UpdateMetadataFromLiveSiteJob.perform_later record
+    end
+
+  end
+
 
   desc 'Download packages'
   task queue_download_package_job_for_newly_digitized_things: :environment do
