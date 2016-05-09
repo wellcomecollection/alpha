@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509104400) do
+ActiveRecord::Schema.define(version: 20160509111349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160509104400) do
     t.text     "title",                                    null: false
     t.text     "identifier",                               null: false
     t.jsonb    "metadata",                 default: {},    null: false
-    t.text     "leader",                                   null: false
+    t.text     "leader"
     t.text     "archives_ref"
     t.text     "cover_image_uris",                                      array: true
     t.text     "title_page_uris",                                       array: true
