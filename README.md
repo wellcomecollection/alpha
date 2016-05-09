@@ -4,6 +4,8 @@ We're taking the work done in our What's In The Library? project -- http://whats
 
 It's also online at http://alpha.wellcomelibrary.org, if you'd like to have a look.
 
+We're also keeping track of the backlog and big issues here: https://trello.com/b/6goEz8ir/alpha
+
 ## Installation
 
 Running the website, either locally or in production, requires both setting up the code to run the website itself, and some additional services.
