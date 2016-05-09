@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     resources :types, only: ['index', 'show'], controller: 'collection_types', constraints: {id: /T\d+/}
   end
 
+  resource :newly_digitized, only: 'show', controller: 'newly_digitized'
+
   resource :search, only: 'show', controller: 'search'
 
   resources :subjects, only: ['show'], controller: 'subjects_lookup'
