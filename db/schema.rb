@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429142419) do
+ActiveRecord::Schema.define(version: 20160509104400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,23 +97,24 @@ ActiveRecord::Schema.define(version: 20160429142419) do
   add_index "record_types", ["type_id"], name: "index_record_types_on_type_id", using: :btree
 
   create_table "records", force: :cascade do |t|
-    t.text    "title",                                    null: false
-    t.text    "identifier",                               null: false
-    t.jsonb   "metadata",                 default: {},    null: false
-    t.text    "leader",                                   null: false
-    t.text    "archives_ref"
-    t.text    "cover_image_uris",                                      array: true
-    t.text    "title_page_uris",                                       array: true
-    t.jsonb   "package"
-    t.text    "access_conditions"
-    t.text    "year"
-    t.boolean "digitized",                default: false, null: false
-    t.text    "pdf_thumbnail_url"
-    t.integer "creators_count",           default: 0,     null: false
-    t.hstore  "identifiers",              default: {},    null: false
-    t.integer "types_count",              default: 0,     null: false
-    t.integer "parent_id"
-    t.integer "people_as_subjects_count", default: 0,     null: false
+    t.text     "title",                                    null: false
+    t.text     "identifier",                               null: false
+    t.jsonb    "metadata",                 default: {},    null: false
+    t.text     "leader",                                   null: false
+    t.text     "archives_ref"
+    t.text     "cover_image_uris",                                      array: true
+    t.text     "title_page_uris",                                       array: true
+    t.jsonb    "package"
+    t.text     "access_conditions"
+    t.text     "year"
+    t.boolean  "digitized",                default: false, null: false
+    t.text     "pdf_thumbnail_url"
+    t.integer  "creators_count",           default: 0,     null: false
+    t.hstore   "identifiers",              default: {},    null: false
+    t.integer  "types_count",              default: 0,     null: false
+    t.integer  "parent_id"
+    t.integer  "people_as_subjects_count", default: 0,     null: false
+    t.datetime "digitized_at"
   end
 
   add_index "records", ["archives_ref"], name: "index_records_on_archives_ref", using: :btree
