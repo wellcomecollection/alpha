@@ -4,7 +4,6 @@ class NewlyDigitizedController < ApplicationController
 
     @records_digitized_in_past_week_count = Record
       .where(digitized_at: 7.days.ago..Time.now)
-      .where.not(leader: nil)
       .count
 
     @top_subjects = Subject
@@ -25,7 +24,6 @@ class NewlyDigitizedController < ApplicationController
 
     @records = Record.select(:id, :identifier, :title, :cover_image_uris, :pdf_thumbnail_url)
       .where.not(digitized_at: nil)
-      .where.not(leader: nil)
       .where(access_conditions: 'Open')
       .order(:digitized_at).reverse_order
       .limit(200)
