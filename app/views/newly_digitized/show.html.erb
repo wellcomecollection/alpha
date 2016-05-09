@@ -1,5 +1,20 @@
 <h1>Newly Digitized</h1>
 
+<p>We’ve digitized <%= pluralize(@records_digitized_in_past_week_count, 'thing') %> in the past 7 days.</p>
+
+<p>These were about:
+  <%= @top_subjects.collect do |subject| %>
+    <% link_to(subject.label, subject) %>
+  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
+</p>
+
+<p>They were written by:
+  <%= @top_authors.collect do |person| %>
+    <% link_to(person.name, person) %>
+  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
+</p>
+
+
 <% @records.each do |record| %>
   <%= render 'records/record', record: record %>
 <% end %>
