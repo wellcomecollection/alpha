@@ -21,7 +21,7 @@ namespace :discover do
       digitized_date = Time.parse(manifest['navDate'])
       title = manifest['label']
 
-      record = Record.select(:id, :digitized, :digitized_at).find_by(identifier: b_number) ||
+      record = Record.find_by(identifier: b_number) ||
         Record.new(identifier: b_number, digitized: false, title: title)
 
 
