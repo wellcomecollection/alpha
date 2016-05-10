@@ -42,5 +42,10 @@ var initPublicationGraph = function () {
     for (var i = shownLabels.length - 1; i >= 0; i--) {
       shownLabels[i].classList.remove('show')
     };
+
+    var shownValues = values.getElementsByClassName('show');
+    for (var i = shownValues.length - 1; i >= 0; i--) {
+      shownValues[i].classList.remove('show')
+    };
   });
 };
