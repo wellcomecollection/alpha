@@ -36,14 +36,15 @@
       	</div>
     </div>
     <div class="row subnav">
-      	<div class="six columns">
+      	<div class="eight columns">
         	<a href="/">Home</a>&nbsp;&nbsp;
         	<a href="/people">People</a>&nbsp;&nbsp;
         	<a href="/subjects">Subjects</a>&nbsp;&nbsp;
         	<a href="/types">Types of Thing</a>&nbsp;&nbsp;
         	<a href="/collections">Collections</a>&nbsp;&nbsp;
+        	<a href="/newly_digitized">New stuff!</a>
 		</div>
-		<div class="six right">
+		<div class="four right">
 			<% if !logged_in_as_admin? %>
 			  &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path(return_to: request.path) %>
 			<% else %>
