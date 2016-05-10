@@ -120,13 +120,14 @@ class PeopleController < ApplicationController
         }
       subject_person_ids = results['aggregations']['person_ids']['buckets'].map { |bucket| bucket['key'] }
 
-      @things_about_person = @person
-        .records_as_subject
-        .select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
-        .order('digitized desc').limit(10)
-
       @contemporaries = Person.find(subject_person_ids).sort_by { |person| subject_person_ids.index(person.id) }
     end
+
+    @things_about_person = @person
+      .records_as_subject
+      .select(:identifier, :title, :pdf_thumbnail_url, :cover_image_uris)
+      .order('digitized desc').limit(10)
+
 
     @publication_years = Record
       .select('year')
