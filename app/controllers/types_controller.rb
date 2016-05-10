@@ -1,7 +1,13 @@
 class TypesController < ApplicationController
 
   def index
-    @types = Type.order('records_count desc')
+
+    @order = params[:order].to_s
+    @order = 'digitized' if @order.blank?
+
+    order = @order == 'records' ? 'records_count' : 'digitized_records_count'
+
+    @types = Type.order("#{order} desc")
   end
 
   def show

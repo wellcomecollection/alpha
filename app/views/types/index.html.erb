@@ -6,6 +6,8 @@
   
   <hr />
 
+  <p>Order: <%= link_to_unless(@order == 'digitized', 'Digitized things', types_path(order: 'digitized')) %> | <%= link_to_unless_current('Total things', types_path(order: 'records')) %></p>
+
   <% @types.each do |type| %>
     <div style=" float: left; height: 100px; width: 22%; list-style: none; padding: 0 27px 10px 0;">
 
