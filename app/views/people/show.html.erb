@@ -215,10 +215,10 @@
   <div class="row breathe">
   	<div class="twelve columns">
   		<h5>Things <em>about</em> <%= @person.name %></h5>
-		
-		<% if @things_about_person.length > 10 %>
+
+		<% if @person.records_as_subject_count > 10 %>
 			<ul>
-				<li>We're showing 10 results here. <b><%= link_to "View all 000 things", person_as_subject_path(@person) %></b> about <%= @person.name %>.</li>
+				<li>We're showing 10 results here. <b><%= link_to "View all #{pluralize_with_delimiter(@person.records_as_subject_count, 'thing')}", person_as_subject_path(@person) %></b> about <%= @person.name %>.</li>
 			</ul>
 		<% end %>
 
