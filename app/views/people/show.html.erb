@@ -209,21 +209,23 @@
 
 <br clear="all" />
 <br clear="all" />
-<br clear="all" />
 
 <% if @things_about_person.length > 0 %>
-  <div class="row">
+
+  <div class="row breathe">
   	<div class="twelve columns">
-  		<h4>Books about <%= @person.name %></h4>
+  		<h5>Things <em>about</em> <%= @person.name %></h5>
+		
+		<% if @things_about_person.length > 10 %>
+			<ul>
+				<li>We're showing 10 results here. <b><%= link_to "View all 000 things", person_as_subject_path(@person) %></b> about <%= @person.name %>.</li>
+			</ul>
+		<% end %>
 
       <% @things_about_person.each do |record| %>
         <%= render 'records/record', record: record %>
       <% end %>
   	</div>
-  </div>
-
-  <div class="row">
-    <%= link_to "View all things about #{@person.name}", person_as_subject_path(@person) %>
   </div>
 
 <% end %>
