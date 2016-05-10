@@ -303,7 +303,7 @@ namespace :elasticsearch do
     client.indices.create index: index_name,
       body: {
         mappings: {
-          collection: {
+          type: {
             properties: {
               name: {
                 type: 'string',
