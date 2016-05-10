@@ -15,7 +15,7 @@
   <meta name="twitter:site" content="@wellcomelibrary">
 
   <%= yield :head %>
- 
+
   <script>
   	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -45,12 +45,15 @@
 		</div>
 		<div class="six right">
 			<% if !logged_in_as_admin? %>
-			  &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path %>
+			  &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path(return_to: request.path) %>
 			<% else %>
 			  <%= link_to "Recent changes", recent_changes_path, class: 'is-admin' %>
 			  <%= link_to "Editors", users_path, class: 'is-admin' %>
-			  &nbsp;&bull;&nbsp;          
-			  <%= form_tag session_path, method: 'delete', class: 'inline' do %><button type="submit" class="link">Log out</button><% end %>
+			  &nbsp;&bull;&nbsp;
+			  <%= form_tag session_path, method: 'delete', class: 'inline' do %>
+          <%= hidden_field_tag :return_to, request.path %>
+          <button type="submit" class="link">Log out</button>
+        <% end %>
 			<% end %>
       	</div>
     </div>
