@@ -23,9 +23,13 @@
 	</div>
 </div>
 
-<div class="row">
-<% @records.each do |record| %>
-  <%= render 'records/record', record: record %>
+<% @records.group_by {|record| record.digitized_at.to_date }.each do |day, records| %>
+  <div class="row">
+    <h4><%= day.strftime("%e %B %Y") %></h4>
+    <% records.each do |record| %>
+      <%= render 'records/record', record: record %>
+    <% end %>
+  </div>
 <% end %>
 </div>
 

@@ -22,7 +22,7 @@ class NewlyDigitizedController < ApplicationController
       .group('people.id, people.name')
       .limit(20)
 
-    @records = Record.select(:id, :identifier, :title, :cover_image_uris, :pdf_thumbnail_url)
+    @records = Record.select(:id, :identifier, :title, :cover_image_uris, :pdf_thumbnail_url, :digitized_at)
       .where.not(digitized_at: nil)
       .where(access_conditions: 'Open')
       .order(:digitized_at).reverse_order
