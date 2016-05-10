@@ -31,7 +31,7 @@
     <% end %>
   </div>
 <% end %>
-</div>
 
+<%= link_to 'Older', newly_digitized_path(before: @records.last.digitized_at.to_i) %>
 <hr />
 		<p class="center">Find out more about <a href="#">how digitisation works at Wellcome Library</a>.</p>

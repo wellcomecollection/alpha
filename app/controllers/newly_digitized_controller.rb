@@ -27,6 +27,14 @@ class NewlyDigitizedController < ApplicationController
       .where(access_conditions: 'Open')
       .order(:digitized_at).reverse_order
       .limit(200)
+
+      if params[:before]
+        before = Time.at(params[:before].to_i)
+
+        @records = @records.where(["digitized_at < ?", before])
+      end
+
+
   end
 
 end
