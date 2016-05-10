@@ -16,12 +16,6 @@
 
 		</div>
 
-  <br clear="all" />
-
-  <% if @year_counts.length > 0 %>
-    <%= render 'subjects/by_year', years: @year_counts, subject: nil, highlighted_year: nil %>
-  <% end %>
-
 		<div class="nine columns">
 <!-- if subjects > 0 -->
 			<div class="row breathe">
@@ -47,6 +41,10 @@
 			</div>
 		</div>
 	</div>
+	
+  <% if @year_counts.length > 0 %>
+    <%= render 'subjects/by_year', years: @year_counts, subject: nil, highlighted_year: nil %>
+  <% end %>	
 
 <% @records.each do |record| %>
   <%= render 'records/record', record: record %>
