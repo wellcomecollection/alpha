@@ -29,8 +29,18 @@ end
         %>
 
         <% real_years.first[0].upto(real_years.last[0]).each do |year| %>
-          <%= content_tag (years_hash[year].to_i.zero? ? :div : :a), href: year_subject_path(subject, year), class: "bar #{'highlighted' if year == highlighted_year}" do %>
-            <%= content_tag :span, '', class: "box undigitised", style: "height: #{years_hash[year].to_i * vertical_scale_factor}px;" %>
+
+          <% if subject %>
+            <%= content_tag (years_hash[year].to_i.zero? ? :div : :a), href: year_subject_path(subject, year), class: "bar #{'highlighted' if year == highlighted_year}" do %>
+              <%= content_tag :span, '', class: "box undigitised", style: "height: #{years_hash[year].to_i * vertical_scale_factor}px;" %>
+            <% end %>
+          <% else %>
+
+            <%= content_tag :div, class: "bar #{'highlighted' if year == highlighted_year}" do %>
+              <%= content_tag :span, '', class: "box undigitised", style: "height: #{years_hash[year].to_i * vertical_scale_factor}px;" %>
+            <% end %>
+
+
           <% end %>
         <% end %>
       </div>

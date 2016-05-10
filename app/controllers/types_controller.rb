@@ -9,7 +9,7 @@ class TypesController < ApplicationController
 
     client = Elasticsearch::Client.new
 
-    @results = client.search index: 'records',
+    results = client.search index: 'records',
       size: 200,
       body: {
         query: {
@@ -29,21 +29,31 @@ class TypesController < ApplicationController
               field: 'subject_ids',
               size: 16
             }
+          }, years: {
+            terms: {
+              field: 'year',
+              size: 0 # all buckets please
+            }
           }
         }
       }
 
-    people_ids = @results['aggregations']['people']['buckets'].collect {|result| result['key'] }
+    people_ids = results['aggregations']['people']['buckets'].collect {|result| result['key'] }
+
+    @year_counts = results['aggregations']['years']['buckets']
+      .map { |h| h.values_at('key', 'doc_count') }
+      .sort
+      .to_h
 
     @people = Person
       .find(people_ids)
 
-    subject_ids = @results['aggregations']['subjects']['buckets'].collect {|result| result['key'] }
+    subject_ids = results['aggregations']['subjects']['buckets'].collect {|result| result['key'] }
 
     @subjects = Subject
       .find(subject_ids)
 
-    @records = @results['hits']['hits'].collect do |hit|
+    @records = results['hits']['hits'].collect do |hit|
 
       Record.new(
         identifier: hit['_id'],
