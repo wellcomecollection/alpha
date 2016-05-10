@@ -1,22 +1,33 @@
-<% content_for :title, "Newly Digitized" %>
+<% content_for :title, "Newly Digitised" %>
 
-<h1>Newly Digitized</h1>
+<h1>New things to read</h1>
 
-<p>We’ve digitized <%= pluralize(@records_digitized_in_past_week_count, 'thing') %> in the past 7 days.</p>
+<div class="row">
+	<div class="four columns">
+		<p style="font-size: 1.25em;">We've digitised <b><%= pluralize_with_delimiter(@records_digitized_in_past_week_count, 'thing') %></b> in the last week.</p>
+	</div>
+	<div class="eight columns">
+		<h6>There are books about...</h6>
+		<p>
+		  <%= @top_subjects.collect do |subject| %>
+			<% link_to(subject.label, subject) %>
+		  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
+		</p>
 
-<p>These were about:
-  <%= @top_subjects.collect do |subject| %>
-    <% link_to(subject.label, subject) %>
-  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
-</p>
+		<h6>Written by...</h6>
+		<p>
+		  <%= @top_authors.collect do |person| %>
+			<% link_to(person.name, person) %>
+		  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
+		</p>
+	</div>
+</div>
 
-<p>They were written by:
-  <%= @top_authors.collect do |person| %>
-    <% link_to(person.name, person) %>
-  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
-</p>
-
-
+<div class="row">
 <% @records.each do |record| %>
   <%= render 'records/record', record: record %>
 <% end %>
+</div>
+
+<hr />
+		<p class="center">Find out more about <a href="#">how digitisation works at Wellcome Library</a>.</p>

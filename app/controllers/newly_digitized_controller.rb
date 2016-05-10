@@ -12,7 +12,7 @@ class NewlyDigitizedController < ApplicationController
       .where(records: {digitized_at: 7.days.ago..Time.now})
       .order('records_digitized_recently_count desc')
       .group('subjects.id, subjects.label')
-      .limit(10)
+      .limit(20)
 
     @top_authors = Person
       .select('people.id, people.name, count(creators.record_id) as records_digitized_recently_count')
@@ -20,7 +20,7 @@ class NewlyDigitizedController < ApplicationController
       .where(records: {digitized_at: 7.days.ago..Time.now})
       .order('records_digitized_recently_count desc')
       .group('people.id, people.name')
-      .limit(10)
+      .limit(20)
 
     @records = Record.select(:id, :identifier, :title, :cover_image_uris, :pdf_thumbnail_url)
       .where.not(digitized_at: nil)
