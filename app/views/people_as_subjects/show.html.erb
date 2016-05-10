@@ -1,11 +1,11 @@
-<% content_for :title, @person.name %>
+<% content_for :title, "Things about #{@person.name}" %>
 
 <% content_for :head do %>
   <meta name="twitter:card" content="summary" />
   <meta property="og:type" content="article" />
 
-  <meta name="twitter:title" content="<%= @person.name %>" />
-  <meta property="og:title" content="<%= @person.name %>" />
+  <meta name="twitter:title" content="Things about <%= @person.name %>" />
+  <meta property="og:title" content="Things about <%= @person.name %>" />
 
   <meta property="og:url" content="<%= person_as_subject_url(@person) %>" />
 <% end %>
@@ -13,7 +13,7 @@
 <div class="row">
   <div class="twelve columns">
     <h1>
-      Things about <%= @person.name %>
+      Things about <%= link_to @person.name, @person %>
     </h1>
   </div>
 </div>
