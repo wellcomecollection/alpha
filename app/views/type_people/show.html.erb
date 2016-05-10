@@ -2,8 +2,13 @@
 
 <h6><%= link_to 'Types', types_path %> &rarr; <%= link_to @type.name, @type %> / <%= link_to "People", type_people_path(@type) %> /</h6>
 
-<h1><%= link_to @person.name, @person %></h2>
+<h1><%= @person.name %></h2>
 
 <% @records.each do |record| %>
   <%= render record %>
 <% end %>
+
+<br clear="all" />
+<br clear="all" />
+
+<ul><li>See everything by <%= link_to @person.name, @person %></li></ul>
