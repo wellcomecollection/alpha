@@ -4,7 +4,7 @@ button.link { color: #005870; background-color: white; padding: 2px; text-decora
 
 body, p, li  { font-family: 'Helvetica Neue', sans-serif; color: black;}
 /* h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; } */
-h1, h2 { line-height: 1.25em;}
+h1, h2 { line-height: 1em; margin-bottom: .5em; margin-top: .5em;}
 small { font-size: 0.75em; color: #333;}
 code { font-family: monospace; font-size: 1.25em;}
 
