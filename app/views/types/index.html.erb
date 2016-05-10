@@ -18,7 +18,7 @@
 		  </div>
 		</div>
 
-        <small style="padding-left: 3px;"><%= percentage_with_varying_accuracy(type.digitized_records_count.to_f / type.records_count) %>  digitised, <%= number_with_delimiter(type.records_count) %> things</small>
+        <small style="padding-left: 3px;"><%= percentage_with_varying_accuracy(type.digitized_records_count.to_f / type.records_count) %>  digitised, <%= pluralize_with_delimiter(type.records_count, 'thing') %></small>
 
     </div>
   <% end %>
