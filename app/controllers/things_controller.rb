@@ -3,6 +3,7 @@ class ThingsController < ApplicationController
   def show
     @thing = Record.find_by!(identifier: params[:id])
     @subjects = @thing.subjects
+    @people_as_subjects = @thing.people_as_subjects
 
     if @thing.archives_ref
 

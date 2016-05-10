@@ -105,12 +105,16 @@
 		  <p><%= @thing.types.collect {|type| link_to(type.name, type) }.join(', ').html_safe %></p>
 	<% end %>
 
-	<% if @subjects.length > 0 %>
+	<% if @subjects.length > 0 || @people_as_subjects.length > 0 %>
 		<h6>About</h6>
 		<p>
-		<%= @subjects.collect do |subject| %>
-		  <% link_to subject.label, subject %>
-		<% end.to_sentence.html_safe %>
+		<%= (@people_as_subjects + @subjects).collect do |subject| %>
+		  <% if Person === subject %>
+        <% link_to subject.name, person_as_subject_path(subject) %>
+      <% else %>
+        <% link_to subject.label, subject %>
+      <% end %>
+		<% end.to_sentence(last_word_connector: ' and ').html_safe %>
 		</p>
 	<% end %>
 
