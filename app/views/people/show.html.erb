@@ -211,13 +211,22 @@
 <br clear="all" />
 <br clear="all" />
 
-<div class="row">
-	<div class="twelve columns">
-		<h4>Books about <%= @person.name %></h4>
-		<p>books</p>
-	
-	</div>
-</div>
+<% if @things_about_person.length > 0 %>
+  <div class="row">
+  	<div class="twelve columns">
+  		<h4>Books about <%= @person.name %></h4>
+
+      <% @things_about_person.each do |record| %>
+        <%= render 'records/record', record: record %>
+      <% end %>
+  	</div>
+  </div>
+
+  <div class="row">
+    <%= link_to "View all things about #{@person.name}", person_as_subject_path(@person) %>
+  </div>
+
+<% end %>
 
 <h5><%= @person.name %> Links & Metadata</h5>
 <div class="row">
