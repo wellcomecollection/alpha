@@ -125,9 +125,15 @@
 
 
 	  <% years.sort_by {|k,v| k}.each do |year| %>
-		<div class="year-container center" style="width:40px; float:left;">
+		<div class="year-container">
 		  <div class="year"><small><%= year[0] %></small></div>
-		  <div class="thing"><small><%= year[1] %></small></div>
+		  <div class="thing"><small>
+		  <% if year[1] =~ /\d+/ %>
+		    <% year[1].to_i.times do %>&#9679;&#8202;<% end %>
+		<% else %>
+			<%= year[1] %>
+		<% end %>    
+		</small></div>
 		</div>
 	  <% end %>
 

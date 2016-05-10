@@ -123,6 +123,15 @@ ul.results {
 	background-color: inherit;
 }
 
+.year-container {
+	width:40px; 
+	display:inline-block; 
+	vertical-align: top;
+	text-align: center;
+}
+.year-container .year {}
+.year-container .thing { padding: 0 5px 10px 5px;}
+
 /* Subject */
 
 .definition { font-size: 2em; }
