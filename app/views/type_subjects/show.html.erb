@@ -2,7 +2,7 @@
 
 <h6><%= link_to 'Types', types_path %> &rarr; <%= link_to @type.name, @type %> / <%= link_to "Subjects", type_subjects_path(@type) %> /</h6>
 
-<h1><%= @subject.label %></h2>
+<h1><%= link_to @subject.label, @subject %></h2>
 
 <% @records.each do |record| %>
   <%= render record %>
