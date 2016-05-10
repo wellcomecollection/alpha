@@ -19,10 +19,10 @@
 		<div class="nine columns">
 <!-- if subjects > 0 -->
 			<div class="row breathe">
-				<div class="one column right">
+				<div class="two columns right">
 					<h6>About</h6>
 				</div>
-				<div class="eleven columns">
+				<div class="ten columns">
 					<%= @subjects.collect {|s| link_to(s.label, type_subject_path(@type,s)) }.join(', ').html_safe %>
     				<br />
 					<b><%= link_to 'View all', type_subjects_path(@type) %></b>
@@ -30,10 +30,10 @@
 			</div>
 <!-- if people > 0 -->
 			<div class="row breathe">
-				<div class="one column right">
+				<div class="two columns right">
 					<h6>By</h6>
 				</div>
-				<div class="eleven columns">
+				<div class="ten columns">
           <%= @people.collect {|p| link_to(p.name, type_person_path(@type, p)) }.join(', ').html_safe %>
     				<br />
 					<b><%= link_to 'View all', type_people_path(@type) %></b>
