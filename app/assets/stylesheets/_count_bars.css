@@ -1,8 +1,8 @@
 .count-bars {
   border-bottom: 4px solid white;
-  margin-top: -20px;
+  margin-top: 29px;
 }
-.count-bars, .count-bars-labels {
+.count-bars, .count-bars-labels, .count-bars-values {
   display: table;
   width: 100%;
 }
@@ -33,25 +33,27 @@
   background: black;
 }
 
-.count-bars .bar .box.highlighted {
+.count-bars .bar.highlighted {
   background: gold;
 }
 
-.count-bars-labels {
+.count-bars-labels, .count-bars-values {
   margin-top: 3px;
   margin-bottom: 25px;
 }
 
-.count-bars-labels .label {
+.count-bars-labels .label,
+.count-bars-values .value {
   display: table-cell;
   position: relative;
 }
 
-.count-bars-labels .label span {
+.count-bars-labels .label span,
+.count-bars-values .value span {
   position: absolute;
   left: 50%; top: 0;
   width: 40px;
-  margin-left: -20px;
+  margin-left: -22px;
   text-align: center;
   background: black;
   color: white;
@@ -60,8 +62,13 @@
   z-index: 3;
 }
 
-.count-bars-labels .label.show span {
+.count-bars-labels .label.show span,
+.count-bars-values .value.show span {
   visibility: visible;
+}
+
+.count-bars-values .value.zero span {
+  background-color: rgba(0,0,0,0.5)
 }
 
 .count-bars-labels .label.always-show span {
@@ -69,7 +76,8 @@
   z-index: 1;
 }
 
-.count-bars-labels .label.highlighted span {
+.count-bars-labels .label.highlighted span,
+.count-bars-values .value.highlighted span {
   visibility: visible;
   z-index: 2;
   color: black;
