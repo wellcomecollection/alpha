@@ -5,17 +5,18 @@
 <h1>Subjects</h1>
 
 <% @subject_results.in_groups_of(4) do |group| %>
-  <div class="row">
+  <div class="row breathe">
     <% group.each do |subject| %>
-      <div class="three columns">
+      <div class="three columns center" style="background-color: white; padding: 3px;">
         <% if subject %>
           <%= link_to type_subject_path(@type, "S#{subject['key']}") do %>
 
             <% if subject['top_subject_hits']['hits']['hits'].first['_source']['cover_image_uris'] %>
               <img src="<%= subject['top_subject_hits']['hits']['hits'].first['_source']['cover_image_uris'].first %>/full/!200,300/0/default.jpg">
+            <% else %>
+            	<div style="background-color: white; height: 180px;margin-top: 0;">&nbsp;</div>
             <% end %>
             <%= @subjects.find {|s| s.id == subject['key'] }.label %>
-
 
           <% end %>
         <% end %>
