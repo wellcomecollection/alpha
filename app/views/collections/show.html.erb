@@ -2,6 +2,15 @@
 
 <h6><a href="/collections">Collections</a> &rarr; </h6>
 
+    <% if logged_in_as_admin? %>
+      <div class="hilite">
+          <%= form_for @collection do |form| %>
+            <%= form.hidden_field :highlighted, value: !@collection.highlighted %>
+            <button type="submit" class="is-admin" title="Add this to the list of interesting collections"><%= @collection.highlighted ? 'Remove from /collections' : 'Add to /collections' %></button>
+          <% end %>
+      </div>
+    <% end %>
+
 <h1><%= @collection.name %></h1>
 
 <% if logged_in_as_admin? %>
