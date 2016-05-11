@@ -3,44 +3,26 @@
 <h6><a href="/collections">Collections</a> &rarr; <%= link_to @collection.name, @collection %> /</h6>
 <h2>Subjects</h2>
 
+<% @subjects.in_groups_of(4) do |group| %>
 
+  <div class="row">
 
-<div class="row">
-	<div class="three columns">
-		<a href="#">
-			<div class="thumb">img</div>
-			<div class="subject-label">subject</div>
-		</a>
-	</div>
-	<div class="three columns">
-		<a href="#">
-			<div class="thumb">img</div>
-			<div class="subject-label">subject</div>
-		</a>
-	</div>
-	<div class="three columns">
-		<a href="#">
-			<div class="thumb">img</div>
-			<div class="subject-label">subject</div>
-		</a>
-	</div>
-	<div class="three columns">
-		<a href="#">
-			<div class="thumb">img</div>
-			<div class="subject-label">subject</div>
-		</a>
-	</div>
-</div>
+    <% group.each do |subject| %>
+      <div class="three columns">
 
-<!-- Need a looping row, please -->
-<div class="row">
+        <% if subject %>
+          <%= link_to collection_subject_path(@collection, "S#{subject.id}") do %>
+            <div class="subject-label">
+              <%= subject.label %>
+              <div><%= pluralize_with_delimiter(subject['records_within_subject_and_collection_count'], 'thing') %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
-  <ul>
-    <% @subjects.each do |subject| %>
-  		<li><b><%= link_to subject.label, collection_subject_path(@collection, "S#{subject.id}") %></b><br />
-  		<%= pluralize_with_delimiter(subject['records_within_subject_and_collection_count'], 'thing') %></li>
     <% end %>
-  </ul>
+  </div>
 
-</div>
+<% end %>
+
 

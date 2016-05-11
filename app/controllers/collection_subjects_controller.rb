@@ -23,6 +23,7 @@ class CollectionSubjectsController < ApplicationController
       .group('subjects.id')
       .order('records_within_subject_and_collection_count').reverse_order
       .limit(500)
+
   end
 
 end
