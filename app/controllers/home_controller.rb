@@ -9,6 +9,10 @@ class HomeController < ApplicationController
       .highlighted
       .order('random()')
 
+    @collections = Collection
+      .highlighted
+      .order('random()')
+
   end
 
 end
