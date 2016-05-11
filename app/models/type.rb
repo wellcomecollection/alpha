@@ -3,6 +3,8 @@ class Type < ActiveRecord::Base
   has_many :record_types, dependent: :destroy
   has_many :records, through: :record_types
 
+  scope :highlighted, -> { where(highlighted: true) }
+
 
   def to_param
     "T#{id}"

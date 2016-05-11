@@ -13,6 +13,10 @@ class HomeController < ApplicationController
       .highlighted
       .order('random()')
 
+    @types = Type
+      .highlighted
+      .order('random()')
+
   end
 
 end

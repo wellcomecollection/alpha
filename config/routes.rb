@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   resource :types_search, only: 'show', path: 'types/search', controller: 'types_search'
 
-  resources :types, only: ['index', 'show'] do
+  resources :types, only: ['index', 'show', 'update'] do
     resources :subjects, only: ['index', 'show'], controller: 'type_subjects', constraints: {id: /S\d+/}
     resources :people, only: ['index', 'show'], controller: 'type_people', constraints: {id: /P\d+/}
   end

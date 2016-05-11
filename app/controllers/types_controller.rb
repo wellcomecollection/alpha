@@ -1,5 +1,7 @@
 class TypesController < ApplicationController
 
+  before_filter :authorize, except: ['show', 'index']
+
   def index
 
     @order = params[:order].to_s
@@ -8,6 +10,12 @@ class TypesController < ApplicationController
     order = @order == 'records' ? 'records_count' : 'digitized_records_count'
 
     @types = Type.order("#{order} desc")
+  end
+
+  def update
+    @type = Type.find(params[:id].gsub('T',''))
+    @type.update_attributes(type_params)
+    redirect_to @type
   end
 
   def show
@@ -68,6 +76,12 @@ class TypesController < ApplicationController
       )
     end
 
+  end
+
+  private
+
+  def type_params
+    params.require(:type).permit(:highlighted)
   end
 
 end

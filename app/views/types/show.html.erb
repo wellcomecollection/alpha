@@ -1,5 +1,16 @@
 <% content_for :title, @type.name %>
 <h6><a href="/types">Types</a> &rarr;</h6>
+
+
+<% if logged_in_as_admin? %>
+  <div class="hilite">
+    <%= form_for @type do |form| %>
+      <%= form.hidden_field :highlighted, value: !@type.highlighted %>
+      <button type="submit" class="is-admin" title="Add this to the list of interesting types"><%= @type.highlighted ? 'Remove from /types' : 'Add to /types' %></button>
+    <% end %>
+  </div>
+<% end %>
+
 <h1><%= @type.name %></h1>
 
 	<div class="row breathe">
@@ -41,10 +52,10 @@
 			</div>
 		</div>
 	</div>
-	
+
   <% if @year_counts.length > 0 %>
     <%= render 'subjects/by_year', years: @year_counts, subject: nil, highlighted_year: nil %>
-  <% end %>	
+  <% end %>
 
 <% @records.each do |record| %>
   <%= render 'records/record', record: record %>

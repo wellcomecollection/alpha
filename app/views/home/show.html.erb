@@ -25,7 +25,9 @@
   <div class="six columns">
     <h4>Unexpected <a href="/types">Types</a> of Things</h4>
 
-    <p>Fancy a <a href="no link yet" style="color:red">Type</a>, <a href="no link yet" style="color:red">Type</a>, <a href="no link yet" style="color:red">Type</a>, <a href="no link yet" style="color:red">Type</a>, <a href="no link yet" style="color:red">Type</a>, or <a href="no link yet" style="color:red">Type</a>?</p>
+    <% if @types.length > 0 %>
+      <p>Fancy a <%= @types.collect {|type| link_to type.name, type}.to_sentence(last_word_connector: ' or ').html_safe %>?</p>
+    <% end %>
 
   </div>
   <div class="six columns">
