@@ -6,9 +6,25 @@
 
 <hr />
 
-<% @highlighted_collections.each do |collection| %>
-  <p><%= link_to collection.name, collection %></p>
-<% end %>
+<div class="row">
+  <% @highlighted_collections.each do |collection| %>
+
+    <% @records_ids_per_collection.select {|r| r['collection_id'] == collection.id }.take(1).each do |record_id| %>
+
+      <% thing = @records.find {|record| record.id == record_id['record_id'] } %>
+
+        <% # EACH colleciton %>
+        <div class="three columns">
+          <%= link_to collection do %>
+            <% if thing.cover_image_url %>
+              <%= image_tag thing.cover_image_url(150,300) %>
+            <% end %>
+            <%= collection.name %>
+          <% end %>
+        </div>
+      <% end %>
+  <% end %>
+</div>
 
 <% @collections.each do |collection| %>
 <div class="collection">
