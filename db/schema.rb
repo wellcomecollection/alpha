@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511155317) do
+ActiveRecord::Schema.define(version: 20160511161421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,11 +154,12 @@ ActiveRecord::Schema.define(version: 20160511155317) do
   add_index "taggings", ["subject_id"], name: "index_taggings_on_subject_id", using: :btree
 
   create_table "types", force: :cascade do |t|
-    t.text    "name",                                 null: false
+    t.text    "name",                                    null: false
     t.text    "description"
-    t.text    "references",              default: [], null: false, array: true
-    t.integer "records_count",           default: 0,  null: false
-    t.integer "digitized_records_count", default: 0,  null: false
+    t.text    "references",              default: [],    null: false, array: true
+    t.integer "records_count",           default: 0,     null: false
+    t.integer "digitized_records_count", default: 0,     null: false
+    t.boolean "highlighted",             default: false, null: false
   end
 
   add_index "types", ["name"], name: "index_types_on_name", unique: true, using: :btree
