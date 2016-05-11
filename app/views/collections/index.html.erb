@@ -2,9 +2,11 @@
 
 <h1>Collections</h1>
 
-<%= render 'collections/search', {value: ''} %>
+<p>We aren't showing all the collections at Wellcome Library here yet. For now, we're showing about 50 collections that have lots of digitised things to see.</p>
 
 <hr />
+
+<h5>Here are some of our favourites...</h5>
 
 <div class="row">
   <% @highlighted_collections.each do |collection| %>
@@ -15,16 +17,21 @@
       .order('random()')
       .first %>
 
-    <div class="three columns">
+    <div class="three columns center">
       <%= link_to collection do %>
         <% if record && record.cover_image_url %>
           <%= image_tag record.cover_image_url(150,300) %>
         <% end %>
+        <br />
         <%= collection.name %>
       <% end %>
     </div>
   <% end %>
 </div>
+
+<hr />
+
+<h5>And the growing list...</h5>
 
 <% @collections.each do |collection| %>
 <div class="collection">
