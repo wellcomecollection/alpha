@@ -1,3 +1,5 @@
+<% content_for :title, "#{@thing.title} - page #{@page} of #{@thing.image_service_urls.length}" %>
+
 <h1><%= link_to @thing.title, thing_path(@thing) %> / Page <%= @page %></h1>
 
 <div>

@@ -1,3 +1,5 @@
+<% content_for :title, "#{@thing.title} - all #{pluralize_with_delimiter(@thing.image_urls.length, 'pages')}" %>
+
 <h1><%= link_to @thing.title, thing_path(@thing) %> / Pages</h1>
 
 <% if @thing.pdf_file %>
