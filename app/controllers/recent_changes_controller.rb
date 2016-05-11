@@ -4,6 +4,8 @@ class RecentChangesController < ApplicationController
 
   def show
 
+    sleep 40
+
     Struct.new('RecentChange', :updated_at, :updated_by_email, :thing, :field, :thing_id, :thing_name)
 
     @recent_changes = []
