@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
     @collections = Collection.order(:records_count).reverse_order
 
     @highlighted_collections = @collections
-      .select {|collection| collection.highlighted == true }.take(4)
+      .select {|collection| collection.highlighted == true }.shuffle.take(4)
 
     @subjects = Subject.find_by_sql("select collections.id as collection_id, counts.subject_id as id, subjects.label from collections, lateral (
         select taggings.subject_id as subject_id, count(taggings.record_id) as records_count from taggings inner join collection_memberships on collection_memberships.record_id = taggings.record_id where collection_memberships.collection_id = collections.id group by taggings.subject_id order by records_count desc limit 6
