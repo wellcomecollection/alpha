@@ -2,8 +2,6 @@ class SearchController < ApplicationController
 
   def show
 
-    raise "TemporaryError"
-
     @query = params[:q].to_s
 
     if !@query.blank?
