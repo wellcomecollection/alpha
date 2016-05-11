@@ -25,17 +25,6 @@
 		</div>
 		<div class="nine columns">
 
-      <% if @collection.from_year && @collection.to_year %>
-        <div class="row breathe">
-          <div class="one column right">
-            <h6>Spans</h6>
-          </div>
-          <div class="eleven columns">
-            <%= @collection.from_year %> - <%= @collection.to_year %>
-          </div>
-        </div>
-      <% end %>
-
 			<div class="row breathe">
 				<div class="one column right">
 					<h6>Mostly</h6>
@@ -76,6 +65,16 @@
 				</div>
 			</div>
 <% end %>
+      <% if @collection.from_year && @collection.to_year %>
+        <div class="row breathe">
+          <div class="one column right">
+            <h6>Spans</h6>
+          </div>
+          <div class="eleven columns">
+            <%= @collection.from_year %> - <%= @collection.to_year %>
+          </div>
+        </div>
+      <% end %>
 		</div>
 	</div>
 
