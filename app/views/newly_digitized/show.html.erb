@@ -20,6 +20,13 @@
 			<% link_to(person.name, person) %>
 		  <% end.to_sentence(last_word_connector: ' and ').html_safe %>
 		</p>
+
+    <h6>Mostly</h6>
+    <p>
+      <%= @top_types.collect do |type| %>
+      <% link_to(type.name, type) %>
+      <% end.to_sentence(last_word_connector: ' and ').html_safe %>
+    </p>
 	</div>
 </div>
 

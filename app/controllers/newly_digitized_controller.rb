@@ -22,6 +22,14 @@ class NewlyDigitizedController < ApplicationController
       .group('people.id, people.name')
       .limit(20)
 
+    @top_types = Type
+      .select('types.name, types.id, count(record_types.record_id) as records_digitized_recently_count')
+      .joins(record_types: :record)
+      .where(records: {digitized_at: 7.days.ago..Time.now})
+      .order('records_digitized_recently_count desc')
+      .group('types.id, types.name')
+      .limit(20)
+
     @records = Record.select(:id, :identifier, :title, :cover_image_uris, :pdf_thumbnail_url, :digitized_at)
       .where.not(digitized_at: nil)
       .where(access_conditions: 'Open')
