@@ -1,4 +1,4 @@
-body { background-color: #F5F5F5; color: #000; }
+body { background-color: #F5F5F5; color: #000; padding-top:0;margin-top:0}
 a,
 button.link { color: #005870; background-color: white; padding: 2px; text-decoration: none;}
 
@@ -8,6 +8,9 @@ h1, h2 { line-height: 1em; margin-bottom: .5em; margin-top: .5em;}
 small { font-size: 0.75em; color: #333;}
 code { font-family: monospace; font-size: 1.25em;}
 
+.container { margin-top:0 }
+.alpha-banner { margin-bottom: 25px; background-color: #FFDA40; padding: 3px 8px 3px 8px}
+.alpha-banner a { background-color: #FFDA40; text-decoration: underline; color: black;}
 .is-admin {
 	background-color: #ffce00;
 	padding: 3px;
@@ -155,7 +158,7 @@ ul.results {
 .logo { padding-left: 20px; }
 .logo img { width: 90% }
 .logo a {
-	background-color: #F0F1EC;
+	background-color: #F5F5F5;
 }
 
 /* For devices smaller than 415px */
