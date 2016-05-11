@@ -6,6 +6,10 @@
 
 <hr />
 
+<% @highlighted_collections.each do |collection| %>
+  <p><%= link_to collection.name, collection %></p>
+<% end %>
+
 <% @collections.each do |collection| %>
 <div class="collection">
 	<h3>
