@@ -26,7 +26,7 @@
     <h4>Unexpected <a href="/types">Types</a> of Things</h4>
 
     <% if @types.length > 0 %>
-      <p>Fancy a <%= @types.collect {|type| link_to type.name, type}.to_sentence(last_word_connector: ' or ').html_safe %>?</p>
+      <p><%= @types.collect {|type| link_to type.name, type}.to_sentence(last_word_connector: ' or ').html_safe %>?</p>
     <% end %>
 
   </div>
