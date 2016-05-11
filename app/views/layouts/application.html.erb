@@ -29,11 +29,11 @@
 <body>
   <a name="top" style="background-color:transparent; display:none"></a>
   <div class="container">
-	<div class="alpha-banner">Hello. You've found the new Library explorer we're trialling... We hope you like it! <a href="no link yet" style="color:red">Find out more</a>, or head for <a href="http://www.wellcomelibrary.org/collections">the classic site</a>?</div>
+	<div class="alpha-banner">Hello. You've found the new Library explorer we're trialling... We hope you like it! <b><a href="/about">Find out more</a></b>, or head for <a href="http://www.wellcomelibrary.org/collections">the classic site</a>?</div>
     <div class="row nav">
     	<div class="three columns logo"><a href="/" alt="wellcome logo"><%= image_tag "logo-wellcome-library.svg" %></a></div>
-      	<div class="offset-by-six three columns" style="text-align:center; line-height:1em;">
-      		<small>Hi. You're using our new "alpha" library explorer. <a href="/about">Find out more</a>?</small>
+      	<div class="offset-by-six three columns">
+      		&nbsp;
       	</div>
     </div>
     <div class="row subnav">
@@ -45,7 +45,7 @@
         	<a href="/collections">Collections</a>&nbsp;&nbsp;
         	<a href="/newly_digitized">New stuff!</a>
 		</div>
-		<div class="four right">
+		<div class="four right login">
 			<% if !logged_in_as_admin? %>
 			  &nbsp;&nbsp;&nbsp;<%= link_to "Log in", new_session_path(return_to: request.path) %>
 			<% else %>

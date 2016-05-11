@@ -188,12 +188,14 @@ ul.results {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;  
+  padding-left: 7px;
 }
 .subnav div {
   padding-top: 10px;
   padding-bottom: 10px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.login {padding-right: 7px;}
 .admin-nav {
   border-bottom: 1px solid #ddd;
   margin-top: -21px;  
