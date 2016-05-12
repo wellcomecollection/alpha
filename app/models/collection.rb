@@ -5,6 +5,7 @@ class Collection < ActiveRecord::Base
 
   belongs_to :editorial_updated_by, class_name: 'User'
 
+  validates :slug, presence: true
 
   before_save :set_editorial_updated_at, :set_editorial_to_null_if_both_blank
 

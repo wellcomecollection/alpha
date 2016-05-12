@@ -104,11 +104,13 @@ module ApplicationHelper
 
   def digitized_graph(digitized_records_count, records_count)
 
-    "<div class=\"lil-vis\" style=\"margin-top: -7px; margin-bottom: 0;\">
-      <div class=\"digitised\" style=\"margin-top: -11px; margin-bottom: 0;\">
-      <div class=\"percent-done\" style=\"width: #{(100 * digitized_records_count.to_f / records_count) }%;\">&nbsp;</div>
-      </div>
-    </div>".html_safe
+    if records_count > 0
+      "<div class=\"lil-vis\" style=\"margin-top: -7px; margin-bottom: 0;\">
+        <div class=\"digitised\" style=\"margin-top: -11px; margin-bottom: 0;\">
+        <div class=\"percent-done\" style=\"width: #{(100 * digitized_records_count.to_f / records_count) }%;\">&nbsp;</div>
+        </div>
+      </div>".html_safe
+    end
   end
 
 end

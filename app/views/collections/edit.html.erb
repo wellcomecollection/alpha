@@ -1,44 +1,6 @@
 <%= form_for @collection do |form| %>
 
-  <div>
-    <div>
-    <%= form.label :name, "Collection name" %>
-    <%= form.text_field :name %>
-    </div>
+  <%= render 'basic_fields', form: form %>
 
-    <% if @collection.dig_code %>
-      <div>
-        DIG code: <%= @collection.dig_code %>
-      </div>
-    <% end %>
-
-    <div>
-      <%= form.label :description, "Editorial Description (can contain HTML)" %>
-      <%= form.text_area :description, class: 'count-words' %>
-      <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
-    </div>
-
-    <div class="editorial">
-
-      <h4>Editorial</h4>
-
-      <% if @collection.editorial %>
-        <div>Last updated <%= time_ago_in_words(@collection.editorial_updated_at) %> ago by <%= @collection.editorial_updated_by.email %></div>
-      <% end %>
-
-      <div>
-      <%= form.label :editorial_title, "Title" %>
-      <%= form.text_field :editorial_title %>
-      </div>
-
-      <div>
-        <%= form.label :editorial_content, "Content (can contain HTML)" %>
-        <%= form.text_area :editorial_content, class: 'count-words' %>
-        <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
-      </div>
-    </div>
-
-
-  </div>
   <button type="submit">SAVE</button>
 <% end %>

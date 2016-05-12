@@ -76,8 +76,34 @@ class CollectionsController < ApplicationController
 
   end
 
+  def new
+    @collection = Collection.new
+    @collection.name = params[:name]
+    @collection.slug = params[:slug]
+    @collection.description = params[:description]
+    @collection.editorial_title = params[:editorial_title]
+    @collection.editorial_content = params[:editorial_content]
+
+  end
+
   def edit
     @collection = Collection.find_by_slug!(params[:id])
+  end
+
+  def create
+    @collection = Collection.new(collection_params)
+    @collection.slug = params[:collection][:slug]
+
+    if !@collection.editorial_title.blank? || !@collection.editorial_content_blank?
+      @collection.editorial_updated_by = current_user
+    end
+
+    if @collection.save
+      redirect_to edit_collection_path(@collection)
+    else
+      redirect_to new_collection_path(params[:collection])
+    end
+
   end
 
   def update

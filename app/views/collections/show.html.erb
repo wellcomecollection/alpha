@@ -44,12 +44,7 @@
 
 			<h4 style="margin-bottom:0;"><%= pluralize_with_delimiter(@collection.records_count, 'item') %></h4>
 
-      <div class="lil-vis">
-        <div class="digitised">
-        <div class="percent-done" style="width: <%= (100 * @collection.digitized_records_count.to_f / @collection.records_count) %>%;">&nbsp;</div>
-        </div>
-        <%= percentage_with_varying_accuracy(@collection.digitized_records_count.to_f / @collection.records_count) %>  digitised
-      </div>
+      <%= digitized_graph(@collection.digitized_records_count, @collection.records_count) %>
 
 		</div>
 		<div class="nine columns">

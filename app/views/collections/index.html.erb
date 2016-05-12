@@ -2,7 +2,14 @@
 
 <h1>Collections</h1>
 
-<p>We aren't showing all the collections at Wellcome Library here yet. For now, we're showing about 50 collections that have lots of digitised things to see.</p>
+<p>
+  We aren't showing all the collections at Wellcome Library here yet. For now, we're showing about 50 collections that have lots of digitised things to see.
+  <% if logged_in_as_admin? %>
+    <%= link_to 'Add new collection', new_collection_path, class: 'is-admin' %>
+  <% end %>
+</p>
+
+
 
 <hr />
 
