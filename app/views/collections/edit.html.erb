@@ -2,7 +2,7 @@
 
   <%= render 'basic_fields', form: form %>
 
-  <%= render 'record_numbers', form: form %>
+  <%= render 'record_numbers', form: form, existing_record_identifiers: @record_identifiers %>
 
   <button type="submit">SAVE</button>
 <% end %>

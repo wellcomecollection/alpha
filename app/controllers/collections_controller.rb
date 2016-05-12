@@ -88,6 +88,10 @@ class CollectionsController < ApplicationController
 
   def edit
     @collection = Collection.find_by_slug!(params[:id])
+    @record_identifiers = @collection
+      .collection_memberships
+      .joins(:record)
+      .pluck("records.identifier")
   end
 
   def editorial
@@ -104,7 +108,7 @@ class CollectionsController < ApplicationController
 
     if @collection.save
 
-      add_record_numbers(params[:record_numbers])
+      add_record_numbers(params[:record_numbers].to_s.scan(/b\d+[\dx]/))
 
       redirect_to collection_path(@collection)
     else
@@ -123,7 +127,15 @@ class CollectionsController < ApplicationController
 
     @collection.save!
 
-    add_record_numbers(params[:record_numbers])
+    record_identifiers = params[:record_numbers].to_s.scan(/b\d+[\dx]/)
+
+    existing_record_identifiers = @collection
+      .collection_memberships
+      .joins(:record)
+      .pluck("records.identifier")
+
+    add_record_numbers(record_identifiers - existing_record_identifiers)
+    remove_record_numbers(existing_record_identifiers - record_identifiers)
 
     redirect_to @collection
   end
@@ -134,8 +146,19 @@ class CollectionsController < ApplicationController
     params.require(:collection).permit(:name, :description, :highlighted, :editorial_title, :editorial_content)
   end
 
-  def add_record_numbers(record_numbers)
-    record_identifiers = record_numbers.to_s.scan(/b\d+[\dx]/)
+  def remove_record_numbers(record_identifiers)
+
+    if record_identifiers.length > 0
+
+      record_ids = Record.where(identifier: record_identifiers).pluck(:id)
+
+      @collection.collection_memberships.where(record_id: record_ids).destroy_all
+
+    end
+
+  end
+
+  def add_record_numbers(record_identifiers)
 
     if record_identifiers.length > 0
 

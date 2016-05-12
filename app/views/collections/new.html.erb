@@ -6,7 +6,7 @@
   <%= form.text_field :slug, required: true %>
 
   <%= render 'basic_fields', form: form %>
-  <%= render 'record_numbers', form: form %>
+  <%= render 'record_numbers', form: form, existing_record_identifiers: [] %>
 
   <button type="submit">Create</button>
 
