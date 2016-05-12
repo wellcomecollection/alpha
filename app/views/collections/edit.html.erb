@@ -18,6 +18,27 @@
       <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
     </div>
 
+    <div class="editorial">
+
+      <h4>Editorial</h4>
+
+      <% if @collection.editorial %>
+        <div>Last updated <%= time_ago_in_words(@collection.editorial_updated_at) %> ago by <%= @collection.editorial_updated_by.email %></div>
+      <% end %>
+
+      <div>
+      <%= form.label :editorial_title, "Title" %>
+      <%= form.text_field :editorial_title %>
+      </div>
+
+      <div>
+        <%= form.label :editorial_content, "Content (can contain HTML)" %>
+        <%= form.text_area :editorial_content, class: 'count-words' %>
+        <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
+      </div>
+    </div>
+
+
   </div>
   <button type="submit">SAVE</button>
 <% end %>

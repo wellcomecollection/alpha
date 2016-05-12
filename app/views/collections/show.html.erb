@@ -23,6 +23,22 @@
   <p><%= @collection.description.html_safe %></p>
 <% end %>
 
+<div class="row">
+  <% if @collection.editorial %>
+    <div class="four columns">
+      <div class="editorial">
+        <h5><%= @collection.editorial_title %></h5>
+        <%= @collection.editorial_content.html_safe %>
+
+        <% if logged_in_as_admin? %>
+          <%= link_to 'Edit', edit_collection_path(@collection), {class: 'is-admin'} %>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
 	<div class="row breathe">
 		<div class="three columns">
 
