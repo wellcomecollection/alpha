@@ -56,6 +56,22 @@ class RecentChangesController < ApplicationController
         )
       }
 
+    @recent_changes += Collection
+      .where.not(editorial_updated_at: nil)
+      .order(:editorial_updated_at)
+      .reverse_order
+      .limit(20)
+      .collect {|s|
+        Struct::RecentChange.new(
+          s.editorial_updated_at,
+          s.editorial_updated_by.email,
+          'collection',
+          'editorial',
+          s.to_param,
+          s.name
+        )
+      }
+
     @recent_changes = @recent_changes.sort_by(&:updated_at).reverse
 
   end
