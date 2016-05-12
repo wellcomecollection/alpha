@@ -2,9 +2,6 @@
 
 <%= form_for @collection do |form| %>
 
-  <%= form.label :slug, "URL slug (lowercase, must be unique)" %>
-  <%= form.text_field :slug, required: true %>
-
   <%= render 'basic_fields', form: form %>
   <%= render 'record_numbers', form: form, existing_record_identifiers: [] %>
 

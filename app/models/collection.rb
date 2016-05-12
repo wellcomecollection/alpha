@@ -9,6 +9,8 @@ class Collection < ActiveRecord::Base
 
   before_save :set_editorial_updated_at, :set_editorial_to_null_if_both_blank
 
+  before_validation :set_slug_if_missing
+
   scope :highlighted, -> { where(highlighted: true) }
   scope :not_hidden, -> { where(hidden: false) }
 
@@ -56,6 +58,12 @@ class Collection < ActiveRecord::Base
   end
 
   private
+
+  def set_slug_if_missing
+    if slug.blank?
+      self.slug = name.downcase.gsub(/\s+/, '-')
+    end
+  end
 
   def set_editorial_to_null_if_both_blank
     if editorial_title.blank? && editorial_content.blank?
