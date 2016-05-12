@@ -94,6 +94,10 @@ class CollectionsController < ApplicationController
       .pluck("records.identifier")
   end
 
+  def all
+    @collections = Collection.select(:slug, :name).order(:name)
+  end
+
   def editorial
     @collection = Collection.find_by_slug!(params[:collection_id])
   end

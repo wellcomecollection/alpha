@@ -5,7 +5,8 @@
 <p>
   We aren't showing all the collections at Wellcome Library here yet. For now, we're showing about 50 collections that have lots of digitised things to see.
   <% if logged_in_as_admin? %>
-    <%= link_to 'Add new collection', new_collection_path, class: 'is-admin' %>
+    <%= link_to 'Add new collection', new_collection_path, class: 'is-admin' %> |
+    <%= link_to 'View All', all_collections_path, class: 'is-admin' %>
   <% end %>
 </p>
 
