@@ -90,6 +90,10 @@ class CollectionsController < ApplicationController
     @collection = Collection.find_by_slug!(params[:id])
   end
 
+  def editorial
+    @collection = Collection.find_by_slug!(params[:collection_id])
+  end
+
   def create
     @collection = Collection.new(collection_params)
     @collection.slug = params[:collection][:slug]

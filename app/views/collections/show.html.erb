@@ -31,11 +31,15 @@
         <%= @collection.editorial_content.html_safe %>
 
         <% if logged_in_as_admin? %>
-          <%= link_to 'Edit', edit_collection_path(@collection), {class: 'is-admin'} %>
+          <%= link_to 'Edit', collection_editorial_path(@collection), {class: 'is-admin'} %>
         <% end %>
       </div>
     </div>
 
+  <% else %>
+    <% if logged_in_as_admin? %>
+      <%= link_to 'Add editorial', collection_editorial_path(@collection), {class: 'is-admin'} %>
+    <% end %>
   <% end %>
 </div>
 
