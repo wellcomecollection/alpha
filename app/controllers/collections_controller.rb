@@ -95,7 +95,7 @@ class CollectionsController < ApplicationController
   end
 
   def all
-    @collections = Collection.select(:slug, :name, :hidden).order(:name)
+    @collections = Collection.select(:slug, :name, :hidden, :dig_code).order(:name)
   end
 
   def editorial
