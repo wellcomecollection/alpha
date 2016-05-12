@@ -3,7 +3,7 @@ class CollectionsController < ApplicationController
   before_filter :authorize, except: ['show', 'index']
 
   def index
-    @collections = Collection.order(:records_count).reverse_order
+    @collections = Collection.not_hidden.order(:records_count).reverse_order
 
     @highlighted_collections = @collections
       .select {|collection| collection.highlighted == true }.shuffle.take(4)
@@ -95,7 +95,7 @@ class CollectionsController < ApplicationController
   end
 
   def all
-    @collections = Collection.select(:slug, :name).order(:name)
+    @collections = Collection.select(:slug, :name, :hidden).order(:name)
   end
 
   def editorial
@@ -118,6 +118,16 @@ class CollectionsController < ApplicationController
     else
       redirect_to new_collection_path(params[:collection])
     end
+
+  end
+
+  def status
+    @collection = Collection.find_by_slug!(params[:collection_id])
+
+    @collection.hidden = params[:collection][:hidden]
+    @collection.save!
+
+    redirect_to all_collections_path
 
   end
 

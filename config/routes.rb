@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   resource :collections_all, only: 'show', path: 'collections/all', controller: 'collections', action: 'all', as: 'all_collections'
 
   resources :collections, only: ['index', 'show', 'edit', 'update', 'new', 'create'], constraints: {id: /[^\/]+/} do
+    resource :status, only: 'update', controller: 'collections', action: 'status'
     resource :editorial, only: ['show'], controller: 'collections', action: 'editorial'
     resources :subjects, only: ['index', 'show'], controller: 'collection_subjects', constraints: {id: /S\d+/}
     resources :people, only: ['index', 'show'], controller: 'collection_people', constraints: {id: /P\d+/}

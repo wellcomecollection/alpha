@@ -35,13 +35,13 @@
 
 <% end %>
 
-<% if @thing.collections.size > 0 %>
+<% if @collections.length > 0 %>
 <div class="row">
 	<div class="two columns">
-		<h6>Collection<% if @thing.collections.size > 1 %>s<% end %> &rarr;</h6>
+		<h6>Collection<% if @collections.length > 1 %>s<% end %> &rarr;</h6>
 	</div>
 	<div class="ten columns">
-		<%= @thing.collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
+		<%= @collections.collect {|collection| link_to(collection.name, collection) }.join(', ').html_safe %>
 	</div>
 </div>
 <% end %>

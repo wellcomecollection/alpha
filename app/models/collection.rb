@@ -10,6 +10,7 @@ class Collection < ActiveRecord::Base
   before_save :set_editorial_updated_at, :set_editorial_to_null_if_both_blank
 
   scope :highlighted, -> { where(highlighted: true) }
+  scope :not_hidden, -> { where(hidden: false) }
 
   def to_param
     slug

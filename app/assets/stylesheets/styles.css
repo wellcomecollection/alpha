@@ -26,7 +26,8 @@ button.is-admin {
 	line-height: 1em;
 	border-radius: 0;
 }
-a:link.is-admin {
+a:link.is-admin,
+button.link.is-admin {
 	color: white;
 }
 a:visited.is-admin {
@@ -238,6 +239,8 @@ button.link {
   letter-spacing: normal;
   line-height: inherit;
   height: auto;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 
