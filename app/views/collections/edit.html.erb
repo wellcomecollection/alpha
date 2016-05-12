@@ -6,7 +6,8 @@
 
   <%= render 'record_numbers', form: form, existing_record_identifiers: @record_identifiers %>
 
-  	<button type="submit">SAVE</button>&nbsp;&nbsp;&nbsp;<a href="#hide" style="color:red">Cancel</a>
+  	<button type="submit">SAVE</button>&nbsp;&nbsp;&nbsp;<a href="#" style="color:red" onclick="window.history.back(); return false;">Cancel</a>
+<% end %>
 
 
   <p>Or, do you want to <a href="#hide" style="color:red">hide this collection</a>?</p>
