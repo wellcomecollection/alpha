@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511161421) do
+ActiveRecord::Schema.define(version: 20160512104014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,18 +28,22 @@ ActiveRecord::Schema.define(version: 20160511161421) do
   add_index "collection_memberships", ["collection_id"], name: "index_collection_memberships_on_collection_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
-    t.text    "name",                                    null: false
-    t.integer "records_count",           default: 0,     null: false
-    t.integer "parent_collection_id"
-    t.integer "record_id"
-    t.text    "sample_images",                                        array: true
-    t.text    "dig_code"
-    t.integer "digitized_records_count", default: 0,     null: false
-    t.text    "description"
-    t.text    "slug",                                    null: false
-    t.integer "from_year"
-    t.integer "to_year"
-    t.boolean "highlighted",             default: false, null: false
+    t.text     "name",                                    null: false
+    t.integer  "records_count",           default: 0,     null: false
+    t.integer  "parent_collection_id"
+    t.integer  "record_id"
+    t.text     "sample_images",                                        array: true
+    t.text     "dig_code"
+    t.integer  "digitized_records_count", default: 0,     null: false
+    t.text     "description"
+    t.text     "slug",                                    null: false
+    t.integer  "from_year"
+    t.integer  "to_year"
+    t.boolean  "highlighted",             default: false, null: false
+    t.text     "editorial_title"
+    t.text     "editorial_content"
+    t.datetime "editorial_updated_at"
+    t.integer  "editorial_updated_by_id"
   end
 
   add_index "collections", ["dig_code"], name: "index_collections_on_dig_code", unique: true, using: :btree
