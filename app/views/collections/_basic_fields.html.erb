@@ -6,7 +6,12 @@
 
   <% if @collection.dig_code %>
     <div>
-      DIG code: <%= @collection.dig_code %>
+      DIG code: <code><%= @collection.dig_code %></code>
+    </div>
+
+  <% else %>
+    <div>
+      Slug: <code><%= @collection.slug %></code>
     </div>
   <% end %>
 
