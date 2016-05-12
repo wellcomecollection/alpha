@@ -2,8 +2,8 @@
         <% if current_user %>
 			<h1>Woo!</h1>
 		<% else %>
-			<div class="center" style="padding: 40px;">
-				<h1>Welcome to our new library explorer.</h1>
+			<div class="center" style="padding: 30px 60px 40px 60px;">
+				<h1>Welcome to our new Library explorer.</h1>
 			</div>
 		<% end %>
 
@@ -26,7 +26,7 @@
     <h4>Unexpected <a href="/types">Types</a> of Things</h4>
 
     <% if @types.length > 0 %>
-      <p><%= @types.collect {|type| link_to type.name, type}.to_sentence(last_word_connector: ' or ').html_safe %>?</p>
+      <p>Did you know the Wellcome Library holds <%= @types.collect {|type| link_to type.name, type}.to_sentence(last_word_connector: ' or ').html_safe %>?</p>
     <% end %>
 
   </div>
