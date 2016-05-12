@@ -13,8 +13,9 @@
     <% end %>
 
     <div>
-    <%= form.label :description, "Editorial Description (can contain HTML)" %>
-    <%= form.text_area :description %>
+      <%= form.label :description, "Editorial Description (can contain HTML)" %>
+      <%= form.text_area :description, class: 'count-words' %>
+      <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
     </div>
 
   </div>

@@ -239,3 +239,8 @@ button.link {
   line-height: inherit;
   height: auto;
 }
+
+
+textarea {
+  margin-bottom: 0;
+}
