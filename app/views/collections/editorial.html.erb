@@ -2,7 +2,7 @@
 
 <h1>Editorial for <%= link_to @collection.name, @collection %></h1>
 
-<%= form_for @collection do |form| %>
+<%= form_for @collection, url: collection_editorial_path(@collection) do |form| %>
 
   <div class="editorial">
 
