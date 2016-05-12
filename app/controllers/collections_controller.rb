@@ -98,12 +98,15 @@ class CollectionsController < ApplicationController
     @collection = Collection.new(collection_params)
     @collection.slug = params[:collection][:slug]
 
-    if !@collection.editorial_title.blank? || !@collection.editorial_content_blank?
+    if !@collection.editorial_title.blank? || !@collection.editorial_content.blank?
       @collection.editorial_updated_by = current_user
     end
 
     if @collection.save
-      redirect_to edit_collection_path(@collection)
+
+      add_record_numbers(params[:record_numbers])
+
+      redirect_to collection_path(@collection)
     else
       redirect_to new_collection_path(params[:collection])
     end
@@ -120,6 +123,8 @@ class CollectionsController < ApplicationController
 
     @collection.save!
 
+    add_record_numbers(params[:record_numbers])
+
     redirect_to @collection
   end
 
@@ -128,5 +133,26 @@ class CollectionsController < ApplicationController
   def collection_params
     params.require(:collection).permit(:name, :description, :highlighted, :editorial_title, :editorial_content)
   end
+
+  def add_record_numbers(record_numbers)
+    record_identifiers = record_numbers.to_s.scan(/b\d+[\dx]/)
+
+    if record_identifiers.length > 0
+
+      record_ids = Record.where(identifier: record_identifiers).pluck(:id)
+
+      record_ids.each do |record_id|
+
+        begin
+          @collection.collection_memberships << CollectionMembership.new(record_id: record_id)
+        rescue ActiveRecord::RecordNotUnique
+          # Ignore duplicates
+        end
+
+      end
+
+    end
+  end
+
 
 end
