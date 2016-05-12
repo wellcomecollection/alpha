@@ -1,8 +1,13 @@
+<% content_for :title, "Edit collection" %>
+
 <%= form_for @collection do |form| %>
 
   <%= render 'basic_fields', form: form %>
 
   <%= render 'record_numbers', form: form, existing_record_identifiers: @record_identifiers %>
 
-  <button type="submit">SAVE</button>
+  	<button type="submit">SAVE</button>&nbsp;&nbsp;&nbsp;<a href="#hide" style="color:red">Cancel</a>
+
+
+  <p>Or, do you want to <a href="#hide" style="color:red">hide this collection</a>?</p>
 <% end %>

@@ -1,8 +1,9 @@
-<div>
+<h6><a href="/recent_changes">Admin</a> /
+<h1>Edit a collection</h1>
+<div class="row">
   <div>
-  <%= form.label :name, "Collection name" %>
+  <%= form.label :name, "Collection name" %>  
   <%= form.text_field :name %>
-  </div>
 
   <% if @collection.dig_code %>
     <div>
@@ -14,11 +15,12 @@
       Slug: <code><%= @collection.slug %></code>
     </div>
   <% end %>
+  </div>
 
   <div>
-    <%= form.label :description, "Editorial Description (can contain HTML)" %>
+    <%= form.label :description, "Short description (can contain HTML)" %>
     <%= form.text_area :description, class: 'count-words' %>
-    <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
+    <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span> words
   </div>
 
 </div>
