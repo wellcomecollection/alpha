@@ -19,6 +19,10 @@
   </p>
 <% end %>
 
+<% if @collection.description %>
+  <p><%= @collection.description.html_safe %></p>
+<% end %>
+
 	<div class="row breathe">
 		<div class="three columns">
 
