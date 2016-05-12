@@ -9,7 +9,7 @@
       DIG code: <code><%= @collection.dig_code %></code>
     </div>
 
-  <% else %>
+  <% elsif !@collection.new_record? %>
     <div>
       Slug: <code><%= @collection.slug %></code>
     </div>
