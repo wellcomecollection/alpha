@@ -8,7 +8,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Actions</th>
+      <th width="25%">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +18,7 @@
     <% end %>
 
     <tr>
-      <th colspan="2">DIG-code collections</th>
+      <th colspan="2"><h4>DIG-code collections</h4></th>
     </tr>
     <% @collections.select {|collection| !collection.dig_code.blank? }.each do |collection| %>
       <%= render 'collection_row', collection: collection %>

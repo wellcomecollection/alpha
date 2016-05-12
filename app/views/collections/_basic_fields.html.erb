@@ -6,10 +6,9 @@
   <%= form.text_field :name %>
 
   <% if @collection.dig_code %>
-    <div>
+    
       DIG code: <code><%= @collection.dig_code %></code>
-    </div>
-
+    
   <% elsif !@collection.new_record? %>
     <div>
       Slug: <code><%= @collection.slug %></code>

@@ -2,16 +2,30 @@
 
 <h1>Editorial for <%= link_to @collection.name, @collection %></h1>
 
+
+<div class="row">
+  <div class="four columns">
+
+  <ul>
+    <li>Some HTML is OK
+      <ul>
+        <li>&lt;b&gt;bold&lt;/b&gt;</li>
+        <li>&lt;i&gt;italic&lt;/i&gt;</li>
+        <li>&lt;a href=""&gt;link&lt;/a&gt;</li>
+      </ul>
+    </li>
+    <li>To delete the editorial, clear the fields and save</li>
+
+    <% if @collection.editorial_updated_by %>
+      <li>Last updated <%= time_ago_in_words(@collection.editorial_updated_at) %> ago by <%= @collection.editorial_updated_by.email %></li>
+    <% end %>
+  </ul>
+  </div>
+  <div class="offset-by-one seven columns">
+
 <%= form_for @collection, url: collection_editorial_path(@collection) do |form| %>
 
   <div class="editorial">
-
-    <h4>Editorial</h4>
-
-    <% if @collection.editorial_updated_by %>
-      <div>Last updated <%= time_ago_in_words(@collection.editorial_updated_at) %> ago by <%= @collection.editorial_updated_by.email %></div>
-    <% end %>
-
     <div>
     <%= form.label :editorial_title, "Title" %>
     <%= form.text_field :editorial_title %>
@@ -20,9 +34,10 @@
     <div>
       <%= form.label :editorial_content, "Content (can contain HTML)" %>
       <%= form.text_area :editorial_content, class: 'count-words' %>
-      <div>Word count: <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span></div>
+      <span class="word-count"><%= @collection.description.to_s.split(/\s+/).length %></span> words
     </div>
   </div>
-
-  <button type="submit">SAVE</button>
+  <button type="submit">SAVE</button>&nbsp;&nbsp;&nbsp;<a href="#" onclick="window.history.back()">Cancel</a>
 <% end %>
+  </div>
+</div>
