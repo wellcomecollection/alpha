@@ -153,7 +153,7 @@ class SubjectsController < ApplicationController
     subject_ids = @subjects.collect(&:id)
 
     @records = Record.joins(:taggings).having(["array_agg(taggings.subject_id) @> ARRAY[?]", subject_ids])
-      .where(taggings: {subject_id: subject_ids}).group('records.id').limit(10)
+      .where(taggings: {subject_id: subject_ids}).order('records.digitized desc').group('records.id').limit(10)
 
   end
 
