@@ -258,3 +258,10 @@ textarea {
   line-height: 14px;
   color: #777;
 }
+
+.faves {
+	padding: 20px;
+	background-color: white;
+	font-size: 1.25em;
+	font-weight: bold;
+	}

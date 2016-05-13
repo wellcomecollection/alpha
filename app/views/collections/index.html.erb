@@ -25,7 +25,7 @@
       .order('random()')
       .first %>
 
-    <div class="three columns center">
+    <div class="three columns center faves">
       <%= link_to collection do %>
         <% if record && record.cover_image_url %>
           <%= image_tag record.cover_image_url(150,300) %>
