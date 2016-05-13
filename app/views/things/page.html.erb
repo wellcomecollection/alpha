@@ -4,9 +4,14 @@
 <h4 style="margin-top: 0">Page <%= @page %></h4>
 
 <div>
-  <p>Pages:
-    <% @thing.image_service_urls.each_with_index do |image, index| %>
-      <%= link_to_unless_current index + 1, thing_page_path(@thing, index + 1) %>
+  <p class="pages">
+
+    <% if @page > 1 %>
+      <%= link_to 'Previous', thing_page_path(@thing, @page - 1) %>
+    <% end %>
+
+    <% if @page < @thing.image_service_urls.length %>
+      <%= link_to 'Next', thing_page_path(@thing, @page + 1) %>
     <% end %>
   </p>
 </div>

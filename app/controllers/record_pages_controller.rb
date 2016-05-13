@@ -4,7 +4,7 @@ class RecordPagesController < ApplicationController
     @page = params[:id].to_i
     @thing = Record.find_by!(identifier: params[:thing_id])
 
-    @image = @thing.image_service_urls[@page]
+    @image = @thing.image_service_urls[@page - 1]
 
     render 'things/page'
   end
