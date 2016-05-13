@@ -6,18 +6,14 @@
   
   <hr />
 
-  <p>Order: <%= link_to_unless(@order == 'digitized', 'Digitized things', types_path(order: 'digitized')) %> | <%= link_to_unless_current('Total things', types_path(order: 'records')) %></p>
+  <p>Order by <%= link_to_unless(@order == 'digitized', '[ % digitised ]', types_path(order: 'digitized')) %> or <%= link_to_unless_current('[ total number ]', types_path(order: 'records')) %>?</p>
 
   <% @types.each do |type| %>
-    <div style=" float: left; height: 100px; width: 22%; list-style: none; padding: 0 27px 10px 0;">
+    <div class="types-list">
+		<h6 class="type-name"><%= link_to type.name, type %></h6>
 
-
-    	<h6 style="margin-bottom:0; padding: 3px; background-color: white;">
-        <%= link_to type.name, type %>
-        <span class="count"><%= pluralize_with_delimiter(type.records_count, 'thing') %></span>
-      </h6>
-
-      <%= digitized_graph(type.digitized_records_count, type.records_count) %>
+		<%= digitized_graph(type.digitized_records_count, type.records_count) %>
+		<span class="count"><%= pluralize_with_delimiter(type.records_count, 'thing') %></span>
 
     </div>
   <% end %>

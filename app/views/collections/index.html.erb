@@ -1,11 +1,7 @@
 <% content_for :title, "Collections" %>
 
-<% if logged_in_as_admin? %>
-	<%= render 'shared/admin_nav' %>
-<% end %>
-
   <% if logged_in_as_admin? %>
-    &rarr; <%= link_to 'Add new collection', new_collection_path, class: 'is-admin' %>
+    <%= link_to 'Add new collection', new_collection_path, class: 'is-admin' %>
   <% end %>
   
 <h1>Collections</h1>
