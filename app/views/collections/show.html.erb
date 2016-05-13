@@ -1,15 +1,14 @@
 <% content_for :title, @collection.name %>
 
 <% if logged_in_as_admin? %>
-<div class="admin-nav">
 
 	<%= link_to 'Edit this Collection?', edit_collection_path(@collection), class: "is-admin" %>
 
   <% unless @collection.editorial %>
-      <%= link_to 'Add editorial', collection_editorial_path(@collection), {class: 'is-admin'} %>
+       &nbsp;&bull;&nbsp; <%= link_to 'Add editorial', collection_editorial_path(@collection), {class: 'is-admin'} %>
   <% end %>
   
-</div>
+
 <% end %>
 <h6><a href="/collections">Collections</a> &rarr; </h6>
 
