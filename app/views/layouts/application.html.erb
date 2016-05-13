@@ -7,7 +7,7 @@
   <meta name="viewport" content="initial-scale=1">
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', async: true %>
   <%= csrf_meta_tags %>
   <meta name="robots" content="noindex">
   <meta description="This is the alpha, experimental version of a new Wellcome Library catalogue explorer. We hope you enjoy it!">
@@ -17,7 +17,7 @@
   <%= yield :head %>
 
 
-  <script src="//cdn.optimizely.com/js/699750911.js"></script>
+  <script async src="//cdn.optimizely.com/js/699750911.js"></script>
 
   <script>
   	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
