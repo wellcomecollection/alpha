@@ -1,3 +1,13 @@
+<% content_for :title, @subjects.collect(&:label).join(' + ') %>
+
+<% content_for :head do %>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:type" content="article" />
+
+  <meta name="twitter:title" content="<%= @subjects.collect(&:label).join(' + ') %>" />
+  <meta property="og:title" content="<%= @subjects.collect(&:label).join(' + ') %>" />
+<% end %>
+
 <h1><%= @subjects.collect {|subject| link_to(subject.label, subject) }.join(' +  ').html_safe %></h1>
 
 <% @records.each do |thing| %>
