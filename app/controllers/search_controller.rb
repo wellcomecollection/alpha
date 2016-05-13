@@ -22,6 +22,7 @@ class SearchController < ApplicationController
               }
             }
           },
+          sort: [{digitized: {order: 'desc'}}],
           size: @per_page,
           from: @from
         }
