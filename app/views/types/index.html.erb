@@ -6,7 +6,7 @@
   
   <hr />
 
-  <p>Order by <%= link_to_unless(@order == 'digitized', '[ % digitised ]', types_path(order: 'digitized')) %> or <%= link_to_unless_current('[ total number ]', types_path(order: 'records')) %>?</p>
+  <p>Sort order: <%= link_to_unless(@order == 'digitized', '[ % digitised ]', types_path(order: 'digitized')) %> or <%= link_to_unless_current('[ total number ]', types_path(order: 'records')) %>?</p>
 
   <% @types.each do |type| %>
     <div class="types-list">

@@ -105,15 +105,15 @@ module ApplicationHelper
   def digitized_graph(digitized_records_count, records_count, show_total = false)
 
     if show_total
-      total = " of " + pluralize_with_delimiter(records_count, 'thing')
+      total = " - " + pluralize_with_delimiter(records_count, 'thing')
     end
 
     if records_count > 0
-      "<div class=\"lil-vis\" style=\"margin-top: -7px; margin-bottom: 0;\">
-        <div class=\"digitised\" style=\"margin-top: -11px; margin-bottom: 0;\">
+      "<div class=\"lil-vis\">
+        <div class=\"digitised\">
           <div class=\"percent-done\" style=\"width: #{(100 * digitized_records_count.to_f / records_count) }%;\">&nbsp;</div>
         </div>
-        <div>#{percentage_with_varying_accuracy(digitized_records_count.to_f / records_count) } digitized#{total}</div>
+        <div class=\"count\">#{percentage_with_varying_accuracy(digitized_records_count.to_f / records_count) } digitised#{total}</div>
       </div>".html_safe
     end
   end
