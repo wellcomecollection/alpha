@@ -1,10 +1,9 @@
 <% content_for :title, "Editors" %>
 
 <%= render 'shared/admin_nav' %>
+&rarr; <%= link_to 'Add Editor', new_user_path, {class: 'is-admin'} %>
 
 <h1>Editors</h1>
-
-<%= link_to 'Add Editor', new_user_path, {class: 'is-admin'} %>
 
 <table width="100%">
   <% @users.each do |user| %>
