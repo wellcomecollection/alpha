@@ -18,7 +18,7 @@ module NumberHelper
       plural || singular.pluralize
     end
 
-    "#{number_with_delimiter(count) || 0} #{word}"
+    "#{number_with_delimiter(count) || 0}&nbsp;#{word}".html_safe
   end
 
 end

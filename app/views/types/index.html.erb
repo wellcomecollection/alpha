@@ -12,15 +12,12 @@
     <div style=" float: left; height: 100px; width: 22%; list-style: none; padding: 0 27px 10px 0;">
 
 
-    	<h6 style="margin-bottom:0; padding: 3px; background-color: white;"><%= link_to type.name, type %></h6>
+    	<h6 style="margin-bottom:0; padding: 3px; background-color: white;">
+        <%= link_to type.name, type %>
+        <span class="count"><%= pluralize_with_delimiter(type.records_count, 'thing') %></span>
+      </h6>
 
-		<div class="lil-vis" style="margin-top: -7px; margin-bottom: 0;">
-		  <div class="digitised" style="margin-top: -11px; margin-bottom: 0;">
-			<div class="percent-done" style="width:<%= (100 * type.digitized_records_count.to_f / type.records_count) %>%;">&nbsp;</div>
-		  </div>
-		</div>
-
-        <small style="padding-left: 3px;"><%= percentage_with_varying_accuracy(type.digitized_records_count.to_f / type.records_count) %>  digitised, <%= pluralize_with_delimiter(type.records_count, 'thing') %></small>
+      <%= digitized_graph(type.digitized_records_count, type.records_count) %>
 
     </div>
   <% end %>
