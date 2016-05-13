@@ -12,8 +12,7 @@
     <div class="types-list">
 		<h6 class="type-name"><%= link_to type.name, type %></h6>
 
-		<%= digitized_graph(type.digitized_records_count, type.records_count) %>
-		<span class="count"><%= pluralize_with_delimiter(type.records_count, 'thing') %></span>
+		<%= digitized_graph(type.digitized_records_count, type.records_count, true) %>
 
     </div>
   <% end %>
