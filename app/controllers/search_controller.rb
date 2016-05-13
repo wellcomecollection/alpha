@@ -27,7 +27,17 @@ class SearchController < ApplicationController
         }
 
 
-      @records = results['hits']['hits']
+      @records = results['hits']['hits'].collect do |record|
+
+        Record.new(
+          identifier: record['_id'],
+          title: record['_source']['title'],
+          cover_image_uris: record['_source']['cover_image_uris'],
+          pdf_thumbnail_url: record['_source']['pdf_thumbnail_url'],
+
+        )
+      end
+
       @total_count = results['hits']['total']
 
     end

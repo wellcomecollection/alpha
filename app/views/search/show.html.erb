@@ -8,17 +8,7 @@
   <% if @records.length > 0 %>
 
     <% @records.each do |record| %>
-      <div class="cover-box">
-        <div class="cover">
-          <%= link_to thing_path(record['_id']), title: record['_source']['title'] do %>
-            <% if record['_source']['cover_image_uris'] %>
-              <%= image_tag "#{record['_source']['cover_image_uris'].first}/full/!150,300/0/default.jpg" %>
-            <% else %>
-              <%= record['_source']['title'] %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <%= render 'records/record', record: record %>
     <% end %>
 
     <!-- Pagination -->
