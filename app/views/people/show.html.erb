@@ -187,7 +187,7 @@
 
 <div class="row">
   <div class="nine columns"><h2><%= pluralize_with_delimiter(@person.records_count, 'thing') %></h2></div>
-  <div class="three columns">
+    <div class="three columns" style="padding-top:50px;">
     <%= digitized_graph(@digitized_count, @person.records_count) %>
   </div>
 </div>

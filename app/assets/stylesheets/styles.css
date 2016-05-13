@@ -71,7 +71,7 @@ ul.results {
 
 /* Vis */
 
-.lil-vis {  font-size: .825em; padding-top: 20px; margin-top: -7px;}
+.lil-vis {  font-size: .825em; }
 .digitised { display:block; height:10px;background-color:white; margin-bottom: 5px; margin-top: -11px;}
 .percent-done { background-color:black; height:10px; float:left; }
 
