@@ -265,3 +265,12 @@ textarea {
 	font-size: 1.25em;
 	font-weight: bold;
 	}
+	
+.types-list {
+	float: left; 
+	height: 100px; 
+	width: 22%; 
+	list-style: none; 
+	padding: 0 27px 10px 0;
+}
+.type-name { margin-bottom:0; padding: 3px; background-color: white;}
