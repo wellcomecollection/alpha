@@ -217,7 +217,7 @@
 
 		<% if @person.records_as_subject_count > 10 %>
 			<ul>
-				<li>We're showing 10 results here. <b><%= link_to "View all #{pluralize_with_delimiter(@person.records_as_subject_count, 'thing')}", person_as_subject_path(@person) %></b> about <%= @person.name %>.</li>
+				<li>We're showing 10 results here. <b><%= link_to "View all #{pluralize_with_delimiter(@person.records_as_subject_count, 'thing')}".html_safe, person_as_subject_path(@person) %></b> about <%= @person.name %>.</li>
 			</ul>
 		<% end %>
 
