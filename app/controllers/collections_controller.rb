@@ -141,15 +141,18 @@ class CollectionsController < ApplicationController
 
     @collection.save!
 
-    record_identifiers = params[:record_numbers].to_s.scan(/b\d+[\dx]/)
+    if params[:record_numbers]
+      record_identifiers = params[:record_numbers].to_s.scan(/b\d+[\dx]/)
 
-    existing_record_identifiers = @collection
-      .collection_memberships
-      .joins(:record)
-      .pluck("records.identifier")
+      existing_record_identifiers = @collection
+        .collection_memberships
+        .joins(:record)
+        .pluck("records.identifier")
 
-    add_record_numbers(record_identifiers - existing_record_identifiers)
-    remove_record_numbers(existing_record_identifiers - record_identifiers)
+      add_record_numbers(record_identifiers - existing_record_identifiers)
+      remove_record_numbers(existing_record_identifiers - record_identifiers)
+
+    end
 
     redirect_to @collection
   end
