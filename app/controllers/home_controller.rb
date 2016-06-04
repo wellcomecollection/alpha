@@ -11,6 +11,7 @@ class HomeController < ApplicationController
 
     @collections = Collection
       .highlighted
+      .not_hidden
       .order('random()')
 
     @types = Type
