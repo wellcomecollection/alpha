@@ -109,7 +109,7 @@ class Record < ActiveRecord::Base
   end
 
   def image_service_urls
-    image_assets.map { |asset| "http://wellcomelibrary.org/iiif-img/#{identifier}-#{asset.fetch(:sequence_index)}/#{asset.fetch(:identifier)}" }
+    image_assets.map { |asset| "https://dlcs.io/iiif-img/wellcome/1/#{asset.fetch(:identifier)}" }
   end
 
   def publishers
