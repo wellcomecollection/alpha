@@ -1,6 +1,6 @@
 # Wellcome Library Alpha
 
-We're taking the work done in our What's In The Library? project -- http://whatsinthelibrary.com -- and moving it into the Wellcome Library infrastructure. It'll be a link from the existing Sandbox area -- https://wellcomelibrary.org/what-we-do/sandbox/ -- and positioned as an experimental first step.
+We're taking the work done in our What's In The Library? project -- http://whatsinthelibrary.com -- and moving it into the Wellcome Library infrastructure. 
 
 It's also online at http://alpha.wellcomelibrary.org, if you'd like to have a look.
 
