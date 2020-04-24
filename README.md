@@ -1,10 +1,23 @@
 # Wellcome Library Alpha
 
-We're taking the work done in our What's In The Library? project -- http://whatsinthelibrary.com -- and moving it into the Wellcome Library infrastructure. 
+## Background
+Alpha (2015-2020) was a demonstration of how Wellcome Library's library catalogue data could be explored in more browsable, visually interesting ways. 
 
-It's also online at http://alpha.wellcomelibrary.org, if you'd like to have a look.
+Formerly part of the Wellcome Library website, Alpha built on the work from four prototypes we made earlier -   [What's In The Library?]( https://whatsinthelibrary.com) - and moved it to the Wellcome Library infrastructure.
 
-We're also keeping track of the backlog and big issues here: https://trello.com/b/6goEz8ir/alpha
+Our collaborators at [Good, Form & Spectacle](http://goodformandspectacle.com/) - [@george08](https://github.com/george08) [@frankieroberto](https://github.com/frankieroberto) and [@tomstuart](https://github.com/tomstuart)- explored our MARC21 bibliographic data and digitised content over 2 phases during 2015/2016. We had a lot of fun working with them!
+
+Even though the sites have been decommissioned, you can still see what they looked like through the Internet Archive:
+[What's In The Library?](https://web.archive.org/web/20180327114106/http://wellcome-sandbox.herokuapp.com/): a 4-week prototyping project 
+[Wellcome Library Alpha](https://web.archive.org/web/*/alpha.wellcomelibrary.org): the front-end collection explorer
+
+We also documented the process heavily in our [Project Blog](https://whatsinthelibrary.wordpress.com/).
+
+
+
+
+## Disclaimer
+Wellcome Collection and Good, Form & Spectacle no longer maintain this code or any of the underlying services. Use at your own risk! :skull:
 
 ## Installation
 
